@@ -1,0 +1,57 @@
+baseURL = 'https://Liyixian06.github.io/'
+languageCode = 'en-us'
+title = 'Liyixian Blog'
+theme = 'hugo-theme-cleanwhite'
+Copyright = "© LiYixian 2023"
+paginate = 7
+hasCJKLanguage = true
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[params]
+header_image = "img/bg_home.jpeg"
+SEOTitle = "李一线的博客"
+keyword = "李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客"
+
+title_404 = "这是一片荒原。"
+image_404 = "img/bg_404.jpg"
+omit_categories = false
+
+sidebar_avatar = "img/avatar.png"
+sidebar_about_description = "一直神游，有时读书，很少写作，从不期待。"
+featured_tags = true 
+featured_condition_size = 1 
+
+about_me = true
+
+page_view_conter = true
+search = true
+
+[params.social]
+rss = true
+email = "liyixian06@gmail.com"
+github = "https://github.com/Liyixian06"
+
+googleAnalytics = ""
+ba_track_id = ""
+
+[[params.addtional_menus]]
+title = 'ABOUT'
+href = '/about'
+[[params.addtional_menus]]
+title =  "ARCHIVE"
+href =  "/archive"
+
+[params.giscus]
+  data_repo="Liyixian06/Liyixian06.github.io"
+  data_repo_id="R_kgDOJ9iXRA"
+  data_category="Announcements"
+  data_category_id="DIC_kwDOJ9iXRM4CYAg8"
+  data_mapping="pathname"
+  data_reactions_enabled="1"
+  data_emit_metadata="0"
+  data-input-position="bottom"
+  data_theme="light"
+  data_lang="en"
+  crossorigin="anonymous"
