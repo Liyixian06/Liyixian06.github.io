@@ -144,6 +144,7 @@ Next, open up the newly created package.json, where we’ll add an NPM script to
 ```
 Algolia index output format has already been supported by the CleanWhite theme, so you can just build your site, then you’ll find a file called algolia.json in your `public` directory, which we can use to update your index in Algolia.
 Generate index file:
+
 ```bash
 $ hugo
 ```
@@ -166,7 +167,7 @@ algolia_search = true
 algolia_appId = {{ YOUR_APP_ID }}
 algolia_indexName = {{ YOUR_INDEX_NAME }}
 algolia_apiKey = {{ YOUR_SEARCH_ONLY_KEY }}
-```
+ ```
 Open search page in your browser: http://localhost:1313/search
 
 ### Analytics
@@ -241,6 +242,12 @@ Youtube
 Vimeo
 ```
 {{< vimeo 146022717 >}}
+```
+
+Spotify
+
+```
+{{< spotify type="track" id="2D3gvohUyOfXIVX6Mvhqae" height="80px">}}
 ```
 
 ### Plantuml
