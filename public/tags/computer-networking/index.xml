@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tech on Liyixian Blog</title>
-    <link>https://Liyixian06.github.io/categories/tech/</link>
-    <description>Recent content in Tech on Liyixian Blog</description>
+    <title>Computer Networking on Liyixian Blog</title>
+    <link>https://Liyixian06.github.io/tags/computer-networking/</link>
+    <description>Recent content in Computer Networking on Liyixian Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 06 Sep 2023 18:52:07 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Sep 2023 18:52:07 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/computer-networking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>计算机网络笔记01：计算机网络和因特网</title>
       <link>https://Liyixian06.github.io/2023-09-06/computer-networking-ch1/</link>
@@ -15,15 +15,6 @@
       
       <guid>https://Liyixian06.github.io/2023-09-06/computer-networking-ch1/</guid>
       <description>本文是《计算机网络：自顶向下方法》（Computer Networking: A Top-Down Approach）的阅读笔记，不成文，仅记录。 Summary： 构成网络的基本硬件和</description>
-    </item>
-    
-    <item>
-      <title>An Example Post</title>
-      <link>https://Liyixian06.github.io/post/post2/</link>
-      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://Liyixian06.github.io/post/post2/</guid>
-      <description>这是一个测试 shortcode 的页面。 Bilibili Spotify 可能需要科学上网才能显示。</description>
     </item>
     
   </channel>

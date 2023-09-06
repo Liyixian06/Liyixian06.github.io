@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="Welcome to Liyixian Blog" />
-    <meta property="og:title" content="Welcome to Liyixian Blog" />
-    <meta property="twitter:title" content="Welcome to Liyixian Blog" />
+    <meta name="title" content="计算机网络笔记01：计算机网络和因特网" />
+    <meta property="og:title" content="计算机网络笔记01：计算机网络和因特网" />
+    <meta property="twitter:title" content="计算机网络笔记01：计算机网络和因特网" />
     
 
     
-    <meta name="description" content="Hello World, Hello Blog">
-    <meta property="og:description" content="Hello World, Hello Blog" />
-    <meta property="twitter:description" content="Hello World, Hello Blog" />
+    <meta name="description" content="计算机网络的概述">
+    <meta property="og:description" content="计算机网络的概述" />
+    <meta property="twitter:description" content="计算机网络的概述" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Welcome to Liyixian Blog | 李一线的博客</title>
+    <title>计算机网络笔记01：计算机网络和因特网 | 李一线的博客</title>
 
-    <link rel="canonical" href="/post/test/">
+    <link rel="canonical" href="/2023-09-06/computer-networking-ch1/">
 
     
     
@@ -176,28 +176,28 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/tag1" title="tag1">
-                            tag1
+                        <a class="tag" href="/tags/cs" title="CS">
+                            CS
                         </a>
                         
-                        <a class="tag" href="/tags/tag2" title="tag2">
-                            tag2
+                        <a class="tag" href="/tags/computer-networking" title="Computer Networking">
+                            Computer Networking
                         </a>
                         
                     </div>
-                    <h1>Welcome to Liyixian Blog</h1>
+                    <h1>计算机网络笔记01：计算机网络和因特网</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
                             Posted by 
                             
-                                Liyixian
+                                LiYixian
                              
                             on 
-                            Thursday, July 20, 2023
+                            Wednesday, September 6, 2023
                             
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/post/test/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2023-09-06/computer-networking-ch1/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 3 字</span>，阅读约 <span class="more-meta"> 1 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 1711 字</span>，阅读约 <span class="more-meta"> 4 分钟</span>
                             
                             
                             
@@ -356,9 +356,80 @@ $(function() {
                 post-container">
     
                 
-                <blockquote>
-<p>To Be Continued&hellip;</p>
-</blockquote>
+                <p><em>本文是《计算机网络：自顶向下方法》（Computer Networking: A Top-Down Approach）的阅读笔记，不成文，仅记录。</em></p>
+<p><strong>Summary：</strong></p>
+<ul>
+<li>构成网络的基本硬件和软件</li>
+<li>边缘：网络中运行的主机和网络应用</li>
+<li>核心：传输数据的链路和交换机，接入网和物理媒体</li>
+<li>体系结构原则</li>
+<li>攻击和安全</li>
+</ul>
+<h3 id="什么是因特网">什么是因特网？</h3>
+<h4 id="因特网的硬件和软件组件">因特网的硬件和软件组件</h4>
+<p>主机/端系统通过通信链路和分组交换机连接到一起；不同链路的传输速率不同<br>
+发送数据时将数据分段并加上首部字节，形成信息包 packet<br>
+分组交换机：路由器、链路层交换机 link-layer switch<br>
+主机通过因特网服务提供商 ISP 接入因特网，每个 ISP 是多台分组交换机和多段通信链路组成的网络；ISP 互联，每个都独立管理<br>
+主机、分组交换机和其他因特网部件运行协议 protocol，控制信息接收和发送：TCP 传输控制协议/IP 网际协议</p>
+<h4 id="因特网服务">因特网服务</h4>
+<p>分布式应用程序 distributed application 运行在主机上，涉及多个相互交换数据的主机<br>
+主机提供了套接字接口 socket interface，规定主机之间交换数据的方式（因特网服务）</p>
+<h4 id="网络协议-protocol">网络协议 protocol</h4>
+<p>协议：通信时一系列约定俗成的动作（格式、顺序等）</p>
+<h3 id="网络边缘与核心">网络边缘与核心</h3>
+<p>主机：客户 client 和服务器 server <em>（存储、发布 Web 页面、流视频、中继 email）</em></p>
+<h4 id="接入网-access-network">接入网 access network</h4>
+<p>将主机连接到边缘路由器（主机到任何其他远端主机的路径上的第一台路由器）<br>
+有线接入（光纤宽带、以太网 Ethernet）、无线接入（WiFi、移动通信 4G/5G）</p>
+<h4 id="分组交换">分组交换</h4>
+<p>主机之间传输 message 时将其分为较小的数据块，称之为分组 packet；每个 packet 都通过通信链路和分组交换机传输<br>
+分组转发率 PPS：以 packet 为单位的转发率 packet/秒<br>
+存储转发传输 store-and-forward transmission：交换机必须先接收整个 packet 才能开始输出，存在存储转发时延<br>
+每台分组交换机有多条链路，对每条链路都有一个 output buffer/queue 存储准备发送的 packet，因此存在等待的时延 queuing delay<br>
+buffer 是有限的，如果满了就会出现丢包</p>
+<p>为什么要用 packet？<br>
+可以降低 latency，避免某条链路/路由器缓存被一条 message 长时间占用</p>
+<p>
+  <img src="/img/packet_latency.png" alt="packet降低latency">
+
+</p>
+<p>路由器如何决定向哪条链路转发？<br>
+每个主机都有 IP 地址，传输 packet 时包含了目的地的 IP 地址；IP 地址有等级结构，路由器会检查地址，并通过自带的转发表 forwarding table 将其映射为输出链路，将 packet 导向它<br>
+转发表的设置是通过因特网的路由选择协议 routing protocol 决定的</p>
+<h4 id="电路交换">电路交换</h4>
+<p>电路交换网络中，在主机通信期间会预留通信所需的资源（带宽、缓存），传送数据的速率是恒定的<br>
+频分多路复用 FDM/时分多路复用 TDM/统计多路复用（带宽按需共享）</p>
+<h4 id="二者的对比">二者的对比</h4>
+<p>分组交换不适合实时服务（视频会议等），因为端到端的 latency 不可预测（主要是因为排队），会产生抖动 jitter<br>
+电路交换在 silent period 专用电路空闲，空闲的网络资源（频段/时隙）不能被其他连接使用，会被浪费<br>
+网络流量有很强的突发性（不平稳），不同流的峰值出现在不同时间；流越多，网络平均流量越平滑<br>
+总体而言，分组交换的性能优于电路交换，因为每个用户的活跃时间都很短</p>
+<h4 id="网络的网络">网络的网络</h4>
+<p>主机经过接入 ISP 与因特网相连；同时，ISP 自身必须互联<br>
+tier 3：金字塔形态的网络的网络：全球传输 ISP - 区域 ISP - 接入 ISP，每一层都要向其连接的上一层付费<br>
+tier 4：增加存在点 Point of Presence、多宿 multi-home（任何 ISP 可以与多个提供商 ISP 连接）、对等 peer（ISP 不向同一层的其他 ISP 付费）、因特网交换点 IXP（多个对等 ISP 的汇合点）<br>
+tier 5：增加提供商网络 content provider network（如 Google），经过专用的 TCP/IP 网络互联，专用网络仅承载出入其服务器的流量；直接与较低层 ISP 连接，减少向顶层 ISP 的付费，控制服务器如何交付给主机</p>
+<h3 id="分组交换网中的时延丢包吞吐">分组交换网中的时延、丢包、吞吐</h3>
+<h4 id="时延">时延</h4>
+<ul>
+<li>节点处理时延 proc<br>
+检查 packet 首部，决定将它导向哪条链路<br>
+对路由器的最大吞吐量有重要影响</li>
+<li>排队时延 queue<br>
+packet 在链路上等待传输，取决于前面等待的 packet 数量；是流量的强度和性质的函数</li>
+<li>传输时延 trans<br>
+packet 长度为 L bit，链路传输速率为 R bit/s，则传输时延是 L/R</li>
+<li>传播时延 prop<br>
+传播时延等于两台路由器之间的距离 d/传播速率 s，速率取决于链路的物理媒体</li>
+</ul>
+<h4 id="排队时延和丢包">排队时延和丢包</h4>
+<p>排队时延取决于流量到达队列的速率、链路传输速率、到达流量的性质（周期性/突发）<br>
+流量强度 traffic intensity（La/R）不能大于 1<br>
+丢包可能基于端到端的原则重传</p>
+<h4 id="端到端吞吐量">端到端吞吐量</h4>
+<p>吞吐量是服务器和客户之间瓶颈链路 bottleneck link 的传输速率，限制因素通常是接入网<br>
+也取决于干扰流量</p>
 
     
                 
@@ -368,15 +439,10 @@ $(function() {
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/post2/" data-toggle="tooltip" data-placement="top" title="An Example Post">&larr;
+                        <a href="/2023-07-23/how-to-watch/" data-toggle="tooltip" data-placement="top" title="如何看片">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2023-07-23/how-to-watch/" data-toggle="tooltip" data-placement="top" title="如何看片">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 
