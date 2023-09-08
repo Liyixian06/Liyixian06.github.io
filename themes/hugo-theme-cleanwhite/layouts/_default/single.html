@@ -84,6 +84,10 @@
                 {{ if .Site.Params.reward }}
                 {{ partial "reward.html" . }}
                 {{ end }}
+                
+                {{ if or .Params.math .Site.Params.math }}
+                {{ partial "math.html" . }}
+                {{ end }}
     
                 {{ if or (.PrevInSection) (.NextInSection) }}
                 <hr>

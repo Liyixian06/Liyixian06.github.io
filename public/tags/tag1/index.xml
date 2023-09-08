@@ -9,12 +9,12 @@
     <copyright>© LiYixian 2023</copyright>
     <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/tag1/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>An Example Post</title>
+      <title>A Test Post</title>
       <link>https://Liyixian06.github.io/post/post2/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://Liyixian06.github.io/post/post2/</guid>
-      <description>这是一个测试 shortcode 的页面。 Bilibili Spotify 可能需要科学上网才能显示。</description>
+      <description>这是一个测试网站功能的页面。 shortcode Bilibili Spotify 可能需要科学上网才能显示。 latex 只在需要渲染 latex 的页面加载，在 frontmatter 设置 math: true 即可。显示单行方程式，用 $$ 作为分隔符，如</description>
     </item>
     
   </channel>

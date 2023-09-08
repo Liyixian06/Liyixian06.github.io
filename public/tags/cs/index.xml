@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 06 Sep 2023 18:52:07 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Sep 2023 10:03:18 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译原理笔记01：引论</title>
+      <link>https://Liyixian06.github.io/2023-09-07/compiler-principles-ch1/</link>
+      <pubDate>Thu, 07 Sep 2023 10:03:18 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023-09-07/compiler-principles-ch1/</guid>
+      <description>语言处理系统：把用软件语言书写的各种程序翻译成可在计算机上执行的程序，或最终的计算结果，或其他中间形式。 如何完成翻译？ 语言处理系统总则 预处理</description>
+    </item>
+    
     <item>
       <title>计算机网络笔记01：计算机网络和因特网</title>
       <link>https://Liyixian06.github.io/2023-09-06/computer-networking-ch1/</link>

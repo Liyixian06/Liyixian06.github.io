@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="A Test Post" />
-    <meta property="og:title" content="A Test Post" />
-    <meta property="twitter:title" content="A Test Post" />
+    <meta name="title" content="编译原理笔记01：引论" />
+    <meta property="og:title" content="编译原理笔记01：引论" />
+    <meta property="twitter:title" content="编译原理笔记01：引论" />
     
 
     
-    <meta name="description" content="this is a description.">
-    <meta property="og:description" content="this is a description." />
-    <meta property="twitter:description" content="this is a description." />
+    <meta name="description" content="语言处理系统的概述">
+    <meta property="og:description" content="语言处理系统的概述" />
+    <meta property="twitter:description" content="语言处理系统的概述" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>A Test Post | 李一线的博客</title>
+    <title>编译原理笔记01：引论 | 李一线的博客</title>
 
-    <link rel="canonical" href="/post/post2/">
+    <link rel="canonical" href="/2023-09-07/compiler-principles-ch1/">
 
     
     
@@ -176,28 +176,28 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/tag1" title="tag1">
-                            tag1
+                        <a class="tag" href="/tags/cs" title="CS">
+                            CS
                         </a>
                         
-                        <a class="tag" href="/tags/tag2" title="tag2">
-                            tag2
+                        <a class="tag" href="/tags/compiler" title="compiler">
+                            compiler
                         </a>
                         
                     </div>
-                    <h1>A Test Post</h1>
-                    <h2 class="subheading">a subtitle</h2>
+                    <h1>编译原理笔记01：引论</h1>
+                    <h2 class="subheading"></h2>
                     <span class="meta">
                         
                             Posted by 
                             
-                                Liyixian
+                                LiYixian
                              
                             on 
-                            Monday, June 4, 2018
+                            Thursday, September 7, 2023
                             
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/post/post2/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2023-09-07/compiler-principles-ch1/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 122 字</span>，阅读约 <span class="more-meta"> 1 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 589 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
                             
                             
                             
@@ -356,76 +356,89 @@ $(function() {
                 post-container">
     
                 
-                <p>这是一个测试网站功能的页面。</p>
-<h1 id="shortcode">shortcode</h1>
-<h2 id="bilibili">Bilibili</h2>
-
-
-
-<style>
-    #biliplayer {
-      width: 100%;
-      height: 600px;
-    }
-    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-      #biliplayer {
-        width: 100%;
-        height: 250px;
-      }
-    }
-</style>
-
-
-    <div>
-        <iframe id="biliplayer" src="//player.bilibili.com/player.html?bvid=BV1KW4y1B7W6&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" loading="lazy" ></iframe>
-    </div>
-
-
-<h2 id="spotify">Spotify</h2>
-<p><em>可能需要科学上网才能显示。</em></p>
-
-
-
-<iframe src="https://open.spotify.com/embed/track/2D3gvohUyOfXIVX6Mvhqae"
-    width="100%"
-    height="80px"
-    frameborder="0"
-    allowtransparency="true"
-    allow="encrypted-media"></iframe>
-
-<h1 id="latex">latex</h1>
-<p>只在需要渲染 latex 的页面加载，在 frontmatter 设置 <code>math: true</code> 即可。显示单行方程式，用 <code>$$</code> 作为分隔符，如：<br>
-<code>$$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$</code><br>
-这会在网页上渲染为：<br>
-$$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$</p>
-<p>要显示 inline 方程，用 <code>\\( \\)</code> 分隔：<br>
-<code>\\(y_t\\)</code><br>
-效果如 \(y_t\)。</p>
+                <p>语言处理系统：把用软件语言书写的各种程序翻译成可在计算机上执行的程序，或最终的计算结果，或其他中间形式。</p>
+<p>如何完成翻译？</p>
+<h4 id="语言处理系统总则">语言处理系统总则</h4>
+<ol>
+<li>预处理：删除注释、宏扩展、文件包含（. i 文件）</li>
+<li>编译：将源程序翻译成汇编语言（.s 文件）
+<ol>
+<li>词法分析，创建符号表
+<ol>
+<li>把源代码中的字符串（关键字、标识符、操作符、界符等）转换成 token</li>
+<li>正则表达式、flex（词法文件 calc.l）</li>
+</ol>
+</li>
+<li>语法分析
+<ol>
+<li>把 token 串转换成 AST 抽象语法树，生成清晰的代码结构</li>
+<li>按照语法结构的递归定义从上到下匹配</li>
+<li>Bison/Yacc（语法文件 calc.y）</li>
+</ol>
+</li>
+<li>语义分析
+<ol>
+<li>理解语句要做什么（唯一的含义）</li>
+<li>收集信息：引用消解、上下文信息</li>
+<li>类型分析和检查</li>
+</ol>
+</li>
+<li>中间代码生成
+<ol>
+<li>LLVM IR (Intermediate Representation)
+<ol>
+<li>基本单位是 module</li>
+<li>module 中可以包含多个顶层实体（函数/全局变量）</li>
+<li>函数由一系列 basic block 组成，每个 block 里有若干 instruction</li>
+</ol>
+</li>
+<li>得到. bc 二进制中间语言和. ll 可读代码（两种格式等价）</li>
+<li>pipeline：不同高级语言对应的前端将其转换成 IR，统一优化、链接后再传给不同 target (x86/arm/risc-v/mips/&hellip;) 的后端，转换成对应的二进制代码</li>
+<li>在这一步，高级语言的差异消失了</li>
+</ol>
+</li>
+<li>代码优化
+<ol>
+<li>LLVM 后端优化</li>
+<li>数据流分析、基于 basic block 生成的控制流图 CFG 优化</li>
+<li><em>e.g. 代数优化、常数折叠、死代码删除</em></li>
+</ol>
+</li>
+<li>代码生成
+<ol>
+<li>确定变量的内存位置、指定寄存器</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>汇编：将汇编语言翻译成机器语言，并打包成可重定位目标程序（. o 文件）
+<ol>
+<li>指令选择</li>
+<li>寄存器分配</li>
+<li>指令重排</li>
+<li>指令编码</li>
+</ol>
+</li>
+<li>链接/加载：将可重定位机器代码和相应的目标文件、库文件链接在一起，形成能运行的程序</li>
+</ol>
 
     
                 
                 
-                
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
-    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
-    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
-    crossorigin="anonymous"></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
-    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
-
                 
     
                 
                 <hr>
                 <ul class="pager">
                     
+                    <li class="previous">
+                        <a href="/2023-09-06/computer-networking-ch1/" data-toggle="tooltip" data-placement="top" title="计算机网络笔记01：计算机网络和因特网">&larr;
+                            Previous Post</a>
+                    </li>
+                    
                     
                     <li class="next">
-                        <a href="/2023-07-23/how-to-watch/" data-toggle="tooltip" data-placement="top" title="如何看片">Next
+                        <a href="/2023-09-08/note_exit_voice_loyalty/" data-toggle="tooltip" data-placement="top" title="读书笔记：退出、呼吁与忠诚">Next
                             Post &rarr;</a>
                     </li>
                     

@@ -5,7 +5,7 @@ description: "计算机网络的概述"
 date:        2023-09-06T18:52:07+08:00
 author: LiYixian
 image:       ""
-tags:        ["CS","Computer Networking"]
+tags:        ["CS","computer networking"]
 categories:  ["Tech" ]
 URL: "/2023-09-06/computer-networking-ch1/"
 ---
