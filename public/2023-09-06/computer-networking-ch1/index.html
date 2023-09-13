@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 1711 字</span>，阅读约 <span class="more-meta"> 4 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 2310 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
                             
                             
                             
@@ -361,7 +361,8 @@ $(function() {
 <ul>
 <li>构成网络的基本硬件和软件</li>
 <li>边缘：网络中运行的主机和网络应用</li>
-<li>核心：传输数据的链路和交换机，接入网和物理媒体</li>
+<li>核心：接入网、链路和交换机</li>
+<li>分组交换的时延、丢包、吞吐</li>
 <li>体系结构原则</li>
 <li>攻击和安全</li>
 </ul>
@@ -376,7 +377,8 @@ $(function() {
 <p>分布式应用程序 distributed application 运行在主机上，涉及多个相互交换数据的主机<br>
 主机提供了套接字接口 socket interface，规定主机之间交换数据的方式（因特网服务）</p>
 <h4 id="网络协议-protocol">网络协议 protocol</h4>
-<p>协议：通信时一系列约定俗成的动作（格式、顺序等）</p>
+<p>协议：通信时一系列约定俗成的动作（语法、语义、时序）<br>
+对等性，相同层次必须执行相同协议</p>
 <h3 id="网络边缘与核心">网络边缘与核心</h3>
 <p>主机：客户 client 和服务器 server <em>（存储、发布 Web 页面、流视频、中继 email）</em></p>
 <h4 id="接入网-access-network">接入网 access network</h4>
@@ -430,6 +432,51 @@ packet 长度为 L bit，链路传输速率为 R bit/s，则传输时延是 L/R<
 <h4 id="端到端吞吐量">端到端吞吐量</h4>
 <p>吞吐量是服务器和客户之间瓶颈链路 bottleneck link 的传输速率，限制因素通常是接入网<br>
 也取决于干扰流量</p>
+<h3 id="协议层次及其服务模型">协议层次及其服务模型</h3>
+<p>分层 layer 的特点：</p>
+<ol>
+<li>对上面层次提供服务 service，使用下面层次的服务（下层被包装了，只提供接口）</li>
+<li>某层的实现方式变化时，系统其余部分不受影响</li>
+</ol>
+<p>第 n 层协议的不同部分分布于网络组件的各个部分中<br>
+协议栈 protocol stack：物理层、链路层、网络层、运输层、应用层，自顶向下处理</p>
+<ol>
+<li>应用层<br>
+网络应用程序及其应用层协议<br>
+应用层协议分布在多个主机上，其信息分组就是 message</li>
+<li>运输层<br>
+在应用程序端点之间传送应用层的 message<br>
+两种运输协议 TCP/UDP<br>
+TCP 面向连接的服务：流量控制、划分、拥塞控制<br>
+运输层分组称为报文段 segment</li>
+<li>网络层（IP 层）<br>
+将网络层分组数据报 datagram 在主机之间移动<br>
+运输层协议向网络层递交运输层 segment 和目的地址<br>
+网际协议 IP 定义 datagram 的字段<br>
+路由选择协议</li>
+<li>链路层<br>
+网络层将 datagram 下传给链路层，链路层沿路径将其传递给下一个节点，然后在那里将 datagram 上传给网络层<br>
+一个 datagram 可能被不同链路的不同链路层协议处理<br>
+链路层分组称为帧 frame</li>
+<li>物理层
+将 frame 中的一个个 bit 在节点间移动<br>
+协议与链路的实际传输媒体相关</li>
+</ol>
+<p>TCP/IP 体系结构中链路层和物理层合并为接口层</p>
+<p>
+  <img src="/img/TCP_IP_architecture.png" alt="">
+
+</p>
+<p>封装 encapsulation<br>
+application-layer message - 运输层增加首部信息（差错检测等），构成 transport-layer segment - 网络层增加首部信息（源和目的系统地址等），构成 network-layer datagram - 链路层生成 link-layer frame<br>
+每层的分组分为首部字段和有效载荷 payload field，通常来自上一层的分组</p>
+<h3 id="网络攻击">网络攻击</h3>
+<ul>
+<li>自我复制的恶意软件：virus, worm</li>
+<li>DoS (Denial-of-Service) attack 主机、服务器瘫痪</li>
+<li>分组嗅探器 packet sniffer 获得传输分组的副本</li>
+<li>冒充其他用户：IP spoofing - 需要端点鉴别</li>
+</ul>
 
     
                 
