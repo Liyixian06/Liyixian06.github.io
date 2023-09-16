@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Thu, 07 Sep 2023 10:03:18 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Sep 2023 00:59:42 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译原理笔记02：构造一个简单的编译器</title>
+      <link>https://Liyixian06.github.io/2023-09-17/compiler-principles-ch2/</link>
+      <pubDate>Sun, 17 Sep 2023 00:59:42 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023-09-17/compiler-principles-ch2/</guid>
+      <description>Summary: 上下文无关文法（CFG） 推导和语法树 语法制导翻译 翻译模式 Yacc 编程 自顶向下预测分析 设计实现预测分析器 简单词法分析 代码生成 语法定义 上下文无关文法</description>
+    </item>
+    
     <item>
       <title>编译原理笔记01：引论</title>
       <link>https://Liyixian06.github.io/2023-09-07/compiler-principles-ch1/</link>
