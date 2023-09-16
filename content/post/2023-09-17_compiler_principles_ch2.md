@@ -8,6 +8,7 @@ image:       ""
 tags:        ["CS", "compiler"]
 categories:  ["Tech" ]
 URL: "/2023-09-17/compiler-principles-ch2/"
+math: true
 ---
 
 **Summary:**  
