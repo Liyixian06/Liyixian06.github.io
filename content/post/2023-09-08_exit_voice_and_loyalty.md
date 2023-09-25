@@ -7,7 +7,7 @@ author: "LiYixian"
 image:       ""
 tags:        ["social", "economy", "politics"]
 categories:  ["Note" ]
-URL: "/2023-09-08/note_exit_voice_loyalty/"
+URL: "/2023/09/note_exit_voice_loyalty/"
 ---
 
 **简评：**  

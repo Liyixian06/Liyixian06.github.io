@@ -7,7 +7,7 @@ author: LiYixian
 image:       ""
 tags:        ["CS", "compiler"]
 categories:  ["Tech" ]
-URL: "/2023-09-07/compiler-principles-ch1/"
+URL: "/2023/09/compiler-principles-ch1/"
 ---
 
 语言处理系统：把用软件语言书写的各种程序翻译成可在计算机上执行的程序，或最终的计算结果，或其他中间形式。  

@@ -7,7 +7,7 @@ author: LiYixian
 image:       ""
 tags:        ["CS","computer networking"]
 categories:  ["Tech" ]
-URL: "/2023-09-06/computer-networking-ch1/"
+URL: "/2023/09/computer-networking-ch1/"
 ---
 *本文是《计算机网络：自顶向下方法》（Computer Networking: A Top-Down Approach）的阅读笔记，不成文，仅记录。*
 

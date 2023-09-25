@@ -10,28 +10,28 @@
     <lastBuildDate>Sun, 17 Sep 2023 00:59:42 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>编译原理笔记02：构造一个简单的编译器</title>
-      <link>https://Liyixian06.github.io/2023-09-17/compiler-principles-ch2/</link>
+      <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch2/</link>
       <pubDate>Sun, 17 Sep 2023 00:59:42 +0800</pubDate>
       
-      <guid>https://Liyixian06.github.io/2023-09-17/compiler-principles-ch2/</guid>
+      <guid>https://Liyixian06.github.io/2023/09/compiler-principles-ch2/</guid>
       <description>Summary: 上下文无关文法（CFG） 推导和语法树 语法制导翻译 翻译模式 Yacc 编程 自顶向下预测分析 设计实现预测分析器 简单词法分析 代码生成 语法定义 上下文无关文法</description>
     </item>
     
     <item>
       <title>编译原理笔记01：引论</title>
-      <link>https://Liyixian06.github.io/2023-09-07/compiler-principles-ch1/</link>
+      <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch1/</link>
       <pubDate>Thu, 07 Sep 2023 10:03:18 +0800</pubDate>
       
-      <guid>https://Liyixian06.github.io/2023-09-07/compiler-principles-ch1/</guid>
+      <guid>https://Liyixian06.github.io/2023/09/compiler-principles-ch1/</guid>
       <description>语言处理系统：把用软件语言书写的各种程序翻译成可在计算机上执行的程序，或最终的计算结果，或其他中间形式。 如何完成翻译？ 语言处理系统总则 预处理</description>
     </item>
     
     <item>
       <title>计算机网络笔记01：计算机网络和因特网</title>
-      <link>https://Liyixian06.github.io/2023-09-06/computer-networking-ch1/</link>
+      <link>https://Liyixian06.github.io/2023/09/computer-networking-ch1/</link>
       <pubDate>Wed, 06 Sep 2023 18:52:07 +0800</pubDate>
       
-      <guid>https://Liyixian06.github.io/2023-09-06/computer-networking-ch1/</guid>
+      <guid>https://Liyixian06.github.io/2023/09/computer-networking-ch1/</guid>
       <description>本文是《计算机网络：自顶向下方法》（Computer Networking: A Top-Down Approach）的阅读笔记，不成文，仅记录。 Summary： 构成网络的基本硬件和</description>
     </item>
     
