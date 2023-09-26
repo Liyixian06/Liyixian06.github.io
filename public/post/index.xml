@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Sun, 17 Sep 2023 00:59:42 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Sep 2023 15:22:11 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译原理笔记03：词法分析</title>
+      <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch3/</link>
+      <pubDate>Tue, 26 Sep 2023 15:22:11 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/09/compiler-principles-ch3/</guid>
+      <description>Summary: token 及属性 正则表达式与转换图 Lex 程序 有限自动机 正则表达式到 NFA NFA 到 DFA DFA 的化简 token 及属性 词法记号/单词 token：字符串集的分类 &amp;lt;identifier&amp;gt;,&amp;lt;number&amp;gt; &amp;lt;记号名[,</description>
+    </item>
+    
     <item>
       <title>编译原理笔记02：构造一个简单的编译器</title>
       <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch2/</link>

@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Liyixian Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://Liyixian06.github.io//img/bg_home.jpeg">
+    <meta property="twitter:image" content="https://Liyixian06.github.io//img/bg_home.jpeg" />
+    
+
+    
+    <meta name="title" content="编译原理笔记03：词法分析" />
+    <meta property="og:title" content="编译原理笔记03：词法分析" />
+    <meta property="twitter:title" content="编译原理笔记03：词法分析" />
+    
+
+    
+    <meta name="description" content=" ">
+    <meta property="og:description" content=" " />
+    <meta property="twitter:description" content=" " />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>编译原理笔记03：词法分析 | 李一线的博客</title>
+
+    <link rel="canonical" href="/2023/09/compiler-principles-ch3/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Liyixian Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/note/">note</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech/">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/about/">ABOUT</a></li>
+                    
+                        <li><a href="/archive/">ARCHIVE</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/bg_home.jpeg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/cs" title="CS">
+                            CS
+                        </a>
+                        
+                        <a class="tag" href="/tags/compiler" title="compiler">
+                            compiler
+                        </a>
+                        
+                    </div>
+                    <h1>编译原理笔记03：词法分析</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                LiYixian
+                             
+                            on 
+                            Tuesday, September 26, 2023
+                            
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                                <span id="/2023/09/compiler-principles-ch3/" class="leancloud_visitors meta_data_item" data-flag-title="">
+    <span class="post-meta-item-icon">
+      <span class="octicon octicon-eye"></span> 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span class="old-visitors-count" style="display: none;"></span>
+    <span class="leancloud-visitors-count"></span>
+</span>
+
+
+
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+
+<script>
+	AV.initialize("", "");
+</script>
+
+<script type="text/javascript">
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function() {
+        entries.push($(this).attr("id").trim());
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+        .done(function(results) {
+            var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+            var OLD_COUNT_CONTAINER_REF = '.old-visitors-count';
+
+            
+            
+            
+            
+
+            for (var i = 0; i < results.length; i++) {
+                var item = results[i];
+                var url = item.get('url');
+                var time = item.get('time');
+                var element = document.getElementById(url);
+
+                $(element).find(COUNT_CONTAINER_REF).text(time);
+            }
+            for (var i = 0; i < entries.length; i++) {
+                var url = entries[i];
+                var element = document.getElementById(url);
+                var countSpan = $(element).find(COUNT_CONTAINER_REF);
+                if (countSpan.text() == '') {
+                    var oldCountSpan = $(element).find(OLD_COUNT_CONTAINER_REF).text();
+                    if(oldCountSpan!=''){
+                        countSpan.text(0+parseInt(oldCountSpan));
+                    }else{
+                        countSpan.text(0);          
+                    }
+                }
+            }
+        })
+        .fail(function(object, error) {
+            console.log("Error: " + error.code + " " + error.message);
+        });
+}
+
+function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        var $element = $(document.getElementById(url));
+                        $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                 
+                var acl = new AV.ACL();
+                acl.setPublicReadAccess(true);
+                acl.setPublicWriteAccess(true);
+                newcounter.setACL(acl);
+                 
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                var OLD_COUNT_CONTAINER_REF = '.old-visitors-count';
+                var $element = $(document.getElementById(url));
+                var oldCountSpan = $element.find(OLD_COUNT_CONTAINER_REF).text();
+                if(oldCountSpan!=''){
+                    newcounter.set("time", parseInt(oldCountSpan)+1);
+                }else{
+ 	                    newcounter.set("time",  1);
+                }
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        var $element = $(document.getElementById(url));
+                        $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+$(function() {
+    var Counter = AV.Object.extend("Counter");
+    
+    
+    if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else {
+        showTime(Counter);
+    }
+});
+</script>
+
+                                阅读 </span></span> | <span class="post-date">共 3397 字</span>，阅读约 <span class="more-meta"> 7 分钟</span>
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+    
+                
+                <p><strong>Summary</strong>:</p>
+<ul>
+<li>token 及属性</li>
+<li>正则表达式与转换图</li>
+<li>Lex 程序</li>
+<li>有限自动机
+<ul>
+<li>正则表达式到 NFA</li>
+<li>NFA 到 DFA</li>
+<li>DFA 的化简</li>
+</ul>
+</li>
+</ul>
+<h3 id="token-及属性">token 及属性</h3>
+<ul>
+<li>词法记号/单词 token：字符串集的分类
+<ul>
+<li><em>&lt;identifier&gt;,&lt;number&gt;</em></li>
+<li>&lt;记号名[, 属性值]&gt;</li>
+</ul>
+</li>
+<li>模式 pattern：描述字符串集如何分类为 token 的规则
+<ul>
+<li>正则表达式，<em>[A-Z]*</em></li>
+</ul>
+</li>
+<li>词法单元/词素 lexeme：程序中实际出现的字符串，匹配 pattern 分类为 token
+<ul>
+<li><em>i, count, name, 60&hellip;</em></li>
+<li>保存进符号表；返回给语法分析器</li>
+<li>词素的信息：token 影响语法分析、属性影响翻译（这个 token 里词素之间的区别）</li>
+</ul>
+</li>
+</ul>
+<p>
+  <img src="/img/token%e5%8f%8a%e5%b1%9e%e6%80%a7.png" alt="">
+
+</p>
+<p>注意：关键字（有一定意义，如 <em>if, else</em>） keyword!= 保留字</p>
+<p>token 的属性<br>
+<em>e.g. E:=M*C**2</em></p>
+<pre tabindex="0"><code>&lt;id, 符号表中E对应项指针&gt;
+&lt;assign_op,&gt;
+&lt;id, 符号表中M对应项指针&gt;
+&lt;mult_op,&gt;
+&lt;id, 符号表中C对应项指针&gt;
+&lt;exp_op,&gt;
+&lt;num, 整型值2&gt;
+</code></pre><p>词法错误较少发生，但一旦发生就无法被词法分析器发现，因为存在 ambiguity<br>
+发生的情况：剩余输入的前缀和任何一个模式都匹配不上<br>
+错误修复：删除、插入、替换、交换字符</p>
+<p>缓冲技术，缓解磁盘访问对性能的影响<br>
+磁盘 -&gt; 缓冲区 -&gt; 词法分析器<br>
+双缓冲：缓冲区 1 词法分析，缓冲区 2 读取磁盘<br>
+哨兵（sentinel）技术：在缓冲区末端添加标记，避免边界判定</p>
+<h3 id="正则表达式与转换图">正则表达式与转换图</h3>
+<p>相关术语：</p>
+<ul>
+<li>字母表 alphabet：符号的有穷集合</li>
+<li>符号串 string/句子 sentence：字母表中符号组成的有穷序列</li>
+<li>前缀 prefix、后缀 suffix</li>
+<li>子串 substring、子序列 subsequence</li>
+<li>语言 Language：给定字母表的任意符号串集合</li>
+</ul>
+<p>符号串的运算：</p>
+<ul>
+<li>连接 concatenation（看作积 product）</li>
+<li>幂 exponentiation</li>
+</ul>
+<p>语言的运算：并 union、连接、闭包 closure、正则 positive 闭包<br>
+语言运算 &lt;-&gt; 正则表达式运算</p>
+<h4 id="正则表达式-regular-expression">正则表达式 regular expression</h4>
+<p>利用符号表中符号，遵循一组规则构成特定的符号串集合（描述 pattern）<br>
+正则表达式 r 表示正规集 regular set/语言 L (r)<br>
+正则表达式等价 equivalent：r = s 则 L (r)=L (s)</p>
+<p>正则表达式的运算规律：</p>
+<p>
+  <img src="/img/%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e7%9a%84%e8%bf%90%e7%ae%97%e8%a7%84%e5%be%8b.png" alt="">
+
+</p>
+<p>正规定义 regular definition：给正则表达式命名</p>
+<p>符号简写：</p>
+<ul>
+<li><code>+</code>：一个或多个</li>
+<li><code>?</code>：0 个或 1 个</li>
+<li>字符集：<code>[abc]-&gt; a|b|c; [a-z]=a|b|...|z</code></li>
+</ul>
+<p>更多正则表达式的基本语法见 <a href="https://deerchao.cn/tutorials/regex/regex.htm">正则表达式 30 分钟入门教程</a></p>
+<p>正则表达式只能表示：有限的重复/<strong>一个</strong>给定结构的无限重复<br>
+无法描述平衡/嵌套的结构，如 <code>{wcw|w是a、b组成的符号串}</code></p>
+<h4 id="转换图">转换图</h4>
+<p>转换图 transition diagram：</p>
+<ul>
+<li>顶点：词法分析的某个状态
+<ul>
+<li>已读入符号串</li>
+</ul>
+</li>
+<li>带字符的边：指出输入某个字符时的状态转换
+<ul>
+<li>下一符号、应采取的动作</li>
+</ul>
+</li>
+<li>词法分析：从 start 初态开始读入字符、转换状态，到双圈终态 accept</li>
+<li>星号表示将输入退回一个单词</li>
+</ul>
+<p>词法分析从左到右读字符串，每次识别一个 token 实例；<br>
+已读入符号串前缀 + 未读入符号串，与模式匹配；<br>
+可能需要 lookahead 判断当前是否是一个 token 的结尾、下个 token 的开始；<br>
+最长匹配规则（匹配某个 pattern 的最长前缀），lookahead，不符合则回退；<br>
+可能需要结合上下文来识别是否是关键字。</p>
+<p><em>e.g.标识符和关键字的转换图</em></p>
+<p>
+  <img src="/img/%e6%a0%87%e8%af%86%e7%ac%a6%e5%92%8c%e5%85%b3%e9%94%ae%e5%ad%97%e7%9a%84%e8%bd%ac%e6%8d%a2%e5%9b%be.png" alt="">
+
+</p>
+<p>状态转换图的实现：</p>
+<ul>
+<li>为每个状态构造一段代码
+<ul>
+<li>普通状态：读取字符、每条出射边根据字符转换状态</li>
+<li>终态：返回 token 和值</li>
+</ul>
+</li>
+<li>错误处理
+<ul>
+<li>尝试其他状态转换图，若与任何 token 都不匹配，词法错误</li>
+</ul>
+</li>
+</ul>
+<p>具体到代码上，使用 <code>switch-case</code> 进行状态的区分，每个 <code>case</code> 表示一种状态，在每个状态读入一个 char，根据 char 是什么决定下一个状态；<br>
+如果无法匹配状态，就进入 <code>fail()</code> 函数，尝试其他的状态图，也就是再使用 <code>switch-case</code> 切换 <code>start</code> 的值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> state <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,  start <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> lexical_value;    <span style="color:#75715e">/* “返回” 词法值 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fail</span>()
+</span></span><span style="display:flex;"><span>{     forward <span style="color:#f92672">=</span> lexeme beginning;
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">switch</span> (start) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span>   start <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;  <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">:</span>   start <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>; <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">12</span><span style="color:#f92672">:</span>  start <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>; <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">20</span><span style="color:#f92672">:</span>  start <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>; <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">25</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">recover</span>();  <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>   <span style="color:#75715e">/* compiler error */</span>
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">return</span> start;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="lex-程序">Lex 程序</h3>
+<p>lex 程序 (. l) 的结构和 [[编译原理 Ch2 构造一个简单的编译器#Yacc 程序|Yacc程序]] 类似，也分成定义段、规则段和用户子程序段三个部分。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/*P1: 定义段*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">%</span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// include头文件、函数、类型等声明，这些声明会原样拷到生成的.c文件中。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">%3Cmain.h%3E</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span><span style="color:#75715e">//为了能够在C++程序里面调用C函数，必须把每一个需要使用的C函数，其声明都包括在extern &#34;C&#34;{}块里面，这样C++链接时才能成功链接它们。extern &#34;C&#34;用来在C++环境下设置C链接类型。  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{   <span style="color:#75715e">//yacc.y中也有类似的这段extern &#34;C&#34;，可以把它们合并成一段，放到共同的头文件main.h中  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">yywrap</span>(<span style="color:#66d9ef">void</span>);  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">yylex</span>(<span style="color:#66d9ef">void</span>);<span style="color:#75715e">//lex生成的词法分析函数，yacc的yyparse()里会调用它，如果这里不声明，生成的yacc.tab.c在编译时会找不到该函数  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> num_lines <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, num_chars <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">//统计行数和字符数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">%</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//正规定义
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">/*非数字由大小写字母、下划线组成*/</span>  
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">nondigit</span>    ([_A<span style="color:#f92672">-</span>Za<span style="color:#f92672">-</span>z])  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*一位数字，可以是0到9*/</span>  
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">digit</span>       ([<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>])  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*整数由1至多位数字组成*/</span>  
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">integer</span>     ({digit}<span style="color:#f92672">+</span>)  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*标识符，以非数字开头，后跟0至多个数字或非数字*/</span>  
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">identifier</span>  ({nondigit}({nondigit}<span style="color:#f92672">|</span>{digit})<span style="color:#f92672">*</span>)  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*一个或一段连续的空白符*/</span>  
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">blank_chars</span> ([ <span style="color:#960050;background-color:#1e0010">\</span>f<span style="color:#960050;background-color:#1e0010">\</span>r<span style="color:#960050;background-color:#1e0010">\</span>t<span style="color:#960050;background-color:#1e0010">\</span>v]<span style="color:#f92672">+</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">%%</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*P2: 规则段 */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p1 {action1}
+</span></span><span style="display:flex;"><span>p2 {action2}
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>pn {actionn}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//p：正则表达式；action：动作，当字符流前缀和p匹配时（识别出对应单词的词素）该做什么动作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">这个阶段的一些定义：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">yylval 定义在 lex.yy.c中，它保存所返回token的属性值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">yytext 指向当前识别出的词素的开始字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">yyleng 词素的长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//会从前往后逐个匹配，所以更一般的如.放在最后
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{blank_chars} {}   <span style="color:#75715e">//遇空白符，忽略  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">\</span>n  {<span style="color:#f92672">++</span>num_lines; <span style="color:#f92672">++</span>num_chars;} <span style="color:#75715e">//遇回车，相应增加行数和字符数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>.   {<span style="color:#f92672">++</span>num_chars;} <span style="color:#75715e">//匹配除回车外任意字符，增加字符数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">%%</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*P3: 用户子程序段*/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//参数保存在文件里，命令行输入
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#f92672">++</span>argv, <span style="color:#f92672">--</span>argc; <span style="color:#75715e">//跳过程序名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(argc<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>		yyin <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(argv[<span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#34;r&#34;</span>); <span style="color:#75715e">//默认输入对象打开指定文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">else</span> yyin <span style="color:#f92672">=</span> stdin; <span style="color:#75715e">//如果没有指定文件，则将标准输入作为输入
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">yylex</span>(); <span style="color:#75715e">//识别
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;# of lines = %d, # of chars = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, num_lines, num_chars);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="有限自动机">有限自动机</h3>
+<p>非确定有限自动机 NFA/确定有限自动机 DFA 的区别：前者允许 e 边、允许一个状态多条边相同符号；后者不允许，状态转换确定唯一的结果<br>
+正则表达式 -&gt; 识别程序 recognizer</p>
+<h4 id="nfa">NFA</h4>
+<p>表示为五元组 <code>M = {S, Σ, δ, s0, F}</code>，其中：</p>
+<ul>
+<li><code>S</code>：有限状态集</li>
+<li><code>Σ</code>：输入符号集</li>
+<li><code>δ</code>：状态转换函数，<code>δ(s,a)=S'</code> 表示当前状态 s，输入符号 a，下一个状态在集合 S&rsquo;中</li>
+<li><code>s0</code>：唯一初态</li>
+<li><code>F</code>：终态集（可空）</li>
+</ul>
+<p>状态转换矩阵，横向表头是输入符号，纵向是状态，表格中是状态转换结果</p>
+<p>NFA 接受符号串 x = 存在一条初态到终态的路径，路径上的符号组成 x<br>
+注意：同一个符号串可能存在多条路径，不是每条都表示接受</p>
+<p>处理未定义状态转换：定义一个额外的 dead state，所有未定义状态转换都指向它，它指向自身</p>
+<p>词法分析器可以用一组 NFA 描述，每个 NFA 表示一个单词</p>
+<h4 id="正则表达式到-nfa">正则表达式到 NFA</h4>
+<p>算法描述：</p>
+<ol>
+<li>对每个基本符号、e -&gt; 简单 NFA</li>
+<li>子正则表达式通过定义规则的操作（连接、或、闭包）构造复杂正则表达式</li>
+<li>子 NFA 组合为复杂 NFA</li>
+</ol>
+<p>构造规则：<br>
+1.
+
+  <img src="/img/NFA%e6%9e%84%e9%80%a0%e8%a7%84%e5%88%9901.png" alt="">
+
+
+2. s|t<br>
+
+  <img src="/img/NFA%e6%9e%84%e9%80%a0%e8%a7%84%e5%88%9902.png" alt="">
+
+
+3. st<br>
+
+  <img src="/img/NFA%e6%9e%84%e9%80%a0%e8%a7%84%e5%88%9903.png" alt="">
+
+
+4. s*<br>
+
+  <img src="/img/NFA%e6%9e%84%e9%80%a0%e8%a7%84%e5%88%9904.png" alt="">
+
+</p>
+<p>注意：</p>
+<ol>
+<li>状态数最多是正则表达式中符号和算符总数的两倍</li>
+<li>有且只有一个初态、一个终态</li>
+<li>每个状态或者有一条标记为某个 a 的输出边，或者至多有两条 e 输出边</li>
+<li>状态取名要小心</li>
+</ol>
+<p>构建 NFA 首先要将其分解成树状，然后从底向上依次组合</p>
+<h4 id="nfa-到-dfa">NFA 到 DFA</h4>
+<p>任何符号串 N 和 D 结果一致 -&gt; D 的一个状态对应 N 的一个状态子集</p>
+<p>操作：</p>
+<ul>
+<li><code>e-closure(s)</code> e 闭包：s 以及从 s 出发仅通过（数量不限条） e 边可到达的所有状态的集合</li>
+<li><code>e-closure(T)</code>：(\bigcup\epsilon-closure (s), s\in T)</li>
+<li><code>δ(T,a)</code>：(\bigcup\delta (s, a), s\in T)</li>
+</ul>
+<p>递推算法：</p>
+<ol>
+<li>N 的初态的闭包 <code>T = e-closure(s0)</code> 即为 D 的初态 A</li>
+<li>对每个可能的路径 a，从 T 对 a 进行状态迁移 <code>e-closure(δ(T, a))</code>，即从 A 对 a 状态迁移，这个集合或对应一个 DFA 里已有的状态，或对应一个新状态</li>
+<li>重复，直至不产生新的状态集合</li>
+</ol>
+<p>注意：</p>
+<ul>
+<li>状态集合（DFA 状态）可以重合</li>
+<li>子集构造法不一定得到最简的 DFA</li>
+</ul>
+<h5 id="基于-nfa-实现词法分析器">基于 NFA 实现词法分析器</h5>
+<p>为 Lex 程序中每个正则表达式构造 NFA<br>
+寻找与模式匹配的输入串的“最长前缀”</p>
+<ol>
+<li>计算下一状态集，有终态加入就记录当前输入指针和匹配的模式；如果多个终态，取 Lex 程序中位置最靠前的模式</li>
+<li>读入字符直至终止 terminal 状态（当前状态集对输入符号无状态转换）</li>
+<li>输入指针退回对应位置可得 lexeme</li>
+</ol>
+<h4 id="dfa-化简">DFA 化简</h4>
+<p>化简转换函数是全函数的 DFA<br>
+部分函数 -&gt; 全函数：加入 dead state 将缺失状态都指向它</p>
+<p>可区分（distinguishable）的状态：<br>
+将状态分成<strong>不相交</strong>的子集（初始时按是否为接受状态划分），存在一个输入符号，使得两个状态转换后指向不同子集<br>
+反之，不可区别就是没有一个输入符号能将二者划开</p>
+<p>从终态“逆向”计算，寻找所有可被区分的状态组：</p>
+<ol>
+<li>初始，两个组：终态、非终态</li>
+<li>考察子集 A 的转换状态，若转换后属于不同状态组，则将 A 对应划分</li>
+<li>检查完所有输入符号仍不能区分，则合并</li>
+<li>继续分解</li>
+</ol>
+<p><em>e.g.</em></p>
+<p>
+  <img src="/img/DFA%e5%8c%96%e7%ae%80.png" alt="">
+
+</p>
+<pre tabindex="0"><code>1. {E},{A,B,C,D} //按状态是否接受划分子集
+2. 考察每个子集的状态转换
+move({A,B,C,D},a) = {B}
+move({A,B,C,D},b) = {C,D,E} //转换后状态落入不同子集
+说明 {A,B,C,D} 可区别
+3. 继续分解，当前划分为 {E},{D},{A,B,C}
+4. ...
+</code></pre>
+    
+                
+                
+                
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+                
+    
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2023/09/compiler-principles-ch2/" data-toggle="tooltip" data-placement="top" title="编译原理笔记02：构造一个简单的编译器">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+    
+                
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="Liyixian06/Liyixian06.github.io"
+        data-repo-id="R_kgDOJ9iXRA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJ9iXRM4CYAg8"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+            </div>
+    
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+    
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+    
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/compiler" title="compiler">
+                            compiler
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/cs" title="cs">
+                            cs
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+    
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:liyixian06@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Liyixian06">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Liyixian Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Liyixian Blog 2023
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
