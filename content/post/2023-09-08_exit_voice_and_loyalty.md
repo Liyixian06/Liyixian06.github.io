@@ -176,7 +176,7 @@ XAL-TX：未有退意的忠诚 / TX-XWL：质量衰减区间
 
 不同类型组织的回应措施：  
 
-![](https://raw.githubusercontent.com/Liyixian06/BlogImage/main/img/exit%2526voice.jpeg)
+![](/img/exit&voice.jpeg)
 
 回应不足或失当：
 
