@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 3397 字</span>，阅读约 <span class="more-meta"> 7 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 3376 字</span>，阅读约 <span class="more-meta"> 7 分钟</span>
                             
                             
                             
@@ -503,7 +503,7 @@ $(function() {
 </span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">return</span> start;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="lex-程序">Lex 程序</h3>
-<p>lex 程序 (. l) 的结构和 [[编译原理 Ch2 构造一个简单的编译器#Yacc 程序|Yacc程序]] 类似，也分成定义段、规则段和用户子程序段三个部分。</p>
+<p>lex 程序 (. l) 的结构和<a href="https://liyixian06.github.io/2023/09/compiler-principles-ch2/">上一章</a>中提到的 Yacc 程序类似，也分成定义段、规则段和用户子程序段三个部分。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/*P1: 定义段*/</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">%</span>{
 </span></span><span style="display:flex;"><span>
@@ -626,8 +626,8 @@ $(function() {
 <p>操作：</p>
 <ul>
 <li><code>e-closure(s)</code> e 闭包：s 以及从 s 出发仅通过（数量不限条） e 边可到达的所有状态的集合</li>
-<li><code>e-closure(T)</code>：(\bigcup\epsilon-closure (s), s\in T)</li>
-<li><code>δ(T,a)</code>：(\bigcup\delta (s, a), s\in T)</li>
+<li><code>e-closure(T)</code>：\(\bigcup\epsilon-closure (s), s\in T\)</li>
+<li><code>δ(T,a)</code>：\(\bigcup\delta (s, a), s\in T\)</li>
 </ul>
 <p>递推算法：</p>
 <ol>
