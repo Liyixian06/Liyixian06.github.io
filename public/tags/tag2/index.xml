@@ -14,7 +14,7 @@
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://Liyixian06.github.io/post/post2/</guid>
-      <description>这是一个测试网站功能的页面。 shortcode Bilibili Spotify 可能需要科学上网才能显示。 latex 只在需要渲染 latex 的页面加载，在 frontmatter 设置 math: true 即可。显示单行方程式，用 $$ 作为分隔符，如</description>
+      <description>这是一个测试网站功能/记录后续准备添加功能的页面。 Update 字数统计 Giscus 评论系统 支持 Latex 本来想尝试一下图床，但确实找不到什么好用的，加之发布图片的需求并</description>
     </item>
     
   </channel>

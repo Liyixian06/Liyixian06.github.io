@@ -42,6 +42,8 @@ draft: True
 - 参考资料
   - 廖雪峰
   - 玩游戏了解 git 分支管理
+  - Pro Git
+  - [你可能不知道的 Git](https://blog.daraw.cn/2019/12/21/you-dont-know-git/)
 
 ### 02: GitHub
 
@@ -72,6 +74,7 @@ draft: True
 ### 13: 软件安装
 
 - 配环境
+- 注册表
 - package/dependency
 - 镜像源
 - 配置文件 dotfile

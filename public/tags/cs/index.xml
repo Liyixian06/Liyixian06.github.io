@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Tue, 26 Sep 2023 15:22:11 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Sep 2023 19:22:27 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>计算机网络笔记02：应用层</title>
+      <link>https://Liyixian06.github.io/2023/09/computer-networking-ch2/</link>
+      <pubDate>Wed, 27 Sep 2023 19:22:27 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/09/computer-networking-ch2/</guid>
+      <description>Summary: 应用层协议和进程通信模型 运输服务 Web 服务与 HTTP 协议 电子邮件 域名系统 DNS P2P 文件分发 DASH 内容分发网络 CDN Socket 编程 应用层协议原理 应用：可以进行通信的分布式进</description>
+    </item>
+    
     <item>
       <title>编译原理笔记03：词法分析</title>
       <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch3/</link>
