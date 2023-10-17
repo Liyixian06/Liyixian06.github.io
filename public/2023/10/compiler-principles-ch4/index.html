@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="A Test Post" />
-    <meta property="og:title" content="A Test Post" />
-    <meta property="twitter:title" content="A Test Post" />
+    <meta name="title" content="编译原理笔记04：语法分析" />
+    <meta property="og:title" content="编译原理笔记04：语法分析" />
+    <meta property="twitter:title" content="编译原理笔记04：语法分析" />
     
 
     
-    <meta name="description" content="this is a description.">
-    <meta property="og:description" content="this is a description." />
-    <meta property="twitter:description" content="this is a description." />
+    <meta name="description" content=" ">
+    <meta property="og:description" content=" " />
+    <meta property="twitter:description" content=" " />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>A Test Post | 李一线的博客</title>
+    <title>编译原理笔记04：语法分析 | 李一线的博客</title>
 
-    <link rel="canonical" href="/post/post2/">
+    <link rel="canonical" href="/2023/10/compiler-principles-ch4/">
 
     
     
@@ -176,28 +176,28 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/tag1" title="tag1">
-                            tag1
+                        <a class="tag" href="/tags/cs" title="CS">
+                            CS
                         </a>
                         
-                        <a class="tag" href="/tags/tag2" title="tag2">
-                            tag2
+                        <a class="tag" href="/tags/compiler" title="compiler">
+                            compiler
                         </a>
                         
                     </div>
-                    <h1>A Test Post</h1>
-                    <h2 class="subheading">a subtitle</h2>
+                    <h1>编译原理笔记04：语法分析</h1>
+                    <h2 class="subheading"></h2>
                     <span class="meta">
                         
                             Posted by 
                             
-                                Liyixian
+                                LiYixian
                              
                             on 
-                            Monday, June 4, 2018
+                            Tuesday, October 17, 2023
                             
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/post/post2/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2023/10/compiler-principles-ch4/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 351 字</span>，阅读约 <span class="more-meta"> 1 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 2085 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
                             
                             
                             
@@ -356,78 +356,199 @@ $(function() {
                 post-container">
     
                 
-                <p>这是一个测试网站功能/记录后续准备添加功能的页面。</p>
-<h1 id="update">Update</h1>
+                <p><strong>Summary</strong>：</p>
 <ul>
-<li>字数统计</li>
-<li>Giscus 评论系统</li>
-<li>支持 Latex</li>
-<li>本来想尝试一下图床，但确实找不到什么好用的，加之发布图片的需求并没有那么大，所以姑且还是保持原状。</li>
+<li>上下文无关文法</li>
+<li>语法分析
+<ul>
+<li>自顶向下</li>
+<li>自底向上</li>
 </ul>
-<h1 id="shortcode">shortcode</h1>
-<h2 id="bilibili">Bilibili</h2>
-
-
-
-<style>
-    #biliplayer {
-      width: 100%;
-      height: 600px;
-    }
-    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-      #biliplayer {
-        width: 100%;
-        height: 250px;
-      }
-    }
-</style>
-
-
-    <div>
-        <iframe id="biliplayer" src="//player.bilibili.com/player.html?bvid=BV1KW4y1B7W6&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" loading="lazy" ></iframe>
-    </div>
-
-
-<h2 id="spotify">Spotify</h2>
-<p><em>可能需要科学上网才能显示。</em></p>
-
-
-
-<iframe src="https://open.spotify.com/embed/track/2D3gvohUyOfXIVX6Mvhqae"
-    width="100%"
-    height="80px"
-    frameborder="0"
-    allowtransparency="true"
-    allow="encrypted-media"></iframe>
-
-<h1 id="latex">latex</h1>
-<p>只在需要渲染 latex 的页面加载，在 frontmatter 设置 <code>math: true</code> 即可。显示单行方程式，用 <code>$$</code> 作为分隔符，如：<br>
-<code>$$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$</code><br>
-这会在网页上渲染为：<br>
-$$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$</p>
-<p>要显示 inline 方程，用 <code>\\( \\)</code> 分隔：<br>
-<code>\\(y_t\\)</code><br>
-效果如 \(y_t\)。</p>
-<p>注：要打花括号 <code>{}</code>，使用两个转义符 <code>\\{ \\}</code>，效果如 \(\{\}\)。</p>
-<h1 id="to-do">To Do</h1>
+</li>
+<li>语法分析器生成</li>
+</ul>
+<h2 id="上下文无关文法">上下文无关文法</h2>
+<p>正则表达式的能力不足 -&gt; <a href="https://liyixian06.github.io/2023/09/compiler-principles-ch2/">ch2 CFG</a></p>
+<p>凡是正则表达式能表示的语言，都能用 CFG 表示：可以机械地由 NFA 变换而得，NFA 字母表视为 terminal 集合</p>
+<p>推导：最左推导（每次替换最左边的 non-terminal）、最右推导（规范推导）<br>
+写出分析树 parse tree<br>
+二义性：不止一种最左/右推导</p>
+<p>句型 sentential form、句子 sentence、语言</p>
+<h3 id="消除二义性-eliminating-ambiguity">消除二义性 eliminating ambiguity</h3>
+<p>不存在一个算法，能在有限步骤内确切地判定任给的一个 CFG 是否为二义性文法；二义性的消除也没有规律可循，但是可以总结出一些较为通用的手段。</p>
+<ol>
+<li>改写为非二义文法</li>
+</ol>
 <ul>
-<li>搜索</li>
-<li>换更好的评论系统（需求有：开源、免费、无广告、墙内正常访问，以及不需要专门注册账号，因此 Discus 不纳入考虑），比如 <a href="https://waline.js.org/">Waline</a>、<a href="https://twikoo.js.org/">Twikoo</a></li>
-<li>RSS 链接</li>
-<li>Tag 显示不全的问题</li>
-<li>零零散散的装修
+<li>划分优先级和结合性
 <ul>
-<li>代码复制</li>
-<li>总字数统计</li>
-<li>站点运行时长</li>
-<li>访问量统计</li>
-<li>代码块样式</li>
-<li>内容折叠</li>
-<li>Dark Mode</li>
-<li>……</li>
+<li>引入一个新的 non-terminal，增加一个子结构并提高一级优先级（优先级的判断）；</li>
+<li>递归 non-terminal 在 terminal 左边，运算具有左结合性，否则具有右结合性。</li>
 </ul>
 </li>
 </ul>
+<p><em>e.g. E → E+E|E*E|(E)|-E|id</em></p>
+<ul>
+<li>优先级从低到高：[+], [*], [(),-, id]</li>
+<li>结合性：左结合 [+,*]，右结合[-]，无结合[id]</li>
+<li>non-terminal 与运算：
+<ul>
+<li><code>E:+</code> E production 左递归</li>
+<li><code>T:*</code> T production 左递归</li>
+<li><code>F:(),-,id</code> F production 右递归</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code>E -&gt; E+T | T
+T -&gt; E*F | F
+F -&gt; (F) | -F | id
+</code></pre><p><em>e.g. dangling else 问题：then 的个数多于 else，后者不知道和哪个 then 结合</em><br>
+就近匹配，规定 else 和最近的 then 匹配（右结合）</p>
+<p>缺点：引入更多 non-terminal 使得 parse tree 更深、更难理解</p>
+<ol start="2">
+<li>为文法符号规定优先级和结合性
+yacc 采用的就是这种方式：</li>
+</ol>
+<pre tabindex="0"><code>%left &#39;+&#39;&#39;*&#39;
+%right &#39;-&#39;
+</code></pre><ol start="3">
+<li>修改语言的语法（表现形式被改变）</li>
+</ol>
+<ul>
+<li>明确给出结束标志</li>
+<li>给表达式加括号</li>
+</ul>
+<h2 id="语言和文法">语言和文法</h2>
+<p>词法分析和语法分析的分离</p>
+<ol>
+<li>正规语法是 CFG 的特例</li>
+<li>用正则表达式定义词法的若干好处（简单、简洁、高效）</li>
+<li>软件工程上的好处（模块、可移植）</li>
+</ol>
+<p>CFG 的表达能力还是不足 -&gt; 非上下文无关文法</p>
+<h2 id="语法分析">语法分析</h2>
+<h3 id="自顶向下">自顶向下</h3>
+<h4 id="预处理消除左递归提取左因子">预处理：消除左递归、提取左因子</h4>
+<p>左递归 left recursion：存在 non-terminal \(A\) s.t. \(A\rightarrow^{+}A\alpha\)，其中 \(\alpha\) 是文法符号串<br>
+top-down 分析无法处理左递归，会陷入无限循环<br>
+左递归分为两种：直接、间接</p>
+<ol>
+<li>直接左递归 immediate left recursion<br>
+文法中存在 \(A\rightarrow A\alpha|\beta\)，其中文法符号串 \(\beta\) 不以 \(A\) 开头<br>
+消除：写成 \(A\rightarrow \beta A&rsquo;, A&rsquo;\rightarrow\alpha A&rsquo;|\epsilon\)</li>
+<li>间接左递归<br>
+形如 \(S\rightarrow Aa|b, A\rightarrow Sd|\epsilon\)<br>
+先变换成直接左递归 \(S\rightarrow Aa|b, A\rightarrow Aad|bd|\epsilon\)<br>
+再消除左递归 \(S\rightarrow Aa|b, A\rightarrow bdA&rsquo;|A&rsquo;, A&rsquo;\rightarrow adA&rsquo;|\epsilon\)</li>
+</ol>
+<p>提取左因子 left factoring：\(A\rightarrow\alpha\beta_{1}|\alpha\beta_{2}\)，不知道用哪个来替换<br>
+提取最长公共前缀 \(A\rightarrow\alpha A&rsquo;, A&rsquo;\rightarrow\beta_{1}|\beta_{2}\)<br>
+<em>e.g. hanging else</em></p>
+<h4 id="ll-1-文法和递归下降的预测分析">LL (1) 文法和递归下降的预测分析</h4>
+<p>L-left to right; L-leftmost derivation<br>
+LL (1) 文法的性质：不是二义的、没有左公共因子、不含左递归</p>
+<p>通过向前看一个符号确定 production，消除回溯。<br>
+<em>e.g.</em> 当前句型是 xAb，输入是 xa…，那么要选择 production \(A\rightarrow\alpha\) 的必要条件是：</p>
+<ul>
+<li>\(\alpha\rightarrow a\dots\)</li>
+<li>\(\alpha\rightarrow\epsilon\)，且 \(\beta\) 以 a 开头，即在某个句型中 a 跟在 A 之后</li>
+</ul>
+<p>定义函数：</p>
+<ol>
+<li>\(FIRST(\alpha)\)</li>
+</ol>
+<ul>
+<li>定义：\(\alpha\) 推出的非空串中首 terminal、以及 \(\alpha\) 推出空串时的 \(\epsilon\) 组成的集合（只能包含终结符和 \(\epsilon\)）
+<ul>
+<li>形式化定义： \(FIRST(\alpha)=\{\alpha|\alpha\rightarrow*\alpha\dots,\alpha\in V_{T}\}\cup\{\epsilon|\alpha\rightarrow*\epsilon\}\)</li>
+</ul>
+</li>
+<li>意义：下一个输入符号 a，若 \(a\in FIRST(\alpha)\)，选择 production \(A\rightarrow\alpha\)</li>
+<li>计算方法：
+<ul>
+<li>X 是 terminal，\(FIRST(X)={X}\)</li>
+<li>X 是 non-terminal，且 \(X\rightarrow Y_{1}Y_{2}\dots Y_{k}\)
+<ul>
+<li>如果 \(\alpha\in FIRST(Y_{i})\) ，且 \(\epsilon\) 在 \(FIRST (Y_{1}),\dots,FIRST(Y_{i-1})\) 中，则加入 \(\alpha\)</li>
+<li>如果 \(\epsilon\) 在 \(FIRST (Y_{1}),\dots,FIRST(Y_{k})\) 中，则加入 \(\epsilon\)</li>
+</ul>
+</li>
+<li>X 是 non-terminal，且 \(X\rightarrow\epsilon\)，则加入 \(\epsilon\)</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>\(FOLLOW(A)\)</li>
+</ol>
+<ul>
+<li>定义：<strong>可能</strong>在某些句型中紧跟在 A 右边的终结符的集合
+<ul>
+<li>形式化定义：\(FOLLOW(A)=\{\alpha|S\rightarrow*\dots A\alpha\dots,\alpha\in V_{T}\}\cup\{S\rightarrow*\dots A\}\)</li>
+</ul>
+</li>
+<li>意义：下一个输入符号 b， \(A\rightarrow\alpha\) 且 \(\alpha\rightarrow\epsilon\) 时，若 \(b\in FOLLOW(A)\)，可以选择 \(A\rightarrow\alpha\)</li>
+<li>计算方法：
+<ul>
+<li>将右端结束标记 $ 加入 \(FOLLOW(S)\)</li>
+<li>按下述两个规则迭代，直到所有的 \(FOLLOW\) 集合都不再增长：
+<ul>
+<li>若 \(A\rightarrow\alpha B\beta\)，则将 \(FIRST(\beta)\) 中所有非 \(\epsilon\) 的 terminal 加入 \(FOLLOW(B)\)</li>
+<li>若 \(A\rightarrow\alpha B\) 或（\(A\rightarrow\alpha B\beta\) 且 \(\epsilon\in FIRST(\beta)\)），则将 \(FOLLOW(A)\) 中所有符号都加入 \(FOLLOW(B)\)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>LL (1) 文法的定义：任何两个 production \(A\rightarrow\alpha|\beta\) 都满足下列条件：</p>
+<ol>
+<li>\(FIRST (\alpha)\cap FIRST (\beta)=\emptyset\)</li>
+<li>若 \(\beta\rightarrow*\epsilon\) ，则 \(FIRST (\alpha)\cap FOLLOW (A)=\emptyset\)；反之亦然</li>
+</ol>
+<h4 id="非递归的预测分析表">非递归的预测分析表</h4>
+<p>列是 non-terminal，行是 terminal 或结束标记 $，每个格子 \(M[A,a]\) 是 non-terminal-&gt;terminal 的 production \(A\rightarrow\alpha\)（即当前输入是 a 时，采用该 production）</p>
+<p>对每个 production \(A\rightarrow\alpha\)：</p>
+<ul>
+<li>对 \(FIRST(\alpha)\) 中的每个 terminal a，将 \(A\rightarrow\alpha\) 加入 \(M[A,a]\) 中</li>
+<li>如果 \(\epsilon\) 在 \(FIRST(\alpha)\)，则对于 \(FOLLOW(A)\) 中的每个符号 b，将 \(A\rightarrow\alpha\) 也加入 \(M[A,b]\) 中</li>
+<li>其他没有定义的条目都是 error</li>
+</ul>
+<p>采用一个符号栈保存分析时的处理过程：</p>
+<ul>
+<li>初始化，栈中仅包含开始符号 S</li>
+<li>如果 top 元素是 terminal，和输入匹配</li>
+<li>如果 top 是 non-terminal，使用预测分析表选择 production，在栈顶用右部替换左部，将右部按<strong>倒序</strong> push 入栈</li>
+</ul>
+<p>分析表驱动的预测分析器的模型如：</p>
+<p>
+  <img src="/img/%e5%88%86%e6%9e%90%e8%a1%a8%e9%a9%b1%e5%8a%a8%e7%9a%84%e9%a2%84%e6%b5%8b%e5%88%86%e6%9e%90%e5%99%a8%e6%a8%a1%e5%9e%8b.png" alt="">
+
+</p>
+<p><em>e.g.</em> 输入：id+id*id</p>
+<p>
+  <img src="/img/%e9%a2%84%e6%b5%8b%e5%88%86%e6%9e%90%e8%a1%a8%e4%be%8b%e5%ad%9001.png" alt="">
+
+
+
+  <img src="/img/%e9%a2%84%e6%b5%8b%e5%88%86%e6%9e%90%e8%a1%a8%e4%be%8b%e5%ad%9002.png" alt="">
+
+</p>
+<p>什么时候报错？</p>
+<ul>
+<li>栈顶的 terminal 和下一个输入符号不匹配；</li>
+<li>栈顶是 non-terminal A，输入符号 a，而 \(M[A,a]\) 为空。</li>
+</ul>
+<p>错误恢复：采用 panic mode，抛弃输入记号，直到其属于某个指定的同步记号 synchronizing tokens 集合为止。</p>
+<p>总而言之，自顶向下语法分析的步骤大概如：</p>
+<blockquote>
+<ol>
+<li>消除文法的二义性</li>
+<li>消除左递归，提取左公共因子</li>
+<li>计算 FIRST 集和 FOLLOW 集</li>
+<li>进行分析（递归下降/预测分析表）</li>
+</ol>
+</blockquote>
+<h3 id="自底向上">自底向上</h3>
+<h2 id="语法分析器-parsersyntax-analyzer-自动生成">语法分析器 parser/syntax analyzer 自动生成</h2>
 
     
                 
@@ -450,11 +571,11 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$</p>
                 <hr>
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/2023/07/how-to-watch/" data-toggle="tooltip" data-placement="top" title="如何看片">Next
-                            Post &rarr;</a>
+                    <li class="previous">
+                        <a href="/2023/09/computer-networking-ch2/" data-toggle="tooltip" data-placement="top" title="计算机网络笔记02：应用层">&larr;
+                            Previous Post</a>
                     </li>
+                    
                     
                 </ul>
                 
