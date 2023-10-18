@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 27 Sep 2023 19:22:27 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/computer-networking/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Oct 2023 14:17:50 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/computer-networking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>计算机网络笔记03：传输层</title>
+      <link>https://Liyixian06.github.io/2023/10/computer-networking-ch3/</link>
+      <pubDate>Wed, 18 Oct 2023 14:17:50 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/10/computer-networking-ch3/</guid>
+      <description>Summary: 多路复用和多路分解 UDP：特点、检验和 可靠数据传输：rdt、pipeline TCP：segment 结构、可靠数据传输、流量控制、连接管理 概</description>
+    </item>
+    
     <item>
       <title>计算机网络笔记02：应用层</title>
       <link>https://Liyixian06.github.io/2023/09/computer-networking-ch2/</link>

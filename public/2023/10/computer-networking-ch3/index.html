@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="编译原理笔记04：语法分析" />
-    <meta property="og:title" content="编译原理笔记04：语法分析" />
-    <meta property="twitter:title" content="编译原理笔记04：语法分析" />
+    <meta name="title" content="计算机网络笔记03：传输层" />
+    <meta property="og:title" content="计算机网络笔记03：传输层" />
+    <meta property="twitter:title" content="计算机网络笔记03：传输层" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>编译原理笔记04：语法分析 | 李一线的博客</title>
+    <title>计算机网络笔记03：传输层 | 李一线的博客</title>
 
-    <link rel="canonical" href="/2023/10/compiler-principles-ch4/">
+    <link rel="canonical" href="/2023/10/computer-networking-ch3/">
 
     
     
@@ -180,12 +180,12 @@
                             CS
                         </a>
                         
-                        <a class="tag" href="/tags/compiler" title="compiler">
-                            compiler
+                        <a class="tag" href="/tags/computer-networking" title="computer networking">
+                            computer networking
                         </a>
                         
                     </div>
-                    <h1>编译原理笔记04：语法分析</h1>
+                    <h1>计算机网络笔记03：传输层</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -194,10 +194,10 @@
                                 LiYixian
                              
                             on 
-                            Tuesday, October 17, 2023
+                            Wednesday, October 18, 2023
                             
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/2023/10/compiler-principles-ch4/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2023/10/computer-networking-ch3/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 2085 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 2949 字</span>，阅读约 <span class="more-meta"> 6 分钟</span>
                             
                             
                             
@@ -356,199 +356,243 @@ $(function() {
                 post-container">
     
                 
-                <p><strong>Summary</strong>：</p>
+                <p><strong>Summary:</strong></p>
 <ul>
-<li>上下文无关文法</li>
-<li>语法分析
-<ul>
-<li>自顶向下</li>
-<li>自底向上</li>
+<li>多路复用和多路分解</li>
+<li>UDP：特点、检验和</li>
+<li>可靠数据传输：rdt、pipeline</li>
+<li>TCP：segment 结构、可靠数据传输、流量控制、连接管理</li>
 </ul>
-</li>
-<li>语法分析器生成</li>
-</ul>
-<h2 id="上下文无关文法">上下文无关文法</h2>
-<p>正则表达式的能力不足 -&gt; <a href="https://liyixian06.github.io/2023/09/compiler-principles-ch2/">ch2 CFG</a></p>
-<p>凡是正则表达式能表示的语言，都能用 CFG 表示：可以机械地由 NFA 变换而得，NFA 字母表视为 terminal 集合</p>
-<p>推导：最左推导（每次替换最左边的 non-terminal）、最右推导（规范推导）<br>
-写出分析树 parse tree<br>
-二义性：不止一种最左/右推导</p>
-<p>句型 sentential form、句子 sentence、语言</p>
-<h3 id="消除二义性-eliminating-ambiguity">消除二义性 eliminating ambiguity</h3>
-<p>不存在一个算法，能在有限步骤内确切地判定任给的一个 CFG 是否为二义性文法；二义性的消除也没有规律可循，但是可以总结出一些较为通用的手段。</p>
+<h3 id="概述和传输层服务">概述和传输层服务</h3>
+<p>传输层协议只工作在主机中，而非路由器<br>
+传输层将从发送应用程序进程接收到的 message 转换为 segment with header，传递给网络层，后者封装成 packet 向目的地发送</p>
+<p>传输层在网络层之上，后者提供主机之间的逻辑通信 logic communication，前者为不同主机的进程之间提供逻辑通信<br>
+多个进程共享同一个网络层协议（IP 地址）和网络接口</p>
+<p>两种传输层协议：用户数据报协议 UDP、传输控制协议 TCP<br>
+网络层协议 IP 是不可靠服务，不保证 segment 中数据的完整<br>
+UDP/TCP 提供的服务：</p>
 <ol>
-<li>改写为非二义文法</li>
+<li>两个主机间 IP 的交互服务扩展为运行在主机上的两个进程之间的交互服务，称作多路复用 transport-layer multiplexing 和多路分解 demultiplexing</li>
+<li>在 segment header 中包括差错检查字段，进行完整性检查</li>
 </ol>
-<ul>
-<li>划分优先级和结合性
-<ul>
-<li>引入一个新的 non-terminal，增加一个子结构并提高一级优先级（优先级的判断）；</li>
-<li>递归 non-terminal 在 terminal 左边，运算具有左结合性，否则具有右结合性。</li>
-</ul>
-</li>
-</ul>
-<p><em>e.g. E → E+E|E*E|(E)|-E|id</em></p>
-<ul>
-<li>优先级从低到高：[+], [*], [(),-, id]</li>
-<li>结合性：左结合 [+,*]，右结合[-]，无结合[id]</li>
-<li>non-terminal 与运算：
-<ul>
-<li><code>E:+</code> E production 左递归</li>
-<li><code>T:*</code> T production 左递归</li>
-<li><code>F:(),-,id</code> F production 右递归</li>
-</ul>
-</li>
-</ul>
-<pre tabindex="0"><code>E -&gt; E+T | T
-T -&gt; E*F | F
-F -&gt; (F) | -F | id
-</code></pre><p><em>e.g. dangling else 问题：then 的个数多于 else，后者不知道和哪个 then 结合</em><br>
-就近匹配，规定 else 和最近的 then 匹配（右结合）</p>
-<p>缺点：引入更多 non-terminal 使得 parse tree 更深、更难理解</p>
-<ol start="2">
-<li>为文法符号规定优先级和结合性
-yacc 采用的就是这种方式：</li>
-</ol>
-<pre tabindex="0"><code>%left &#39;+&#39;&#39;*&#39;
-%right &#39;-&#39;
-</code></pre><ol start="3">
-<li>修改语言的语法（表现形式被改变）</li>
-</ol>
-<ul>
-<li>明确给出结束标志</li>
-<li>给表达式加括号</li>
-</ul>
-<h2 id="语言和文法">语言和文法</h2>
-<p>词法分析和语法分析的分离</p>
+<p>TCP 的附加服务：</p>
 <ol>
-<li>正规语法是 CFG 的特例</li>
-<li>用正则表达式定义词法的若干好处（简单、简洁、高效）</li>
-<li>软件工程上的好处（模块、可移植）</li>
+<li>可靠数据传输 reliable data transfer</li>
+<li>拥塞控制 congestion control 调节发送端发送进网络的流量速率，使得每个连接都平等共享网络链路带宽</li>
 </ol>
-<p>CFG 的表达能力还是不足 -&gt; 非上下文无关文法</p>
-<h2 id="语法分析">语法分析</h2>
-<h3 id="自顶向下">自顶向下</h3>
-<h4 id="预处理消除左递归提取左因子">预处理：消除左递归、提取左因子</h4>
-<p>左递归 left recursion：存在 non-terminal \(A\) s.t. \(A\rightarrow^{+}A\alpha\)，其中 \(\alpha\) 是文法符号串<br>
-top-down 分析无法处理左递归，会陷入无限循环<br>
-左递归分为两种：直接、间接</p>
+<h3 id="多路复用和多路分解">多路复用和多路分解</h3>
+<p>传输层从网络层接收 segment 后，要负责交付给主机上对应的应用程序<br>
+一个进程有一个/多个 socket，每个有唯一标识符<br>
+多路分解：传输层检查 segment 中的字段，定向到接收 socket<br>
+多路复用：从不同 socket 中收集数据，封装 header 生成 segment，传递到网络层</p>
+<p>segment 中指示 socket 的字段：源端口号 source port number field、目的端口号 destination port number field<br>
+端口号是 16bit 数字，0-1023 范围的叫周知端口号 well-known port number，要保留给 HTTP (80)/FTP (21) 等 well-known 应用层协议使用</p>
+<h3 id="udp">UDP</h3>
+<p>UDP 的特点：</p>
 <ol>
-<li>直接左递归 immediate left recursion<br>
-文法中存在 \(A\rightarrow A\alpha|\beta\)，其中文法符号串 \(\beta\) 不以 \(A\) 开头<br>
-消除：写成 \(A\rightarrow \beta A&rsquo;, A&rsquo;\rightarrow\alpha A&rsquo;|\epsilon\)</li>
-<li>间接左递归<br>
-形如 \(S\rightarrow Aa|b, A\rightarrow Sd|\epsilon\)<br>
-先变换成直接左递归 \(S\rightarrow Aa|b, A\rightarrow Aad|bd|\epsilon\)<br>
-再消除左递归 \(S\rightarrow Aa|b, A\rightarrow bdA&rsquo;|A&rsquo;, A&rsquo;\rightarrow adA&rsquo;|\epsilon\)</li>
+<li>发送方和接收方不握手（无连接，连接要增加延时；协议简单）</li>
+<li>每个数据单元 datagram 独立传输</li>
+<li>提供多路复用分解、差错检查（IPv4 中可选，IPv6 强制）</li>
+<li>支持组播通信（点到多点）</li>
+<li>不提供可靠性保证、无拥塞控制</li>
 </ol>
-<p>提取左因子 left factoring：\(A\rightarrow\alpha\beta_{1}|\alpha\beta_{2}\)，不知道用哪个来替换<br>
-提取最长公共前缀 \(A\rightarrow\alpha A&rsquo;, A&rsquo;\rightarrow\beta_{1}|\beta_{2}\)<br>
-<em>e.g. hanging else</em></p>
-<h4 id="ll-1-文法和递归下降的预测分析">LL (1) 文法和递归下降的预测分析</h4>
-<p>L-left to right; L-leftmost derivation<br>
-LL (1) 文法的性质：不是二义的、没有左公共因子、不含左递归</p>
-<p>通过向前看一个符号确定 production，消除回溯。<br>
-<em>e.g.</em> 当前句型是 xAb，输入是 xa…，那么要选择 production \(A\rightarrow\alpha\) 的必要条件是：</p>
-<ul>
-<li>\(\alpha\rightarrow a\dots\)</li>
-<li>\(\alpha\rightarrow\epsilon\)，且 \(\beta\) 以 a 开头，即在某个句型中 a 跟在 A 之后</li>
-</ul>
-<p>定义函数：</p>
-<ol>
-<li>\(FIRST(\alpha)\)</li>
-</ol>
-<ul>
-<li>定义：\(\alpha\) 推出的非空串中首 terminal、以及 \(\alpha\) 推出空串时的 \(\epsilon\) 组成的集合（只能包含终结符和 \(\epsilon\)）
-<ul>
-<li>形式化定义： \(FIRST(\alpha)=\{\alpha|\alpha\rightarrow*\alpha\dots,\alpha\in V_{T}\}\cup\{\epsilon|\alpha\rightarrow*\epsilon\}\)</li>
-</ul>
-</li>
-<li>意义：下一个输入符号 a，若 \(a\in FIRST(\alpha)\)，选择 production \(A\rightarrow\alpha\)</li>
-<li>计算方法：
-<ul>
-<li>X 是 terminal，\(FIRST(X)={X}\)</li>
-<li>X 是 non-terminal，且 \(X\rightarrow Y_{1}Y_{2}\dots Y_{k}\)
-<ul>
-<li>如果 \(\alpha\in FIRST(Y_{i})\) ，且 \(\epsilon\) 在 \(FIRST (Y_{1}),\dots,FIRST(Y_{i-1})\) 中，则加入 \(\alpha\)</li>
-<li>如果 \(\epsilon\) 在 \(FIRST (Y_{1}),\dots,FIRST(Y_{k})\) 中，则加入 \(\epsilon\)</li>
-</ul>
-</li>
-<li>X 是 non-terminal，且 \(X\rightarrow\epsilon\)，则加入 \(\epsilon\)</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li>\(FOLLOW(A)\)</li>
-</ol>
-<ul>
-<li>定义：<strong>可能</strong>在某些句型中紧跟在 A 右边的终结符的集合
-<ul>
-<li>形式化定义：\(FOLLOW(A)=\{\alpha|S\rightarrow*\dots A\alpha\dots,\alpha\in V_{T}\}\cup\{S\rightarrow*\dots A\}\)</li>
-</ul>
-</li>
-<li>意义：下一个输入符号 b， \(A\rightarrow\alpha\) 且 \(\alpha\rightarrow\epsilon\) 时，若 \(b\in FOLLOW(A)\)，可以选择 \(A\rightarrow\alpha\)</li>
-<li>计算方法：
-<ul>
-<li>将右端结束标记 $ 加入 \(FOLLOW(S)\)</li>
-<li>按下述两个规则迭代，直到所有的 \(FOLLOW\) 集合都不再增长：
-<ul>
-<li>若 \(A\rightarrow\alpha B\beta\)，则将 \(FIRST(\beta)\) 中所有非 \(\epsilon\) 的 terminal 加入 \(FOLLOW(B)\)</li>
-<li>若 \(A\rightarrow\alpha B\) 或（\(A\rightarrow\alpha B\beta\) 且 \(\epsilon\in FIRST(\beta)\)），则将 \(FOLLOW(A)\) 中所有符号都加入 \(FOLLOW(B)\)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>LL (1) 文法的定义：任何两个 production \(A\rightarrow\alpha|\beta\) 都满足下列条件：</p>
-<ol>
-<li>\(FIRST (\alpha)\cap FIRST (\beta)=\emptyset\)</li>
-<li>若 \(\beta\rightarrow*\epsilon\) ，则 \(FIRST (\alpha)\cap FOLLOW (A)=\emptyset\)；反之亦然</li>
-</ol>
-<h4 id="非递归的预测分析表">非递归的预测分析表</h4>
-<p>列是 non-terminal，行是 terminal 或结束标记 $，每个格子 \(M[A,a]\) 是 non-terminal-&gt;terminal 的 production \(A\rightarrow\alpha\)（即当前输入是 a 时，采用该 production）</p>
-<p>对每个 production \(A\rightarrow\alpha\)：</p>
-<ul>
-<li>对 \(FIRST(\alpha)\) 中的每个 terminal a，将 \(A\rightarrow\alpha\) 加入 \(M[A,a]\) 中</li>
-<li>如果 \(\epsilon\) 在 \(FIRST(\alpha)\)，则对于 \(FOLLOW(A)\) 中的每个符号 b，将 \(A\rightarrow\alpha\) 也加入 \(M[A,b]\) 中</li>
-<li>其他没有定义的条目都是 error</li>
-</ul>
-<p>采用一个符号栈保存分析时的处理过程：</p>
-<ul>
-<li>初始化，栈中仅包含开始符号 S</li>
-<li>如果 top 元素是 terminal，和输入匹配</li>
-<li>如果 top 是 non-terminal，使用预测分析表选择 production，在栈顶用右部替换左部，将右部按<strong>倒序</strong> push 入栈</li>
-</ul>
-<p>分析表驱动的预测分析器的模型如：</p>
+<p>UDP segment 结构如下：</p>
 <p>
-  <img src="/img/%e5%88%86%e6%9e%90%e8%a1%a8%e9%a9%b1%e5%8a%a8%e7%9a%84%e9%a2%84%e6%b5%8b%e5%88%86%e6%9e%90%e5%99%a8%e6%a8%a1%e5%9e%8b.png" alt="">
+  <img src="/img/UDP_segment%e7%bb%93%e6%9e%84.png" alt="">
 
 </p>
-<p><em>e.g.</em> 输入：id+id*id</p>
+<ul>
+<li>长度 - 字节数（header+data）</li>
+<li>检验和 - 差错检测，对 segment 中所有 16bit 字的和进行反码运算，溢出回卷</li>
+<li>复用和分解 - IP + 端口号 标识进程</li>
+<li>如果需要实现可靠传输，需要增加机制</li>
+</ul>
+<h3 id="可靠数据传输">可靠数据传输</h3>
+<p>数据通过可靠信道传输，数据不会损坏/丢失，而且按照发送顺序交付<br>
+可靠数据传输协议 reliable data transfer protocol (rdt)<br>
+仅考虑单向数据传输的情况，发送方 <code>rdt_send()</code>，接收方 <code>rdt_recv()</code><br>
+使用有限状态机 FSM 描述发送方和接收方的状态迁移 event/actions</p>
+<h4 id="rdt-的几个阶段">rdt 的几个阶段</h4>
+<ol>
+<li>rdt 1.0：完全可靠信道<br>
+无位错误、无 packet 丢失</li>
+</ol>
 <p>
-  <img src="/img/%e9%a2%84%e6%b5%8b%e5%88%86%e6%9e%90%e8%a1%a8%e4%be%8b%e5%ad%9001.png" alt="">
+  <img src="/img/rdt_1.0.png" alt="">
 
 
+2. rdt 2.0：具有位差错信道的 stop-and-wait 协议<br>
+可能具有位错误（0 变 1，1 变 0）<br>
+自动重传请求 automatic repeat request ARQ 协议<br>
+需要处理位差错的功能：</p>
+<ul>
+<li>差错检测</li>
+<li>接收方反馈：肯定确认 ACK/否定确认 NAK</li>
+<li>重传<br>
+问题：ACK/NAK 受损怎么办？<br>
+不能简单地重传，可能导致重复接收（接收方不知道接收到的是新的还是重传）</li>
+</ul>
+<p>
+  <img src="/img/rdt_2.0.png" alt="">
 
-  <img src="/img/%e9%a2%84%e6%b5%8b%e5%88%86%e6%9e%90%e8%a1%a8%e4%be%8b%e5%ad%9002.png" alt="">
+
+3. rdt 2.1：处理重复接收问题<br>
+发送端在 packet 里附上序号，通过校验段判断 ACK/NAK 是否受损，受损则重传<br>
+接收端通过序号判断是否是重传的 packet，在 ACK/NAK 中增加校验字段<br>
+4. rdt 2.2：无 NAK<br>
+只使用 ACK，不再使用 NAK（NAK-free）<br>
+ACK 中携带所确认的 packet 的序列号，接收端发送最后收到正确的 packet 的 ACK；如果发送端收到 duplicate ACK，表明对当前 packet 的 NAK<br>
+5. rdt 3.0：有位差错的丢包信道（比特交替协议 alternating-bit protocol）<br>
+发送方等待一段时间，如果收不到 ACK，就判定 packet 已经丢失，重传<br>
+如果接收方收到重复 packet（序号判断）就丢弃<br>
+countdown timer 每次发送时重置</p>
+<h4 id="流水线协议">流水线协议</h4>
+<p>rdt 3.0 是一个 stop-and-wait 协议，吞吐量过低<br>
+流水线协议：允许发送方发送多个 packet 而无需等待确认</p>
+<p>
+  <img src="/img/%e6%b5%81%e6%b0%b4%e7%ba%bf%e5%8d%8f%e8%ae%ae.png" alt="">
 
 </p>
-<p>什么时候报错？</p>
+<p>影响：</p>
 <ul>
-<li>栈顶的 terminal 和下一个输入符号不匹配；</li>
-<li>栈顶是 non-terminal A，输入符号 a，而 \(M[A,a]\) 为空。</li>
+<li>增加序号范围</li>
+<li>发送方和接收方都可能需要缓存多个 packet（已发送但没有确认的；已正确接收的）</li>
+<li>差错恢复：回退 N 步 Go-Back-N (GBN)、选择重传 selective repeat (SR)</li>
 </ul>
-<p>错误恢复：采用 panic mode，抛弃输入记号，直到其属于某个指定的同步记号 synchronizing tokens 集合为止。</p>
-<p>总而言之，自顶向下语法分析的步骤大概如：</p>
-<blockquote>
 <ol>
-<li>消除文法的二义性</li>
-<li>消除左递归，提取左公共因子</li>
-<li>计算 FIRST 集和 FOLLOW 集</li>
-<li>进行分析（递归下降/预测分析表）</li>
+<li>Go-Back-N<br>
+在流水线中未确认的 packet 数不能超过窗口长度 N；又称作滑动窗口协议</li>
 </ol>
-</blockquote>
-<h3 id="自底向上">自底向上</h3>
-<h2 id="语法分析器-parsersyntax-analyzer-自动生成">语法分析器 parser/syntax analyzer 自动生成</h2>
+<p>
+  <img src="/img/Go-Back-N.png" alt="">
+
+</p>
+<ul>
+<li>每次要发送时先检查发送窗口是否已满</li>
+<li>对序号 n 的 packet 采取累积确认 cumulative acknowledgement，表明接收方已正确接收到序号为 n 之前（包括 n）的全部 packet</li>
+<li>超时则回退 N 步，重传所有未确认 packet</li>
+</ul>
+<ol start="2">
+<li>选择重传 SR<br>
+GBN 的问题：单个 packet 的差错会重传很多没必要的 packet</li>
+</ol>
+<ul>
+<li>SR 中发送方只重传丢失/受损的 packet</li>
+<li>接收方逐个确认正确接收的 packet，产生一个 ACK，不管是否按序<br>
+注意：必须重新确认已收到的序号小于当前窗口 base 序号的 packet，否则发送方窗口无法向前滑动（发送方和接收方窗口不一定同步）</li>
+<li>失序的 packet 缓存，直到收到这批所有丢失 packet 为止，然后可以按序交付</li>
+</ul>
+<h3 id="tcp">TCP</h3>
+<p>TCP 是面向连接 connection-oriented 的，互相发送数据之前必须先三次握手 three-way handshake（相互发送某些预备 segment，建立数据传输的参数）</p>
+<p>client 将数据通过 socket 引导到连接到发送缓存 send buffer 里，随后不时从中取出一段数据（ &lt;= 最大 segment 长度 MSS），加上 TCP header，形成 TCP segment，下传到网络层并封装到 IP datagram 里，发送到网络中<br>
+另一端接收到 segment 后，将数据放入该连接到接收缓存中，application 从缓存中读取数据</p>
+<p>
+  <img src="/img/TCP%e5%8f%91%e9%80%81%e7%bc%93%e5%ad%98%e5%92%8c%e6%8e%a5%e6%94%b6%e7%bc%93%e5%ad%98.png" alt="">
+
+</p>
+<p>TCP segment 结构：</p>
+<p>
+  <img src="/img/TCP_segment%e7%bb%93%e6%9e%84.png" alt="">
+
+</p>
+<ul>
+<li>接收窗口：指示接收方愿意接受的字节数，用于流量控制</li>
+<li>发送序号：segment 首字节的字节流编号
+<ul>
+<li>数据流按 MSS 切片成 segment，每个的序号是 i*MSS</li>
+</ul>
+</li>
+<li>确认号：主机 A 的确认号是主机 A expect 从主机 B 收到的下一字节的发送序号</li>
+</ul>
+<h4 id="tcp-可靠数据传输">TCP 可靠数据传输</h4>
+<p>TCP 可靠数据传输：超时和冗余确认</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">switch</span>(<span style="color:#66d9ef">case</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">从</span> application <span style="color:#960050;background-color:#1e0010">接收到数据</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">生成</span> TCP segment<span style="color:#960050;background-color:#1e0010">，序号</span> NextSeqNum
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#960050;background-color:#1e0010">定时器没有运行</span>)
+</span></span><span style="display:flex;"><span>				<span style="color:#960050;background-color:#1e0010">启动定时器</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">向</span> IP <span style="color:#960050;background-color:#1e0010">传递</span> segment
+</span></span><span style="display:flex;"><span>			NextSeqNum <span style="color:#f92672">+=</span> <span style="color:#a6e22e">length</span>(data)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">定时器超时</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">重传未应答的</span> segment <span style="color:#960050;background-color:#1e0010">中序号最小的</span>  
+</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">启动定时器</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">收到</span> ACK<span style="color:#960050;background-color:#1e0010">，具有</span> ACK <span style="color:#960050;background-color:#1e0010">字段值</span> y
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (y <span style="color:#f92672">&gt;</span> SendBase){
+</span></span><span style="display:flex;"><span>				SendBase <span style="color:#f92672">=</span> y
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#960050;background-color:#1e0010">当前仍无任何应答</span> segment)
+</span></span><span style="display:flex;"><span>					<span style="color:#960050;background-color:#1e0010">启动定时器</span>
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如果在超时之前收到了确认号更大的确认 segment，那么就不会重传<br>
+i.e. ACK=100 的确认 segment 丢失，但 ACK=120 的传到了，就不会重传前一个</p>
+<p>如何设定超时间隔 RTO？<br>
+如果是从 application 接收到数据/收到了 ACK，基于最近的往返时间 RTT 计算<br>
+为已发送但尚未被确认的 segment 测量 SampleRTT，计算估计值和偏差，设置 RTO：</p>
+<p>$$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha ·SampleRTT,\quad \alpha=1/8$$</p>
+<p>$$DevRTT = (1-\beta)DevRTT+\beta·\mid SampleRTT-EstimatedRTT\mid,\quad\beta=1/4$$</p>
+<p>$$RTO = EstimatedRTT+4·DevRTT$$</p>
+<p>每次重传时，将下一次的 timeout 设为当前的两倍</p>
+<p>快速重传 fast retransmit：冗余 duplicate ACK<br>
+接收方接收到相同数据的 3 个 duplicate ACK，表明跟在这个 segment 之后的 segment 已经丢失，执行快速重传（在该 segment 的定时器过期之前就重传）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">收到</span> ACK<span style="color:#960050;background-color:#1e0010">，具有</span> ACK <span style="color:#960050;background-color:#1e0010">字段值</span> y
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (y <span style="color:#f92672">&gt;</span> SendBase){
+</span></span><span style="display:flex;"><span>		SendBase <span style="color:#f92672">=</span> y
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#960050;background-color:#1e0010">当前仍无任何应答</span> segment)
+</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">启动定时器</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		y <span style="color:#960050;background-color:#1e0010">收到的</span> duplicate ACK<span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (duplicate ACK <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">重传序号</span> y <span style="color:#960050;background-color:#1e0010">的</span> segment
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">break</span>;
+</span></span></code></pre></div><p>选择确认 SACK：接收方有选择地确认失序 segment，而非累积确认最后一个正确接收的 segment<br>
+和重传机制结合后类似 SR 协议（跳过重传那些被选择性确认的 segment）</p>
+<h4 id="流量控制">流量控制</h4>
+<p>流量控制的目的：避免发送方发送数据速度太快，接收方无法正确处理，接收 buffer 溢出<br>
+手段：发送方维护一个接收窗口 receive window，指示接收方还有多少可用的 buffer，据此调整窗口大小</p>
+<p>
+  <img src="/img/TCP%e6%b5%81%e9%87%8f%e6%8e%a7%e5%88%b6%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3.png" alt="">
+
+</p>
+<p>$$LastByteRcvd-LastByteRead\leq RecBuffer$$</p>
+<p>$$rwnd = RcvBuffer-(LastByteRcvd-LastByteRead)$$</p>
+<p>$$LastByteSent-LastByteAcked\leq rwnd$$</p>
+<p>$$EffectiveWindow=rwnd-(LastByteSent-LastByteAcked)$$</p>
+<p>$$LastByteWritten-LastByteAcked\leq SendBuffer$$</p>
+<p>$$if(LastByteWritten-LastByteAcked+y&gt;SendBuffer)\ stop\ sending$$</p>
+<p>主机 B rwnd = 0 时，为了确认主机 A 还能给 B 发送数据，要求主机 A 继续发送只有一个字节数据的 segment，B 确认后返回 rwnd 新值</p>
+<p>buffer 过小影响吞吐率，过大浪费主机存储资源</p>
+<h4 id="tcp-连接管理">TCP 连接管理</h4>
+<p>TCP 连接建立（三次握手）：</p>
+<ul>
+<li>client 发送 SYN=1 的 segment，选择初始序号 client_isn</li>
+<li>server 为 TCP 连接分配 buffer 和变量，选择初始序号 server_isn，发送允许连接的 segment（SYNACK segment, SYN=1）</li>
+<li>client 为连接分配 buffer 和变量，发送确认 SYNACK 的 segment (SYN=0)
+<ul>
+<li>这一步就可以携带数据了</li>
+</ul>
+</li>
+<li>此后所有 segment 中 SYN=0</li>
+</ul>
+<p>TCP 连接终止：</p>
+<ul>
+<li>client 发送 FIN=1 的 segment
+<ul>
+<li>client 不再发送数据，但可以接收</li>
+</ul>
+</li>
+<li>server 发送 ACK，再发送自己的 FIN=1 的 segment</li>
+<li>client 发送 ACK</li>
+</ul>
+<h3 id="网络拥塞">网络拥塞</h3>
+<h3 id="tcp-拥塞控制">TCP 拥塞控制</h3>
 
     
                 
@@ -572,15 +616,10 @@ LL (1) 文法的性质：不是二义的、没有左公共因子、不含左递�
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/09/computer-networking-ch2/" data-toggle="tooltip" data-placement="top" title="计算机网络笔记02：应用层">&larr;
+                        <a href="/2023/10/compiler-principles-ch4/" data-toggle="tooltip" data-placement="top" title="编译原理笔记04：语法分析">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2023/10/computer-networking-ch3/" data-toggle="tooltip" data-placement="top" title="计算机网络笔记03：传输层">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 
