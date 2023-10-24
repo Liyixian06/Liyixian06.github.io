@@ -2,7 +2,7 @@
 title:       "编译原理笔记04：语法分析"
 subtitle:    ""
 description: " "
-date:        2023-10-17T16:26:29+08:00
+date:        2023-10-24T16:26:29+08:00
 author: LiYixian
 image:       ""
 tags:        ["CS", "compiler"]
@@ -172,5 +172,95 @@ LL (1) 文法的定义：任何两个 production \\(A\rightarrow\alpha|\beta\\) 
 > 4. 进行分析（递归下降/预测分析表）
 
 ### 自底向上
+
+bottom-up 的移入-规约 shift-reduce 分析：从串 w 开始规约到开始符号 S  
+reduction 步骤：一个与 production 右部匹配的子串替换为左部符号  
+是最右推导的逆过程，比 top-down 方法更一般化  
+
+问题：什么时候规约（规约哪些字符串）？规约到哪个 non-terminal？  
+
+把输入**从左到右**扫描，反向构造出一个最右推导。  
+句柄 handle：最右句型中和某个 production 匹配的子串，对它的规约代表了该最右句型的最右推导的最后一步。  
+即：若 \\(S\rightarrow\alpha A\omega\rightarrow\alpha\beta\omega\\)，那么紧跟在 \\(\alpha\\) 之后的 \\(\beta\\) 是 \\(A\rightarrow\beta\\) 的一个 handle  
+在最右句型中，handle 右边仅含 terminal（尚未处理的输入串）  
+*e.g.输入 id\*id*  
+
+![](/img/规约例子.png)
+
+#### 移入-规约
+
+也采用一个栈保存规约/扫描移入的符号：  
+- 栈中符号从底向上和待扫描的符号组成一个最右句型
+- 开始：栈中只包含 $，输入为 \\(\omega\\$\\)
+- 结束：栈中为 S$，输入为 $
+- 分析过程中不断移入符号，并在识别到 handle 时进行规约
+	- handle 被识别时总在栈顶
+
+分析动作：  
+- 移入 shift：将下一个输入符号移入栈顶
+- 规约 reduce：弹出 handle，规约为相应的 non-terminal，入栈
+- 接受 accept：分析成功完成
+- 报错 error
+
+*e.g.*  
+
+![](/img/移入-规约parser处理例子.png)
+
+移入-规约冲突：即使知道了栈中所有内容，以及接下来 k 个输入符号，仍然不知道是该移入还是规约/该按照哪个 production 规约  
+栈顶形成不同的 handle，或 handle 是不止一个 production 的右部  
+
+如何快速识别栈顶是否形成 handle？引入状态。
+#### LR 语法分析
+
+LR (k)：L-left to right; R-rightmost derivation in reverse; k 最多向前看 k 个符号  
+只考虑 k<=1 的情况  
+最通用的无回溯移入-规约分析技术  
+
+**基本思想：** 用状态刻画栈中内容，每个状态都对应一个文法符号（初始状态 \\(s_{0}\\) 除外），根据栈顶状态判断是否形成 handle  
+将符号写作状态的意义是？  
+通过类似于有限状态机的输入-动作（移入/规约）机制，进行语法分析。  
+
+构建 LR 语法分析表，两个部分：  
+- 动作 ACTION：两个参数状态 \\(s_{m}\\) 和 terminal \\(a_{i}\\)，\\(ACTION[s_{m},a_{i}]\\) 表示在该状态下面对输入符号 \\(a_{i}\\) 应该采取的动作。
+	- 移入 \\(s\\)：执行移入动作，将输入 \\(a_{i}\\) 对应的状态 \\(s\\) 入栈
+	- 规约 \\(A\rightarrow\beta\\)：将栈顶的 \\(\beta\\) 规约为 A，弹出 \\(r=\mid\beta\mid\\) 个状态，压入状态 \\(s=GOTO[s_{m-r},A]\\)
+	- 接受、报错
+- 转向 GOTO：两个参数状态  \\(s_{m}\\) 和 non-terminal A，\\(GOTO[s_{m},A]\\) 表示在该状态下当前栈顶 handle 规约为 A 后应该转向哪个状态。
+
+LR 语法分析器的结构 configuration 包括栈中内容 \\(s_{0}s_{1}\dots s_{m}\\) 和余下输入 \\(a_{i}a_{i+1}\dots a_{n}\\$\\)，语法分析器查询条目 \\(ACTION[s_{m},a_{i}]\\) （栈顶状态，第一个输入符号）确定下一步动作。
+
+*e.g.* 
+
+![](/img/LR分析表例子.png)  
+注：表中 \\(s_{i}\\) 表示移入，\\(r_{j}\\) 表示按第 j 号 production 规约，acc 表示接受。  
+
+![](/img/LR分析过程例子.png)  
+
+对处理过程的说明：  
+
+移入如 4-5 步，栈内状态\[0 2\]，符号 T，输入 \*id+id\$，那么：  
+- 查询 \\(ACTION[2,*]=s_{7}\\)
+- 压入状态 7  
+
+规约如 2-3 步，栈内状态\[0 5\]，符号 id，输入 \*id+id\$，那么：  
+1. 查询 \\(ACTION[5,*]=r_{6}\\) 规约
+2. 按 \\(r_{6}\\) 执行规约 \\(F\rightarrow id\\)：
+	- 将 id 规约为 F
+	- 弹出 1 个状态 5
+	- 查询 \\(GOTO[0,F]=3\\)  
+	- 压入状态 3
+
+如何构造 LR 分析表？  
+#### LR 分析表
+
+活前缀 viable prefix：不超过最右 handle 右端的前缀  
+
+> viable: something that is viable is capable of doing what it is intended to do.
+
+形式化定义：规范句型 \\(\gamma\beta\omega\\)，\\(\beta\\) 为 handle，\\(\gamma\beta\\) 的任何前缀（包括 \\(\epsilon\\) 和其自身）都是活前缀，\\(\omega\\) 仅包含 terminal，即输入缓冲区中剩下的符号串  
+在 LR 语法分析中，活前缀就是从栈底到栈顶的所有文法符号连接形成的串。  
+
+LR 分析表的转移函数 GOTO 本质上是识别活前缀的 DFA。  
+在 LR (1) 方法中，要看到 production 右部推出的整个 terminal 串，才会确定用这个 production 规约。  
 
 ## 语法分析器 parser/syntax analyzer 自动生成
