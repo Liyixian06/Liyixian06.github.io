@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Tue, 17 Oct 2023 16:26:29 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/compiler/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 Oct 2023 16:26:29 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/compiler/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>编译原理笔记04：语法分析</title>
       <link>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</link>
-      <pubDate>Tue, 17 Oct 2023 16:26:29 +0800</pubDate>
+      <pubDate>Tue, 24 Oct 2023 16:26:29 +0800</pubDate>
       
       <guid>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</guid>
       <description>Summary： 上下文无关文法 语法分析 自顶向下 自底向上 语法分析器生成 上下文无关文法 正则表达式的能力不足 -&amp;gt; ch2 CFG 凡是正则表达式能表示的语言，都能</description>

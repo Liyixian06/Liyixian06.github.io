@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 18 Oct 2023 14:17:50 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 Oct 2023 16:26:29 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译原理笔记04：语法分析</title>
+      <link>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</link>
+      <pubDate>Tue, 24 Oct 2023 16:26:29 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</guid>
+      <description>Summary： 上下文无关文法 语法分析 自顶向下 自底向上 语法分析器生成 上下文无关文法 正则表达式的能力不足 -&amp;gt; ch2 CFG 凡是正则表达式能表示的语言，都能</description>
+    </item>
+    
     <item>
       <title>计算机网络笔记03：传输层</title>
       <link>https://Liyixian06.github.io/2023/10/computer-networking-ch3/</link>
@@ -15,15 +24,6 @@
       
       <guid>https://Liyixian06.github.io/2023/10/computer-networking-ch3/</guid>
       <description>Summary: 多路复用和多路分解 UDP：特点、检验和 可靠数据传输：rdt、pipeline TCP：segment 结构、可靠数据传输、流量控制、连接管理 概</description>
-    </item>
-    
-    <item>
-      <title>编译原理笔记04：语法分析</title>
-      <link>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</link>
-      <pubDate>Tue, 17 Oct 2023 16:26:29 +0800</pubDate>
-      
-      <guid>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</guid>
-      <description>Summary： 上下文无关文法 语法分析 自顶向下 自底向上 语法分析器生成 上下文无关文法 正则表达式的能力不足 -&amp;gt; ch2 CFG 凡是正则表达式能表示的语言，都能</description>
     </item>
     
     <item>
