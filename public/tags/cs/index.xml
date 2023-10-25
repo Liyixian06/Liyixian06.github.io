@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Tue, 24 Oct 2023 16:26:29 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Oct 2023 20:24:32 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>操作系统笔记01：进程管理</title>
+      <link>https://Liyixian06.github.io/2023/10/operating-system-3.0/</link>
+      <pubDate>Wed, 25 Oct 2023 20:24:32 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/10/operating-system-3.0/</guid>
+      <description>计算资源的共享共用：提交给 OS 的任务交替运行 Cocurrent 并发 VS Parallel 并行 两个问题：如何保存/恢复一个程序的执行过程？如何知道一个程序要触发“慢操作”？ 保存/</description>
+    </item>
+    
     <item>
       <title>编译原理笔记04：语法分析</title>
       <link>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</link>
