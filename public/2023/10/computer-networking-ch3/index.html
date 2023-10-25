@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 2949 字</span>，阅读约 <span class="more-meta"> 6 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 4454 字</span>，阅读约 <span class="more-meta"> 9 分钟</span>
                             
                             
                             
@@ -362,6 +362,8 @@ $(function() {
 <li>UDP：特点、检验和</li>
 <li>可靠数据传输：rdt、pipeline</li>
 <li>TCP：segment 结构、可靠数据传输、流量控制、连接管理</li>
+<li>网络拥塞</li>
+<li>TCP 拥塞控制</li>
 </ul>
 <h3 id="概述和传输层服务">概述和传输层服务</h3>
 <p>传输层协议只工作在主机中，而非路由器<br>
@@ -592,7 +594,98 @@ i.e. ACK=100 的确认 segment 丢失，但 ACK=120 的传到了，就不会重�
 <li>client 发送 ACK</li>
 </ul>
 <h3 id="网络拥塞">网络拥塞</h3>
+<p>packet 丢失通常是在网络拥塞时由于路由器缓存溢出引起的，是网络拥塞的征兆。<br>
+问题：网络拥塞的原因是什么？为什么它是一件坏事，网络拥塞是如何在上层应用得到的服务性能中显露出来的？How to fix it?</p>
+<h4 id="拥塞原因和代价">拥塞原因和代价</h4>
+<ol>
+<li>两个发送方，一台缓存无穷大的路由器<br>
+主机 A 和 B 向路由器提供流量（将初始数据提供给 socket）的速率是 \(\lambda_{in}\) 字节/秒；来自 A 和 B 的 packet 通过路由器，在容量 R 的共享式输出链路上传输，packet 到达速率超出 R 时，可以存储在路由器的缓存中</li>
+</ol>
+<p>
+  <img src="/img/%e6%8b%a5%e5%a1%9e%e6%83%85%e5%86%b51.png" alt="">
+
+</p>
+<ul>
+<li>左：per-connection throughput（每连接吞吐量，即接收方每秒接收的字节数）和发送速率的关系<br>
+前者随后者线性增加，但不可能超过 R/2（两条连接共享链路容量）</li>
+<li>右：latency 和发送速率的关系<br>
+代价 1：发送速率超过 R/2 时，路由器中的平均排队 packet 就会无限增长，latency 也会变成无穷大</li>
+</ul>
+<p>-&gt; 代价：packet 到达速率接近链路容量时，会有巨大的排队 latency</p>
+<ol start="2">
+<li>（有重传的）两个发送方，一台缓存有限的路由器<br>
+packet 到达已满缓存时会被丢弃，然后被发送方重传<br>
+运输层向网络中发送（含有初始和重传数据）的速率（供给载荷 offered load）是 \(\lambda_{in}^{&rsquo;}\) 字节/秒</li>
+</ol>
+<p>
+  <img src="/img/%e6%8b%a5%e5%a1%9e%e6%83%85%e5%86%b52.png" alt="">
+
+</p>
+<ul>
+<li>左：仅当缓存空闲时才发送，不会丢包</li>
+<li>中：仅当确定一个 packet 已经丢失时才重传<br>
+发送的 R/2数据中有 R/3 是初始数据，剩下的是重传数据<br>
+代价 2：发送方必须重传以补偿因为缓存溢出而丢弃的 packet</li>
+<li>右：发送方提前发生 timeout，重传在队列中推迟但未丢失的 packet<br>
+重传 packet 会被丢弃<br>
+代价 3：发送方遇到大 latency 时进行的不必要重传，会引起路由器利用其链路带宽转发不必要的 packet copy</li>
+</ul>
+<ol start="3">
+<li>4 个发送方，多台缓存有限的路由器，多跳路径<br>
+offered load 和吞吐量之间的权衡<br>
+每有一个 packet 在第二跳路由器上被丢弃，第一跳路由器将 packet 转发到第二跳路由器的工作就浪费了，将转发的传输容量用来传送别的 packet 可能更有效<br>
+代价 4：一个 packet 沿一条路径被丢弃时，每个上游路由器用于转发该 packet 到丢弃它而使用的传输容量最终被浪费了</li>
+</ol>
+<p>
+  <img src="/img/%e6%8b%a5%e5%a1%9e%e6%83%85%e5%86%b53_%e5%a4%9a%e8%b7%b3%e8%b7%af%e5%be%84.png" alt="">
+
+</p>
+<h4 id="拥塞控制方法">拥塞控制方法</h4>
+<ul>
+<li>端到端拥塞控制：网络层不为运输层拥塞控制提供显式支持，主机必须通过观察网络行为（<em>e.g.丢包、latency</em>）判断；
+<ul>
+<li>TCP/IP</li>
+</ul>
+</li>
+<li>网络辅助的拥塞控制：路由器向发送方提供网络拥塞状态的反馈信息
+<ul>
+<li>路由器直接发给发送方 choke packet，或更新发送到接收方的 packet 中的某个字段，接收方再向发送方通知</li>
+</ul>
+</li>
+</ul>
 <h3 id="tcp-拥塞控制">TCP 拥塞控制</h3>
+<p>TCP 使用端到端拥塞控制，让每个发送方感知网络拥塞程度，以限制它向连接发送流量的速率<br>
+问题：如何感知路径上的拥塞？如何限制发送速率？如何确定发送速率？</p>
+<ol>
+<li>
+<p>限制发送速率<br>
+TCP 拥塞控制机制 follow 一个拥塞窗口 congestion window (cwnd)，发送方中未被确认的数据量不会超过 min (cwnd, rwnd)</p>
+</li>
+<li>
+<p>感知拥塞<br>
+拥塞时路由器缓存溢出，发生丢包事件：timeout/收到来自接收方的 3 个 duplicate ACK<br>
+自计时 selfl-clocking：如果一切正常（持续收到 ACK），就增大 cwnd（增加速度和 ACK 到达的速度正相关）；如果发生丢包事件，就减小 cwnd</p>
+</li>
+<li>
+<p>确定发送速率：TCP 拥塞控制算法<br>
+带宽探测，锯齿现象</p>
+<ul>
+<li>慢启动 slow-start<br>
+cwnd 以初始值 MSS 开始，每收到一个 ACK 就增加一个 MSS（每个 RTT 指数级增长）<br>
+如果 timeout，set 慢启动阈值 ssthresh = cwnd/2，cwnd=MSS，重新开始 slow-start，cwnd=ssthresh 时进入拥塞避免<br>
+3 duplicate ACK 时，进入快速恢复</li>
+<li>拥塞避免<br>
+此时 cwnd = 上次遇到拥塞时的值的 1/2，离拥塞不远，改用较为保守的方式，每个 RTT 只将 cwnd+=RSS（收到 ACK 时，cwnd+= MSS·MSS/cwnd）<br>
+timeout 时 ssthresh = cwnd/2，重新开始 slow-start；3 duplicate ACK 时（拥塞不严重，还可以交付一些 segment），cwnd = ssthresh+3，进入快速恢复</li>
+<li>快速恢复 (optional)<br>
+对收到的每个 duplicate ACK，cwnd+=MSS，最终丢包的 ACK 到达时，cwnd=MSS，进入拥塞避免</li>
+</ul>
+</li>
+</ol>
+<p>
+  <img src="/img/TCP%e6%8b%a5%e5%a1%9e%e6%8e%a7%e5%88%b6%e7%ae%97%e6%b3%95.png" alt="">
+
+</p>
 
     
                 
