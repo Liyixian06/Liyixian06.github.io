@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 3507 字</span>，阅读约 <span class="more-meta"> 7 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 6809 字</span>，阅读约 <span class="more-meta"> 14 分钟</span>
                             
                             
                             
@@ -362,10 +362,10 @@ $(function() {
 <li>语法分析
 <ul>
 <li>自顶向下</li>
-<li>自底向上</li>
+<li>自底向上：LR (0) / SLR / LR (1) / LALR</li>
 </ul>
 </li>
-<li>语法分析器生成</li>
+<li>语法错误处理</li>
 </ul>
 <h2 id="上下文无关文法">上下文无关文法</h2>
 <p>正则表达式的能力不足 -&gt; <a href="https://liyixian06.github.io/2023/09/compiler-principles-ch2/">ch2 CFG</a></p>
@@ -636,7 +636,7 @@ reduction 步骤：一个与 production 右部匹配的子串替换为左部符�
 </li>
 </ol>
 <p>如何构造 LR 分析表？</p>
-<h4 id="lr-分析表">LR 分析表</h4>
+<h4 id="lr-0-和-slr">LR (0) 和 SLR</h4>
 <p>活前缀 viable prefix：不超过最右 handle 右端的前缀</p>
 <blockquote>
 <p>viable: something that is viable is capable of doing what it is intended to do.</p>
@@ -645,7 +645,161 @@ reduction 步骤：一个与 production 右部匹配的子串替换为左部符�
 在 LR 语法分析中，活前缀就是从栈底到栈顶的所有文法符号连接形成的串。</p>
 <p>LR 分析表的转移函数 GOTO 本质上是识别活前缀的 DFA。<br>
 在 LR (1) 方法中，要看到 production 右部推出的整个 terminal 串，才会确定用这个 production 规约。</p>
-<h2 id="语法分析器-parsersyntax-analyzer-自动生成">语法分析器 parser/syntax analyzer 自动生成</h2>
+<p>LR (0) 项目：在右部的某个地方加点（表示分析所处位置）的 production<br>
+<em>e.g.</em> \([A\rightarrow\alpha·\beta]\) 表示已经扫描/规约到了 \(\alpha\)，并期望在接下来的输入中经过扫描/规约得到 \(\beta\)，然后把 \(\alpha\beta\) 规约到 A。<br>
+或：·之前已形成活前缀，在栈中；之后尚未分析，对应的 terminal 串在输入缓冲区</p>
+<p>文法天然有一个识别活前缀的 NFA：<br>
+<em>e.g.</em> 文法 \(S\rightarrow aABe; A\rightarrow Abc|b; B\rightarrow b\)<br>
+
+  <img src="/img/%e8%af%86%e5%88%ab%e6%b4%bb%e5%89%8d%e7%bc%80%e7%9a%84NFA%e7%a4%ba%e4%be%8b.png" alt="">
+
+</p>
+<p>DFA 的状态集：LR (0) 项集规范族 canonical LR (0) collection<br>
+核心计算：项集闭包 closure 和 goto 函数<br>
+<strong>本质上是一个子集构造法过程</strong>，上述的 NFA-&gt;DFA</p>
+<ol>
+<li>增广文法 augmented grammar：G 的增广文法 G&rsquo;是在 G 中增加新开始符号 S&rsquo;，并加入 production \(S&rsquo;-&gt;S\) 得到的。</li>
+<li>项集闭包 closure：若 I 是文法 G 的一个项集，closure (I) 就是根据以下算法从 I 构造得到的项集：<br>
+
+  <img src="/img/%e9%a1%b9%e9%9b%86%e9%97%ad%e5%8c%85%e6%9e%84%e9%80%a0%e7%ae%97%e6%b3%95.png" alt="">
+
+<br>
+意义：\(A\rightarrow\alpha·B\beta\)，希望看到由 \(B\beta\) 推导出的串，那首先要看到 B 推导出的串，因此要加上 B 的各个 production 对应的项。<br>
+production 对应的状态转换没有 push 任何符号，\(\epsilon\) 边</li>
+<li>goto 函数：I 是一个项集，X 是一个文法符号，则 \(GOTO (I, X)\) 定义为 I 中所有形如 \([A\rightarrow\alpha·X\beta]\) 的项所对应的项 \([A\rightarrow\alpha X·\beta]\) 的集合<strong>的闭包</strong>。</li>
+</ol>
+<p>求 LR (0) 项集规范族的算法：从初始项集开始，不断计算各种可能的后继，直到生成所有的项集。</p>
+<p>
+  <img src="/img/%e6%b1%82LR%280%29%e9%a1%b9%e9%9b%86%e8%a7%84%e8%8c%83%e6%97%8f%e7%9a%84%e7%ae%97%e6%b3%95.png" alt="">
+
+</p>
+<p>项集规范族构造示例：</p>
+<p>
+  <img src="/img/%e9%a1%b9%e9%9b%86%e8%a7%84%e8%8c%83%e6%97%8f%e6%9e%84%e9%80%a0%e7%a4%ba%e4%be%8b.png" alt="">
+
+</p>
+<p>基于 LR (0) 项集规范族，可以构造 LR (0) 自动机：</p>
+<ul>
+<li>每个项集对应于自动机的一个状态</li>
+<li>如果 \(GOTO (I, X)=J\)，那么从 I 到 J 有一个标号为 X 的转换</li>
+<li>开始状态为 \([S&rsquo;\rightarrow ·S]\) 所在的项集</li>
+</ul>
+<p>LR (O) 不向前看：如果某个状态存在规约项目，那么此状态在 action 表中所有条目都是该规约动作。<br>
+问题：容易产生冲突，<em>e.g.</em> 某个状态 i 包含 \([A\rightarrow\alpha·]\) 和 \([A\rightarrow·c]\)，那么 \(ACTION[i,c]\) 既应该移进 c，又应该规约 A。</p>
+<p>为了解决冲突，基于 LR (0) 自动机，进一步构造 SLR 语法分析表：</p>
+<ul>
+<li>构造增广文法 G&rsquo;的 LR (0) 项集规范族 \(\{I_{0},I_{1},\dots,I_{n}\}\)</li>
+<li>状态 i 对应项集 \(I_{i}\)，相关的 action/goto 表条目如：
+<ul>
+<li>\([A\rightarrow\alpha·a\beta]\) 在 \(I_{i}\) 中，且 \(GOTO(I_{i},a)=I_{j}\)，则 \(ACTION[i,a]\) =‘移入 j’</li>
+<li>\([A\rightarrow\alpha·]\) 在 \(I_{i}\) 中，那么对 \(FOLLOW(A)\) 中所有 a，\(ACTION[i,a]\) =‘按 \(A\rightarrow\alpha\) 规约’</li>
+<li>如果 \([S&rsquo;\rightarrow S·]\) 在 \(I_{i}\) 中，那么 \(ACTION[i,$]\) =‘接受’</li>
+<li>如果 \(GOTO(I_{i},A)=I_{j}\)，那么在 GOTO 表中，\(GOTO[i,A]=j\)</li>
+</ul>
+</li>
+<li>空白条目设为 error</li>
+</ul>
+<p>如果 SLR 分析表没有冲突，该文法就是 SLR 的；<br>
+SLR 文法一定是非二义性的，但是反之不一定。</p>
+<p><strong>SLR 解决冲突的思想：如果要把 \(\alpha\) 规约成 A，那么后面必须是 \(FOLLOW(A)\) 中的 terminal，否则只能移入。</strong><br>
+也就是说，判断是规约还是移进时，SLR 试图通过向前看一位确定操作。</p>
+<p>但是，仍然可能存在无法通过向前看一位解决的冲突：<br>
+状态中包含 \([A\rightarrow\alpha·]\) 时，下一个符号 a 必须在 \(FOLLOW(A)\) 中，才能按照 \(A\rightarrow\alpha\) 规约。</p>
+<ol>
+<li>但如果此时对 a 还有其他移入/规约操作，就会出现冲突；</li>
+<li>如果此时栈中符号串是 \(\beta\alpha\)，如果 \(\beta Aa\) 不是任何最右句型的前缀，那么即使 a 在 \(FOLLOW(A)\) 中，也不应该按 \(A\rightarrow\alpha\) 规约。</li>
+</ol>
+<p><strong>答题流程：</strong></p>
+<ol>
+<li>拓广文法（切记勿忘）<br>
+对任意已知文法，假设它的起始符号为 S，则添加一个生成式 \(S&rsquo;\rightarrow S\) 用来产生接受项目</li>
+<li>把文法转换成每个 production 只有一个候选式的形式，标号，以便分析表引用</li>
+<li>构造 LR (0)项集规范族及其 DFA<br>
+切记不存在 SLR (1)项目集规范族</li>
+<li>判断 LR (0) 项集规范族中有没有冲突（即，不向前看就没法解决的冲突），如果有，写出冲突类型；没有冲突就能构造 LR (0) 分析表</li>
+<li>如果存在冲突，冲突是否能通过向前看一位解决。如果能，就可以构造 SLR (1)分析表；如果不能，尝试使用后文的 LR (1)分析法。</li>
+</ol>
+<h4 id="lr-1-和-lalr-1">LR (1) 和 LALR (1)</h4>
+<p>LR (1) 分析法：始终向前看一个符号<br>
+解决冲突的能力是最强的，但是状态会非常多</p>
+<p>LR (1) 项包含了更多信息，添加某个项时把期望的向前看符号也加入项中，相当于分裂一些 LR (0) 状态，<strong>精确指明应该在何时规约</strong>。<br>
+\([A\rightarrow\alpha·\beta, a]\) 表示如果将来要按照 \(A\rightarrow\alpha\beta\) 进行规约，规约的下一个输入符号必须是 a（可以是 terminal 或者 $）；\(\beta\) 非空时，移入动作不考虑 a，a 传递到下一状态。<br>
+特别地，包含拓广符号 S&rsquo;的状态为：\([S&rsquo;\rightarrow ·S,\$]\)</p>
+<p>LR (1) 项集族的构造和 LR (0) 类似，但 closure 和 goto 的计算有所区别：</p>
+<ul>
+<li>LR (1) 项集的 closure 算法：<br>
+
+  <img src="/img/LR%281%29%e9%a1%b9%e9%9b%86%e9%97%ad%e5%8c%85%e6%9e%84%e9%80%a0%e7%ae%97%e6%b3%95.png" alt="">
+
+<br>
+意义：要看到 B 推导出的串，就需要加入 B 的所有 production；B 后面跟着的是 \(\beta\alpha\)，那么下一个输入符号必须在 \(FIRST(\beta\alpha)\) 中。</li>
+<li>LR (1) 项集的 goto 算法：和 LR (0) 基本相同<br>
+
+  <img src="/img/LR%281%29goto%e7%ae%97%e6%b3%95.png" alt="">
+
+</li>
+</ul>
+<p>LR (1)项集规范族的构造算法和 LR (0)相同，不再赘述；初始状态是 \([S&rsquo;\rightarrow·S,\$]\) 所在的项集。</p>
+<p>基于 LR (1) 项集规范族，可以构造 LR (1) 语法分析表，流程和 LR (0) 比较接近，主要区别在规约动作的判断：</p>
+<ul>
+<li>构造增广文法 G&rsquo;的 LR (1) 项集规范族 \({I_{0},I_{1},\dots,I_{n}}\)</li>
+<li>状态 i 对应项集 \(I_{i}\)，相关的 action/goto 表条目如：
+<ul>
+<li>\([A\rightarrow\alpha·a\beta,b]\) 在 \(I_{i}\) 中，且 \(GOTO(I_{i},a)=I_{j}\)，则 \(ACTION[i,a]\) =‘移入 j’</li>
+<li>\([A\rightarrow\alpha·,a]\) 在 \(I_{i}\) 中，那么 \(ACTION[i,a]\) =‘按 \(A\rightarrow\alpha\) 规约’</li>
+<li>如果 \([S&rsquo;\rightarrow S·,\$]\) 在 \(I_{i}\) 中，那么 \(ACTION[i,\$]\) =‘接受’</li>
+<li>如果 \(GOTO(I_{i},A)=I_{j}\)，那么在 GOTO 表中，\(GOTO[i,A]=j\)</li>
+</ul>
+</li>
+<li>空白条目设为 error</li>
+</ul>
+<p>LR (1) 的不便之处是状态要远多于 LR (0)；LALR 的意思是 lookahead-LR，是一种介于 LR (1) 和 SLR 之间的的方法，合并了 LR (1)中的某些状态来简化程序；<br>
+它的分析表和 SLR 一样大，但分析能力更强，已经可以处理大部分程序设计语言。</p>
+<p>LALR 简化项集的思想是：寻找具有相同核心（core，即项的第一个分量，或 LR (0) 项集）的 LR (1) 项集，并将它们合并为同一个项集，使得分析表既保持了 LR (1) 项中的向前看符号信息，又将状态数减少到和 SLR 一样多。</p>
+<p><em>e.g.</em> 存在如下项集规范族：<br>
+$$I_{4}={[C\rightarrow d·,c]\ [C\rightarrow d·,d]}$$ <br>
+$$I_{7}={[C\rightarrow d·,\$]}$$<br>
+即，状态 4 和 7 有相同的核心 \(C\rightarrow d·\)，区别在于状态 4 在下一个输入符号是 c 或 d 时规约，$ 时报错，状态 7 则正相反；于是，可以将它们合并为一个项集：</p>
+<p>$$I_{47}={[C\rightarrow d·,c]\ [C\rightarrow d·,d]\ [C\rightarrow d·,\$]}$$</p>
+<p>被合并项集的 goto 目标也随之合并。<br>
+-&gt; 可能出现的问题是会引发规约-规约冲突，即不能确定按照哪个 production 规约：</p>
+<p>
+  <img src="/img/LALR%e5%90%88%e5%b9%b6%e5%bc%95%e8%b5%b7%e8%a7%84%e7%ba%a6-%e8%a7%84%e7%ba%a6%e5%86%b2%e7%aa%81%e7%9a%84%e4%be%8b%e5%ad%90.png" alt="">
+
+</p>
+<p>实际分析中，处理语法正确的输入时，LALR 和 LR (1) 的动作序列完全相同；处理错误输入时，LALR 可能会在合并同心集时做了不必要的规约，导致延迟发现错误。</p>
+<h2 id="语法错误处理">语法错误处理</h2>
+<p>预测分析中的错误恢复：不仅要报错，而且能进行恢复处理后继续语法分析过程<br>
+错误恢复时可用的信息：栈中符号、待分析的符号<br>
+两类方法：panic mode，短语层次的恢复</p>
+<ol>
+<li>panic mode</li>
+</ol>
+<p>思路：如果已经不可能在输入前缀中找到和某个 non-terminal 对应的串，就将其跳过，假装已经找到了它，然后继续分析<br>
+指定的同步词法单元 synchronizing token 就是这个跳过的程序结构的结束标志。<br>
+-&gt; 确定文法符号 A 的同步词法单元：</p>
+<ul>
+<li>\(FOLLOW(A)\) 中的所有符号</li>
+<li>\(FIRST(A)\) 中的所有符号（遇到时可能表明前面的符号是多余的）</li>
+<li>高层次的 non-terminal 的开始符号加入低层次 non-terminal 的同步集合
+<ul>
+<li><em>e.g.</em> 语句开始符号，if/while, etc.</li>
+</ul>
+</li>
+<li>对 terminal：栈顶的 terminal 匹配错误时可以直接弹出这个符号，并且假装已经插入了它</li>
+</ul>
+<p>假定同步集合就是 \(FOLLOW\) 集，那么恢复策略如：</p>
+<ul>
+<li>假设栈中符号 \(\alpha\)，输入符号 a，但 \(\alpha a\) 不是任何最右句型的前缀；</li>
+<li>从栈顶往下扫描，找到状态 s，存在对应某个 non-terminal A 的 goto 函数</li>
+<li>丢弃输入符号直到找到一个 \(b\in FOLLOW(A)\)，将 \(GOTO[s,A]\) 压栈，继续分析</li>
+</ul>
+<p>即，假装正试图规约到 A 但遇到语法错误，丢弃已分析的栈和未分析的输入，假装找到了 A 的实例。</p>
+<ol start="2">
+<li>短语层次的恢复</li>
+</ol>
+<p>在预测语法分析表的空白条目中插入错误处理函数的指针，后者可以改变、插入或删除输入中的符号，并发出错误消息。<br>
+恢复策略：检查每个空白条目，根据语言特性确定程序员最可能犯了什么错误，然后构造适当的恢复程序。</p>
 
     
                 

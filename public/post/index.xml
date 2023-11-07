@@ -23,7 +23,7 @@
       <pubDate>Tue, 24 Oct 2023 16:26:29 +0800</pubDate>
       
       <guid>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</guid>
-      <description>Summary： 上下文无关文法 语法分析 自顶向下 自底向上 语法分析器生成 上下文无关文法 正则表达式的能力不足 -&amp;gt; ch2 CFG 凡是正则表达式能表示的语言，都能</description>
+      <description>Summary： 上下文无关文法 语法分析 自顶向下 自底向上：LR (0) / SLR / LR (1) / LALR 语法错误处理 上下文无关文法 正则表达式的能力不足 -&amp;gt; ch2 CFG 凡是正则表达</description>
     </item>
     
     <item>
