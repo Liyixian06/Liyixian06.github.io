@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="操作系统笔记01：进程管理" />
-    <meta property="og:title" content="操作系统笔记01：进程管理" />
-    <meta property="twitter:title" content="操作系统笔记01：进程管理" />
+    <meta name="title" content="计算机体系结构笔记01：Performance" />
+    <meta property="og:title" content="计算机体系结构笔记01：Performance" />
+    <meta property="twitter:title" content="计算机体系结构笔记01：Performance" />
     
 
     
-    <meta name="description" content=" ">
-    <meta property="og:description" content=" " />
-    <meta property="twitter:description" content=" " />
+    <meta name="description" content="  ">
+    <meta property="og:description" content="  " />
+    <meta property="twitter:description" content="  " />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>操作系统笔记01：进程管理 | 李一线的博客</title>
+    <title>计算机体系结构笔记01：Performance | 李一线的博客</title>
 
-    <link rel="canonical" href="/2023/10/operating-system-3.0/">
+    <link rel="canonical" href="/2023/11/computer-architecture-ch1/">
 
     
     
@@ -180,12 +180,12 @@
                             CS
                         </a>
                         
-                        <a class="tag" href="/tags/operating-system" title="operating system">
-                            operating system
+                        <a class="tag" href="/tags/computer-architecture" title="computer architecture">
+                            computer architecture
                         </a>
                         
                     </div>
-                    <h1>操作系统笔记01：进程管理</h1>
+                    <h1>计算机体系结构笔记01：Performance</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -194,10 +194,10 @@
                                 LiYixian
                              
                             on 
-                            Wednesday, October 25, 2023
+                            Friday, November 3, 2023
                             
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/2023/10/operating-system-3.0/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2023/11/computer-architecture-ch1/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 1687 字</span>，阅读约 <span class="more-meta"> 4 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 617 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
                             
                             
                             
@@ -356,128 +356,87 @@ $(function() {
                 post-container">
     
                 
-                <p>计算资源的共享共用：提交给 OS 的任务交替运行<br>
-Cocurrent 并发 <em>VS</em> Parallel 并行</p>
-<p>两个问题：如何保存/恢复一个程序的执行过程？如何知道一个程序要触发“慢操作”？<br>
-保存/恢复一个程序的执行过程：处理器的状态来自寄存器，程序的状态来自内存变量；后者不被破坏时，只要保存/恢复程序执行过程的全部寄存器（context）。</p>
-<p>什么是 process 进程？</p>
-<blockquote>
-<p>Process is the procedure of program software running, it contains input, output, program and status.</p>
-</blockquote>
-<p>程序运行过程中用到的数据、指令等 private 信息，和每个运行程序都需要保存的寄存器组及其他 public 信息，合并封装成一个 process。<br>
-process model：cocurrent, scheduling, communication, memory protection and management<br>
-user -&gt; program &amp; data -&gt; process -&gt; instruction sequence<br>
-Process <em>VS</em> Program：前者是动态、暂时的</p>
-<h3 id="进程的数据结构设计">进程的数据结构设计</h3>
-<p>进程控制块 Process Control Block (PCB, also named process descriptor) is maintained by OS kernel<br>
-所有进程的 PCBs 存储在一块特定的内存区域 PCB table/list，不同状态的进程存在不同的 tables 里，table 大小决定了并发度</p>
-<p>程序触发“慢操作”（<em>e.g.用户输入</em>）时，避免处理器等待，进行进程切换/上下文切换：暂停当前运行进程（运行状态-&gt;其他状态），调度另一个进程从就绪状态-&gt;运行状态<br>
-切换钱保存 context，切换后恢复 context</p>
-<p>如何知道一个程序触发了“慢操作”？<br>
-捕获进入“慢操作”的状态，将这个时间窗口交给其他需要执行“快操作”的任务</p>
-<h3 id="进程管理">进程管理</h3>
-<p>how to trap program execution：强制 developer 使用封装好的“慢操作”库</p>
-<p>-&gt; 插叙：特权级<br>
-ring 3: applications; ring 1&amp;2: OS Services; ring 0: OS Kernel  （linux/uCore 只用 ring 0 and ring 3）<br>
-避免用户攻击/修改操作系统，普通程序只有用户权限，需要进入特权态才能执行特权指令、访问特权数据等<br>
-调用 <code>printf()</code> 时会触发系统切换到内核态，调用 <code>write()</code></p>
-<p>process states<br>
-basic: running, ready, blocked (waiting for external event)<br>
-other: new, exit, suspend (running image swapped to hard disk)<br>
-引入优先级，有高优先级等待（系统认为会很快 ready）的进程需要更多内存时，低优先级的 ready process 会被换到外存（进程挂起）<br>
-suspend, activate<br>
-挂起相关的新状态：blocked-suspend, ready-suspend</p>
-<p>总之，process 的设计目标：</p>
+                <h3 id="metrics">Metrics</h3>
 <ul>
-<li>全部寄存器组成 context，通过保存/恢复 context，实现进程无感知切换；</li>
-<li>通过封装“触发慢操作”的函数，并进行指令权限限定，让 process 感知到运行/等待状态的切换；</li>
-<li>监控 hardware event，驱动 process state machine 的变化，对多个 process 正确分类和处理。</li>
-</ul>
-<h3 id="进程调度算法">进程调度算法</h3>
-<p>调度程序：挑选 ready process 的内核函数<br>
-问题：根据什么原则挑选 process（如何调度）？什么时候调度？</p>
-<p>调度时机：process 从 running 切换到 blocked；process 被终结了<br>
-非抢占（当前 process 主动放弃 CPU 时）/可抢占（process 时间片用完；进程从 blocked 切换到 ready）<br>
--&gt; 主动放弃：调用表示不再执行/需要长时间响应/其他系统认为可以打断的 API<br>
--&gt; 抢占 CPU：利用任何 process 被打断的机会（中断/异常）</p>
-<p>调度目标是什么？</p>
+<li>latency (execution time)：执行一项固定任务的时间</li>
+<li>throughput (bandwidth)：单位时间执行的任务
 <ul>
-<li>每个 process 平等共享 CPU 资源</li>
-<li>policy enforcement</li>
-<li>balance: keep all parts of system busy</li>
-</ul>
-<p>如何评估调度算法的好坏？</p>
-<ul>
-<li>CPU 利用率</li>
-<li>吞吐量：高吞吐和低延迟是冲突的</li>
-<li>周转时间：process 从初始化到结束的总时间，包括等待</li>
-<li>等待时间：process 在 ready 队列的总时间</li>
-<li>响应时间：提交请求到产生响应</li>
-</ul>
-<h4 id="batch-system">batch system</h4>
-<p>无交互，计算机自动运行；最大化吞吐量、减少周转时间、CPU 利用率</p>
-<ul>
-<li>first-come first-served (FCFS)
-<ul>
-<li>平均等待时间波动较大（短 process 可能排在长 process 后面）</li>
-</ul>
-</li>
-<li>shortest job first (SJF)
-<ul>
-<li>有最优平均周转时间</li>
-<li>连续的短 process 可能导致长 process 无法获得 CPU</li>
-<li>需要预知未来：如何预估执行时间？</li>
-</ul>
-</li>
-<li>shortest remaining time first
-<ul>
-<li>SJF 的可抢占改进</li>
-</ul>
-</li>
-<li>Highest Response Ratio Next (HRRN)
-<ul>
-<li>response ratio = (waiting time + service time)/service time</li>
-<li>折中了 FCFS 和 SJF，照顾了短 process，长 process 也不会一直等待</li>
-</ul>
-</li>
-<li>three-level scheduling</li>
-</ul>
-<h4 id="interactive-system">interactive system</h4>
-<p>与用户交互；响应时间、proportionality（用户期待）</p>
-<ul>
-<li>Round-Robin 时间片轮转 (RR)
-<ul>
-<li>时间片：分配资源的基本时间单元</li>
-<li>时间片结束时，按 FCFS 切换到下一个 ready process</li>
-<li>对每个 process，隔 n-1 个时间片执行一个时间片</li>
-<li>时间片过大，极限情况退化成 FCFS；过小，产生过多 context 切换开销；一般维持切换 context 开销 &lt; 1%</li>
-</ul>
-</li>
-<li>Multiple Queue (MQ)
-<ul>
-<li>划分 ready 队列，每个队列有自己的调度策略（<em>e.g.前台 RR，后台 FCFS</em>）</li>
-<li>队列间调度：固定优先级/RR</li>
-</ul>
-</li>
-<li>Multi-level Feedback Queue (MLFQ)
-<ul>
-<li>动态改变 process 的优先级：I/O 密集型停留在高优先级，CPU 密集优先级下降很快</li>
-<li>process 在当前时间片结束时没有完成，下降一个优先级</li>
-</ul>
-</li>
-<li>Priority scheduling
-<ul>
-<li>静态优先级（依据：process 类型、资源需求、用户要求）</li>
-<li>动态优先级</li>
+<li>利用并行增加 throughput, not latency</li>
+<li>二者通常是冲突的</li>
 </ul>
 </li>
 </ul>
-<p><strong>Real-time system</strong><br>
-在指定时间内完成任务；避免丢失数据、prodictability</p>
+<h3 id="cpu-performance">CPU Performance</h3>
+<p>performance 计算公式：</p>
+<ul>
+<li>latency = seconds/program = 下列三者的乘积：
+<ul>
+<li>inst/program 指令数</li>
+<li>cycles/inst (CPI) 主要研究的是这个 (caches, parallelism)</li>
+<li>seconds/cycle (clock period)</li>
+</ul>
+</li>
+</ul>
+<p>IPC = 1/CPI<br>
+直观（越大越好），所以比较常用<br>
+CPI 计算：\(CPI=\sum\limits_{inst} frequencies*costs\)<br>
+CPI = (CPU time*clock frequency)/dynamic inst count<br>
+CPI breakdown (CPU, mem, etc.) 比较有用，可以知道性能问题出现在哪里<br>
+frequency 作为衡量性能的 metrics，1 Ghz = 1 cycle/nenosecond</p>
+<p><strong>注意：性能指标不能孤立看待。</strong></p>
+<h3 id="comparing-performance">Comparing Performance</h3>
+<ul>
+<li>speedup of A over B</li>
+<li>A is x% faster than B</li>
+<li>注意 increase 和 decrease 的百分比不一样（分母不一样）</li>
+</ul>
+<p><em>e.g.</em> A runs for 200 cycles, B runs for 350 cycles<br>
+% increase = (350-200)/200 = 75%<br>
+% decrease = (350-200)/350 = 42.3%</p>
+<p>mean (average) performance：区分算术平均、调和平均<br>
+-&gt; add latencies, but not throughputs<br>
+<em>throughputs 本来就是一个平均分布程度的指标（类似于速度），要衡量总体平均分布程度不能单纯相加（分母不同），必须把分母调成平均值。</em></p>
+<h3 id="benchmarks">Benchmarks</h3>
+<p>performance 什么也不是，必须和 workload（我们关心什么样的任务）相联系<br>
+benchmark 是 standard workloads，代表实际运行的程序</p>
+<h3 id="performance-laws">Performance Laws</h3>
+<ol>
+<li>Amdahl&rsquo;s Law：提升系统一个部分的性能对整个系统有多大影响</li>
+</ol>
+<p>$$
+\frac{1}{(1-P)+\frac{P}{S}}
+$$</p>
+<p>P = 优化部分所占的比例<br>
+S = speedup</p>
+<p>Amdahl&rsquo;s Law for Parallelization<br>
+P = 并行部分的比例，S-&gt;N = threads</p>
+<ol start="2">
+<li>Little&rsquo;s Law：适用于任何非抢占的 queuing system</li>
+</ol>
+<p>$$
+L=\lambda W
+$$</p>
+<p>L = 系统中的物体数量<br>
+\(\lambda\) = 平均到达时间（假定平均到达时间=平均离开时间）<br>
+W = 平均等待时间</p>
+<p>描述了如何满足性能要求，<em>i.e.</em> 高 throughput（\(\lambda\)）需要低 latency (small W) / 并行的 service requests (large L)<br>
+以及其他计算机性能问题：cache miss, network requests, etc.</p>
 
     
                 
                 
+                
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
                 
     
                 
@@ -485,15 +444,10 @@ suspend, activate<br>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/10/compiler-principles-ch4/" data-toggle="tooltip" data-placement="top" title="编译原理笔记04：语法分析">&larr;
+                        <a href="/2023/10/operating-system-3.0/" data-toggle="tooltip" data-placement="top" title="操作系统笔记01：进程管理">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2023/11/computer-architecture-ch1/" data-toggle="tooltip" data-placement="top" title="计算机体系结构笔记01：Performance">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 

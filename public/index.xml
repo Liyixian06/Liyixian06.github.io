@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 25 Oct 2023 20:24:32 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Nov 2023 15:36:54 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>计算机体系结构笔记01：Performance</title>
+      <link>https://Liyixian06.github.io/2023/11/computer-architecture-ch1/</link>
+      <pubDate>Fri, 03 Nov 2023 15:36:54 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/11/computer-architecture-ch1/</guid>
+      <description>Metrics latency (execution time)：执行一项固定任务的时间 throughput (bandwidth)：单位时间执行的任务 利用并行增加 throughput, not latency 二者通常是冲突的 CPU Performance performance 计算公式： latency = seconds/program</description>
+    </item>
+    
     <item>
       <title>操作系统笔记01：进程管理</title>
       <link>https://Liyixian06.github.io/2023/10/operating-system-3.0/</link>
