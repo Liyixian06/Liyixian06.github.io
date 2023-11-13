@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Liyixian Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://Liyixian06.github.io//img/bg_home.jpeg">
+    <meta property="twitter:image" content="https://Liyixian06.github.io//img/bg_home.jpeg" />
+    
+
+    
+    <meta name="title" content="操作系统笔记03：进程间通信" />
+    <meta property="og:title" content="操作系统笔记03：进程间通信" />
+    <meta property="twitter:title" content="操作系统笔记03：进程间通信" />
+    
+
+    
+    <meta name="description" content=" ">
+    <meta property="og:description" content=" " />
+    <meta property="twitter:description" content=" " />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>操作系统笔记03：进程间通信 | 李一线的博客</title>
+
+    <link rel="canonical" href="/2023/10/operating-system-5.0/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Liyixian Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/note/">note</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech/">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/about/">ABOUT</a></li>
+                    
+                        <li><a href="/archive/">ARCHIVE</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/bg_home.jpeg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/cs" title="CS">
+                            CS
+                        </a>
+                        
+                        <a class="tag" href="/tags/operating-system" title="operating system">
+                            operating system
+                        </a>
+                        
+                    </div>
+                    <h1>操作系统笔记03：进程间通信</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                LiYixian
+                             
+                            on 
+                            Monday, October 30, 2023
+                            
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                                <span id="/2023/10/operating-system-5.0/" class="leancloud_visitors meta_data_item" data-flag-title="">
+    <span class="post-meta-item-icon">
+      <span class="octicon octicon-eye"></span> 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span class="old-visitors-count" style="display: none;"></span>
+    <span class="leancloud-visitors-count"></span>
+</span>
+
+
+
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+
+<script>
+	AV.initialize("", "");
+</script>
+
+<script type="text/javascript">
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function() {
+        entries.push($(this).attr("id").trim());
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+        .done(function(results) {
+            var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+            var OLD_COUNT_CONTAINER_REF = '.old-visitors-count';
+
+            
+            
+            
+            
+
+            for (var i = 0; i < results.length; i++) {
+                var item = results[i];
+                var url = item.get('url');
+                var time = item.get('time');
+                var element = document.getElementById(url);
+
+                $(element).find(COUNT_CONTAINER_REF).text(time);
+            }
+            for (var i = 0; i < entries.length; i++) {
+                var url = entries[i];
+                var element = document.getElementById(url);
+                var countSpan = $(element).find(COUNT_CONTAINER_REF);
+                if (countSpan.text() == '') {
+                    var oldCountSpan = $(element).find(OLD_COUNT_CONTAINER_REF).text();
+                    if(oldCountSpan!=''){
+                        countSpan.text(0+parseInt(oldCountSpan));
+                    }else{
+                        countSpan.text(0);          
+                    }
+                }
+            }
+        })
+        .fail(function(object, error) {
+            console.log("Error: " + error.code + " " + error.message);
+        });
+}
+
+function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        var $element = $(document.getElementById(url));
+                        $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                 
+                var acl = new AV.ACL();
+                acl.setPublicReadAccess(true);
+                acl.setPublicWriteAccess(true);
+                newcounter.setACL(acl);
+                 
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                var OLD_COUNT_CONTAINER_REF = '.old-visitors-count';
+                var $element = $(document.getElementById(url));
+                var oldCountSpan = $element.find(OLD_COUNT_CONTAINER_REF).text();
+                if(oldCountSpan!=''){
+                    newcounter.set("time", parseInt(oldCountSpan)+1);
+                }else{
+ 	                    newcounter.set("time",  1);
+                }
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        var $element = $(document.getElementById(url));
+                        $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+$(function() {
+    var Counter = AV.Object.extend("Counter");
+    
+    
+    if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else {
+        showTime(Counter);
+    }
+});
+</script>
+
+                                阅读 </span></span> | <span class="post-date">共 1323 字</span>，阅读约 <span class="more-meta"> 3 分钟</span>
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+    
+                
+                <p>IPC (Inter Process Communication) 的同步问题 <em>e.g. 买面包</em><br>
+（这里只考虑单处理器，不考虑多核）<br>
+临界区 critical section：空闲则入、忙则等待、有限等待、让权等待（optional）</p>
+<pre tabindex="0"><code>entry section
+	critical section
+exit section
+	remainder section
+</code></pre><p>Peterson, Dekkers 算法</p>
+<p><strong>lock 的问题在于检查 flag 和赋值之间的调度行为。</strong><br>
+-&gt; 保证调度不发生：把 flag 和赋值合并在一起（在一个调度周期内完成），使其不会被中断打断<br>
+Test and Set Lock (TSL) solution - spinlock，如果锁被释放，TS 指令读取 value=0 并将值设为 1（锁被设置为忙并需要等待完成）；如果锁正忙，TS 指令读取 value=1 并将值设为 1（循环）<br>
+这样无论有多少个线程，只有一个线程可以读到 value=0，然后继续执行</p>
+<p>-&gt; 等待的线程还在一直 <code>while</code> 循环读取 value<br>
+改进：如果读到 value=1，就把自己挂载在一个等待队列里，进入 sleep 状态，把运行权让渡给别人；释放锁时，把 sleep 的线程唤醒<br>
+但类似于 lock 的问题，简单的 sleep-wake 在检测状态-决定休眠之间也可能发生调度</p>
+<p>final solution: semaphore by Dijkstra<br>
+信号量由一个整形 sem 变量和两个原子操作 P/V 组成<br>
+sem 的值为正时，表示有多少个可用资源；为负时，表示有多少个线程在等待</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>classSemaphore {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> sem;
+</span></span><span style="display:flex;"><span>	WaitQueue q;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>Semaphore<span style="color:#f92672">::</span><span style="color:#a6e22e">P</span>() {
+</span></span><span style="display:flex;"><span>	sem<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (sem <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        Add this <span style="color:#66d9ef">thread</span> t to q;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">block</span>(p);
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>Semaphore<span style="color:#f92672">::</span><span style="color:#a6e22e">V</span>() {
+</span></span><span style="display:flex;"><span>    sem<span style="color:#f92672">++</span>; 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (sem <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        Remove a <span style="color:#66d9ef">thread</span> t from q;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">wakeup</span>(t);        
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>与 TSL 的设计思路类似，信号量把状态检测、改变进程状态封装到了原子操作中，在这个过程中不会发生中断或调度<br>
+V 操作可以选择要把哪个线程唤醒（通常假定这种调度是公平的，线程不会无限期阻塞在 P 中）</p>
+<p>信号量使用的两个规则：</p>
+<ol>
+<li>临界区（竞争）：多个线程试图访问同一个资源<br>
+每个临界区设置一个信号量，初值为 1，每个线程进入临界区时调用 P，出来时调用 V</li>
+<li>条件同步（同步）：多个线程之间需要实现先后顺序<br>
+如何保证无法感知彼此存在的线程能按照一定的顺序完成任务？<br>
+每个条件同步设置一个信号量，初值为 0，命令先执行任务的线程在任务完成后调用 V，后执行的线程在开始执行前调用 P</li>
+</ol>
+<p>对任何一个问题，首先考虑有多少个竞争问题，多少个同步问题<br>
+<em>e.g.1. producer-consumer</em></p>
+<ul>
+<li>1 个竞争：任何时刻只能有一个线程操作缓冲区</li>
+<li>2 个同步：缓冲区空时，消费者必须等待生产者；缓冲区满时，生产者必须等待消费者</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>Class BoundedBuffer {
+</span></span><span style="display:flex;"><span>    mutex <span style="color:#f92672">=</span> new <span style="color:#a6e22e">Semaphore</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    fullBuffers <span style="color:#f92672">=</span> new <span style="color:#a6e22e">Semaphore</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    emptyBuffers <span style="color:#f92672">=</span> new <span style="color:#a6e22e">Semaphore</span>(n);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>BoundedBuffer<span style="color:#f92672">::</span><span style="color:#a6e22e">Deposit</span>(c) {
+</span></span><span style="display:flex;"><span>    emptyBuffers<span style="color:#f92672">-%</span><span style="color:#ae81ff">3</span>EP(); 
+</span></span><span style="display:flex;"><span>    mutex<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">P</span>(); 
+</span></span><span style="display:flex;"><span>    Add c to the buffer;
+</span></span><span style="display:flex;"><span>    mutex<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">V</span>();
+</span></span><span style="display:flex;"><span>    fullBuffers<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">V</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>BoundedBuffer<span style="color:#f92672">::</span><span style="color:#a6e22e">Remove</span>(c) {
+</span></span><span style="display:flex;"><span>    fullBuffers<span style="color:#f92672">-%</span><span style="color:#ae81ff">3</span>EP();
+</span></span><span style="display:flex;"><span>    mutex<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">P</span>();
+</span></span><span style="display:flex;"><span>    Remove c from buffer;
+</span></span><span style="display:flex;"><span>    mutex<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">V</span>();
+</span></span><span style="display:flex;"><span>    emptyBuffers<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">V</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>信号量在实际编程时非常容易因为顺序问题引发错误<br>
+-&gt; solution: monitor 管程<br>
+管程由一个锁和多个条件变量组成，面向对象的思路<br>
+每个条件变量表示一种等待原因，对应一个等待队列；条件变量包含两个函数 wait/signal，类似信号量的 P/V<br>
+wait 时传递一个 lock 变量，首先将线程挂载到条件变量对应的等待队列里，然后释放持有的锁，让渡运行权；再次获得调度机会时，把刚才释放掉的锁拿回来<br>
+signal 从条件变量的等待队列里唤醒一个线程</p>
+<p><em>e.g.2. dining philosophers</em><br>
+<em>e.g.3. reader-writer</em><br>
+<em>e.g.4. sleeping barber</em></p>
+<p>为了解决并发/同步问题，操作系统提供了硬件支持：</p>
+<ol>
+<li>禁用中断（用不了，不能把它交给普通用户）</li>
+<li>原子操作（如 TS 指令）</li>
+<li>原子 load/store</li>
+</ol>
+<p>锁是一种消极的代码保护机制，为了保证正确性付出了最差情况下的代价<br>
+改进：事务性内存（类似数据库，成功就写入，不成功就 rollback）</p>
+<p>test-and-set 是两个内存操作；在 risc 的指令设计中，一条指令最多只能有一个内存操作数<br>
+实现：特殊寄存器 exclusive monitor，特殊指令 load-exclusive &amp; store-conditional</p>
+<p>实际编程中更倾向于锁，而非信号量——为什么？<br>
+信号量是操作系统实现的功能，每次需要调用的时候都要用 system call 进入内核态，代价非常高；<br>
+而且 P/V 是消极的操作，即使只有一个线程、不存在竞争时也要做</p>
+
+    
+                
+                
+                
+    
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2023/10/compiler-principles-ch4/" data-toggle="tooltip" data-placement="top" title="编译原理笔记04：语法分析">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2023/11/computer-architecture-ch8/" data-toggle="tooltip" data-placement="top" title="计算机体系结构笔记08：Superscalar and VLIW">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+    
+                
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="Liyixian06/Liyixian06.github.io"
+        data-repo-id="R_kgDOJ9iXRA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJ9iXRM4CYAg8"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+            </div>
+    
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+    
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+    
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/compiler" title="compiler">
+                            compiler
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/computer-architecture" title="computer-architecture">
+                            computer-architecture
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/computer-networking" title="computer-networking">
+                            computer-networking
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/cs" title="cs">
+                            cs
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/operating-system" title="operating-system">
+                            operating-system
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+    
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:liyixian06@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Liyixian06">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Liyixian Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Liyixian Blog 2023
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

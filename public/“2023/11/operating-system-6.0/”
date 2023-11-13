@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Liyixian Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://Liyixian06.github.io//img/bg_home.jpeg">
+    <meta property="twitter:image" content="https://Liyixian06.github.io//img/bg_home.jpeg" />
+    
+
+    
+    <meta name="title" content="操作系统笔记04：文件管理" />
+    <meta property="og:title" content="操作系统笔记04：文件管理" />
+    <meta property="twitter:title" content="操作系统笔记04：文件管理" />
+    
+
+    
+    <meta name="description" content=" ">
+    <meta property="og:description" content=" " />
+    <meta property="twitter:description" content=" " />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>操作系统笔记04：文件管理 | 李一线的博客</title>
+
+    <link rel="canonical" href="/%E2%80%9C2023/11/operating-system-6.0/%E2%80%9D">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Liyixian Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/note/">note</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech/">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/about/">ABOUT</a></li>
+                    
+                        <li><a href="/archive/">ARCHIVE</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/bg_home.jpeg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/cs" title="CS">
+                            CS
+                        </a>
+                        
+                        <a class="tag" href="/tags/operating-system" title="operating system">
+                            operating system
+                        </a>
+                        
+                    </div>
+                    <h1>操作系统笔记04：文件管理</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                LiYixian
+                             
+                            on 
+                            Monday, November 13, 2023
+                            
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                                <span id="/%E2%80%9C2023/11/operating-system-6.0/%E2%80%9D" class="leancloud_visitors meta_data_item" data-flag-title="">
+    <span class="post-meta-item-icon">
+      <span class="octicon octicon-eye"></span> 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span class="old-visitors-count" style="display: none;"></span>
+    <span class="leancloud-visitors-count"></span>
+</span>
+
+
+
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+
+<script>
+	AV.initialize("", "");
+</script>
+
+<script type="text/javascript">
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function() {
+        entries.push($(this).attr("id").trim());
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+        .done(function(results) {
+            var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+            var OLD_COUNT_CONTAINER_REF = '.old-visitors-count';
+
+            
+            
+            
+            
+
+            for (var i = 0; i < results.length; i++) {
+                var item = results[i];
+                var url = item.get('url');
+                var time = item.get('time');
+                var element = document.getElementById(url);
+
+                $(element).find(COUNT_CONTAINER_REF).text(time);
+            }
+            for (var i = 0; i < entries.length; i++) {
+                var url = entries[i];
+                var element = document.getElementById(url);
+                var countSpan = $(element).find(COUNT_CONTAINER_REF);
+                if (countSpan.text() == '') {
+                    var oldCountSpan = $(element).find(OLD_COUNT_CONTAINER_REF).text();
+                    if(oldCountSpan!=''){
+                        countSpan.text(0+parseInt(oldCountSpan));
+                    }else{
+                        countSpan.text(0);          
+                    }
+                }
+            }
+        })
+        .fail(function(object, error) {
+            console.log("Error: " + error.code + " " + error.message);
+        });
+}
+
+function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        var $element = $(document.getElementById(url));
+                        $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                 
+                var acl = new AV.ACL();
+                acl.setPublicReadAccess(true);
+                acl.setPublicWriteAccess(true);
+                newcounter.setACL(acl);
+                 
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                var OLD_COUNT_CONTAINER_REF = '.old-visitors-count';
+                var $element = $(document.getElementById(url));
+                var oldCountSpan = $element.find(OLD_COUNT_CONTAINER_REF).text();
+                if(oldCountSpan!=''){
+                    newcounter.set("time", parseInt(oldCountSpan)+1);
+                }else{
+ 	                    newcounter.set("time",  1);
+                }
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        var $element = $(document.getElementById(url));
+                        $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+$(function() {
+    var Counter = AV.Object.extend("Counter");
+    
+    
+    if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else {
+        showTime(Counter);
+    }
+});
+</script>
+
+                                阅读 </span></span> | <span class="post-date">共 2205 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+    
+                
+                <p>硬盘的物理结构：若干个磁道和扇区<br>
+文件系统：把一段长度可变的连续数据放到磁盘上，而且能通过文件夹/文件的名字实现内容检索</p>
+<h3 id="文件系统">文件系统</h3>
+<p>如何找到数据在磁盘中的位置？</p>
+<ol>
+<li>连续存储</li>
+<li>DOS 链式分配：文件以数据块单链表方式存储，文件头包括了第一块和最后一块的指针<br>
+-&gt; 无法随机访问；可靠性差（链条断掉一个，后面的数据块就都丢了）</li>
+<li>Linux 索引分配：每个文件创建一个 index table ，存着所有指向数据块的指针<br>
+index table 大小限制了决定了能索引多少个数据块——引入多级 index table（树状）<br>
+-&gt; 可靠性仍然是问题（如果丢掉的是比较高级的 table）</li>
+</ol>
+<p>
+  <img src="/img/%e6%96%87%e4%bb%b6%e7%b4%a2%e5%bc%95.jpg" alt="">
+
+</p>
+<p>怎么组织文件夹便于检索？<br>
+文件夹也是一种文件，记录文件之间的从属关系<br>
+内容是列表 &lt;文件名，用户信息，文件长度，……，指向文件的指针（磁道和扇区号）&gt;，树形结构<br>
+记录每一项是一个列表，还是一个普通文件<br>
+-&gt; 最高级文件夹的磁道和扇区号应该存在哪里？<br>
+磁盘的某个固定位置会专门留出一个扇区，存储根文件列表在磁盘中的位置</p>
+<p>
+  <img src="/img/%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%ad%98%e5%82%a8%e8%a7%86%e5%9b%be.png" alt="">
+
+</p>
+<p>挂载文件系统时依次加载：卷控制块 -&gt; 目录节点 -&gt; 文件控制块<br>
+进程访问文件数据前必须先显式执行“打开”操作，通知操作系统做好读写这个文件的准备（缓存文件的磁道号和扇区号），返回一个 handler<br>
+磁盘容量远大于内存容量，所以不可能把所有文件的内存信息都加载到内存里<br>
+每个被打开的文件都有一个描述符，记录目录项、打开计数、当前文件指针位置等<br>
+内核跟踪进程打开的所有文件，操作系统为每个进程维护一个打开文件表，另外还有一个系统级的打开文件表记录文件的磁盘位置，以免反复在磁盘上查找<br>
+一致性问题：文件系统只做建议的一致性保障，而非强制的，也没有保障读写的原子性和正确性</p>
+<p><strong>文件系统需要处理的最重要的问题之一是性能差异，因为磁盘和内存、CPU 之间存在巨大的性能代差，因此需要借助内存设计若干种缓存机制，以尽可能减少对磁盘的读写操作。</strong></p>
+<h3 id="文件缓存机制">文件缓存机制</h3>
+<p>数据块缓存：所有对文件的操作<strong>先在 CPU 里缓存，稍后写入磁盘</strong><br>
+问题：什么时候写入？——内存不够；要关机了；写了之后很久都没有再写<br>
+更多的问题：以多大的数据块缓存？“很久”是多久？<br>
+逻辑非常类似于虚拟内存管理中的页面置换<br>
+-&gt; 合并成统一的页面缓存 page cache 机制，管理所有面向磁盘的读写操作，包括文件读写和虚拟页置换，都以 4k 为单位对齐，批量提交给操作系统<br>
+把文件读写请求都强制对齐成 4k，减少重复的读、合并相邻的写，由于局部性原理，会得到比较好的性能表现</p>
+<p>用批量数据搬运弥补设备性能的速度代差<br>
+-&gt; 如何设计 cache？</p>
+<ul>
+<li>以 cacheline 为单位获取数据</li>
+<li>prefetch：用户读取是可预测的吗？
+<ul>
+<li>prefetched data 放在内核空间中，但是不挂载在页表里，如果预测正确就会触发一个 minor page fault，下次预测就将窗口放大一倍；如果错误，步长就恢复到初始长度</li>
+<li>有点像 <a href="https://liyixian06.github.io/2023/10/computer-networking-ch3/">计算机网络笔记03：传输层</a> 中的 TCP 拥塞控制算法</li>
+</ul>
+</li>
+</ul>
+<p>数据被写到磁盘上的时候（经过页面缓存-&gt;磁盘缓存-&gt;磁盘），已经不知道它们的操作顺序了<br>
+逐个保障顺序的代价是读写性能被极大地牺牲了 -&gt; barrier enabled I/O stack</p>
+<h4 id="性能优化">性能优化</h4>
+<p>如何提升读写磁盘的性能？-&gt; 我们唯一能控制的只有磁头的寻道时间<br>
+即：假设已经知道了要读取数据的磁道信息，应该如何将其提交给磁盘控制器，从而减少磁头的寻道时间？<br>
+磁盘调度算法优化访问请求顺序：</p>
+<ol>
+<li>最短服务时间优先 SSTF（贪心）：每次都选择最短的移动轨迹 -&gt; 可能会频繁换向</li>
+<li>扫描算法 SCAN（电梯）：在一个方向上访问所有未完成的请求，走到结尾掉头</li>
+<li>循环扫描算法 C-SCAN：只沿着一个方向前进，走到结尾跳回开头（类似阅读）<br>
+磁头黏着现象</li>
+<li>N 步扫描 N-step-SCAN：将磁盘请求分成长度为 N 的子队列</li>
+</ol>
+<p>如何改进文件读写性能？<br>
+-&gt; 假设用户 prefer 顺序读写，prefetch<br>
+不适配的话 application 就给操作系统发 advice，通常是关闭原本的 prefetcher，交给程序员主动完成读写操作</p>
+<h3 id="一些特殊问题">一些特殊问题</h3>
+<h4 id="磁盘空间管理与容错">磁盘空间管理与容错</h4>
+<p>希望按照扇区大小管理磁盘每块数据的读写<br>
+矛盾：对硬盘的连续数据读写，一次读写的块越大，单个 bit 的均摊成本就越少，性能越高；但是每次操作的数据块越小，真正用到的数据占比（数据利用率）就越大<br>
+-&gt; 现在的趋势是抛弃空间利用，更大程度发挥磁盘的性能，因为硬盘变得便宜了，但运行速率没有什么提升</p>
+<p>类似物理内存空间，用表记录扇区的分配情况<br>
+问题：如果不小心写错了，和内存不一样，重启也无法抹去错误<br>
+文件一致性检查：用两张表 blocks in use 和 free blocks 分别表示，正常情况下二者完全互补<br>
+检测结果不一致时，操作系统也不知道哪个是对的，只能靠把前后的数据和其他文件的信息串联在一起，然后猜测着修复</p>
+<h4 id="共享文件管理">共享文件管理</h4>
+<p>文件系统中用链接实现共享时，系统目录树结构会发生变化，变成有向无环图</p>
+<p>
+  <img src="/img/%e6%96%87%e4%bb%b6%e5%88%ab%e5%90%8d.png" alt="">
+
+</p>
+<p>共享文件的回收：<br>
+硬链接：在文件表头上增加一个 counter，记录它在几个文件夹下，为零时才把文件删掉<br>
+但是如果在某个文件夹下删除文件时 counter 忘了-1，最后就会出现固定的磁盘空间浪费（在所有文件夹下都找不到这个文件，但磁盘又无法回收它）<br>
+-&gt; 快捷方式/符号链接 (linux)：文件浅拷贝<br>
+即，只得到了这个文件的指针；如果文件本身被回收了，指针就失效了</p>
+<p>文件夹的快捷方式：如果子文件夹里有 parent 文件夹的快捷方式，就会造成文件目录循环<br>
+-&gt; 如何保证没有循环？<br>
+只允许到文件的链接，不允许到文件夹的链接；循环检测算法</p>
+<h4 id="多文件系统兼容">多文件系统兼容</h4>
+<p>Linux 系统设计者为文件系统定义了统一的抽象接口 POSIX，定义了所有文件的 open/close/read/write 等操作，而且提供统一的缓存管理<br>
+所有文件系统都需要通过这套接口进行文件操作<br>
+文件系统挂载：可以把一个存储设备上文件树的 root 挂载在另一个文件系统的某个文件夹下面</p>
+
+    
+                
+                
+                
+    
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2023/11/computer-architecture-ch9/" data-toggle="tooltip" data-placement="top" title="计算机体系结构09：Virtual Memory">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+    
+                
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="Liyixian06/Liyixian06.github.io"
+        data-repo-id="R_kgDOJ9iXRA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJ9iXRM4CYAg8"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+            </div>
+    
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+    
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+    
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/compiler" title="compiler">
+                            compiler
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/computer-architecture" title="computer-architecture">
+                            computer-architecture
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/computer-networking" title="computer-networking">
+                            computer-networking
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/cs" title="cs">
+                            cs
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/operating-system" title="operating-system">
+                            operating-system
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+    
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:liyixian06@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Liyixian06">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Liyixian Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Liyixian Blog 2023
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

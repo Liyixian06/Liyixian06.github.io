@@ -7,7 +7,52 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Mon, 28 Aug 2023 15:36:54 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/computer-architecture/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Nov 2023 22:38:33 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/computer-architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>计算机体系结构09：Virtual Memory</title>
+      <link>https://Liyixian06.github.io/2023/11/computer-architecture-ch9/</link>
+      <pubDate>Mon, 13 Nov 2023 22:38:33 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/11/computer-architecture-ch9/</guid>
+      <description>Computer System CPUs and memories connected by memory bus I/O peripherals: storage, input, display, network&amp;hellip; Connected by system bus (which is connected to memory bus) Operating System abstraction：给计算机硬件资源提供软件接口 (e.g. threads, files, etc.)，简化 application 编程 iso</description>
+    </item>
+    
+    <item>
+      <title>计算机体系结构笔记08：Superscalar and VLIW</title>
+      <link>https://Liyixian06.github.io/2023/11/computer-architecture-ch8/</link>
+      <pubDate>Mon, 06 Nov 2023 22:37:56 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/11/computer-architecture-ch8/</guid>
+      <description>Superscalar scalar pipeline 的性能极限是 CPI=IPC=1，但限于 hazards 也无法达到 multiple issues -&amp;gt; superscalar 要多套硬件同时执行多条指令（指令级并行 ILP），需要检查它们的依赖关系 寄存器</description>
+    </item>
+    
+    <item>
+      <title>计算机体系结构笔记07：Prefetching</title>
+      <link>https://Liyixian06.github.io/2023/10/computer-architecture-ch7/</link>
+      <pubDate>Mon, 16 Oct 2023 22:36:28 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/10/computer-architecture-ch7/</guid>
+      <description>以 cache block 为单位 fetch the data before needed by the program，需要预测地址 减少 compulsory cache misses 减少内存 latency：L2 的 miss rate 减小，L1 的 latency 就会减小 如果取错了：占用空间</description>
+    </item>
+    
+    <item>
+      <title>计算机体系结构笔记06：Caches</title>
+      <link>https://Liyixian06.github.io/2023/10/computer-architecture-ch6/</link>
+      <pubDate>Mon, 09 Oct 2023 22:36:08 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/10/computer-architecture-ch6/</guid>
+      <description>Overview of Memory Arrays 计算机如何存储数据？ memory array 存储阵列 2^N 行 M 列，每行对应一个 word-line，每列对应一个 bit-line 每次读一行，activate 一个 word-l</description>
+    </item>
+    
+    <item>
+      <title>计算机体系结构笔记05：Branch Prediction</title>
+      <link>https://Liyixian06.github.io/2023/09/computer-architecture-ch5/</link>
+      <pubDate>Sun, 24 Sep 2023 22:35:28 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/09/computer-architecture-ch5/</guid>
+      <description>Control Dependencies 一些可行的 solution： 阻塞流水线，直到知道下个 fetch address 是什么 branch prediction 延迟槽 branch delayed slot：在分支指令后面填上（通常是一条）无论是否跳转都会执</description>
+    </item>
+    
     <item>
       <title>计算机体系结构笔记01：Performance</title>
       <link>https://Liyixian06.github.io/2023/08/computer-architecture-ch1/</link>

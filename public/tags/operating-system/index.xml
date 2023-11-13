@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Mon, 09 Oct 2023 22:18:13 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/operating-system/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Nov 2023 23:05:15 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/operating-system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>操作系统笔记04：文件管理</title>
+      <link>https://Liyixian06.github.io/%E2%80%9C2023/11/operating-system-6.0/%E2%80%9D</link>
+      <pubDate>Mon, 13 Nov 2023 23:05:15 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/%E2%80%9C2023/11/operating-system-6.0/%E2%80%9D</guid>
+      <description>硬盘的物理结构：若干个磁道和扇区 文件系统：把一段长度可变的连续数据放到磁盘上，而且能通过文件夹/文件的名字实现内容检索 文件系统 如何找到数据在</description>
+    </item>
+    
+    <item>
+      <title>操作系统笔记03：进程间通信</title>
+      <link>https://Liyixian06.github.io/2023/10/operating-system-5.0/</link>
+      <pubDate>Mon, 30 Oct 2023 23:04:16 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/10/operating-system-5.0/</guid>
+      <description>IPC (Inter Process Communication) 的同步问题 e.g. 买面包 （这里只考虑单处理器，不考虑多核） 临界区 critical section：空闲则入、忙则等待、有限等待、让权等待（optional</description>
+    </item>
+    
     <item>
       <title>操作系统笔记02：内存管理</title>
       <link>https://Liyixian06.github.io/2023/10/operating-system-4.0/</link>
