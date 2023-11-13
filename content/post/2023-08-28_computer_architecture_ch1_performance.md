@@ -2,12 +2,12 @@
 title:       "计算机体系结构笔记01：Performance"
 subtitle:    ""
 description: "  "
-date:        2023-11-03T15:36:54+08:00
+date:        2023-08-28T15:36:54+08:00
 author: LiYixian
 image:       ""
 tags:        ["CS", "computer architecture"]
 categories:  ["Tech" ]
-URL: "2023/11/computer-architecture-ch1/"
+URL: "2023/08/computer-architecture-ch1/"
 math: true
 ---
 

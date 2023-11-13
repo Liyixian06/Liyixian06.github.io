@@ -2,12 +2,12 @@
 title:       "操作系统笔记01：进程管理"
 subtitle:    ""
 description: " "
-date:        2023-10-25T20:24:32+08:00
+date:        2023-09-18T20:24:32+08:00
 author: LiYixian
 image:       ""
 tags:        ["CS", "operating system"]
 categories:  ["Tech" ]
-URL: "2023/10/operating-system-3.0/"
+URL: "2023/09/operating-system-3.0/"
 math: False
 ---
 
