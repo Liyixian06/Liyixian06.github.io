@@ -7,7 +7,7 @@ author: LiYixian
 image:       ""
 tags:        ["CS", "operating system"]
 categories:  ["Tech" ]
-URL: “2023/11/operating-system-6.0/”
+URL: "2023/11/operating-system-6.0/"
 math: False
 ---
 
@@ -103,8 +103,10 @@ math: False
 文件夹的快捷方式：如果子文件夹里有 parent 文件夹的快捷方式，就会造成文件目录循环  
 -> 如何保证没有循环？  
 只允许到文件的链接，不允许到文件夹的链接；循环检测算法  
+
 #### 多文件系统兼容
 
-Linux 系统设计者为文件系统定义了统一的抽象接口 POSIX，定义了所有文件的 open/close/read/write 等操作，而且提供统一的缓存管理  
+文件系统的持久性带来数据用户的粘度，导致各个操作系统存在相似却不兼容的接口，用户之间的数据交互受到了阻碍  
+-> Linux 系统设计者为文件系统定义了统一的抽象接口 POSIX，定义了所有文件的 open/close/read/write 等操作，而且提供统一的缓存管理  
 所有文件系统都需要通过这套接口进行文件操作  
 文件系统挂载：可以把一个存储设备上文件树的 root 挂载在另一个文件系统的某个文件夹下面  

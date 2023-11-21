@@ -36,7 +36,7 @@
 
     <title>操作系统笔记04：文件管理 | 李一线的博客</title>
 
-    <link rel="canonical" href="/%E2%80%9C2023/11/operating-system-6.0/%E2%80%9D">
+    <link rel="canonical" href="/2023/11/operating-system-6.0/">
 
     
     
@@ -197,7 +197,7 @@
                             Monday, November 13, 2023
                             
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/%E2%80%9C2023/11/operating-system-6.0/%E2%80%9D" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2023/11/operating-system-6.0/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 2205 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 2258 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
                             
                             
                             
@@ -447,7 +447,8 @@ index table 大小限制了决定了能索引多少个数据块——引入多�
 -&gt; 如何保证没有循环？<br>
 只允许到文件的链接，不允许到文件夹的链接；循环检测算法</p>
 <h4 id="多文件系统兼容">多文件系统兼容</h4>
-<p>Linux 系统设计者为文件系统定义了统一的抽象接口 POSIX，定义了所有文件的 open/close/read/write 等操作，而且提供统一的缓存管理<br>
+<p>文件系统的持久性带来数据用户的粘度，导致各个操作系统存在相似却不兼容的接口，用户之间的数据交互受到了阻碍<br>
+-&gt; Linux 系统设计者为文件系统定义了统一的抽象接口 POSIX，定义了所有文件的 open/close/read/write 等操作，而且提供统一的缓存管理<br>
 所有文件系统都需要通过这套接口进行文件操作<br>
 文件系统挂载：可以把一个存储设备上文件树的 root 挂载在另一个文件系统的某个文件夹下面</p>
 
@@ -465,6 +466,11 @@ index table 大小限制了决定了能索引多少个数据块——引入多�
                             Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2023/11/compiler-principles-ch5/" data-toggle="tooltip" data-placement="top" title="编译原理笔记05：语法制导翻译">Next
+                            Post &rarr;</a>
+                    </li>
                     
                 </ul>
                 

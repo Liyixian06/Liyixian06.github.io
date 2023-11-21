@@ -10,10 +10,10 @@
     <lastBuildDate>Mon, 13 Nov 2023 23:05:15 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/operating-system/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>操作系统笔记04：文件管理</title>
-      <link>https://Liyixian06.github.io/%E2%80%9C2023/11/operating-system-6.0/%E2%80%9D</link>
+      <link>https://Liyixian06.github.io/2023/11/operating-system-6.0/</link>
       <pubDate>Mon, 13 Nov 2023 23:05:15 +0800</pubDate>
       
-      <guid>https://Liyixian06.github.io/%E2%80%9C2023/11/operating-system-6.0/%E2%80%9D</guid>
+      <guid>https://Liyixian06.github.io/2023/11/operating-system-6.0/</guid>
       <description>硬盘的物理结构：若干个磁道和扇区 文件系统：把一段长度可变的连续数据放到磁盘上，而且能通过文件夹/文件的名字实现内容检索 文件系统 如何找到数据在</description>
     </item>
     

@@ -7,13 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Mon, 13 Nov 2023 23:05:15 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Nov 2023 14:12:33 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译原理笔记05：语法制导翻译</title>
+      <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch5/</link>
+      <pubDate>Tue, 21 Nov 2023 14:12:33 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/11/compiler-principles-ch5/</guid>
+      <description>Summary: 语法制导的定义 构造语法树 S-属性定义、L-属性定义 自顶向下计算属性 自底向上计算属性 语法制导定义 语法制导翻译是一种搭建在语法分析基础上的翻译</description>
+    </item>
+    
     <item>
       <title>操作系统笔记04：文件管理</title>
-      <link>https://Liyixian06.github.io/%E2%80%9C2023/11/operating-system-6.0/%E2%80%9D</link>
+      <link>https://Liyixian06.github.io/2023/11/operating-system-6.0/</link>
       <pubDate>Mon, 13 Nov 2023 23:05:15 +0800</pubDate>
       
-      <guid>https://Liyixian06.github.io/%E2%80%9C2023/11/operating-system-6.0/%E2%80%9D</guid>
+      <guid>https://Liyixian06.github.io/2023/11/operating-system-6.0/</guid>
       <description>硬盘的物理结构：若干个磁道和扇区 文件系统：把一段长度可变的连续数据放到磁盘上，而且能通过文件夹/文件的名字实现内容检索 文件系统 如何找到数据在</description>
     </item>
     
