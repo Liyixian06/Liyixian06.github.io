@@ -97,7 +97,7 @@ SDD 的格式是一个表，见下面两个例子。
 ```
 E -> T R
 R -> op T {print(op.lexeme)} R | e
-T -> num {print(num.val)}
+T -> num  {print(num.val)}
 ```
 翻译模式的语法分析树，为每个语义规则构造节点，使用虚线与 production 头部相连：  
 
@@ -152,7 +152,7 @@ procedure dfsvisit(n:node)
 
 ```
 A -> A1Y {A.a = g(A1.a, Y.y)}
-A -> X {A.a = f(X.x)}
+A -> X   {A.a = f(X.x)}
 ```
 消除左递归：  
 ```
@@ -169,9 +169,9 @@ R -> e
 
 翻译模式：  
 ```
-A -> X {R.i = f(X.x)} R {A.a = R.s}
-R -> Y {R1.i = g(R.i, Y.y)} R1 {R.s = R1.s}
-R -> e {R.s = R.i}
+A -> X  {R.i = f(X.x)} R {A.a = R.s}
+R -> Y  {R1.i = g(R.i, Y.y)} R1 {R.s = R1.s}
+R -> e  {R.s = R.i}
 ```
 *e.g.* 
 
@@ -191,7 +191,7 @@ R -> e {R.s = R.i}
 - production 中语法符号的属性 —— 函数局部变量
 - 函数体结构和递归调用预测分析类似，根据当前输入符号确定使用哪个 production  
 
-#### 自底向上计算属性
+### 自底向上计算属性
 
 思路：移走翻译模式中嵌入的语义规则，改写 SDD 为 S 属性定义  
 #### 没有继承属性的情况
@@ -234,8 +234,9 @@ C -> c     {C.s = g(C.i)}
 ```
 不确定 B 是否在栈中，就无法确定 A.s 在 top-1/top-2  
 -> 新建符号 M 作为跳板：  
+
 ```
-S -> aAC		{C.i = A.s}
+S -> aAC	{C.i = A.s}
 S -> bABMC	{M.i = A.s; C.i = M.s;}
 C -> c 		{C.s = g(C.i)}
 M -> e		{M.s = M.i}
@@ -249,7 +250,7 @@ M 作为桥梁衔接 A 和 C，M 访问 top-2 来访问 A.s，这样 C 只要访
 属性栈里只保存了 A.s，没有保存 C.i  
 -> 新建符号 N 作为跳板：  
 ```
-S -> aANC		{N.i = A.s; C.i = N.s}
+S -> aANC	{N.i = A.s; C.i = N.s}
 N -> e		{N.s = f(N.i)}
 ```
 添加一个符号保存运算结果为 N.s，这样 C.i 就可以通过 top-1 访问。
