@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="编译原理笔记05：语法制导翻译" />
-    <meta property="og:title" content="编译原理笔记05：语法制导翻译" />
-    <meta property="twitter:title" content="编译原理笔记05：语法制导翻译" />
+    <meta name="title" content="编译原理笔记06：类型检查" />
+    <meta property="og:title" content="编译原理笔记06：类型检查" />
+    <meta property="twitter:title" content="编译原理笔记06：类型检查" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>编译原理笔记05：语法制导翻译 | 李一线的博客</title>
+    <title>编译原理笔记06：类型检查 | 李一线的博客</title>
 
-    <link rel="canonical" href="/2023/11/compiler-principles-ch5/">
+    <link rel="canonical" href="/2023/11/compiler-principles-ch6/">
 
     
     
@@ -185,7 +185,7 @@
                         </a>
                         
                     </div>
-                    <h1>编译原理笔记05：语法制导翻译</h1>
+                    <h1>编译原理笔记06：类型检查</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -197,7 +197,7 @@
                             Tuesday, November 21, 2023
                             
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/2023/11/compiler-principles-ch5/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2023/11/compiler-principles-ch6/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 2321 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 629 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
                             
                             
                             
@@ -358,238 +358,79 @@ $(function() {
                 
                 <p><strong>Summary</strong>:</p>
 <ul>
-<li>语法制导的定义</li>
-<li>构造语法树</li>
-<li>S-属性定义、L-属性定义</li>
-<li>自顶向下计算属性</li>
-<li>自底向上计算属性</li>
+<li>类型系统</li>
+<li>类型表达式的等价</li>
 </ul>
-<h3 id="语法制导定义">语法制导定义</h3>
-<p>语法制导翻译是一种搭建在语法分析基础上的翻译技术。<br>
-思路：<strong>给每个符号（特别是非终结符）设置一系列属性 attribute，在语法翻译的时候对属性进行求值。</strong></p>
-<p>语法制导定义 SDD 是 CFG 的推广：</p>
-<ul>
-<li>语法符号 - 属性，定义时需要说明其意义和类型
-<ul>
-<li>综合 synthesized，由子节点属性计算，命名为 val (value)</li>
-<li>继承 inherited，由 parent 和 sibling 属性计算，命名为 in (inherited)
-<ul>
-<li>表达程序结构在上下文中的相互依赖关系</li>
-</ul>
-</li>
-<li>terminal 只有综合属性，由词法分析器提供；开始符号没有继承属性。</li>
-</ul>
-</li>
-<li>production - 语义规则，用于计算属性
-<ul>
-<li>每个 production 关联一个或多个语义规则</li>
-<li>语义规则的执行反映属性之间的关系</li>
-</ul>
-</li>
-<li>依赖图 dependency graph</li>
-<li>注释语法树 annotated parse tree，节点带有属性值的分析树</li>
-</ul>
-<p>SDD 的格式是一个表，见下面两个例子。</p>
-<p><em>e.g.</em> 要对表达式求值，可以定义语义规则如下：</p>
-<p>
-  <img src="/img/%e8%af%ad%e4%b9%89%e8%a7%84%e5%88%99%e4%be%8b%e5%ad%90-%e8%a1%a8%e8%be%be%e5%bc%8f%e6%b1%82%e5%80%bc.png" alt="">
-
-</p>
-<p>要定义变量，可以定义语义规则如下：</p>
-<p>
-  <img src="/img/%e8%af%ad%e4%b9%89%e8%a7%84%e5%88%99%e4%be%8b%e5%ad%90-%e5%ae%9a%e4%b9%89%e5%8f%98%e9%87%8f.png" alt="">
-
-</p>
-<p>可见，<strong>翻译目标决定了语义规则</strong>。</p>
-<p>如果一条语义规则的作用和求值无关，如打印一个值或向符号表中添加记录，则成为 production 左侧 non-terminal 的虚拟综合属性，常见的有：</p>
-<ul>
-<li>print (text) 打印 text</li>
-<li>addtype (id.entry, type)
-<ul>
-<li>在符号表中为符号 id 添加符号类型（变量类型）type</li>
-<li>id. entry 指明符号 id 在符号表中的入口</li>
-</ul>
-</li>
-</ul>
-<h4 id="依赖图">依赖图</h4>
-<p>属性 b 依赖属性 c，则 b 应该在 c 之后计算；依赖图是表示这种依赖关系的有向图。<br>
-<em>e.g.</em> 变量定义的依赖图<br>
-符号左侧为继承属性，右侧为综合属性（包括虚拟综合属性）</p>
-<p>
-  <img src="/img/%e4%be%9d%e8%b5%96%e5%9b%be%e4%be%8b%e5%ad%90.png" alt="">
-
-</p>
-<p>如果依赖图无环，则存在一个拓扑排序，即为这些属性值的计算顺序。</p>
-<p>语法制导翻译的一般步骤：</p>
+<p>静态检查 static checking：</p>
 <ol>
-<li>文法</li>
-<li>注释语法树</li>
-<li>依赖图</li>
-<li>拓扑排序</li>
-<li>语义规则计算顺序</li>
-<li>输入串翻译结果</li>
+<li>类型检查（type check）
+<ul>
+<li>操作对象必须与操作符匹配，<em>i.e.</em> 函数名不能相加</li>
+</ul>
+</li>
+<li>控制流检查（flow-of-control check）
+<ul>
+<li>break 必须退出 while、for、switch…</li>
+</ul>
+</li>
+<li>唯一性检查（uniqueness check）
+<ul>
+<li>对象（变量、标号…）定义必须唯一</li>
+</ul>
+</li>
+<li>名字关联检查（name-related check）
+<ul>
+<li>相同名字在不同位置</li>
+</ul>
+</li>
 </ol>
-<h3 id="构造语法树">构造语法树</h3>
-<p>语法树是仅由终结符构成的分析树的压缩形式；<br>
-自身可以表示运算的优先级，所以所有括号都可以省略。<br>
-<em>e.g.</em></p>
-<p>
-  <img src="/img/%e8%af%ad%e6%b3%95%e6%a0%91%e5%8e%8b%e7%bc%a9%e4%be%8b%e5%ad%90.png" alt="">
-
-</p>
-<p>用有向无环图 DAG 表示表达式：</p>
+<h3 id="类型系统">类型系统</h3>
+<p>将类型赋予语法结构的规则；每个表达式都有一个关联的类型<br>
+基本类型（语言内部支持类型）、结构类型（组合基本类型构成新类型）</p>
+<p>type expression 类型表达式，表示语言结构的类型</p>
 <ul>
-<li>对语法树提取公共表达式</li>
-<li>可能出现一个节点有多个 parent 的情况</li>
-<li>构造节点前检查是否已经构造相同节点</li>
-</ul>
-<p><em>e.g.</em> i = i + 10</p>
-<p>
-  <img src="/img/DAG%e8%a1%a8%e8%be%be%e5%bc%8f%e4%be%8b%e5%ad%90.png" alt="">
-
-</p>
-<h3 id="s-属性定义和-l-属性定义">S-属性定义和 L-属性定义</h3>
-<h4 id="翻译模式">翻译模式</h4>
-<p>又叫翻译方案，将语义规则嵌入 production 右部适当的位置，指明计算顺序；相当于在 SDD 的基础上添加了执行语义规则的时机。</p>
-<p><em>e.g.</em></p>
-<pre tabindex="0"><code>E -&gt; T R
-R -&gt; op T {print(op.lexeme)} R | e
-T -&gt; num  {print(num.val)}
-</code></pre><p>翻译模式的语法分析树，为每个语义规则构造节点，使用虚线与 production 头部相连：</p>
-<p>
-  <img src="/img/%e7%bf%bb%e8%af%91%e6%a8%a1%e5%bc%8f%e7%9a%84%e8%af%ad%e6%b3%95%e5%88%86%e6%9e%90%e6%a0%91%e4%be%8b%e5%ad%90.png" alt="">
-
-</p>
-<h4 id="s-属性定义">S-属性定义</h4>
-<p>如果一个 SDD 仅使用了综合属性，则称其为 S-属性定义；因为属性自底向上计算，所以通常使用自底向上的方法求值。</p>
-<p>S-属性定义可以和 LR 分析器结合：</p>
+<li>基本类型</li>
+<li>类型名</li>
+<li>类型构造符
 <ul>
-<li>在栈中保存语法符号的属性值</li>
-<li>规约时，利用栈中语法符号（production 右部）属性值计算新的（左部符号的）综合属性值</li>
-<li>翻译模式：因为调用一个 production 时，右部所有符号的属性都已经计算完毕，所以 production 对应的语义规则都直接添加到末尾即可。</li>
-<li><strong>注意仍然需要拓广文法</strong>！</li>
+<li>数组：<code>int A[10] -&gt; array({0,...,9}, integer)</code></li>
+<li>笛卡尔积</li>
+<li>记录（和笛卡尔积的区别是记录的域有名字）：<code>record((address×integer) × (lexeme×array({0, …, 15}, char)))</code></li>
+<li>指针：<code>row* p -&gt; pointer(row)</code></li>
+<li>函数（定义域类型到值域类型的映射）：<code>int* f(char a, char b) -&gt; (char x char)-&gt;pointer(integer)</code></li>
 </ul>
-<p>定义如下变量：</p>
+</li>
+</ul>
+<p>类型表达式可以保存在树里，判定类型是否等价时比较两棵树 -&gt; 效率不高</p>
+<p>类型检查：表达式、语句、函数</p>
+<h3 id="类型表达式的等价">类型表达式的等价</h3>
+<ol>
+<li>结构等价
 <ul>
-<li>val 属性栈</li>
-<li>top 规约前栈顶</li>
-<li>ntop 规约后栈顶</li>
-</ul>
-<p>那么可以用形如 <code>val[top-?]</code> 访问栈中内容，如 <code>val[ntop] = val[top-2] + val[top]</code></p>
-<p><em>e.g.</em> 表达式计算语义规则的代码段</p>
-<p>
-  <img src="/img/S-%e5%b1%9e%e6%80%a7%e5%ae%9a%e4%b9%89%e8%ae%a1%e7%ae%97%e4%bb%a3%e7%a0%81%e6%ae%b5%e4%be%8b%e5%ad%90.png" alt="">
-
-</p>
-<h4 id="l-属性定义">L-属性定义</h4>
-<p>如果一个 SDD 仅使用了综合属性，或所有继承属性只需要其左边符号的属性，则此 SDD 为 L-属性定义<br>
-所有 S-属性定义都是 L-属性定义</p>
-<p>L-属性定义的属性计算顺序：DFS 遍历分析树，这样如果所有继承属性都只用到左 sibling 的属性，则继承属性可计算：</p>
-<pre tabindex="0"><code>procedure dfsvisit(n:node)
-{  
-	for n 的每个孩子，由左至右 do
-	{
-		计算 m 的继承属性;（利用 n 的继承属性和 m 的左sibling的属性）
-		dfsvisit(m);
-	}
-	计算 n 的综合属性;
-}
-</code></pre><p>翻译模式：</p>
+<li>类型表达式的图表示是否相同
 <ul>
-<li>production 右部符号的继承属性必须在这个符号以前的语义规则中被算出来</li>
-<li>语义规则不能（直接或间接地）引用它右边的符号的属性</li>
-<li>左部 non-terminal 的综合属性，必须在其依赖的所有属性计算完毕后才能计算，一般放在右部末尾</li>
+<li>基本类型、子表达式的类型构造符相同</li>
 </ul>
-<h3 id="自顶向下计算属性">自顶向下计算属性</h3>
-<p>基于递归下降的预测分析<br>
-要求消除左递归<br>
--&gt; 一般性方法：已知翻译模式</p>
-<pre tabindex="0"><code>A -&gt; A1Y {A.a = g(A1.a, Y.y)}
-A -&gt; X   {A.a = f(X.x)}
-</code></pre><p>消除左递归：</p>
-<pre tabindex="0"><code>A -&gt; XR
-R -&gt; YR1
-R -&gt; e
-</code></pre><p>把 A1 消除，增加了 R -&gt; 如何通过 R 传递 A1 的属性？<br>
-为 R 设置：</p>
+</li>
+<li>编码类型表达式：用二进制码表示类型和构造符
 <ul>
-<li>继承属性 R.i 保存中间结果</li>
-<li>综合属性 R.s 向上传递最终结果</li>
+<li>基本类型编码 + 构造符编码前缀</li>
+<li>不同类型可能表示为相同的二进制串（数组界限、函数参数）</li>
 </ul>
-<p>把中间结果保存在 R.i 中一路向下计算，算出最终结果后，传递给 R.s，然后再一路向上传回根节点。</p>
-<p>翻译模式：</p>
-<pre tabindex="0"><code>A -&gt; X  {R.i = f(X.x)} R {A.a = R.s}
-R -&gt; Y  {R1.i = g(R.i, Y.y)} R1 {R.s = R1.s}
-R -&gt; e  {R.s = R.i}
-</code></pre><p><em>e.g.</em></p>
-<p>
-  <img src="/img/%e8%87%aa%e5%ba%95%e5%90%91%e4%b8%8a%e8%ae%a1%e7%ae%97%e6%b6%88%e9%99%a4%e5%b7%a6%e9%80%92%e5%bd%92%e4%be%8b%e5%ad%9001.png" alt="">
-
-</p>
-<p>消除左递归后：</p>
-<p>
-  <img src="/img/%e8%87%aa%e5%ba%95%e5%90%91%e4%b8%8a%e8%ae%a1%e7%ae%97%e6%b6%88%e9%99%a4%e5%b7%a6%e9%80%92%e5%bd%92%e4%be%8b%e5%ad%9002.png" alt="">
-
-</p>
-<p>语法树：</p>
-<p>
-  <img src="/img/%e8%87%aa%e5%ba%95%e5%90%91%e4%b8%8a%e8%ae%a1%e7%ae%97%e6%b6%88%e9%99%a4%e5%b7%a6%e9%80%92%e5%bd%92%e4%be%8b%e5%ad%9003.png" alt="">
-
-</p>
-<p>翻译模式：为每个 non-terminal 建立一个函数</p>
+</li>
+</ul>
+</li>
+<li>名字等价
 <ul>
-<li>参数为此 non-terminal 的继承属性</li>
-<li>返回值为综合属性</li>
-<li>production 中语法符号的属性 —— 函数局部变量</li>
-<li>函数体结构和递归调用预测分析类似，根据当前输入符号确定使用哪个 production</li>
+<li>不展开，名字不相同类型就不同
+<ul>
+<li><em>i.e.</em> type link = *cell，但 link 和 *cell 类型不同</li>
 </ul>
-<h3 id="自底向上计算属性">自底向上计算属性</h3>
-<p>思路：移走翻译模式中嵌入的语义规则，改写 SDD 为 S 属性定义</p>
-<h4 id="没有继承属性的情况">没有继承属性的情况</h4>
-<p><em>e.g.</em> 已知如下 L-属性定义：</p>
-<pre tabindex="0"><code>E -&gt; TR
-R -&gt; + T {print(&#39;+&#39;)} R | - T {print(&#39;-&#39;)} R | e
-T -&gt; num {print(num.val)}
-</code></pre><p>语义规则阻碍了此文法成为 S-属性定义<br>
-（在移入栈过程中根本不知道将来会形成哪个 production，无法执行嵌入的语义规则）<br>
--&gt; 加入空 production，取走语义规则</p>
-<pre tabindex="0"><code>E -&gt; T R
-R -&gt; + T M R | - T N R | e
-T -&gt; num { print(num.val)}
-M -&gt; e { print(‘+’) }
-N -&gt; e { print(‘-’) }
-</code></pre><p>属性值的计算只在规约时进行</p>
-<h4 id="有继承属性的情况">有继承属性的情况</h4>
-<p>用 C-&gt;XYZ 规约时如果需要 C 的继承属性，但 C 不在栈中，就需要寻找 C 在右部的 production（C 的继承属性依赖于其 parent 和左 sibling），但 parent 也不在栈中，进入一个循环<br>
--&gt; 复写规则</p>
-<p><em>e.g.1. 继承属性位置可确定的情况</em></p>
-<p>
-  <img src="/img/%e8%87%aa%e5%ba%95%e5%90%91%e4%b8%8a%e8%ae%a1%e7%ae%97%e7%bb%a7%e6%89%bf%e5%b1%9e%e6%80%a7%e4%be%8b%e5%ad%901.png" alt="">
-
-</p>
-<p>由于 L.in = T.type，而且 T 是 L 的左 sibling，在对关于 L 的 production 规约、需要 L 的继承属性 in 时，T 一定已经在栈中，可以用 T.type 代替 L.in：</p>
-<p>
-  <img src="/img/%e8%87%aa%e5%ba%95%e5%90%91%e4%b8%8a%e8%ae%a1%e7%ae%97%e7%bb%a7%e6%89%bf%e5%b1%9e%e6%80%a7%e4%be%8b%e5%ad%902.png" alt="">
-
-</p>
-<p><em>e.g.2. 继承属性位置不可确定的情况</em></p>
-<pre tabindex="0"><code>S -&gt; aAC   {C.i = A.s}
-S -&gt; bABC  {C.i = A.s}
-C -&gt; c     {C.s = g(C.i)}
-</code></pre><p>不确定 B 是否在栈中，就无法确定 A.s 在 top-1/top-2<br>
--&gt; 新建符号 M 作为跳板：</p>
-<pre tabindex="0"><code>S -&gt; aAC	{C.i = A.s}
-S -&gt; bABMC	{M.i = A.s; C.i = M.s;}
-C -&gt; c 		{C.s = g(C.i)}
-M -&gt; e		{M.s = M.i}
-</code></pre><p>M 作为桥梁衔接 A 和 C，M 访问 top-2 来访问 A.s，这样 C 只要访问 top-1 就必然能够访问到 A.s。</p>
-<p><em>e.g.3. 继承属性使用函数赋值（非复写规则）</em></p>
-<p><code>S -&gt; aAC   {C.i = f(A.s)}</code></p>
-<p>属性栈里只保存了 A.s，没有保存 C.i<br>
--&gt; 新建符号 N 作为跳板：</p>
-<pre tabindex="0"><code>S -&gt; aANC	{N.i = A.s; C.i = N.s}
-N -&gt; e		{N.s = f(N.i)}
-</code></pre><p>添加一个符号保存运算结果为 N.s，这样 C.i 就可以通过 top-1 访问。</p>
+</li>
+<li>回路问题：结构体不用结构等价，避免在“struct 内部有 struct 类型指针成员”时树中出现回路</li>
+</ul>
+</li>
+</ol>
 
     
                 
@@ -601,13 +442,13 @@ N -&gt; e		{N.s = f(N.i)}
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/11/operating-system-7.0/" data-toggle="tooltip" data-placement="top" title="操作系统笔记05：设备管理">&larr;
+                        <a href="/2023/11/compiler-principles-ch5/" data-toggle="tooltip" data-placement="top" title="编译原理笔记05：语法制导翻译">&larr;
                             Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2023/11/compiler-principles-ch6/" data-toggle="tooltip" data-placement="top" title="编译原理笔记06：类型检查">Next
+                        <a href="/2023/11/compiler-principles-ch7/" data-toggle="tooltip" data-placement="top" title="编译原理笔记07：运行时环境">Next
                             Post &rarr;</a>
                     </li>
                     

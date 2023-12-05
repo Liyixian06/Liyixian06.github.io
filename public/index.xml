@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Tue, 21 Nov 2023 14:12:33 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Nov 2023 14:51:44 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译原理笔记07：运行时环境</title>
+      <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch7/</link>
+      <pubDate>Tue, 28 Nov 2023 14:51:44 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/11/compiler-principles-ch7/</guid>
+      <description>Summary: 源语言相关问题 存储组织 内存分配策略 访问非局部名字 参数传递 源语言相关问题 过程（函数）：procedure（静态）/activation（动态</description>
+    </item>
+    
+    <item>
+      <title>编译原理笔记06：类型检查</title>
+      <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch6/</link>
+      <pubDate>Tue, 21 Nov 2023 14:51:19 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/11/compiler-principles-ch6/</guid>
+      <description>Summary: 类型系统 类型表达式的等价 静态检查 static checking： 类型检查（type check） 操作对象必须与操作符匹配，i.e. 函数名不能相加 控制流检</description>
+    </item>
+    
     <item>
       <title>编译原理笔记05：语法制导翻译</title>
       <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch5/</link>
@@ -15,6 +33,15 @@
       
       <guid>https://Liyixian06.github.io/2023/11/compiler-principles-ch5/</guid>
       <description>Summary: 语法制导的定义 构造语法树 S-属性定义、L-属性定义 自顶向下计算属性 自底向上计算属性 语法制导定义 语法制导翻译是一种搭建在语法分析基础上的翻译</description>
+    </item>
+    
+    <item>
+      <title>操作系统笔记05：设备管理</title>
+      <link>https://Liyixian06.github.io/2023/11/operating-system-7.0/</link>
+      <pubDate>Mon, 20 Nov 2023 01:13:10 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/11/operating-system-7.0/</guid>
+      <description>设备（e.g.鼠标、键盘、显示器）的特点：速度慢、难以共享、工作逻辑 varies 操作系统的设备管理使得应用程序不需要关心设备的细节，就可以统一响应 外设</description>
     </item>
     
     <item>

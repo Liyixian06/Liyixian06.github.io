@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Mon, 13 Nov 2023 23:05:15 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/operating-system/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Nov 2023 01:13:10 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/operating-system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>操作系统笔记05：设备管理</title>
+      <link>https://Liyixian06.github.io/2023/11/operating-system-7.0/</link>
+      <pubDate>Mon, 20 Nov 2023 01:13:10 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/11/operating-system-7.0/</guid>
+      <description>设备（e.g.鼠标、键盘、显示器）的特点：速度慢、难以共享、工作逻辑 varies 操作系统的设备管理使得应用程序不需要关心设备的细节，就可以统一响应 外设</description>
+    </item>
+    
     <item>
       <title>操作系统笔记04：文件管理</title>
       <link>https://Liyixian06.github.io/2023/11/operating-system-6.0/</link>
