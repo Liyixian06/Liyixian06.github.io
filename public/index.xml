@@ -54,6 +54,15 @@
     </item>
     
     <item>
+      <title>计算机网络笔记04A：网络层-数据平面</title>
+      <link>https://Liyixian06.github.io/2023/11/computer-networking-ch4/</link>
+      <pubDate>Wed, 15 Nov 2023 21:20:51 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/11/computer-networking-ch4/</guid>
+      <description>Summary: 网络层概述 路由器工作原理 网际协议：IPv4、网络地址转换、IPv6 网络层概述 网络层的作用是将 packet 从发送主机移动到接收主机。 转发 forward</description>
+    </item>
+    
+    <item>
       <title>操作系统笔记04：文件管理</title>
       <link>https://Liyixian06.github.io/2023/11/operating-system-6.0/</link>
       <pubDate>Mon, 13 Nov 2023 23:05:15 +0800</pubDate>

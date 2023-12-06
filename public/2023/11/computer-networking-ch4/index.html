@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="操作系统笔记05：设备管理" />
-    <meta property="og:title" content="操作系统笔记05：设备管理" />
-    <meta property="twitter:title" content="操作系统笔记05：设备管理" />
+    <meta name="title" content="计算机网络笔记04A：网络层-数据平面" />
+    <meta property="og:title" content="计算机网络笔记04A：网络层-数据平面" />
+    <meta property="twitter:title" content="计算机网络笔记04A：网络层-数据平面" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>操作系统笔记05：设备管理 | 李一线的博客</title>
+    <title>计算机网络笔记04A：网络层-数据平面 | 李一线的博客</title>
 
-    <link rel="canonical" href="/2023/11/operating-system-7.0/">
+    <link rel="canonical" href="/2023/11/computer-networking-ch4/">
 
     
     
@@ -180,12 +180,12 @@
                             CS
                         </a>
                         
-                        <a class="tag" href="/tags/operating-system" title="operating system">
-                            operating system
+                        <a class="tag" href="/tags/computer-networking" title="computer networking">
+                            computer networking
                         </a>
                         
                     </div>
-                    <h1>操作系统笔记05：设备管理</h1>
+                    <h1>计算机网络笔记04A：网络层-数据平面</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -194,10 +194,10 @@
                                 LiYixian
                              
                             on 
-                            Monday, November 20, 2023
+                            Wednesday, November 15, 2023
                             
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/2023/11/operating-system-7.0/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2023/11/computer-networking-ch4/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 2136 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 2233 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
                             
                             
                             
@@ -356,149 +356,146 @@ $(function() {
                 post-container">
     
                 
-                <p>设备（<em>e.g.鼠标、键盘、显示器</em>）的特点：速度慢、难以共享、工作逻辑 varies<br>
-操作系统的设备管理使得应用程序不需要关心设备的细节，就可以统一响应</p>
-<p>外设借助一个 controller/adapter 和计算机连接在一起<br>
-适配器采集设备上操作系统关心的数据，有三类接口：数据、命令、状态<br>
-操作系统整理每个厂商提交的设备不同的数据、命令、状态格式，经过封装和抽象，抹去硬件的差异，交给上层应用程序<br>
-设备驱动程序 device driver 负责识别 controller 的数据，完成翻译；现代操作系统已经预先继承了若干个通用的 driver</p>
+                <p><strong>Summary:</strong></p>
+<ul>
+<li>网络层概述</li>
+<li>路由器工作原理</li>
+<li>网际协议：IPv4、网络地址转换、IPv6</li>
+</ul>
+<h3 id="网络层概述">网络层概述</h3>
+<p>网络层的作用是将 packet 从发送主机移动到接收主机。</p>
+<ol>
+<li>转发 forwarding，数据平面实现</li>
+<li>路由选择 routing，控制平面实现，确定 packet 从源到目的地的路径</li>
+</ol>
+<p>每台路由器中有一个转发表 forwarding table，路由器检查到达的 packet header 的字段值，将其在转发表中索引，确定输出链路接口。<br>
+转发表是如何配置的？</p>
+<ol>
+<li>路由选择算法：每个路由器都有一个路由选择组件，可以互相通信</li>
+<li>SDN (Software-Defined Networking)方法：远程控制器计算和向路由器分发转发表</li>
+</ol>
+<p>网络服务模型 network service model<br>
+确保交付、latency 上界、有序、最小带宽、安全性, etc</p>
+<h3 id="路由器工作原理">路由器工作原理</h3>
 <p>
-  <img src="/img/%e8%ae%be%e5%a4%87%e7%ae%a1%e7%90%86%e7%bb%93%e6%9e%84.png" alt="">
+  <img src="/img/%e8%b7%af%e7%94%b1%e5%99%a8%e4%bd%93%e7%b3%bb%e7%bb%93%e6%9e%84.png" alt="">
 
 </p>
-<p>设备管理的思路：</p>
+<p>路由器的 4 个组件：</p>
+<ul>
+<li>输入端口：执行物理层和链路层功能；查找转发表决定输出端口</li>
+<li>交换结构</li>
+<li>输出端口</li>
+<li>路由选择处理器：执行路由选择协议、计算转发表，或（在 SDN 中）和远程控制器通信</li>
+</ul>
 <ol>
-<li>标准化
-<ul>
-<li>上层 application 尽量少感知硬件之间的差异（所有鼠标传给上层的数据都一样）</li>
-<li>操作系统减少为不同硬件做的修改（所有鼠标的控制逻辑都一样）</li>
-</ul>
-</li>
-<li>灵活性
-<ul>
-<li>能支持新款、新型设备</li>
-</ul>
-</li>
+<li>输入端口<br>
+路由器有 n 条链路，规定每个链路接口负责一个目的地址范围内所有 packet 的转发；路由器用 packet 目的地址前缀与表项进行匹配（多个匹配时使用最长前缀匹配规则），确定输出端口。<br>
+此后，还需要检查 packet 的版本号、检验和和 TTL，并且重写后两个字段；<br>
+最后，发送 packet 进入交换结构，如果其他输入端口的 packet 正在使用交换结构，可能就会出现阻塞-排队。</li>
+<li>交换：经内存/总线/互联网络交换</li>
+<li>排队<br>
+输入和输出端口都可能排队，队列增长到一定地步，路由器缓存用尽，无法存储到达的 packet，就会丢包<br>
+丢包和标记策略：主动队列管理 AQM 算法</li>
+<li>分组调度：FCFS (FIFO) / priority queuing / 循环和加权公平排队</li>
 </ol>
-<h3 id="设备的分类与抽象">设备的分类与抽象</h3>
-<p>标准化：操作系统中预置了 application 可能使用到的设备的类别，然后按照类别（虚基类）设计对应的数据类型和函数<br>
-分类方法：function/data management/assignment</p>
-<p>为同一类设备定义一套统一的接口，设备厂商只需要按照接口实现对应的函数，applications 遵从接口使用设备即可<br>
-灵活性：虚基类设计时需要考虑到所有可能的情况<br>
--&gt; 操作系统从来没有见过的设备怎么办？</p>
-<p>外设的机械变化/模拟信号变化 -&gt; 电信号 -&gt; 计算机可以处理的数字信号<br>
-设备将得到的数据放在自己的寄存器/数据 buffer 等结构中，通过接口将数据上传</p>
-<h3 id="设备数据的传输">设备数据的传输</h3>
-<p>CPU 如何读写设备提供的数据接口？<br>
-把 CPU 的数据总线对应的选通信号和 adapter 的使能信号连起来，这样 CPU 发出某个地址上的读信号时，可以选通 adapter<br>
-RISC 不区分 memory 和 I/O</p>
-<p>如何获取数据？</p>
-<ol>
-<li>用专用的 I/O 指令读写专用的 I/O 端口地址
-<ul>
-<li>理论上应该是特权指令，这样所有 I/O 读写都必须借由操作系统完成，但由于历史遗留问题是普通指令</li>
-</ul>
-</li>
-<li>把 I/O 的地址区域放在内存的某个特定区间，对这个区域发出的读写信号会被转译到对应的外设接口上；没有单独的 I/O 指令，用 load/store 就可以完成
-<ul>
-<li>专门有一部分地址线选通外设，因此是在物理地址空间预留的区域</li>
-<li>只能映射在操作系统的内核空间，否则可能会被普通用户直接访问，引发控制逻辑混乱</li>
-<li>可以使得 I/O 设备和内存共享寻址机制，因此在 MIPS/RISCV 广泛使用</li>
-</ul>
-</li>
-<li>混合编址，在内存空间放一个 I/O buffer
-<ul>
-<li>x86 使用，I/O 专用端口只用来兼容老式设备，新式设备的数据都放在内存里</li>
-</ul>
-</li>
-</ol>
-<p>如果要使用外设的地址空间，就必须运行在特权态<br>
--&gt; driver 是操作系统的一部分，或与操作系统一并运转在特权模式<br>
-即，driver 可以拿到 OS 的最高权限 -&gt; 试图让 driver 在一个特殊的权限位上，只能访问自己这个设备相关的部分<br>
-<em>输入法也是一个 driver</em></p>
-<h3 id="设备交互">设备交互</h3>
-<p>设备的速度非常慢 -&gt; 如何及时发现数据并传输？</p>
-<p>发现：</p>
-<ul>
-<li>busy waiting 查询
-<ul>
-<li>轮询外设的状态寄存器，查询操作完成了没有</li>
-<li>浪费 CPU 时间</li>
-</ul>
-</li>
-<li>interrupt
-<ul>
-<li>在需要等待的时间去运行其他进程，设备完成操作时，触发一个中断，唤醒 CPU
-<ul>
-<li>CPU 有一些管脚可以感知中断的电平变化，然后将 PC 跳转到中断响应函数</li>
-</ul>
-</li>
-<li>中断的代价太高
-<ul>
-<li>外设将数据交付给 DMA controller，直到处理完一块，DMA 再给 CPU 产生一个中断</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>传输：</p>
-<ul>
-<li>CPU 主动逐字节传输数据</li>
-<li>引入 DMA (direct/disk memory access)，不需要 CPU 干预就可以直接访问内存，以块为单位传输数据
-<ul>
-<li>DMA 类似于一个简化版的 CPU，只能完成地址的递增/递减，产生控制器的读写信号</li>
-<li>DMA 只能访问连续的物理地址，访问不了页表
-<ul>
-<li>内核会专门为 DMA 预留一块连续的地址空间（操作系统控制物理内存分配，它可以特意选一块连续的），用户需要的时候再将其复制到用户空间</li>
-<li>使用 buffer 可以匹配设备的速度差异；如果不够，就要叫远端不要再发送数据了</li>
-</ul>
-</li>
-<li>CPU 会给 DMA 一个内存地址，希望它传输的数据块大小，以及把数据传到硬盘上的 target address</li>
-<li>CPU 需要访问内存的时候，就得叫停 DMA，二者不能并行工作</li>
-</ul>
-</li>
-</ul>
+<h3 id="网际协议ipv4ipv6">网际协议：IPv4/IPv6</h3>
+<p>IPv4 数据报格式：</p>
 <p>
-  <img src="/img/DMA.png" alt="">
+  <img src="/img/IPv4%e6%95%b0%e6%8d%ae%e6%8a%a5%e6%a0%bc%e5%bc%8f.png" alt="">
 
 </p>
-<p>中断的代价是什么？</p>
 <ul>
-<li>需要切换到内核态，做权限管理工作</li>
-<li>操作系统把中断当作了进程调度的机会，频繁的 context switch 很影响性能</li>
+<li>服务类型 TOS：使不同类型的 IP datagram 能分开，提供特定等级的服务</li>
+<li>标识符、标志、分片偏移：和 IP 分片有关，IPv6 不允许在路由器上分片</li>
+<li>协议：datagram 到达目的地后，数据部分应该交给哪个特定的运输层协议</li>
 </ul>
-<p>中断响应的时间决定了网络传输的上限，CPU 主频不够时，中断占据的时间过多<br>
--&gt; 使用轮询 + DMA<br>
-solution：用户态中断；或将网卡对应的存储空间直接映射到用户地址空间，用户轮询发现其状态变化，把数据取走</p>
-<p>设备的数据存在内核态，application 运行在用户态，如何传输？<br>
-有些操作系统借助文件系统的 syscall 接口 read/write，把内核空间的数据复制到用户空间，或者反之<br>
--&gt; 特例：如何控制向一个输入设备发送控制命令？<br>
-Linux 的新接口 ioctl，专门为 I/O 设备传递指令</p>
-<p>设备在进程间共享</p>
-<h3 id="几个例子">几个例子</h3>
+<h4 id="分片">分片</h4>
+<p>一个链路层帧能承载的最大数据量 Maximum Transmission Unit (MTU) 限制了 IP datagram 的长度，但路径上每段链路可能有不同的链路层协议和不同 MTU<br>
+solution：将 datagram 分成片 fragment，用单独的链路层帧封装后发送，到达目的地运输层前再在主机中重组</p>
+<ul>
+<li>同一个 datagram 的每个片有相同的标识号</li>
+<li>最后一片的标志 bit=0，其他片的标志 bit=1</li>
+<li>偏移字段指定该片应该放在 datagram 的哪个位置</li>
+</ul>
+<h4 id="ipv4-地址">IPv4 地址</h4>
+<p>一台主机只有一条链路连接到网络，路由器有多条链路，主机/路由器和链路之间有接口 interface<br>
+<strong>一个 IP 地址实际上和一个接口相关联，而不是和该接口的主机/路由器相关联。</strong></p>
+<p>IP 地址是 32 bit 的二进制数字，分为四个 8 bit 部分，由十进制书写<br>
+每个接口都有唯一的 IP 地址，由其连接的子网决定<br>
+IP 地址分为网络号 net-id 和主机号 host-id 部分，位于同一个物理网络、网络号相同的设备接口的网络形成一个子网 subnet<br>
+<em>e.g.</em> 所有形如 223.1.1. xxx 的 IP 地址接口形成一个子网，其地址为 223.1.1.0/24</p>
+<p>
+  <img src="/img/%e5%ad%90%e7%bd%91.png" alt="">
+
+</p>
+<p>其中 /24 称为子网掩码 network mask，指示 32bit 中最左侧 24bit 定义了子网地址，右侧 32-24=8bit 定义子网内部有 2^8 个地址。<br>
+子网掩码写成 32 位地址：</p>
+<p>
+  <img src="/img/%e5%ad%90%e7%bd%91%e6%8e%a9%e7%a0%81.png" alt="">
+
+</p>
+<p>这样，要想找到某个 IP 地址的子网，要将其和路由表中所有的掩码做按位与运算，如果结果等于掩码对应的子网地址（网络号），它就属于这个子网。</p>
+<p>子网是如何寻址的？<br>
+无类地址划分 Classless Inter-Domain Routing：形如 a.b.c.d/x 的 IP 地址的 x 最高比特构成其网络号，也称作该地址的（网络）前缀 prefix<br>
+一个组织通常会被分配前缀相同的地址，组织外部的路由器转发表仅考虑其前缀，内部路由器才会考虑剩余的 32-x bit<br>
+分类编址 classful addressing：网络号被限制为 8/16/24 bit，称为 A/B/C 类网络</p>
+<p>另外，注意一些特殊的 IP 地址：<br>
+
+  <img src="/img/%e7%89%b9%e6%ae%8aIP%e5%9c%b0%e5%9d%80.png" alt="">
+
+</p>
+<p>一台设备（如主机）是如何获取一个 IP 地址的？</p>
 <ol>
-<li>磁盘</li>
+<li>子网从 ISP 获取一组地址</li>
+<li>获取主机地址
+<ul>
+<li>静态：申请固定 IP 地址，手动配置</li>
+<li>动态：动态主机配置协议 Dynamic Host Configuration (DHCP)
+<ul>
+<li>主机每次和网络连接时，自动分配到一个 IP 地址</li>
+<li>主机还可以得到其他信息，如子网掩码、第一跳路由器地址（默认网关）、本地 DNS server 地址</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
-<p>磁盘磁道移动会花费一定时间，连续从磁盘里读数据时，为了避免等待转一圈，使扇区编号交错（写进技术），controller 有一定时间完成检查</p>
-<ol start="2">
-<li>CD-ROM</li>
+<p>DHCP 是一个 client-server 协议，client 即主机<br>
+给 client 分配地址的 4 个步骤：</p>
+<ol>
+<li>DHCP discover：主机从标识本机地址向限制广播地址发送，即在本子网广播</li>
+<li>DHCP offer：（可能是多个）DHCP server 广播响应，提供推荐的 IP 地址、子网掩码和 IP 地址有效时间</li>
+<li>DHCP request：client 从多个 server 中选择一个，响应，回显配置参数</li>
+<li>DHCP ACK</li>
 </ol>
-<p>为了得到相同的数据读取速率，光盘 driver 在激光发射器的位置需要有一个稳定的线速度，控制电机的转速，读外围数据就转得慢，内围就转得快</p>
-<ol start="3">
-<li>flash</li>
-</ol>
-<p>稳定的电容器，放电（把 1 变成 0）很容易（接地），充电（擦除，把 0 变成 1）比较困难<br>
-将连续的介质划分为 page，若干个 page 叠加在一起成为一个 block<br>
-为了均摊充电的成本，以 block 为单位充电<br>
--&gt; 如果充不上电，这个 block 就被标记为不能再用<br>
-出厂时需要检测 flash，进行一次擦除和再读取的工作，如果发现有些 block 不能用，就从总体容量里剔除，所以实际上的存储容量会不够</p>
-<p>flash 的数据读写：拿到一个完整的 block 全都充上电，然后把这些 page 里应该是 0 的位置放电<br>
-使用过程中由于频繁充放电，会把 block 弄坏；随着擦除次数增长，磁盘慢慢趋向于老化<br>
-在 controller 里有一个 FTL table，可以看到计量每个 block 被擦除了多少次<br>
-flash 会预留一部分空间，在 block 坏掉的时候从中拿出一个顶替它</p>
-<ol start="4">
-<li>显卡</li>
-</ol>
+<p>
+  <img src="/img/DHCP%e5%88%86%e9%85%8dIP%e5%9c%b0%e5%9d%80.png" alt="">
+
+</p>
+<h4 id="网络地址转换">网络地址转换</h4>
+<p>网络地址转换 Network Address Translation (NAT)：私有 IP 地址和公网 IP 地址的交互<br>
+NAT 路由器类似具有单一 IP 地址的单一设备，使路由器对外界隐藏了家庭网络的细节，所有离开和进入家庭网络的 message 都有同一个源/目的 IP 地址。</p>
+<p>在内部借助端口号寻址：每次 NAT 路由器从内部主机向外转发时，都给它分配一个新的源端口号，将它的 IP 地址和转换前后的端口号填入 NAT 转换表的表项里；向内转发时，通过 NAT 转换表确定要转发给哪个内部主机<br>
+<em>e.g.</em> 专用地址 10.0.0.1，源端口号 3345，路由器分配新的源端口号 5001，向外转发；向内转发时读到目的端口号 5001，查表得到专用地址和目的端口号 3345。</p>
+<h4 id="ipv6-地址">IPv6 地址</h4>
+<p>IPv4 的地址空间要用尽了，因此开发了 IPv6</p>
+<p>
+  <img src="/img/IPv6%e6%95%b0%e6%8d%ae%e6%8a%a5%e6%a0%bc%e5%bc%8f.png" alt="">
+
+</p>
+<p>改进：地址容量 32-&gt;128；简化 40-bits 基本 header；流标签，可以为一条 flow 中对某些 datagram 赋予优先权，或者对来自某些应用的赋予更高优先权<br>
+一个基本 header、多个扩展 header (optional)</p>
+<p>IPv6 地址表示为 8 组 16 进制字段，每个字段 0000~FFFF<br>
+-&gt; 压缩：地址段中有时会出现连续的几组 0，可以用“::”代替，但一个地址中只能出现一次。 <em>e.g.FF01:0:0:0:0:0:0:101=FF01::101</em></p>
+<h3 id="通用转发和-sdn">通用转发和 SDN</h3>
+<p>传统路由器的转发仅基于 packet 的目的 IP 地址（匹配 + 动作）；而通用转发可以匹配 header 的多个字段，动作也不限于转发</p>
+<p>流表 flow table：匹配 + 动作转发表，表项包括 header 字段值集合、counter（匹配的 packet 数量）、采取的动作集合</p>
+<ul>
+<li>转发</li>
+<li>负载均衡</li>
+<li>重写 header（NAT）</li>
+<li>阻挡或丢包（防火墙）</li>
+</ul>
 
     
                 
@@ -510,13 +507,13 @@ flash 会预留一部分空间，在 block 坏掉的时候从中拿出一个顶�
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/11/computer-networking-ch4/" data-toggle="tooltip" data-placement="top" title="计算机网络笔记04A：网络层-数据平面">&larr;
+                        <a href="/2023/11/operating-system-6.0/" data-toggle="tooltip" data-placement="top" title="操作系统笔记04：文件管理">&larr;
                             Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2023/11/compiler-principles-ch5/" data-toggle="tooltip" data-placement="top" title="编译原理笔记05：语法制导翻译">Next
+                        <a href="/2023/11/operating-system-7.0/" data-toggle="tooltip" data-placement="top" title="操作系统笔记05：设备管理">Next
                             Post &rarr;</a>
                     </li>
                     
