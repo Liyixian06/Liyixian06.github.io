@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="编译原理笔记07：运行时环境" />
-    <meta property="og:title" content="编译原理笔记07：运行时环境" />
-    <meta property="twitter:title" content="编译原理笔记07：运行时环境" />
+    <meta name="title" content="编译原理笔记08：中间代码生成" />
+    <meta property="og:title" content="编译原理笔记08：中间代码生成" />
+    <meta property="twitter:title" content="编译原理笔记08：中间代码生成" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>编译原理笔记07：运行时环境 | 李一线的博客</title>
+    <title>编译原理笔记08：中间代码生成 | 李一线的博客</title>
 
-    <link rel="canonical" href="/2023/11/compiler-principles-ch7/">
+    <link rel="canonical" href="/2023/12/compiler-principles-ch8/">
 
     
     
@@ -185,7 +185,7 @@
                         </a>
                         
                     </div>
-                    <h1>编译原理笔记07：运行时环境</h1>
+                    <h1>编译原理笔记08：中间代码生成</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -194,10 +194,10 @@
                                 LiYixian
                              
                             on 
-                            Tuesday, November 28, 2023
+                            Wednesday, December 6, 2023
                             
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/2023/11/compiler-principles-ch7/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2023/12/compiler-principles-ch8/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 876 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 758 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
                             
                             
                             
@@ -358,70 +358,88 @@ $(function() {
                 
                 <p><strong>Summary:</strong></p>
 <ul>
-<li>源语言相关问题</li>
-<li>存储组织</li>
-<li>内存分配策略</li>
-<li>访问非局部名字</li>
-<li>参数传递</li>
+<li>三地址码</li>
+<li>语句翻译：声明、赋值、布尔表达式、控制流</li>
+<li>BackPatching</li>
 </ul>
-<h3 id="源语言相关问题">源语言相关问题</h3>
-<p>过程（函数）：procedure（静态）/activation（动态，一次执行）</p>
+<h3 id="三地址码">三地址码</h3>
+<p>一般形式：<code>x:=y op z</code>（注意赋值符号是 <code>:=</code>）<br>
+三地址码的实现：<br>
+利用属性 <code>E.place</code> 保存值，<code>E.code</code> 计算 E 的三地址码<br>
+newtemp 生成临时变量名，gen 输出一条三地址码指令</p>
 <ul>
-<li>过程定义、过程名、过程体</li>
-<li>函数、调用、形参、实参</li>
-<li>生存期</li>
+<li>四元组 <code>op, arg1, arg2, result</code>
+<ul>
+<li><code>c=a+b -&gt; +, a, b, c</code></li>
+<li><code>x:=y -&gt; :=,y,,x</code></li>
+<li><code>goto label -&gt; goto,,,label</code></li>
+<li><code>if x rel y goto label -&gt; rel,x,y,label</code></li>
 </ul>
-<p>过程的生命期或者不重叠、或者嵌套；<br>
-递归：过程 p 的某个活动尚未结束，可以开始它的一个新的活动</p>
-<p>控制栈：DFS 活动树，活动开始时结点入栈、结束后弹出</p>
-<p>声明：规定名字的含义<br>
--&gt; 作用域：声明起作用的范围，利用符号表<br>
-名字的绑定（声明的动态概念）：环境把名字映射到存储位置，状态把存储位置映射到存储数据<br>
--&gt; 赋值语句改变状态，但不改变环境</p>
-<h3 id="存储组织">存储组织</h3>
-<p>在控制栈里保存各种状态信息，调用返回时从控制栈恢复<br>
-活动记录</p>
-<p>
-  <img src="/img/%e6%b4%bb%e5%8a%a8%e8%ae%b0%e5%bd%95.png" alt="">
-
-</p>
-<p>局部数据布局对不同类型有对齐/补丁/压缩的问题<br>
-<strong>名字的左值和右值：左值是地址，右值是值</strong></p>
-<h3 id="内存分配策略">内存分配策略</h3>
+</li>
+<li>三元组 <code>op, arg1, arg2</code>
 <ul>
-<li>静态分配：编译时确定所有数据的内存分布（不能递归、不能 new）</li>
-<li>栈分配：运行时需要局部变量时在栈区分配局部变量（new 出来的对象也在栈区，有生命周期）
-<ul>
-<li>调用序列和返回序列：调用时 push，结束后 pop</li>
-<li>计算实参、返回值、设置控制链接和访问链接、保存寄存器值和其他状态信息</li>
+<li>避免把临时变量也存入符号表</li>
+<li><code>arg1, arg2</code> 可以是其他三地址码的序号</li>
+<li><code>x[i] -&gt; []=,x,i</code></li>
 </ul>
 </li>
 </ul>
 <p>
-  <img src="/img/%e8%b0%83%e7%94%a8%e5%ba%8f%e5%88%97.png" alt="">
+  <img src="/img/%e4%b8%89%e5%9c%b0%e5%9d%80%e7%a0%81.png" alt="">
 
 </p>
+<p>间接三元组：使用一个间接码表记录运算顺序，便于代码优化<br>
+-&gt; 不必每次插入/删除/重排序代码都要重新计算下标</p>
+<p>
+  <img src="/img/%e9%97%b4%e6%8e%a5%e4%b8%89%e5%85%83%e7%bb%84.png" alt="">
+
+</p>
+<h3 id="语句翻译">语句翻译</h3>
+<p><em>e.g.</em></p>
+<p>
+  <img src="/img/%e4%b8%ad%e9%97%b4%e4%bb%a3%e7%a0%81%e7%94%9f%e6%88%90%e7%a4%ba%e4%be%8b.png" alt="">
+
+</p>
+<h4 id="声明语句">声明语句</h4>
+<p>符号表栈处理作用域；<br>
+为 record 类型创建独立的符号表</p>
+<h4 id="赋值语句">赋值语句</h4>
+<p>在符号表中查找 identifier</p>
+<ol>
+<li>临时名字的重用</li>
+</ol>
+<p>临时变量数 = 表达式中运算符数，而且临时变量保存的中间计算结果只用一次，空间占用过多<br>
+如何重用临时变量保存不同的中间结果？<br>
+-&gt; 分析变量的生存周期（不同临时名字生存周期可能会嵌套，但不会交叉）<br>
+用栈实现，子节点临时变量出栈、归还临时名字池；parent 从池中分配临时名字、压栈</p>
+<ol start="2">
+<li>数组元素寻址</li>
+</ol>
+<p>起始地址 <code>base</code> + 下标 <code>i</code> *数组元素大小 <code>w</code><br>
+<em>e.g.</em> <code>addr(A[i]) = base + i*w</code><br>
+-&gt; k 维数组的寻址：寻 k 次<br>
+假设按行存放，那么 <code>addr(A[i1][i2]...[ik]) = base + i1*w1 + i2*w2 + ... + ik*wk</code></p>
+<p>数组引用的翻译：文法和地址计算相关联<br>
+核心是确定数组引用的地址</p>
+<ol start="3">
+<li>类型转换</li>
+</ol>
+<p>编译器要自动完成 widening &amp; narrowing 的隐式转换</p>
+<h4 id="布尔表达式">布尔表达式</h4>
+<p>控制流语句：继承属性 true/false 分别代表表达式为真/假时跳转到的位置，根据上下文指向不同的地方</p>
+<p>短路求值，通过跳转指令实现控制流，逻辑运算符本身不出现<br>
+<em>e.g.</em> <code>E1 or E2</code>，<code>E1=false</code> 才对 <code>E2</code> 求值<br>
+-&gt; 注意副作用问题：函数调用</p>
+<h4 id="控制流语句">控制流语句</h4>
 <ul>
-<li>堆分配：用户在运行时动态地在堆上分配和释放内存（所有变量都需要 new 和手动 delete）
-<ul>
-<li>从空闲块链表为活动记录分配块表，释放时退回</li>
-<li>局部名字的值在活动结束后仍能保持；被调用函数的活动生存期可以比被调用者长</li>
+<li>if (-else)</li>
+<li>while</li>
+<li>switch-case</li>
 </ul>
-</li>
-</ul>
-<h3 id="访问非局部名字">访问非局部名字</h3>
-<p>注意：<strong>非局部名字不是局部变量也不是全局变量</strong>。<br>
-block 的最近嵌套规则：对 block 中引用的变量，使用离它最近的（外层）block 中的声明</p>
-<p>包含过程嵌套的静态作用域：使用访问链接实现<br>
-<em>e.g.</em> PASCAL 语言允许过程嵌套，如果把一个 child 过程作为参数传递给其他函数，那么这个过程在哪里都可以访问 parent 过程中定义的变量，因此存在非局部名字，需要访问链判断是否能够访问指定变量<br>
--&gt; 访问链是静态链，指向代码中的直接父过程（固定）；控制链是动态链，指向调用它的过程（可变）</p>
-<h3 id="参数传递">参数传递</h3>
-<ul>
-<li>传值：将右值传给形参，与局部名字同样处理，存在被调用函数的活动记录中，对形参操作不影响实参的值</li>
-<li>传地址：将左值传给形参</li>
-<li>复制-恢复：调用前传值，返回时将值复制回实参</li>
-<li>传名：相当于宏</li>
-</ul>
+<h3 id="backpatching">BackPatching</h3>
+<p>生成跳转指令时，其跳转目标代码还没有生成 -&gt; 跳转到哪里？<br>
+backpatching：记录跳转指令的标号，但不生成跳转目标，将标号记录到综合属性 falselist 中；跳转目标代码生成完毕后，把 falselist 中所有指令的目标都填上这个值。</p>
+<p>break &amp; continue 的代码与外围语句相关，需要知道 while 的条件和结束位置</p>
 
     
                 
@@ -433,15 +451,10 @@ block 的最近嵌套规则：对 block 中引用的变量，使用离它最近�
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/11/compiler-principles-ch6/" data-toggle="tooltip" data-placement="top" title="编译原理笔记06：类型检查">&larr;
+                        <a href="/2023/11/compiler-principles-ch7/" data-toggle="tooltip" data-placement="top" title="编译原理笔记07：运行时环境">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2023/12/compiler-principles-ch8/" data-toggle="tooltip" data-placement="top" title="编译原理笔记08：中间代码生成">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 

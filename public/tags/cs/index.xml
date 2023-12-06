@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Tue, 28 Nov 2023 14:51:44 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Dec 2023 20:31:01 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译原理笔记08：中间代码生成</title>
+      <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch8/</link>
+      <pubDate>Wed, 06 Dec 2023 20:31:01 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/12/compiler-principles-ch8/</guid>
+      <description>Summary: 三地址码 语句翻译：声明、赋值、布尔表达式、控制流 BackPatching 三地址码 一般形式：x:=y op z（注意赋值符号是 :=） 三地址码的实现： 利用属性 E.place 保存值，E</description>
+    </item>
+    
     <item>
       <title>编译原理笔记07：运行时环境</title>
       <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch7/</link>
