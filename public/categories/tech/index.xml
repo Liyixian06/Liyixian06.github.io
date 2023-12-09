@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 06 Dec 2023 20:31:01 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Dec 2023 22:36:25 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>计算机网络笔记04B：网络层-控制平面</title>
+      <link>https://Liyixian06.github.io/2023/12/computer-networking-ch5/</link>
+      <pubDate>Wed, 06 Dec 2023 22:36:25 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/12/computer-networking-ch5/</guid>
+      <description>Summary: 路由选择算法 链路状态算法 距离向量算法 互联网路由选择协议 RIP OSPF BGP 软件定义网络 SDN ICMP 互联网控制报文协议 路由选择算法 路由选择算法 routing algorithm</description>
+    </item>
+    
     <item>
       <title>编译原理笔记08：中间代码生成</title>
       <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch8/</link>
