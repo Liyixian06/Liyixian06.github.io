@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="编译原理笔记07：运行时环境" />
-    <meta property="og:title" content="编译原理笔记07：运行时环境" />
-    <meta property="twitter:title" content="编译原理笔记07：运行时环境" />
+    <meta name="title" content="计算机体系结构11：Multicore" />
+    <meta property="og:title" content="计算机体系结构11：Multicore" />
+    <meta property="twitter:title" content="计算机体系结构11：Multicore" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>编译原理笔记07：运行时环境 | 李一线的博客</title>
+    <title>计算机体系结构11：Multicore | 李一线的博客</title>
 
-    <link rel="canonical" href="/2023/11/compiler-principles-ch7/">
+    <link rel="canonical" href="/2023/12/computer-architecture-ch11/">
 
     
     
@@ -180,12 +180,12 @@
                             CS
                         </a>
                         
-                        <a class="tag" href="/tags/compiler" title="compiler">
-                            compiler
+                        <a class="tag" href="/tags/computer-architecture" title="computer architecture">
+                            computer architecture
                         </a>
                         
                     </div>
-                    <h1>编译原理笔记07：运行时环境</h1>
+                    <h1>计算机体系结构11：Multicore</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -194,10 +194,10 @@
                                 LiYixian
                              
                             on 
-                            Tuesday, November 28, 2023
+                            Wednesday, December 6, 2023
                             
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/2023/11/compiler-principles-ch7/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2023/12/computer-architecture-ch11/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -330,7 +330,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 876 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 2086 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
                             
                             
                             
@@ -356,72 +356,226 @@ $(function() {
                 post-container">
     
                 
-                <p><strong>Summary:</strong></p>
+                <h3 id="shared-memory-model">Shared memory model</h3>
+<p>线程：独立的 execution flow，通常共享内存<br>
+-&gt; process 有独立的内存，一个 process 里可以有若干个 thread，它们复用 CPU 资源，通常由 OS 管理、切换</p>
+<p>shared memory model：程序员显式地创建多线程</p>
 <ul>
-<li>源语言相关问题</li>
-<li>存储组织</li>
-<li>内存分配策略</li>
-<li>访问非局部名字</li>
-<li>参数传递</li>
+<li>它们有各自的局部变量栈</li>
+<li>所有 load/store 操作都对同一套共享内存（所有线程可读写）</li>
+<li>线程切换可能在任何时候发生</li>
+<li>通过 thread-level parallelism (TLP) 执行并行工作</li>
 </ul>
-<h3 id="源语言相关问题">源语言相关问题</h3>
-<p>过程（函数）：procedure（静态）/activation（动态，一次执行）</p>
-<ul>
-<li>过程定义、过程名、过程体</li>
-<li>函数、调用、形参、实参</li>
-<li>生存期</li>
-</ul>
-<p>过程的生命期或者不重叠、或者嵌套；<br>
-递归：过程 p 的某个活动尚未结束，可以开始它的一个新的活动</p>
-<p>控制栈：DFS 活动树，活动开始时结点入栈、结束后弹出</p>
-<p>声明：规定名字的含义<br>
--&gt; 作用域：声明起作用的范围，利用符号表<br>
-名字的绑定（声明的动态概念）：环境把名字映射到存储位置，状态把存储位置映射到存储数据<br>
--&gt; 赋值语句改变状态，但不改变环境</p>
-<h3 id="存储组织">存储组织</h3>
-<p>在控制栈里保存各种状态信息，调用返回时从控制栈恢复<br>
-活动记录</p>
-<p>
-  <img src="/img/%e6%b4%bb%e5%8a%a8%e8%ae%b0%e5%bd%95.png" alt="">
+<h4 id="interleaving">Interleaving</h4>
+<p><em>e.g. initially x=0, y=0</em></p>
+<pre tabindex="0"><code>thread 1: 
+	store 1 -&gt; y
+	load x
+thread 2:
+	store 1 -&gt; x
+	load y
+</code></pre><p>因为线程可能随时切换，最后两个线程 load 出的值可能是 <code>x=0,y=1 / x=1,y=1/ x=1,y=0</code><br>
+
+  <img src="/img/shard_memory_model-interleaving.png" alt="">
 
 </p>
-<p>局部数据布局对不同类型有对齐/补丁/压缩的问题<br>
-<strong>名字的左值和右值：左值是地址，右值是值</strong></p>
-<h3 id="内存分配策略">内存分配策略</h3>
+<p>最简单的 multiprocessor 是把整条 processor pipeline 复制一次，除了 cache 是共享的<br>
+多线程的操作 (load/store) 是“随机” interleave 的，load 的值是最近一次 store 的值（可能不是当前线程的 store）</p>
+<p>shared memory 的四个问题：</p>
+<ol>
+<li>cache coherence：如果每个核有 private caches</li>
+<li>parallel programming</li>
+<li>synchronization：如何管理共享数据的权限，实现 lock</li>
+<li>memory consistency models：编译器优化、store buffer、乱序执行</li>
+</ol>
+<p>hardware multithreading (MT)<br>
+动态共享一条 pipeline，只复制 PC 和寄存器；硬件 interleave 指令</p>
+<h3 id="cache-coherence">Cache coherence</h3>
+<p>使用 private cache -&gt; Cache Coherence Protocol 一致性协议<br>
+Loads read the value written by the most recent store</p>
+<p>要同步不同 core 的 cache，需要做到两点：</p>
+<ol>
+<li>
+<p>write propagation：某个 core 的 cache 更新时，必须传给其他 core</p>
+</li>
+<li>
+<p>transaction serialization：某个 core 里对 cache 的操作顺序，在其他 core 看起来顺序必须一致</p>
+</li>
+<li>
+<p>VI</p>
 <ul>
-<li>静态分配：编译时确定所有数据的内存分布（不能递归、不能 new）</li>
-<li>栈分配：运行时需要局部变量时在栈区分配局部变量（new 出来的对象也在栈区，有生命周期）
+<li>Valid/Invalid</li>
+<li>track 每个 block 的 copy<br>
+
+  <img src="/img/VI%e4%b8%80%e8%87%b4%e6%80%a7%e5%8d%8f%e8%ae%ae01.png" alt="">
+
+
+
+  <img src="/img/VI%e4%b8%80%e8%87%b4%e6%80%a7%e5%8d%8f%e8%ae%ae02.png" alt="">
+
+</li>
+<li>如果有一个 core 想写 block -&gt; 其他 block invalidate</li>
+<li>Invalid 的 block 要读时，如果某个 core 的 copy 是 dirty 的，就写回</li>
+</ul>
+</li>
+<li>
+<p>MSI</p>
 <ul>
-<li>调用序列和返回序列：调用时 push，结束后 pop</li>
-<li>计算实参、返回值、设置控制链接和访问链接、保存寄存器值和其他状态信息</li>
+<li>Modified (r/w permission，相当于 local dirty copy)/Shared (read-only，相当于 local clean copy)/Invalid
+<ul>
+<li>允许多个 S-state <strong>或</strong>一个 M-state</li>
+</ul>
+</li>
+<li>有一个 core 想写 block 时，自身变为 Modified，其他 block 变为 Invalid；
+
+  <img src="/img/MSI%e4%b8%80%e8%87%b4%e6%80%a7%e5%8d%8f%e8%ae%ae01.png" alt="">
+
+</li>
+<li>Invalid 的 block 要读时，Modified copy 写回，然后它们两个变为 Shared。
+
+  <img src="/img/MSI%e4%b8%80%e8%87%b4%e6%80%a7%e5%8d%8f%e8%ae%ae02.png" alt="">
+
+</li>
+<li>引入了两种新的 cache miss
+<ul>
+<li>upgrade miss：往 read-only blocks 里写</li>
+<li>coherence miss：miss to a block evicted (write-backed/replaced) by another processor’s requests</li>
+</ul>
+</li>
+<li>false sharing：共享了同一个 block 的不同部分，并不是真的 sharing，会造成乒乓效应
+
+  <img src="/img/MSI_transition_table.png" alt="">
+
+</li>
+</ul>
+</li>
+<li>
+<p>MESI</p>
+<ul>
+<li>增添了 Exclusive state: &ldquo;I have the only cached copy, and it’s a <strong>clean</strong> copy&rdquo;
+<ul>
+<li>Load miss 后如果没有其他 block copy，则变为 Exclusive</li>
+<li>写 Exclusive 会将其变为 Modified</li>
+<li>block eviction (writeback/replacement) 时：如果是 Modified 就必须写回，Exclusive 则不必要写回</li>
+</ul>
+</li>
+<li>避免了 non-shared blocks 的 upgrade miss
+
+  <img src="/img/MESI_transition_table.png" alt="">
+
+</li>
+</ul>
+</li>
+<li>
+<p>MOESI</p>
+<ul>
+<li>dirty bit 和 coherence state 有冗余 -&gt; 将 dirty bit 加入 coherence state
+<ul>
+<li>把 Shared 分为 Shared 和 Owned，前者 always clean，后者 always dirty</li>
 </ul>
 </li>
 </ul>
-<p>
-  <img src="/img/%e8%b0%83%e7%94%a8%e5%ba%8f%e5%88%97.png" alt="">
-
-</p>
+</li>
+</ol>
 <ul>
-<li>堆分配：用户在运行时动态地在堆上分配和释放内存（所有变量都需要 new 和手动 delete）
+<li>两种类型
 <ul>
-<li>从空闲块链表为活动记录分配块表，释放时退回</li>
-<li>局部名字的值在活动结束后仍能保持；被调用函数的活动生存期可以比被调用者长</li>
+<li>对所有 caches 进行 write-through update（浪费 bandwidth）</li>
+<li>invalidation，两种类型：
+<ul>
+<li>bus snooping/broadcast</li>
+<li>directory：track block sharers（bandwidth 较低，但延迟更长，常用），两种选择：
+<ul>
+<li>inclusion：在 per-core cache 中的必须在上级 cache 里</li>
+<li>no inclusion</li>
 </ul>
 </li>
 </ul>
-<h3 id="访问非局部名字">访问非局部名字</h3>
-<p>注意：<strong>非局部名字不是局部变量也不是全局变量</strong>。<br>
-block 的最近嵌套规则：对 block 中引用的变量，使用离它最近的（外层）block 中的声明</p>
-<p>包含过程嵌套的静态作用域：使用访问链接实现<br>
-<em>e.g.</em> PASCAL 语言允许过程嵌套，如果把一个 child 过程作为参数传递给其他函数，那么这个过程在哪里都可以访问 parent 过程中定义的变量，因此存在非局部名字，需要访问链判断是否能够访问指定变量<br>
--&gt; 访问链是静态链，指向代码中的直接父过程（固定）；控制链是动态链，指向调用它的过程（可变）</p>
-<h3 id="参数传递">参数传递</h3>
-<ul>
-<li>传值：将右值传给形参，与局部名字同样处理，存在被调用函数的活动记录中，对形参操作不影响实参的值</li>
-<li>传地址：将左值传给形参</li>
-<li>复制-恢复：调用前传值，返回时将值复制回实参</li>
-<li>传名：相当于宏</li>
+</li>
 </ul>
+</li>
+</ul>
+<p>参考资料：<br>
+<a href="https://zhuanlan.zhihu.com/p/95435168">cache之多核一致性(二) - MSI协议</a><br>
+<a href="https://zhuanlan.zhihu.com/p/651732241">一小时，完全搞懂 cpu 缓存一致性</a></p>
+<h3 id="synchronization">Synchronization</h3>
+<p>共享内存的重要问题；lock/semaphore<br>
+-&gt; acquire (lock) and release (unlock)<br>
+另一种方式是 barrier synchronization</p>
+<h4 id="lock-implementation">lock implementation</h4>
+<p>如何实现 acquire/release？<br>
+ISA 提供了原子的 lock acquisition 指令，实现了正确的 spin lock -&gt; atomic compare-and-swap (CAS)，其原理类似：</p>
+<pre tabindex="0"><code>if (this == expect) {
+    this = update
+    return true;
+} else {
+    return false;
+}
+</code></pre><p>即，需要给出一个变量期望值，如果实际值与之不相等，表明变量已经被其他线程修改过了。<br>
+-&gt; CAS 不是真正的 lock，没有 lock/unlock 过程，不存在阻塞，对死锁问题天然免疫；失败的线程不会挂起，仅是被告知失败，并且允许再次尝试<br>
+CAS 由多条指令实现，如何保证其原子性？</p>
+<pre tabindex="0"><code>label:
+	load-link r1 &lt;- 0(&amp;lock)
+	// potentially other insts
+	store-conditional r2 -&gt; 0(&amp;lock)
+	branch-not-zero label  // check for failure
+</code></pre><p>在 <code>load-link</code> 时，处理器记住了操作的内存地址；如果检测到写操作，下一条 <code>store-conditional</code> 会执行失败。<br>
+CAS 的缺陷：循环时间太长、只能保证一个共享变量原子操作、ABA 问题</p>
+<p>queue lock：每个等待的处理器 spin on 不同位置（一个 queue）；当一个处理器 release lock，只有下一个才能看到它被释放了，其他处理器全都不知道，这样可以按顺序传递 lock</p>
+<h4 id="locking-issues">Locking issues</h4>
+<ol>
+<li>locking 颗粒度问题</li>
+</ol>
+<p>粗粒度的 lock （<em>i.e.</em> 整个数据库只用一个 lock）很容易正确，但限制了并行度；细粒度的 lock 可以实现多个 critical sections 的并行操作，但非常容易出错</p>
+<ol start="2">
+<li>死锁：循环等待共享资源</li>
+</ol>
+<p>-&gt; 四个 Coffman Conditions，只要打破随便一个就可以解开<br>
+多个 lock 时，总是按照同样的顺序 acquire</p>
+<ol start="3">
+<li>acquiring lock 不仅代价极高，而且多数情况下并不需要；我们是在为极少数的冲突付出代价</li>
+</ol>
+<h3 id="memory-consistency">Memory Consistency</h3>
+<pre tabindex="0"><code>initially flag = 0, a = 0
+thread 1:
+	store 1 -&gt; a
+	store 1-&gt; flag
+thread 2:
+	loop: if (flag==0) goto loop
+	load a
+</code></pre><p>上面的例子里，<code>load a</code> 也可能会返回 0 -&gt; 针对不同地址的内存操作重排</p>
+<p>consistency 和 coherence 的区别：后者考虑同一内存位置的写操作对所有处理器的可见性，保证其顺序；前者不仅针对同一内存区域的访问，而且读写两种操作都要考虑。</p>
+<blockquote>
+<p>考虑到并行优化，几乎所有平台都会改变指令顺序来提高程序运行速度，这不可避免地会违反 Consistency 原则。前面提到存储的 Consistency 模型中的内存访问分两种，即读和写。经组合，易得违反 Consistency 原则的情况也可能有四种：R-R hazard，R-W hazard，W-R hazard 和 W-W hazard。过强的 Consistency 约束会使优化程度极大降低，因此很多平台会选择放弃其中的一种或几种。</p>
+</blockquote>
+<p>几种 memory consistency 模型：</p>
+<ol>
+<li>sequential consistency (SC)：最严格的原则
+<ul>
+<li>内存访问都是原子操作，没有 write buffer/cache</li>
+<li>核内严格按程序要求的顺序完成 load/store 指令</li>
+<li>多核之间可以 interleaving</li>
+</ul>
+</li>
+<li>total store order (TSO)（x86）
+<ul>
+<li>允许 FIFO 的 write buffer
+<ul>
+<li>store 可以延迟，但必须按顺序进入 cache</li>
+</ul>
+</li>
+<li>放松 W-&gt;R 顺序</li>
+<li>可以使用 <code>FENCE</code> 这一 memory barrier 保证核内操作顺序</li>
+</ul>
+</li>
+<li>release consistency (RC)（ARM/PowerPC）
+<ul>
+<li>store 可以乱序进入 cache，load 也可以重排</li>
+<li>用  acquire/release 作为 memory barrier（前向和后向）</li>
+</ul>
+</li>
+</ol>
+<p>参考资料：<a href="https://zhuanlan.zhihu.com/p/422848235">内存一致性（Memory Consistency）</a></p>
 
     
                 
@@ -433,13 +587,13 @@ block 的最近嵌套规则：对 block 中引用的变量，使用离它最近�
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/11/compiler-principles-ch6/" data-toggle="tooltip" data-placement="top" title="编译原理笔记06：类型检查">&larr;
+                        <a href="/2023/11/compiler-principles-ch7/" data-toggle="tooltip" data-placement="top" title="编译原理笔记07：运行时环境">&larr;
                             Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2023/12/computer-architecture-ch11/" data-toggle="tooltip" data-placement="top" title="计算机体系结构11：Multicore">Next
+                        <a href="/2023/12/compiler-principles-ch8/" data-toggle="tooltip" data-placement="top" title="编译原理笔记08：中间代码生成">Next
                             Post &rarr;</a>
                     </li>
                     
