@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 06 Dec 2023 22:36:25 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Dec 2023 14:21:30 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编译原理笔记10：代码优化</title>
+      <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch10/</link>
+      <pubDate>Tue, 19 Dec 2023 14:21:30 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/12/compiler-principles-ch10/</guid>
+      <description>Summary: 优化种类 循环 优化编译器：控制流分析 -&amp;gt; 数据流分析 -&amp;gt; 代码变换 与目的机器无关 优化种类 局部优化（i.e. 基本块内优化）、全局优化 消去公共子表达式 复</description>
+    </item>
+    
+    <item>
+      <title>编译原理笔记09：代码生成</title>
+      <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch9/</link>
+      <pubDate>Tue, 12 Dec 2023 14:20:19 +0800</pubDate>
+      
+      <guid>https://Liyixian06.github.io/2023/12/compiler-principles-ch9/</guid>
+      <description>Summary: 基本块和流图 代码生成基本算法 寄存器分配 窥孔优化 设计问题 输入 中间表示形式 符号表信息 类型检查和转换已经完成 输出 汇编语言 内存管理 见 Ch7 中讨论的内存</description>
+    </item>
+    
     <item>
       <title>计算机网络笔记04B：网络层-控制平面</title>
       <link>https://Liyixian06.github.io/2023/12/computer-networking-ch5/</link>
