@@ -1,11 +1,12 @@
 ---
+layout: 	 single
 title:       "如何看片"
 subtitle:    ""
 description: "一份互联网看片指南"
 date:        2023-07-23T00:56:01+08:00
 author: LiYixian
 image:       ""
-tags:        ["Film & TV"]
+tags:        ["Film and TV"]
 categories:  ["Life" ]
 URL: "/2023/07/how-to-watch/"
 ---

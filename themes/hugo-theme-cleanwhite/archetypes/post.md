@@ -1,4 +1,5 @@
 ---
+layout:		 single
 title:       "An Example Post"
 subtitle:    ""
 description: ""

@@ -8,65 +8,82 @@
     
     <meta property="og:site_name" content="Liyixian Blog">
     <meta property="og:type" content="article">
-
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+    
+    
     
     <meta property="og:image" content="https://Liyixian06.github.io//img/bg_home.jpeg">
     <meta property="twitter:image" content="https://Liyixian06.github.io//img/bg_home.jpeg" />
     
-
+    
     
     <meta name="title" content="计算机网络笔记04B：网络层-控制平面" />
     <meta property="og:title" content="计算机网络笔记04B：网络层-控制平面" />
     <meta property="twitter:title" content="计算机网络笔记04B：网络层-控制平面" />
     
-
+    
     
     <meta name="description" content=" ">
     <meta property="og:description" content=" " />
     <meta property="twitter:description" content=" " />
     
-
+    
     
     <meta property="twitter:card" content="summary" />
     
     
-
+    
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
-
+    
     <title>计算机网络笔记04B：网络层-控制平面 | 李一线的博客</title>
-
+    
     <link rel="canonical" href="/2023/12/computer-networking-ch5/">
-
+    
     
     
     
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-
+    
     
     <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
-
+    
     
     <link rel="stylesheet" href="/css/zanshang.css">
-
+    
     
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
-
     
     
-
+    
+    
     
     <script src="/js/jquery.min.js"></script>
-
+    
     
     <script src="/js/bootstrap.min.js"></script>
-
+    
     
     <script src="/js/hux-blog.min.js"></script>
-
+    
     
     <script src="/js/lazysizes.min.js"></script>
-
+    
     
     
 
@@ -196,7 +213,7 @@
                             on 
                             Wednesday, December 6, 2023
                             
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
                                 <span id="/2023/12/computer-networking-ch5/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
@@ -410,9 +427,10 @@ until all nodes in N
 时间复杂度：\(O(n^{2})\)（一共需要搜寻 \(n(n+1)/2\) 个节点），用堆实现可以达到 \(O(nlogn)\)</p>
 <h4 id="距离向量算法">距离向量算法</h4>
 <p>Bellman-Ford 方程：<br>
+</p>
 $$
 d_{x}(y) = min(c(x,m)+d_{m}(y))
-$$
+$$<p>
 也就是，从 x 到 y 的最低开销依赖于 x 的所有邻居 m 到 y 的最低开销。<br>
 符号定义：</p>
 <ul>
@@ -516,17 +534,20 @@ ICMP message 有一个类型字段和一个编码字段，<em>e.g.</em> Ping 命
                 
                 
                 
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
-    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
-    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
-    crossorigin="anonymous"></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
-    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
-
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
                 
     
                 
@@ -548,6 +569,7 @@ ICMP message 有一个类型字段和一个编码字段，<em>e.g.</em> Ping 命
                 
     
                 
+
 
 
 <script src="https://giscus.app/client.js"
@@ -605,14 +627,14 @@ ICMP message 有一个类型字段和一个编码字段，<em>e.g.</em> Ping 命
                         
                         
                         
-                        <a href="/tags/computer-architecture" title="computer-architecture">
-                            computer-architecture
+                        <a href="/tags/computer-architecture" title="computer architecture">
+                            computer architecture
                         </a>
                         
                         
                         
-                        <a href="/tags/computer-networking" title="computer-networking">
-                            computer-networking
+                        <a href="/tags/computer-networking" title="computer networking">
+                            computer networking
                         </a>
                         
                         
@@ -627,8 +649,8 @@ ICMP message 有一个类型字段和一个编码字段，<em>e.g.</em> Ping 命
                         
                         
                         
-                        <a href="/tags/operating-system" title="operating-system">
-                            operating-system
+                        <a href="/tags/operating-system" title="operating system">
+                            operating system
                         </a>
                         
                         
@@ -710,7 +732,7 @@ ICMP message 有一个类型字段和一个编码字段，<em>e.g.</em> Ping 命
             
              </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; Liyixian Blog 2023
+                    Copyright &copy; Liyixian Blog 2025
                     <br>
                     <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
                     <iframe

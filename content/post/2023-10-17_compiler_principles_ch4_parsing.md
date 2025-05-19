@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "编译原理笔记04：语法分析"
 subtitle:    ""
 description: " "
@@ -304,7 +305,7 @@ LR (O) 不向前看：如果某个状态存在规约项目，那么此状态在 
 - 状态 i 对应项集 \\(I_{i}\\)，相关的 action/goto 表条目如：
 	- \\([A\rightarrow\alpha·a\beta]\\) 在 \\(I_{i}\\) 中，且 \\(GOTO(I_{i},a)=I_{j}\\)，则 \\(ACTION[i,a]\\) =‘移入 j’
 	- \\([A\rightarrow\alpha·]\\) 在 \\(I_{i}\\) 中，那么对 \\(FOLLOW(A)\\) 中所有 a，\\(ACTION[i,a]\\) =‘按 \\(A\rightarrow\alpha\\) 规约’
-	- 如果 \\([S'\rightarrow S·]\\) 在 \\(I_{i}\\) 中，那么 \\(ACTION[i,\$]\\) =‘接受’
+	- 如果 \\([S'\rightarrow S·]\\) 在 \\(I_{i}\\) 中，那么 \\(ACTION[i,\\$]\\) =‘接受’
 	- 如果 \\(GOTO(I_{i},A)=I_{j}\\)，那么在 GOTO 表中，\\(GOTO[i,A]=j\\)
 - 空白条目设为 error  
 
@@ -363,10 +364,10 @@ LALR 简化项集的思想是：寻找具有相同核心（core，即项的第�
 
 *e.g.* 存在如下项集规范族：  
 $$I_{4}=\{[C\rightarrow d·,c]\ [C\rightarrow d·,d]\}$$    
-$$I_{7}=\{[C\rightarrow d·,\\$]\}$$   
+$$I_{7}=\{[C\rightarrow d·,\$]\}$$   
 即，状态 4 和 7 有相同的核心 \\(C\rightarrow d·\\)，区别在于状态 4 在下一个输入符号是 c 或 d 时规约，\$ 时报错，状态 7 则正相反；于是，可以将它们合并为一个项集：  
 
-$$I_{47}=\{[C\rightarrow d·,c]\ [C\rightarrow d·,d]\ [C\rightarrow d·,\\$]\}$$
+$$I_{47}=\{[C\rightarrow d·,c]\ [C\rightarrow d·,d]\ [C\rightarrow d·,\$]\}$$
 
 被合并项集的 goto 目标也随之合并。  
 -> 可能出现的问题是会引发规约-规约冲突，即不能确定按照哪个 production 规约：  

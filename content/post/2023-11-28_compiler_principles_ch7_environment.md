@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "编译原理笔记07：运行时环境"
 subtitle:    ""
 description: " "

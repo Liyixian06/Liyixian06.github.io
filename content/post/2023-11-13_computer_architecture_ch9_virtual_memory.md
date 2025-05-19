@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "计算机体系结构09：Virtual Memory"
 subtitle:    ""
 description: " "

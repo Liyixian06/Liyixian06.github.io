@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "操作系统笔记03：进程间通信"
 subtitle:    ""
 description: " "

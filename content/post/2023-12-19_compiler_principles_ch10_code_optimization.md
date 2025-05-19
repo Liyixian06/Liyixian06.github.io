@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "编译原理笔记10：代码优化"
 subtitle:    ""
 description: " "

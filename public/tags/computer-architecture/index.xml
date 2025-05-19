@@ -1,75 +1,62 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>computer architecture on Liyixian Blog</title>
+    <title>Computer Architecture on Liyixian Blog</title>
     <link>https://Liyixian06.github.io/tags/computer-architecture/</link>
-    <description>Recent content in computer architecture on Liyixian Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Computer Architecture on Liyixian Blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 06 Dec 2023 10:33:31 +0800</lastBuildDate><atom:link href="https://Liyixian06.github.io/tags/computer-architecture/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Dec 2023 10:33:31 +0800</lastBuildDate>
+    <atom:link href="https://Liyixian06.github.io/tags/computer-architecture/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>计算机体系结构11：Multicore</title>
       <link>https://Liyixian06.github.io/2023/12/computer-architecture-ch11/</link>
       <pubDate>Wed, 06 Dec 2023 10:33:31 +0800</pubDate>
-      
       <guid>https://Liyixian06.github.io/2023/12/computer-architecture-ch11/</guid>
-      <description>Shared memory model 线程：独立的 execution flow，通常共享内存 -&amp;gt; process 有独立的内存，一个 process 里可以有若干个 thread，它们复用 CPU 资源，通常由 OS 管理、切换 shared memory mode</description>
+      <description>&lt;h3 id=&#34;shared-memory-model&#34;&gt;Shared memory model&lt;/h3&gt;&#xA;&lt;p&gt;线程：独立的 execution flow，通常共享内存&lt;br&gt;&#xA;-&amp;gt; process 有独立的内存，一个 process 里可以有若干个 thread，它们复用 CPU 资源，通常由 OS 管理、切换&lt;/p&gt;&#xA;&lt;p&gt;shared memory model：程序员显式地创建多线程&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>计算机体系结构09：Virtual Memory</title>
       <link>https://Liyixian06.github.io/2023/11/computer-architecture-ch9/</link>
       <pubDate>Mon, 13 Nov 2023 22:38:33 +0800</pubDate>
-      
       <guid>https://Liyixian06.github.io/2023/11/computer-architecture-ch9/</guid>
-      <description>Computer System CPUs and memories connected by memory bus I/O peripherals: storage, input, display, network&amp;hellip; Connected by system bus (which is connected to memory bus) Operating System abstraction：给计算机硬件资源提供软件接口 (e.g. threads, files, etc.)，简化 application 编程 iso</description>
+      <description>&lt;h3 id=&#34;computer-system&#34;&gt;Computer System&lt;/h3&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://Liyixian06.github.io/img/computer_system.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;CPUs and memories&#xA;&lt;ul&gt;&#xA;&lt;li&gt;connected by memory bus&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;I/O peripherals: storage, input, display, network&amp;hellip;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Connected by system bus (which is connected to memory bus)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Operating System&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;abstraction：给计算机硬件资源提供软件接口 (&lt;em&gt;e.g.&lt;/em&gt; threads, files, etc.)，简化 application 编程&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;isolation：虚拟化，给每个 process private CPU/memory/IO（用到的不是整个计算机，看到的是整个计算机）&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>计算机体系结构笔记08：Superscalar and VLIW</title>
       <link>https://Liyixian06.github.io/2023/11/computer-architecture-ch8/</link>
       <pubDate>Mon, 06 Nov 2023 22:37:56 +0800</pubDate>
-      
       <guid>https://Liyixian06.github.io/2023/11/computer-architecture-ch8/</guid>
-      <description>Superscalar scalar pipeline 的性能极限是 CPI=IPC=1，但限于 hazards 也无法达到 multiple issues -&amp;gt; superscalar 要多套硬件同时执行多条指令（指令级并行 ILP），需要检查它们的依赖关系 寄存器</description>
+      <description>&lt;h3 id=&#34;superscalar&#34;&gt;Superscalar&lt;/h3&gt;&#xA;&lt;p&gt;scalar pipeline 的性能极限是 CPI=IPC=1，但限于 hazards 也无法达到&lt;br&gt;&#xA;multiple issues -&amp;gt; superscalar&lt;/p&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://Liyixian06.github.io/img/superscalar_pipeline.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;要多套硬件同时执行多条指令（指令级并行 ILP），需要检查它们的依赖关系&lt;br&gt;&#xA;寄存器调度，并行度取决于 workload&lt;br&gt;&#xA;目前大部分是 4 inst/cycle&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>计算机体系结构笔记07：Prefetching</title>
       <link>https://Liyixian06.github.io/2023/10/computer-architecture-ch7/</link>
       <pubDate>Mon, 16 Oct 2023 22:36:28 +0800</pubDate>
-      
       <guid>https://Liyixian06.github.io/2023/10/computer-architecture-ch7/</guid>
-      <description>以 cache block 为单位 fetch the data before needed by the program，需要预测地址 减少 compulsory cache misses 减少内存 latency：L2 的 miss rate 减小，L1 的 latency 就会减小 如果取错了：占用空间</description>
+      <description>&lt;p&gt;以 cache block 为单位 fetch the data before needed by the program，需要预测地址&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;减少 compulsory cache misses&lt;/li&gt;&#xA;&lt;li&gt;减少内存 latency：L2 的 miss rate 减小，L1 的 latency 就会减小&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;如果取错了：占用空间和带宽，但不用刷新 pipeline，影响很小&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>计算机体系结构笔记06：Caches</title>
       <link>https://Liyixian06.github.io/2023/10/computer-architecture-ch6/</link>
       <pubDate>Mon, 09 Oct 2023 22:36:08 +0800</pubDate>
-      
       <guid>https://Liyixian06.github.io/2023/10/computer-architecture-ch6/</guid>
-      <description>Overview of Memory Arrays 计算机如何存储数据？ memory array 存储阵列 2^N 行 M 列，每行对应一个 word-line，每列对应一个 bit-line 每次读一行，activate 一个 word-l</description>
+      <description>&lt;h3 id=&#34;overview-of-memory-arrays&#34;&gt;Overview of Memory Arrays&lt;/h3&gt;&#xA;&lt;p&gt;计算机如何存储数据？&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;memory array 存储阵列&lt;/li&gt;&#xA;&lt;li&gt;2^N 行 M 列，每行对应一个 word-line，每列对应一个 bit-line&lt;/li&gt;&#xA;&lt;li&gt;每次读一行，activate 一个 word-line，输出一行的 storage&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://Liyixian06.github.io/img/memory_array_organization.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>计算机体系结构笔记05：Branch Prediction</title>
       <link>https://Liyixian06.github.io/2023/09/computer-architecture-ch5/</link>
       <pubDate>Sun, 24 Sep 2023 22:35:28 +0800</pubDate>
-      
       <guid>https://Liyixian06.github.io/2023/09/computer-architecture-ch5/</guid>
-      <description>Control Dependencies 一些可行的 solution： 阻塞流水线，直到知道下个 fetch address 是什么 branch prediction 延迟槽 branch delayed slot：在分支指令后面填上（通常是一条）无论是否跳转都会执</description>
+      <description>&lt;h3 id=&#34;control-dependencies&#34;&gt;Control Dependencies&lt;/h3&gt;&#xA;&lt;p&gt;一些可行的 solution：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;阻塞流水线，直到知道下个 fetch address 是什么&lt;/li&gt;&#xA;&lt;li&gt;branch prediction&lt;/li&gt;&#xA;&lt;li&gt;延迟槽 branch delayed slot：在分支指令后面填上（通常是一条）无论是否跳转都会执行的指令，避免预测失败后的浪费&lt;/li&gt;&#xA;&lt;li&gt;fine-grained multithreading：干点别的&lt;/li&gt;&#xA;&lt;li&gt;判定式执行 predicated execution：消除 control-flow 指令&lt;/li&gt;&#xA;&lt;li&gt;两边都取指 multipath execution&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;阻塞意味着 control-flow 指令后的下一条 fetch address 在流水线里至少要经过 N 个周期才能确定；如果每个周期能取 W 条指令（即，流水线宽度为 W），那预测错误就会带来 N*W 个浪费的指令槽&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>计算机体系结构笔记01：Performance</title>
       <link>https://Liyixian06.github.io/2023/08/computer-architecture-ch1/</link>
       <pubDate>Mon, 28 Aug 2023 15:36:54 +0800</pubDate>
-      
       <guid>https://Liyixian06.github.io/2023/08/computer-architecture-ch1/</guid>
-      <description>Metrics latency (execution time)：执行一项固定任务的时间 throughput (bandwidth)：单位时间执行的任务 利用并行增加 throughput, not latency 二者通常是冲突的 CPU Performance performance 计算公式： latency = seconds/program</description>
+      <description>&lt;h3 id=&#34;metrics&#34;&gt;Metrics&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;latency (execution time)：执行一项固定任务的时间&lt;/li&gt;&#xA;&lt;li&gt;throughput (bandwidth)：单位时间执行的任务&#xA;&lt;ul&gt;&#xA;&lt;li&gt;利用并行增加 throughput, not latency&lt;/li&gt;&#xA;&lt;li&gt;二者通常是冲突的&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;cpu-performance&#34;&gt;CPU Performance&lt;/h3&gt;&#xA;&lt;p&gt;performance 计算公式：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;latency = seconds/program = 下列三者的乘积：&#xA;&lt;ul&gt;&#xA;&lt;li&gt;inst/program 指令数&lt;/li&gt;&#xA;&lt;li&gt;cycles/inst (CPI) 主要研究的是这个 (caches, parallelism)&lt;/li&gt;&#xA;&lt;li&gt;seconds/cycle (clock period)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;IPC = 1/CPI&lt;br&gt;&#xA;直观（越大越好），所以比较常用&lt;br&gt;&#xA;CPI 计算：\(CPI=\sum\limits_{inst} frequencies*costs\)&lt;br&gt;&#xA;CPI = (CPU time*clock frequency)/dynamic inst count&lt;br&gt;&#xA;CPI breakdown (CPU, mem, etc.) 比较有用，可以知道性能问题出现在哪里&lt;br&gt;&#xA;frequency 作为衡量性能的 metrics，1 Ghz = 1 cycle/nenosecond&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

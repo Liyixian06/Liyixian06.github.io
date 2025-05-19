@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "操作系统笔记04：文件管理"
 subtitle:    ""
 description: " "

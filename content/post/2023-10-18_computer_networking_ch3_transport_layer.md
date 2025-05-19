@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "计算机网络笔记03：传输层"
 subtitle:    ""
 description: " "

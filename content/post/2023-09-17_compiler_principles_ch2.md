@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "编译原理笔记02：构造一个简单的编译器"
 subtitle:    ""
 description: " "

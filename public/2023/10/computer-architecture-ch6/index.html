@@ -8,65 +8,82 @@
     
     <meta property="og:site_name" content="Liyixian Blog">
     <meta property="og:type" content="article">
-
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+    
+    
     
     <meta property="og:image" content="https://Liyixian06.github.io//img/bg_home.jpeg">
     <meta property="twitter:image" content="https://Liyixian06.github.io//img/bg_home.jpeg" />
     
-
+    
     
     <meta name="title" content="计算机体系结构笔记06：Caches" />
     <meta property="og:title" content="计算机体系结构笔记06：Caches" />
     <meta property="twitter:title" content="计算机体系结构笔记06：Caches" />
     
-
+    
     
     <meta name="description" content=" ">
     <meta property="og:description" content=" " />
     <meta property="twitter:description" content=" " />
     
-
+    
     
     <meta property="twitter:card" content="summary" />
     
     
-
+    
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
-
+    
     <title>计算机体系结构笔记06：Caches | 李一线的博客</title>
-
+    
     <link rel="canonical" href="/2023/10/computer-architecture-ch6/">
-
+    
     
     
     
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-
+    
     
     <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
-
+    
     
     <link rel="stylesheet" href="/css/zanshang.css">
-
+    
     
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
-
     
     
-
+    
+    
     
     <script src="/js/jquery.min.js"></script>
-
+    
     
     <script src="/js/bootstrap.min.js"></script>
-
+    
     
     <script src="/js/hux-blog.min.js"></script>
-
+    
     
     <script src="/js/lazysizes.min.js"></script>
-
+    
     
     
 
@@ -196,7 +213,7 @@
                             on 
                             Monday, October 9, 2023
                             
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
                                 <span id="/2023/10/computer-architecture-ch6/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
@@ -330,7 +347,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 2349 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 2360 字</span>，阅读约 <span class="more-meta"> 5 分钟</span>
                             
                             
                             
@@ -372,8 +389,7 @@ $(function() {
 -&gt; hierarchical array structures: channel -&gt; DIMM -&gt; rank -&gt; chip -&gt; bank -&gt; row/column</p>
 <h3 id="dram-and-sram">DRAM and SRAM</h3>
 <blockquote>
-<p>RAM (random access memory) 之所以称作「随机存取」，是因为相较于早期的线性储存媒体（磁带）而言，因为磁带的存取是线性的，存取时间会依目前磁带位置和欲存取位置的距离而定，需转动磁带至应有的位置，距离越长、转得越久、存取时间也就越久。而 RAM 没有这种烦恼，存取时间为固定值，不会因为数据在内存的位置而影响存取时间。</p>
-</blockquote>
+<p>RAM (random access memory) 之所以称作「随机存取」，是因为相较于早期的线性储存媒体（磁带）而言，因为磁带的存取是线性的，存取时间会依目前磁带位置和欲存取位置的距离而定，需转动磁带至应有的位置，距离越长、转得越久、存取时间也就越久。而 RAM 没有这种烦恼，存取时间为固定值，不会因为数据在内存的位置而影响存取时间。</p></blockquote>
 <ul>
 <li>DRAM：容量较大、存取时间较慢、相对便宜<br>
 主存使用；电容储存，会随着时间渐渐 lose charge，需要 refresh 以保持数据</li>
@@ -575,8 +591,8 @@ cache 地址：行号 + offset</p>
 </ol>
 <h3 id="memory-hierarchy-performance">Memory Hierarchy Performance</h3>
 <p>性能计算：<br>
-$$t_{avg}=t_{access}+(\%_{miss}\times t_{miss})$$</p>
-<p>逐层迭代计算：</p>
+</p>
+$$t_{avg}=t_{access}+(\\%\_{miss}\times t\_{miss})$$<p>逐层迭代计算：</p>
 <p>
   <img src="/img/Hierarchy_Performance.png" alt="">
 
@@ -605,17 +621,20 @@ $$t_{avg}=t_{access}+(\%_{miss}\times t_{miss})$$</p>
                 
                 
                 
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
-    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
-    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
-    crossorigin="anonymous"></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
-    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
-
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net.cn/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
                 
     
                 
@@ -637,6 +656,7 @@ $$t_{avg}=t_{access}+(\%_{miss}\times t_{miss})$$</p>
                 
     
                 
+
 
 
 <script src="https://giscus.app/client.js"
@@ -694,14 +714,14 @@ $$t_{avg}=t_{access}+(\%_{miss}\times t_{miss})$$</p>
                         
                         
                         
-                        <a href="/tags/computer-architecture" title="computer-architecture">
-                            computer-architecture
+                        <a href="/tags/computer-architecture" title="computer architecture">
+                            computer architecture
                         </a>
                         
                         
                         
-                        <a href="/tags/computer-networking" title="computer-networking">
-                            computer-networking
+                        <a href="/tags/computer-networking" title="computer networking">
+                            computer networking
                         </a>
                         
                         
@@ -716,8 +736,8 @@ $$t_{avg}=t_{access}+(\%_{miss}\times t_{miss})$$</p>
                         
                         
                         
-                        <a href="/tags/operating-system" title="operating-system">
-                            operating-system
+                        <a href="/tags/operating-system" title="operating system">
+                            operating system
                         </a>
                         
                         
@@ -799,7 +819,7 @@ $$t_{avg}=t_{access}+(\%_{miss}\times t_{miss})$$</p>
             
              </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; Liyixian Blog 2023
+                    Copyright &copy; Liyixian Blog 2025
                     <br>
                     <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
                     <iframe

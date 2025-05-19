@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "计算机体系结构笔记05：Branch Prediction"
 subtitle:    ""
 description: " "

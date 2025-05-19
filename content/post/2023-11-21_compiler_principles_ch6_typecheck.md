@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "编译原理笔记06：类型检查"
 subtitle:    ""
 description: " "

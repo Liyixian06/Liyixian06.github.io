@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "计算机网络笔记01：计算机网络和因特网"
 subtitle:    ""
 description: "计算机网络的概述"

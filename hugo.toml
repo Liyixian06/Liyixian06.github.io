@@ -3,11 +3,29 @@ languageCode = 'en-us'
 title = 'Liyixian Blog'
 theme = 'hugo-theme-cleanwhite'
 Copyright = "© LiYixian 2023"
-paginate = 7
 hasCJKLanguage = true
+
+[services]
+  # Enable comments by entering your Disqus shortname
+  [services.disqus]
+    shortname = ""
+  [services.googleAnalytics]
+    id = ""
+
+[pagination]
+  pagerSize = 10 # frontpage pagination
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['$$', '$$']]
+          inline = [['\(', '\)']]
 
 [params]
 header_image = "img/bg_home.jpeg"
@@ -17,6 +35,7 @@ keyword = "李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博
 title_404 = "这是一片荒原。"
 image_404 = "img/bg_404.jpg"
 omit_categories = false
+math = false
 
 sidebar_avatar = "img/avatar.png"
 sidebar_about_description = "一直神游，有时读书，很少写作，从不期待。"
@@ -25,8 +44,9 @@ featured_condition_size = 1
 
 about_me = true
 
-page_view_conter = true
+page_view_counter = true
 search = true
+showtoc = true
 
 [params.social]
 rss = true

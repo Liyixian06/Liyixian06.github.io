@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "计算机网络笔记04A：网络层-数据平面"
 subtitle:    ""
 description: " "

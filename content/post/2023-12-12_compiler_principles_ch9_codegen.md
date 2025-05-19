@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "编译原理笔记09：代码生成"
 subtitle:    ""
 description: " "

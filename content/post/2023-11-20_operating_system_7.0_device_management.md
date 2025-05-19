@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "操作系统笔记05：设备管理"
 subtitle:    ""
 description: " "

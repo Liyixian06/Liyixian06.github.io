@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "计算机网络笔记04B：网络层-控制平面"
 subtitle:    ""
 description: " "

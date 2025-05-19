@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "编译原理笔记01：引论"
 subtitle:    ""
 description: "语言处理系统的概述"

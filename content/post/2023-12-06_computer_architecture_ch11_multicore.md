@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "计算机体系结构11：Multicore"
 subtitle:    ""
 description: " "

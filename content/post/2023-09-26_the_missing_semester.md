@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "the missing semester"
 subtitle:    ""
 description: " "

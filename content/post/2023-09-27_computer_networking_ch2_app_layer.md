@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "计算机网络笔记02：应用层"
 subtitle:    ""
 description: " "

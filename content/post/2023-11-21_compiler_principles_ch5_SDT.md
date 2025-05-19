@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "编译原理笔记05：语法制导翻译"
 subtitle:    ""
 description: " "

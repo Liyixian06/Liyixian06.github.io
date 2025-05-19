@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "编译原理笔记03：词法分析"
 subtitle:    ""
 description: " "

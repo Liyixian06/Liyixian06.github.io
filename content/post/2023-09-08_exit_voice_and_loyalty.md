@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "读书笔记：退出、呼吁与忠诚"
 subtitle:    "对企业、组织和国家衰退的回应"
 description: " "

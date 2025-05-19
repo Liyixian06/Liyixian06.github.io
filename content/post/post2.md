@@ -1,4 +1,5 @@
 ---
+layout: 	 single
 title:       "A Test Post"
 subtitle:    "a subtitle"
 description: "this is a description."
@@ -16,8 +17,9 @@ math: true
 
 - 字数统计
 - Giscus 评论系统
-- 支持 Latex
+- 使用 KaTex 支持了 Latex
 - 本来想尝试一下图床，但确实找不到什么好用的，加之发布图片的需求并没有那么大，所以姑且还是保持原状。
+- hugo 版本更新到了 0.147.3
 
 # shortcode
 
