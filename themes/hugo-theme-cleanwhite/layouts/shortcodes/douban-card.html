@@ -151,26 +151,26 @@
       {{ $csv := resources.Get "douban/book.csv" | transform.Unmarshal }}
       {{ range $item := $csv }}
       {{if eq (index $item 4 ) $dbUrl }}
-          {{ $rating := float (index $item 1) }}
+          {{ $rawRating := index $item 1 }}
+          {{ $rating := 0.0 }}
+          {{ if (findRE `^\d+(\.\d+)?$` $rawRating) }}
+            {{ $rating = float $rawRating }}
+          {{ end }}
 
           {{/* 评分转星星字符 */}}
           {{ $starsFloat := div $rating 2.0 }}
           {{ $fullStars := int $starsFloat }}
-          {{ $hasHalf := ge (sub $starsFloat $fullStars) 0.5 }}
           {{ $stars := "" }}
           {{ $starsCount := 0 }}
 
-          {{ range seq 1 $fullStars }}
+          {{ range $fullStars }}
             {{ $stars = printf "%s★" $stars }}
             {{ $starsCount = add $starsCount 1 }}
-          {{ end }}
-          {{ if $hasHalf }}
-            {{ $stars = printf "%s&#11240;" $stars }}
           {{ end }}
           {{ $neededEmpty := sub 5  $starsCount }}
           {{ range seq 1 $neededEmpty }}
             {{ $stars = printf "%s☆" $stars }}
-          {{ end }}          
+          {{ end }}
 
           <div class="douban-card douban-card-book" id="douban-card-book"+{{$dbID}} douban-id={{$dbID}}>
           <div class="douban-card--middle">
@@ -197,21 +197,21 @@
       {{ $csv := resources.Get "douban/movie.csv" | transform.Unmarshal }}
       {{ range $item := $csv }}
       {{if eq (index $item 4 ) $dbUrl }}
-          {{ $rating := float (index $item 1) }}
+          {{ $rawRating := index $item 1 }}
+          {{ $rating := 0.0 }}
+          {{ if (findRE `^\d+(\.\d+)?$` $rawRating) }}
+            {{ $rating = float $rawRating }}
+          {{ end }}
 
           {{/* 评分转星星字符 */}}
           {{ $starsFloat := div $rating 2.0 }}
           {{ $fullStars := int $starsFloat }}
-          {{ $hasHalf := ge (sub $starsFloat $fullStars) 0.5 }}
           {{ $stars := "" }}
           {{ $starsCount := 0 }}
 
-          {{ range seq 1 $fullStars }}
+          {{ range $fullStars }}
             {{ $stars = printf "%s★" $stars }}
             {{ $starsCount = add $starsCount 1 }}
-          {{ end }}
-          {{ if $hasHalf }}
-            {{ $stars = printf "%s☆" $stars }}
           {{ end }}
           {{ $neededEmpty := sub 5  $starsCount }}
           {{ range seq 1 $neededEmpty }}
@@ -226,7 +226,7 @@
             <div class="douban-card--stars-rating">
               <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
               <span class="douban-card--stars">{{ $stars }}</span>
-              <span class="douban-card--rating">{{$rating}}</span>
+              <span class="douban-card--rating">{{$rawRating}}</span>
               </div>
               <div class="douban-card--tags"> {{ index $item 2 }}</div>
               <div class="douban-card--summary">{{ index $item 5 }}</div>

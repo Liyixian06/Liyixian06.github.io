@@ -27,17 +27,31 @@ math: true
 
 {{< bilibili BV1KW4y1B7W6 >}}
 
+## Youtube
+
+*可能需要科学上网才能显示。*
+
+{{<youtube 2ykcUuZg9hI>}}
+
 ## Spotify
 
 *可能需要科学上网才能显示。*
 
 {{< spotify type="track" id="2D3gvohUyOfXIVX6Mvhqae" height="80px">}}
 
+## 网易云音乐
+
+使用[APlayer](https://github.com/DIYgod/APlayer) 和 [MetingJS](https://github.com/metowolf/MetingJS)。
+
+{{<aplayer server="netease"  type="song" id="16778265">}}
+
 ## 豆瓣
 
 读取本地文件夹下的CSV文件进行展示。
 
 {{< douban-card "https://book.douban.com/subject/25697546/" >}}
+
+{{< douban-card "https://movie.douban.com/subject/1300868/" >}}
 
 # latex
 

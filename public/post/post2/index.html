@@ -56,6 +56,12 @@
     <link rel="canonical" href="/post/post2/">
     
     
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
     
     
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -347,7 +353,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 610 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 925 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
                             
                             
                             
@@ -402,10 +408,15 @@ $(function() {
 
 
     <div>
-        <iframe id="biliplayer" src="//player.bilibili.com/player.html?bvid=BV1KW4y1B7W6&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" loading="lazy" ></iframe>
+        <iframe id="biliplayer" src="//player.bilibili.com/player.html?bvid=BV1KW4y1B7W6&page=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" loading="lazy" ></iframe>
     </div>
 
 
+<h2 id="youtube">Youtube</h2>
+<p><em>可能需要科学上网才能显示。</em></p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/2ykcUuZg9hI?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 <h2 id="spotify">Spotify</h2>
 <p><em>可能需要科学上网才能显示。</em></p>
 
@@ -418,6 +429,9 @@ $(function() {
     allowtransparency="true"
     allow="encrypted-media"></iframe>
 
+<h2 id="网易云音乐">网易云音乐</h2>
+<p>使用<a href="https://github.com/DIYgod/APlayer">APlayer</a> 和 <a href="https://github.com/metowolf/MetingJS">MetingJS</a>。</p>
+<meting-js server="netease" type="song" id="16778265"></meting-js>
 <h2 id="豆瓣">豆瓣</h2>
 <p>读取本地文件夹下的CSV文件进行展示。</p>
 <style>
@@ -576,13 +590,16 @@ $(function() {
       
       
           
+          
+          
+            
+          
 
           
           
           
           
           
-          
 
           
             
@@ -599,9 +616,8 @@ $(function() {
           
           
           
-          
             
-                    
+          
 
           <div class="douban-card douban-card-book" id="douban-card-book"+25697546 douban-id=25697546>
           <div class="douban-card--middle">
@@ -624,6 +640,219 @@ $(function() {
       
   
   
+  
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+1300868 douban-id=1300868>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/1300868/" target="_blank"> 异形 Alien </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★★☆</span>
+              <span class="douban-card--rating">8.3</span>
+              </div>
+              <div class="douban-card--tags"> 1979 / 英国 美国 / 科幻 惊悚 恐怖 / 雷德利·斯科特</div>
+              <div class="douban-card--summary">未来的世界，人类已能轻松穿梭于星际之间，在太空中展开商业活动。“诺史莫”是在太空活动的众多星际商业运输船之一。一次，它完成任务满载太空矿石返航地球时，突然收到了一组奇怪的信号，由于这可能是求救信号，飞船接到指令前往信号源地进行搜救。经过一段飞行后，飞船终于抵达信号源发出的地方。船员们发现此处果然有一艘坠毁的飞船，只是，经过一番搜索，他们发现该船的船员们都早已死亡，化为化石。此时，留在“诺史莫”号的第三指挥官里普利已经破译出该信号并不是求救信号，而是警告信号！队员的生死搏斗开始了！</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BNTU1NDk5NmEtZmJkYi00NGE1LTgwNjktNTJiNTAxNzdiMzY2XkEyXkFqcGc@._V1_FMjpg_UY3224_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
   
 <h1 id="latex">latex</h1>
 <p>只在需要渲染 latex 的页面加载，在 frontmatter 设置 <code>math: true</code> 即可。显示单行方程式，用 <code>$$</code> 作为分隔符，如：<br>
@@ -763,6 +992,12 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$<p>要显示 inline 方程，用 <co
                         </a>
                         
                         
+                        
+                        
+                        
+                        <a href="/tags/film-and-tv" title="film and tv">
+                            film and tv
+                        </a>
                         
                         
                         
