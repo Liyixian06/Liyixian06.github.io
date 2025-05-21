@@ -33,6 +33,12 @@ math: true
 
 {{< spotify type="track" id="2D3gvohUyOfXIVX6Mvhqae" height="80px">}}
 
+## 豆瓣
+
+读取本地文件夹下的CSV文件进行展示。
+
+{{< douban-card "https://book.douban.com/subject/25697546/" >}}
+
 # latex
 
 只在需要渲染 latex 的页面加载，在 frontmatter 设置 `math: true` 即可。显示单行方程式，用 `$$` 作为分隔符，如：  
@@ -49,6 +55,7 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$
 效果如 \\(y_t\\)。
 
 注：要打花括号 `{}`，使用两个转义符 `\\{ \\}`，效果如 \\(\\{\\}\\)。
+
 
 # To Do
 

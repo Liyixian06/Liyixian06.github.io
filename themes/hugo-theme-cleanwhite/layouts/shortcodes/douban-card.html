@@ -1,0 +1,240 @@
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400; /* 可选的金黄色 */
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  {{ $dbUrl := .Get 0 }}
+  {{ $dbType := replaceRE `https://(movie|book).douban.com/subject/.*` "$1" $dbUrl }}
+  {{ $dbID := replaceRE `.*douban.com/subject/([0-9]+)/.*` "$1" $dbUrl }}
+
+
+  {{ if eq $dbType "book" }}
+      {{ $csv := resources.Get "douban/book.csv" | transform.Unmarshal }}
+      {{ range $item := $csv }}
+      {{if eq (index $item 4 ) $dbUrl }}
+          {{ $rating := float (index $item 1) }}
+
+          {{/* 评分转星星字符 */}}
+          {{ $starsFloat := div $rating 2.0 }}
+          {{ $fullStars := int $starsFloat }}
+          {{ $hasHalf := ge (sub $starsFloat $fullStars) 0.5 }}
+          {{ $stars := "" }}
+          {{ $starsCount := 0 }}
+
+          {{ range seq 1 $fullStars }}
+            {{ $stars = printf "%s★" $stars }}
+            {{ $starsCount = add $starsCount 1 }}
+          {{ end }}
+          {{ if $hasHalf }}
+            {{ $stars = printf "%s&#11240;" $stars }}
+          {{ end }}
+          {{ $neededEmpty := sub 5  $starsCount }}
+          {{ range seq 1 $neededEmpty }}
+            {{ $stars = printf "%s☆" $stars }}
+          {{ end }}          
+
+          <div class="douban-card douban-card-book" id="douban-card-book"+{{$dbID}} douban-id={{$dbID}}>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+                <a href="{{ index $item 4 }}" class="cute" target="_blank" rel="external nofollow">{{ index $item 0 }}</a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">{{ $stars }}</span>
+              <span class="douban-card--rating">{{$rating}}</span>
+            </div>
+            <div class="douban-card--tags">{{ index $item 2 }}</div>
+            <div class="douban-card--summary">{{ index $item 5 }}</div>
+          </div>
+          <div class="douban-card--right">
+            <img src="{{ index $item 3 }}" referrerPolicy="never" />
+          </div>
+        </div>
+      {{end}}
+      {{end}}
+  {{ end }}
+  
+  {{ if eq $dbType "movie" }}
+      {{ $csv := resources.Get "douban/movie.csv" | transform.Unmarshal }}
+      {{ range $item := $csv }}
+      {{if eq (index $item 4 ) $dbUrl }}
+          {{ $rating := float (index $item 1) }}
+
+          {{/* 评分转星星字符 */}}
+          {{ $starsFloat := div $rating 2.0 }}
+          {{ $fullStars := int $starsFloat }}
+          {{ $hasHalf := ge (sub $starsFloat $fullStars) 0.5 }}
+          {{ $stars := "" }}
+          {{ $starsCount := 0 }}
+
+          {{ range seq 1 $fullStars }}
+            {{ $stars = printf "%s★" $stars }}
+            {{ $starsCount = add $starsCount 1 }}
+          {{ end }}
+          {{ if $hasHalf }}
+            {{ $stars = printf "%s☆" $stars }}
+          {{ end }}
+          {{ $neededEmpty := sub 5  $starsCount }}
+          {{ range seq 1 $neededEmpty }}
+            {{ $stars = printf "%s☆" $stars }}
+          {{ end }} 
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+{{$dbID}} douban-id={{$dbID}}>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="{{ index $item 4 }}" target="_blank"> {{ index $item 0 }} </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">{{ $stars }}</span>
+              <span class="douban-card--rating">{{$rating}}</span>
+              </div>
+              <div class="douban-card--tags"> {{ index $item 2 }}</div>
+              <div class="douban-card--summary">{{ index $item 5 }}</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="{{ index $item 3 }}" referrerPolicy="never" />
+            </div>
+        </div>
+      {{end}}
+      {{end}}
+  {{ end }}
