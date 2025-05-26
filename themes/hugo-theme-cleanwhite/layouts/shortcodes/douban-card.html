@@ -47,10 +47,12 @@
       line-height: 1.8em;
       max-height: 5.4em;
       overflow: hidden;
-      text-overflow: ellipsis;
+      /* text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+      -webkit-box-orient: vertical; */
+      overflow-y: auto; /* 垂直方向出现滚动条 */
+      padding-right: 4px; /* 防止滚动条遮住文字 */
     }
     
     .douban-card--right {

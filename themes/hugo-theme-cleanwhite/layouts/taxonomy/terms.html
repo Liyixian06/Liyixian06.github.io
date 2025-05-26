@@ -29,7 +29,7 @@
                         {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
                         {{ if gt (len $taxonomy.Pages) $featured_condition_size }}
                         <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" title="{{ $name }}">
-                        {{ $name }}
+                        {{ $name }} ({{ len $taxonomy.Pages }})
                         </a>
                         {{ end }}
                         {{ end }}

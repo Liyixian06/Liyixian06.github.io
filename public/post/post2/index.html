@@ -199,12 +199,8 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/tag1" title="tag1">
-                            tag1
-                        </a>
-                        
-                        <a class="tag" href="/tags/tag2" title="tag2">
-                            tag2
+                        <a class="tag" href="/tags/cs" title="CS">
+                            CS
                         </a>
                         
                     </div>
@@ -353,7 +349,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 925 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 924 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
                             
                             
                             
@@ -387,6 +383,7 @@ $(function() {
 <li>使用 KaTex 支持了 Latex</li>
 <li>本来想尝试一下图床，但确实找不到什么好用的，加之发布图片的需求并没有那么大，所以姑且还是保持原状。</li>
 <li>hugo 版本更新到了 0.147.3</li>
+<li>显示全部 tag 以及文章数</li>
 </ul>
 <h1 id="shortcode">shortcode</h1>
 <h2 id="bilibili">Bilibili</h2>
@@ -483,10 +480,9 @@ $(function() {
       line-height: 1.8em;
       max-height: 5.4em;
       overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
     }
     
     .douban-card--right {
@@ -690,10 +686,9 @@ $(function() {
       line-height: 1.8em;
       max-height: 5.4em;
       overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
     }
     
     .douban-card--right {
@@ -867,8 +862,6 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$<p>要显示 inline 方程，用 <co
 <ul>
 <li>搜索</li>
 <li>换更好的评论系统（需求有：开源、免费、无广告、墙内正常访问，以及不需要专门注册账号，因此 Discus 不纳入考虑），比如 <a href="https://waline.js.org/">Waline</a>、<a href="https://twikoo.js.org/">Twikoo</a></li>
-<li>RSS 链接</li>
-<li>Tag 显示不全的问题</li>
 <li>零零散散的装修
 <ul>
 <li>代码复制</li>
@@ -970,50 +963,62 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$<p>要显示 inline 方程，用 <co
                         
                         
                         <a href="/tags/compiler" title="compiler">
-                            compiler
+                            compiler (10)
                         </a>
                         
                         
                         
                         <a href="/tags/computer-architecture" title="computer architecture">
-                            computer architecture
+                            computer architecture (7)
                         </a>
                         
                         
                         
                         <a href="/tags/computer-networking" title="computer networking">
-                            computer networking
+                            computer networking (5)
                         </a>
                         
                         
                         
                         <a href="/tags/cs" title="cs">
-                            cs
+                            cs (28)
                         </a>
                         
                         
+                        
+                        <a href="/tags/economy" title="economy">
+                            economy (1)
+                        </a>
                         
                         
                         
                         <a href="/tags/film-and-tv" title="film and tv">
-                            film and tv
+                            film and tv (2)
                         </a>
                         
                         
+                        
+                        <a href="/tags/list" title="list">
+                            list (1)
+                        </a>
                         
                         
                         
                         <a href="/tags/operating-system" title="operating system">
-                            operating system
+                            operating system (5)
                         </a>
                         
                         
                         
+                        <a href="/tags/politics" title="politics">
+                            politics (1)
+                        </a>
                         
                         
                         
-                        
-                        
+                        <a href="/tags/social" title="social">
+                            social (1)
+                        </a>
                         
                         
                     </div>

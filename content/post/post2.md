@@ -6,7 +6,7 @@ description: "this is a description."
 date:        2018-06-04
 author: Liyixian
 image:       ""
-tags:        ["tag1", "tag2"]
+tags:        ["CS"]
 categories:  ["Tech" ]
 math: true
 ---
@@ -20,6 +20,7 @@ math: true
 - 使用 KaTex 支持了 Latex
 - 本来想尝试一下图床，但确实找不到什么好用的，加之发布图片的需求并没有那么大，所以姑且还是保持原状。
 - hugo 版本更新到了 0.147.3
+- 显示全部 tag 以及文章数
 
 # shortcode
 
@@ -75,8 +76,6 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$
 
 - 搜索
 - 换更好的评论系统（需求有：开源、免费、无广告、墙内正常访问，以及不需要专门注册账号，因此 Discus 不纳入考虑），比如 [Waline](https://waline.js.org/)、[Twikoo](https://twikoo.js.org/) 
-- RSS 链接
-- Tag 显示不全的问题
 - 零零散散的装修
   - 代码复制
   - 总字数统计

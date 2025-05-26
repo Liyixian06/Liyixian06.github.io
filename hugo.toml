@@ -42,7 +42,7 @@ math = false
 sidebar_avatar = "img/avatar.png"
 sidebar_about_description = "一直神游，有时读书，很少写作，从不期待。"
 featured_tags = true 
-featured_condition_size = 1 
+featured_condition_size = 0
 
 about_me = true
 
