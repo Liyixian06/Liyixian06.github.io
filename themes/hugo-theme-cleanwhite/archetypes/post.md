@@ -6,7 +6,7 @@ description: ""
 date:        {{ .Date }}
 author: LiYixian
 image:       ""
-tags:        ["tag1", "tag2"]
+tags:        ["cs"]
 categories:  ["Tech" ]
 URL: 
 math: False
