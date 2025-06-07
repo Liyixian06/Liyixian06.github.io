@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,20 +12,20 @@
     
     
     
-    <meta property="og:image" content="https://Liyixian06.github.io//img/bg_home.jpeg">
-    <meta property="twitter:image" content="https://Liyixian06.github.io//img/bg_home.jpeg" />
+    <meta property="og:image" content="http://localhost:1313//img/bg_home.jpeg">
+    <meta property="twitter:image" content="http://localhost:1313//img/bg_home.jpeg" />
     
     
     
-    <meta name="title" content="计算机体系结构笔记08：Superscalar and VLIW" />
-    <meta property="og:title" content="计算机体系结构笔记08：Superscalar and VLIW" />
-    <meta property="twitter:title" content="计算机体系结构笔记08：Superscalar and VLIW" />
+    <meta name="title" content="翻译｜音乐流媒体如何处理边缘问题" />
+    <meta property="og:title" content="翻译｜音乐流媒体如何处理边缘问题" />
+    <meta property="twitter:title" content="翻译｜音乐流媒体如何处理边缘问题" />
     
     
     
-    <meta name="description" content=" ">
-    <meta property="og:description" content=" " />
-    <meta property="twitter:description" content=" " />
+    <meta name="description" content="">
+    <meta property="og:description" content="" />
+    <meta property="twitter:description" content="" />
     
     
     
@@ -36,9 +36,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
     
-    <title>计算机体系结构笔记08：Superscalar and VLIW | 李一线的博客</title>
+    <title>翻译｜音乐流媒体如何处理边缘问题 | 李一线的博客</title>
     
-    <link rel="canonical" href="/2023/11/computer-architecture-ch8/">
+    <link rel="canonical" href="/post/2025-06-07_horrible-edge-cases-to-consider-when-dealing-with-music/">
     
     
 
@@ -184,16 +184,20 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/cs" title="CS">
-                            CS
+                        <a class="tag" href="/tags/music" title="Music">
+                            Music
                         </a>
                         
-                        <a class="tag" href="/tags/computer-architecture" title="computer architecture">
-                            computer architecture
+                        <a class="tag" href="/tags/list" title="List">
+                            List
+                        </a>
+                        
+                        <a class="tag" href="/tags/translation" title="translation">
+                            translation
                         </a>
                         
                     </div>
-                    <h1>计算机体系结构笔记08：Superscalar and VLIW</h1>
+                    <h1>翻译｜音乐流媒体如何处理边缘问题</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -202,10 +206,10 @@
                                 LiYixian
                              
                             on 
-                            Monday, November 6, 2023
+                            Saturday, June 7, 2025
                             
                              <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/2023/11/computer-architecture-ch8/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/post/2025-06-07_horrible-edge-cases-to-consider-when-dealing-with-music/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -338,7 +342,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 518 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 0 字</span>，阅读约 <span class="more-meta"> 0 分钟</span>
                             
                             
                             
@@ -364,67 +368,7 @@ $(function() {
                 post-container">
     
                 
-                <h3 id="superscalar">Superscalar</h3>
-<p>scalar pipeline 的性能极限是 CPI=IPC=1，但限于 hazards 也无法达到<br>
-multiple issues -&gt; superscalar</p>
-<p>
-  <img src="/img/superscalar_pipeline.png" alt="">
-
-</p>
-<p>要多套硬件同时执行多条指令（指令级并行 ILP），需要检查它们的依赖关系<br>
-寄存器调度，并行度取决于 workload<br>
-目前大部分是 4 inst/cycle</p>
-<p>
-  <img src="/img/2-way-superscalar.png" alt="">
-
-</p>
-<h4 id="superscalar-implementation-challenges">Superscalar Implementation Challenges</h4>
-<p>取指时遇到的问题：</p>
-<ul>
-<li>cache 连续问题：如果取的指令不在同一个 cacheline 中，宁可放弃</li>
-<li>分支预测：average number of inst per taken branch</li>
-</ul>
-<p>solution：</p>
-<ol>
-<li>over-fetch and buffer<br>
-在 fetch 和 decode 之间增加一个 queue</li>
-<li>loop stream detector<br>
-识别出一个 loop，就整个放入 small cache 中<br>
-没有命中时需要重取</li>
-</ol>
-<p>后端的问题：</p>
-<ul>
-<li>多个 ALU；硬件是否共用，权衡冲突和 latency 等</li>
-<li>bypass 需要检查的依赖关系是 N^2 级的
-<ul>
-<li>clustering ALUs and regfile</li>
-</ul>
-</li>
-</ul>
-<h3 id="vliw">VLIW</h3>
-<p>VLIW: very long inst word 多个操作封装进一条指令<br>
-constant operation latencies are specified<br>
-完全靠编译器确保一条指令里没有依赖</p>
-<p>编译器要：</p>
-<ol>
-<li>调度指令</li>
-<li>保证超长指令字内部的并行</li>
-<li>避免 data hazards，通常用 NOP 隔开</li>
-</ol>
-<p>software pipelining：loop 内部 iteration 之间重叠<br>
-每次 iteration 分配一个新的 reg set -&gt; rotating register file</p>
-<p>没有 loop 时 trace scheduling：找到一条 hot flow paths，合并途径的 block，其他分支增加 repair code</p>
-<p>VLIW 的问题：</p>
-<ul>
-<li>兼容性不好，每次换硬件，编译器就必须重新设计</li>
-<li>NOP、循环展开都增加了代码长度</li>
-<li>内存操作的 latency 由于 cache 问题并不固定</li>
-<li>分支的并行性</li>
-</ul>
-<p><strong>Superscalar vs. VLIW</strong><br>
-superscalar 硬件和调度比较复杂，但可以 handle 动态的 unpredictable 指令流；<br>
-VLIW 完全依赖编译器调度，硬件简单，适用于静态和 predictable 指令流。</p>
-
+                
     
                 
                 
@@ -435,15 +379,10 @@ VLIW 完全依赖编译器调度，硬件简单，适用于静态和 predictable
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/10/operating-system-5.0/" data-toggle="tooltip" data-placement="top" title="操作系统笔记03：进程间通信">&larr;
+                        <a href="/2025/05/unparliamentary-language/" data-toggle="tooltip" data-placement="top" title="翻译｜新西兰议会官网上的“非议会用语”">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2023/11/computer-architecture-ch9/" data-toggle="tooltip" data-placement="top" title="计算机体系结构09：Virtual Memory">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 

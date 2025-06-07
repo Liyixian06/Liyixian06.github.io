@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 21 May 2025 18:55:13 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 07 Jun 2025 23:19:30 +0800</lastBuildDate>
     <atom:link href="https://Liyixian06.github.io/tags/list/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>翻译｜音乐流媒体如何处理边缘问题</title>
+      <link>https://Liyixian06.github.io/2025/06/horrible-edge-cases-to-consider-when-dealing-with-music/</link>
+      <pubDate>Sat, 07 Jun 2025 23:19:30 +0800</pubDate>
+      <guid>https://Liyixian06.github.io/2025/06/horrible-edge-cases-to-consider-when-dealing-with-music/</guid>
+      <description>&lt;p&gt;原链接：&lt;a href=&#34;https://dustri.org/b/horrible-edge-cases-to-consider-when-dealing-with-music.html&#34;&gt;Horrible edge cases to consider when dealing with music&lt;/a&gt;&lt;br&gt;&#xA;发布日期：2022-04-02 14:45&lt;/p&gt;&#xA;&lt;p&gt;我是 &lt;a href=&#34;https://navidrome.org&#34;&gt;navidrome&lt;/a&gt; 的超级粉丝，于是花了一点时间阅读它的源码，并和 &lt;a href=&#34;https://deluan.com&#34;&gt;Deluan&lt;/a&gt; 讨论了它的数据模型，列出了这个奇怪的边缘案例清单。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>自制烤肉菜单</title>
       <link>https://Liyixian06.github.io/list/translation/</link>
