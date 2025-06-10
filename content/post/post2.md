@@ -21,6 +21,12 @@ math: true
 - 本来想尝试一下图床，但确实找不到什么好用的，加之发布图片的需求并没有那么大，所以姑且还是保持原状。
 - hugo 版本更新到了 0.147.3
 - 显示全部 tag 以及文章数
+- 内容折叠
+
+{{% spoiler "You killed my father!" %}}
+I am your father.
+NOOOOOOO!
+{{% /spoiler %}}
 
 # shortcode
 
@@ -82,6 +88,5 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$
   - 站点运行时长
   - 访问量统计
   - 代码块样式
-  - 内容折叠
   - Dark Mode
   - ……

@@ -1,0 +1,21 @@
+<style>
+summary {
+  cursor: pointer;
+}
+details[open] summary::before {
+  content: "▼ ";
+}
+summary::before {
+  content: "▶ ";
+  display: inline-block;
+  margin-right: 0.2em;
+}
+</style>
+
+
+<details>
+<summary>
+    {{ with .Get 0}}{{.}}{{else}}click to expand{{ end }}
+</summary>
+{{.Inner}}
+</details>

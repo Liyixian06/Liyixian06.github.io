@@ -349,7 +349,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 924 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 933 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
                             
                             
                             
@@ -384,7 +384,28 @@ $(function() {
 <li>本来想尝试一下图床，但确实找不到什么好用的，加之发布图片的需求并没有那么大，所以姑且还是保持原状。</li>
 <li>hugo 版本更新到了 0.147.3</li>
 <li>显示全部 tag 以及文章数</li>
+<li>内容折叠</li>
 </ul>
+<style>
+summary {
+  cursor: pointer;
+}
+details[open] summary::before {
+  content: "▼ ";
+}
+summary::before {
+  content: "▶ ";
+  display: inline-block;
+  margin-right: 0.2em;
+}
+</style>
+<details>
+<summary>
+    You killed my father!
+</summary>
+<p>I am your father.
+NOOOOOOO!</p>
+</details>
 <h1 id="shortcode">shortcode</h1>
 <h2 id="bilibili">Bilibili</h2>
 
@@ -869,7 +890,6 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$<p>要显示 inline 方程，用 <co
 <li>站点运行时长</li>
 <li>访问量统计</li>
 <li>代码块样式</li>
-<li>内容折叠</li>
 <li>Dark Mode</li>
 <li>……</li>
 </ul>
