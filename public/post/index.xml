@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Sat, 07 Jun 2025 23:19:30 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jun 2025 22:32:17 +0800</lastBuildDate>
     <atom:link href="https://Liyixian06.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>乙巳夏至｜一个半月怎么发生了这么多事</title>
+      <link>https://Liyixian06.github.io/2025/summer-solstice/</link>
+      <pubDate>Tue, 24 Jun 2025 22:32:17 +0800</pubDate>
+      <guid>https://Liyixian06.github.io/2025/summer-solstice/</guid>
+      <description>&lt;p&gt;终于想起要在博客写点东西（而不是堆放 0 人想看的课堂笔记）。我就不雄心壮志地写什么“Vol.1”之类的标号了，预感迟早要自取其辱，写一篇发一篇算一篇吧。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>翻译｜音乐流媒体如何处理边缘问题</title>
       <link>https://Liyixian06.github.io/2025/06/horrible-edge-cases-to-consider-when-dealing-with-music/</link>
@@ -235,9 +242,9 @@
     </item>
     <item>
       <title>A Test Post</title>
-      <link>https://Liyixian06.github.io/post/post2/</link>
+      <link>https://Liyixian06.github.io/test/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>https://Liyixian06.github.io/post/post2/</guid>
+      <guid>https://Liyixian06.github.io/test/</guid>
       <description>&lt;p&gt;这是一个测试网站功能/记录后续准备添加功能的页面。&lt;/p&gt;&#xA;&lt;h1 id=&#34;update&#34;&gt;Update&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;字数统计&lt;/li&gt;&#xA;&lt;li&gt;Giscus 评论系统&lt;/li&gt;&#xA;&lt;li&gt;使用 KaTex 支持了 Latex&lt;/li&gt;&#xA;&lt;li&gt;本来想尝试一下图床，但确实找不到什么好用的，加之发布图片的需求并没有那么大，所以姑且还是保持原状。&lt;/li&gt;&#xA;&lt;li&gt;hugo 版本更新到了 0.147.3&lt;/li&gt;&#xA;&lt;li&gt;显示全部 tag 以及文章数&lt;/li&gt;&#xA;&lt;li&gt;内容折叠&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;style&gt;&#xA;summary {&#xA;  cursor: pointer;&#xA;}&#xA;details[open] summary::before {&#xA;  content: &#34;▼ &#34;;&#xA;}&#xA;summary::before {&#xA;  content: &#34;▶ &#34;;&#xA;  display: inline-block;&#xA;  margin-right: 0.2em;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;details&gt;&#xA;&lt;summary&gt;&#xA;    You killed my father!&#xA;&lt;/summary&gt;&#xA;&lt;p&gt;I am your father.&#xA;NOOOOOOO!&lt;/p&gt;</description>
     </item>
   </channel>

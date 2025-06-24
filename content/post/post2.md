@@ -8,6 +8,7 @@ author: Liyixian
 image:       ""
 tags:        ["CS"]
 categories:  ["Tech" ]
+URL:  "/test/"
 math: true
 ---
 
