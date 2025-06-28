@@ -17,9 +17,9 @@
     
     
     
-    <meta name="title" content="计算机体系结构笔记08：Superscalar and VLIW" />
-    <meta property="og:title" content="计算机体系结构笔记08：Superscalar and VLIW" />
-    <meta property="twitter:title" content="计算机体系结构笔记08：Superscalar and VLIW" />
+    <meta name="title" content="使用 FFmpeg 截取视频片段时的精度问题" />
+    <meta property="og:title" content="使用 FFmpeg 截取视频片段时的精度问题" />
+    <meta property="twitter:title" content="使用 FFmpeg 截取视频片段时的精度问题" />
     
     
     
@@ -36,9 +36,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
     
-    <title>计算机体系结构笔记08：Superscalar and VLIW | 李一线的博客</title>
+    <title>使用 FFmpeg 截取视频片段时的精度问题 | 李一线的博客</title>
     
-    <link rel="canonical" href="/2023/11/computer-architecture-ch8/">
+    <link rel="canonical" href="/2025/06/ffmpeg-videocut/">
     
     
 
@@ -184,16 +184,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/cs" title="CS">
-                            CS
+                        <a class="tag" href="/tags/cs" title="cs">
+                            cs
                         </a>
                         
-                        <a class="tag" href="/tags/computer-architecture" title="computer architecture">
-                            computer architecture
+                        <a class="tag" href="/tags/tricks" title="tricks">
+                            tricks
                         </a>
                         
                     </div>
-                    <h1>计算机体系结构笔记08：Superscalar and VLIW</h1>
+                    <h1>使用 FFmpeg 截取视频片段时的精度问题</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -202,10 +202,10 @@
                                 LiYixian
                              
                             on 
-                            Monday, November 6, 2023
+                            Sunday, June 29, 2025
                             
                              <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/2023/11/computer-architecture-ch8/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2025/06/ffmpeg-videocut/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -338,7 +338,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 518 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 490 字</span>，阅读约 <span class="more-meta"> 1 分钟</span>
                             
                             
                             
@@ -364,66 +364,53 @@ $(function() {
                 post-container">
     
                 
-                <h3 id="superscalar">Superscalar</h3>
-<p>scalar pipeline 的性能极限是 CPI=IPC=1，但限于 hazards 也无法达到<br>
-multiple issues -&gt; superscalar</p>
-<p>
-  <img src="/img/superscalar_pipeline.png" alt="">
-
-</p>
-<p>要多套硬件同时执行多条指令（指令级并行 ILP），需要检查它们的依赖关系<br>
-寄存器调度，并行度取决于 workload<br>
-目前大部分是 4 inst/cycle</p>
-<p>
-  <img src="/img/2-way-superscalar.png" alt="">
-
-</p>
-<h4 id="superscalar-implementation-challenges">Superscalar Implementation Challenges</h4>
-<p>取指时遇到的问题：</p>
+                <p>使用 FFmpeg 截取视频片段时，一般使用的命令如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffmpeg -i video.mp4 -ss 00:01:23.4 -to 00:05:56.7 -c copy output.mp4 // 开始时间和结束时间
+</span></span><span style="display:flex;"><span>ffmpeg -i video.mp4 -ss 00:01:23.4 -t 00:04:33.3 -c copy output.mp4 // 开始时间和持续时间
+</span></span></code></pre></div><p>但有时这样截取出的片段不够精准，会有几秒的误差（画面固定不动、或者提前结束），原因是 FFmpeg 截取时会从片段首尾附近的关键帧读取。对于精度要求不是很高的情况，可以先查看一下视频的关键帧：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffprobe -v error -select_streams v:0 -show_entries frame<span style="color:#f92672">=</span>key_frame,pkt_pts_time -of csv -skip_frame nokey video.mp4
+</span></span></code></pre></div><p>其中各项参数的含义是：</p>
 <ul>
-<li>cache 连续问题：如果取的指令不在同一个 cacheline 中，宁可放弃</li>
-<li>分支预测：average number of inst per taken branch</li>
+<li><code>-v error</code>
+<ul>
+<li>仅显示错误信息</li>
 </ul>
-<p>solution：</p>
-<ol>
-<li>over-fetch and buffer<br>
-在 fetch 和 decode 之间增加一个 queue</li>
-<li>loop stream detector<br>
-识别出一个 loop，就整个放入 small cache 中<br>
-没有命中时需要重取</li>
-</ol>
-<p>后端的问题：</p>
+</li>
+<li><code>-select_streams v:0</code>
 <ul>
-<li>多个 ALU；硬件是否共用，权衡冲突和 latency 等</li>
-<li>bypass 需要检查的依赖关系是 N^2 级的
+<li>选择第一个视频流（<code>v:0</code>）</li>
+</ul>
+</li>
+<li><code>-show_entries frame=key_frame,best_effort_timestamp_time</code>
 <ul>
-<li>clustering ALUs and regfile</li>
+<li>提取每帧的以下字段：
+<ul>
+<li><code>key_frame</code>：是否为关键帧（<code>1</code>=是，<code>0</code>=否）</li>
+<li><code>pkt_pts_time</code>：帧时间戳</li>
 </ul>
 </li>
 </ul>
-<h3 id="vliw">VLIW</h3>
-<p>VLIW: very long inst word 多个操作封装进一条指令<br>
-constant operation latencies are specified<br>
-完全靠编译器确保一条指令里没有依赖</p>
-<p>编译器要：</p>
-<ol>
-<li>调度指令</li>
-<li>保证超长指令字内部的并行</li>
-<li>避免 data hazards，通常用 NOP 隔开</li>
-</ol>
-<p>software pipelining：loop 内部 iteration 之间重叠<br>
-每次 iteration 分配一个新的 reg set -&gt; rotating register file</p>
-<p>没有 loop 时 trace scheduling：找到一条 hot flow paths，合并途径的 block，其他分支增加 repair code</p>
-<p>VLIW 的问题：</p>
+</li>
+<li><code>-of csv</code>
 <ul>
-<li>兼容性不好，每次换硬件，编译器就必须重新设计</li>
-<li>NOP、循环展开都增加了代码长度</li>
-<li>内存操作的 latency 由于 cache 问题并不固定</li>
-<li>分支的并行性</li>
+<li>以 csv 格式输出</li>
 </ul>
-<p><strong>Superscalar vs. VLIW</strong><br>
-superscalar 硬件和调度比较复杂，但可以 handle 动态的 unpredictable 指令流；<br>
-VLIW 完全依赖编译器调度，硬件简单，适用于静态和 predictable 指令流。</p>
+</li>
+<li><code>-skip_frame nokey</code>
+<ul>
+<li>跳过非关键帧（仅输出关键帧）</li>
+</ul>
+</li>
+</ul>
+<p>理想情况下，命令行会输出所有带时间戳的关键帧列表，如下：</p>
+<pre tabindex="0"><code>frame,1,0.000000
+frame,1,3.750000
+frame,1,7.500000
+...
+</code></pre><p>但某些版本或编码方式下，视频关键帧的时间戳字段可能会缺失或者没有被正确读取，此时可以尝试换一个字段取代 pkt_pts_time：</p>
+<p>（best_effort_time 是 FFmpeg 估算的时间戳，在视频包的 PTS（Presentation Timestamp）不可用时可以备用，精度会略差一点。）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffprobe -v error -select_streams v:0 -show_entries frame<span style="color:#f92672">=</span>key_frame,best_effort_timestamp_time -of csv -skip_frame nokey video.mp4
+</span></span></code></pre></div><p>之后，在想要截取的时间点附近选一个关键帧裁剪，就能规避精度问题。</p>
 
     
                 
@@ -435,15 +422,10 @@ VLIW 完全依赖编译器调度，硬件简单，适用于静态和 predictable
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/10/operating-system-5.0/" data-toggle="tooltip" data-placement="top" title="操作系统笔记03：进程间通信">&larr;
+                        <a href="/2025/summer-solstice/" data-toggle="tooltip" data-placement="top" title="乙巳夏至｜一个半月怎么发生了这么多事">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2023/11/computer-architecture-ch9/" data-toggle="tooltip" data-placement="top" title="计算机体系结构09：Virtual Memory">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 
