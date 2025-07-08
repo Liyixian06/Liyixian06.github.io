@@ -16,7 +16,7 @@ hasCJKLanguage = true
   pagerSize = 10 # frontpage pagination
 
 [outputs]
-home = ["HTML", "RSS", "JSON"]
+home = ["HTML", "RSS", "JSON", "Algolia"]
 
 [markup]
   [markup.goldmark]
@@ -50,6 +50,12 @@ page_view_counter = true
 search = true
 showtoc = true
 
+# algolia site search
+algolia_search = true
+algolia_appId = "NJV6LRURL5"
+algolia_indexName = "hugo_posts"
+algolia_apiKey = "0271a1d27ec8e2957008dd6a00dd6f04"
+
 [params.social]
 rss = true
 email = "liyixian06@gmail.com"
@@ -78,3 +84,13 @@ href =  "/archive"
   data-theme="preferred_color_scheme"
   data_lang="zh-CN"
   crossorigin="anonymous"
+
+[outputFormats.Algolia]
+baseName = "algolia"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true
+
+[params.algolia]
+vars = ["title", "summary", "date", "publishdate", "expirydate", "permalink"]
+params = ["categories", "tags"] 
