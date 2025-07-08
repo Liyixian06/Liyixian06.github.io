@@ -2,46 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Computer Networking on Liyixian Blog</title>
-    <link>https://Liyixian06.github.io/tags/computer-networking/</link>
+    <link>http://localhost:1313/tags/computer-networking/</link>
     <description>Recent content in Computer Networking on Liyixian Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
     <lastBuildDate>Wed, 06 Dec 2023 22:36:25 +0800</lastBuildDate>
-    <atom:link href="https://Liyixian06.github.io/tags/computer-networking/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/computer-networking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>计算机网络笔记04B：网络层-控制平面</title>
-      <link>https://Liyixian06.github.io/2023/12/computer-networking-ch5/</link>
+      <link>http://localhost:1313/2023/12/computer-networking-ch5/</link>
       <pubDate>Wed, 06 Dec 2023 22:36:25 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/12/computer-networking-ch5/</guid>
+      <guid>http://localhost:1313/2023/12/computer-networking-ch5/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;路由选择算法&#xA;&lt;ul&gt;&#xA;&lt;li&gt;链路状态算法&lt;/li&gt;&#xA;&lt;li&gt;距离向量算法&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;互联网路由选择协议&#xA;&lt;ul&gt;&#xA;&lt;li&gt;RIP&lt;/li&gt;&#xA;&lt;li&gt;OSPF&lt;/li&gt;&#xA;&lt;li&gt;BGP&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;软件定义网络 SDN&lt;/li&gt;&#xA;&lt;li&gt;ICMP 互联网控制报文协议&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;路由选择算法&#34;&gt;路由选择算法&lt;/h3&gt;&#xA;&lt;p&gt;路由选择算法 routing algorithm：从发送方到接收方确定一条通过路由器网络的最好路径&lt;br&gt;&#xA;-&amp;gt; 最好：一般指开销最小 &lt;em&gt;（距离、时沿、费用、堵塞）&lt;/em&gt;&lt;br&gt;&#xA;分布式：每台路由器独立计算&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机网络笔记04A：网络层-数据平面</title>
-      <link>https://Liyixian06.github.io/2023/11/computer-networking-ch4/</link>
+      <link>http://localhost:1313/2023/11/computer-networking-ch4/</link>
       <pubDate>Wed, 15 Nov 2023 21:20:51 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/11/computer-networking-ch4/</guid>
+      <guid>http://localhost:1313/2023/11/computer-networking-ch4/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;网络层概述&lt;/li&gt;&#xA;&lt;li&gt;路由器工作原理&lt;/li&gt;&#xA;&lt;li&gt;网际协议：IPv4、网络地址转换、IPv6&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;网络层概述&#34;&gt;网络层概述&lt;/h3&gt;&#xA;&lt;p&gt;网络层的作用是将 packet 从发送主机移动到接收主机。&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;转发 forwarding，数据平面实现&lt;/li&gt;&#xA;&lt;li&gt;路由选择 routing，控制平面实现，确定 packet 从源到目的地的路径&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;每台路由器中有一个转发表 forwarding table，路由器检查到达的 packet header 的字段值，将其在转发表中索引，确定输出链路接口。&lt;br&gt;&#xA;转发表是如何配置的？&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机网络笔记03：传输层</title>
-      <link>https://Liyixian06.github.io/2023/10/computer-networking-ch3/</link>
+      <link>http://localhost:1313/2023/10/computer-networking-ch3/</link>
       <pubDate>Wed, 18 Oct 2023 14:17:50 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/10/computer-networking-ch3/</guid>
+      <guid>http://localhost:1313/2023/10/computer-networking-ch3/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;多路复用和多路分解&lt;/li&gt;&#xA;&lt;li&gt;UDP：特点、检验和&lt;/li&gt;&#xA;&lt;li&gt;可靠数据传输：rdt、pipeline&lt;/li&gt;&#xA;&lt;li&gt;TCP：segment 结构、可靠数据传输、流量控制、连接管理&lt;/li&gt;&#xA;&lt;li&gt;网络拥塞&lt;/li&gt;&#xA;&lt;li&gt;TCP 拥塞控制&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;概述和传输层服务&#34;&gt;概述和传输层服务&lt;/h3&gt;&#xA;&lt;p&gt;传输层协议只工作在主机中，而非路由器&lt;br&gt;&#xA;传输层将从发送应用程序进程接收到的 message 转换为 segment with header，传递给网络层，后者封装成 packet 向目的地发送&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机网络笔记02：应用层</title>
-      <link>https://Liyixian06.github.io/2023/09/computer-networking-ch2/</link>
+      <link>http://localhost:1313/2023/09/computer-networking-ch2/</link>
       <pubDate>Wed, 27 Sep 2023 19:22:27 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/09/computer-networking-ch2/</guid>
+      <guid>http://localhost:1313/2023/09/computer-networking-ch2/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;应用层协议和进程通信模型&lt;/li&gt;&#xA;&lt;li&gt;运输服务&lt;/li&gt;&#xA;&lt;li&gt;Web 服务与 HTTP 协议&lt;/li&gt;&#xA;&lt;li&gt;电子邮件&lt;/li&gt;&#xA;&lt;li&gt;域名系统 DNS&lt;/li&gt;&#xA;&lt;li&gt;P2P 文件分发&lt;/li&gt;&#xA;&lt;li&gt;DASH&lt;/li&gt;&#xA;&lt;li&gt;内容分发网络 CDN&lt;/li&gt;&#xA;&lt;li&gt;Socket 编程&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;应用层协议原理&#34;&gt;应用层协议原理&lt;/h3&gt;&#xA;&lt;p&gt;应用：可以进行通信的分布式进程&lt;/p&gt;&#xA;&lt;h4 id=&#34;应用程序体系结构&#34;&gt;应用程序体系结构&lt;/h4&gt;&#xA;&lt;p&gt;应用程序体系结构由开发者设计&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机网络笔记01：计算机网络和因特网</title>
-      <link>https://Liyixian06.github.io/2023/09/computer-networking-ch1/</link>
+      <link>http://localhost:1313/2023/09/computer-networking-ch1/</link>
       <pubDate>Wed, 06 Sep 2023 18:52:07 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/09/computer-networking-ch1/</guid>
+      <guid>http://localhost:1313/2023/09/computer-networking-ch1/</guid>
       <description>&lt;p&gt;&lt;em&gt;本文是《计算机网络：自顶向下方法》（Computer Networking: A Top-Down Approach）的阅读笔记，不成文，仅记录。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Summary：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;构成网络的基本硬件和软件&lt;/li&gt;&#xA;&lt;li&gt;边缘：网络中运行的主机和网络应用&lt;/li&gt;&#xA;&lt;li&gt;核心：接入网、链路和交换机&lt;/li&gt;&#xA;&lt;li&gt;分组交换的时延、丢包、吞吐&lt;/li&gt;&#xA;&lt;li&gt;体系结构原则&lt;/li&gt;&#xA;&lt;li&gt;攻击和安全&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;什么是因特网&#34;&gt;什么是因特网？&lt;/h3&gt;&#xA;&lt;h4 id=&#34;因特网的硬件和软件组件&#34;&gt;因特网的硬件和软件组件&lt;/h4&gt;&#xA;&lt;p&gt;主机/端系统通过通信链路和分组交换机连接到一起；不同链路的传输速率不同&lt;br&gt;&#xA;发送数据时将数据分段并加上首部字节，形成信息包 packet&lt;br&gt;&#xA;分组交换机：路由器、链路层交换机 link-layer switch&lt;br&gt;&#xA;主机通过因特网服务提供商 ISP 接入因特网，每个 ISP 是多台分组交换机和多段通信链路组成的网络；ISP 互联，每个都独立管理&lt;br&gt;&#xA;主机、分组交换机和其他因特网部件运行协议 protocol，控制信息接收和发送：TCP 传输控制协议/IP 网际协议&lt;/p&gt;</description>
     </item>
   </channel>

@@ -2,7 +2,7 @@
 layout:		 single
 title:       "An Example Post"
 subtitle:    ""
-description: ""
+description: " "
 date:        {{ .Date }}
 author: LiYixian
 image:       ""
