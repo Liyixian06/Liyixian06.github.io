@@ -2,81 +2,81 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Compiler on Liyixian Blog</title>
-    <link>http://localhost:1313/tags/compiler/</link>
+    <link>https://Liyixian06.github.io/tags/compiler/</link>
     <description>Recent content in Compiler on Liyixian Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
     <lastBuildDate>Tue, 19 Dec 2023 14:21:30 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/compiler/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://Liyixian06.github.io/tags/compiler/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>编译原理笔记10：代码优化</title>
-      <link>http://localhost:1313/2023/12/compiler-principles-ch10/</link>
+      <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch10/</link>
       <pubDate>Tue, 19 Dec 2023 14:21:30 +0800</pubDate>
-      <guid>http://localhost:1313/2023/12/compiler-principles-ch10/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;优化种类&lt;/li&gt;&#xA;&lt;li&gt;循环&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;优化编译器：控制流分析 -&amp;gt; 数据流分析 -&amp;gt; 代码变换&lt;br&gt;&#xA;与目的机器无关&lt;/p&gt;&#xA;&lt;h3 id=&#34;优化种类&#34;&gt;优化种类&lt;/h3&gt;&#xA;&lt;p&gt;局部优化（&lt;em&gt;i.e.&lt;/em&gt; 基本块内优化）、全局优化&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;消去公共子表达式&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;复制传播：对单次赋值 &lt;code&gt;f:=g&lt;/code&gt;，在随后语句中用 &lt;code&gt;g&lt;/code&gt; 替换 &lt;code&gt;f&lt;/code&gt;&lt;br&gt;&#xA;&#xA;  &lt;img src=&#34;http://localhost:1313/img/%e5%a4%8d%e5%88%b6%e4%bc%a0%e6%92%ad.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
+      <guid>https://Liyixian06.github.io/2023/12/compiler-principles-ch10/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;优化种类&lt;/li&gt;&#xA;&lt;li&gt;循环&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;优化编译器：控制流分析 -&amp;gt; 数据流分析 -&amp;gt; 代码变换&lt;br&gt;&#xA;与目的机器无关&lt;/p&gt;&#xA;&lt;h3 id=&#34;优化种类&#34;&gt;优化种类&lt;/h3&gt;&#xA;&lt;p&gt;局部优化（&lt;em&gt;i.e.&lt;/em&gt; 基本块内优化）、全局优化&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;消去公共子表达式&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;复制传播：对单次赋值 &lt;code&gt;f:=g&lt;/code&gt;，在随后语句中用 &lt;code&gt;g&lt;/code&gt; 替换 &lt;code&gt;f&lt;/code&gt;&lt;br&gt;&#xA;&#xA;  &lt;img src=&#34;https://Liyixian06.github.io/img/%e5%a4%8d%e5%88%b6%e4%bc%a0%e6%92%ad.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记09：代码生成</title>
-      <link>http://localhost:1313/2023/12/compiler-principles-ch9/</link>
+      <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch9/</link>
       <pubDate>Tue, 12 Dec 2023 14:20:19 +0800</pubDate>
-      <guid>http://localhost:1313/2023/12/compiler-principles-ch9/</guid>
+      <guid>https://Liyixian06.github.io/2023/12/compiler-principles-ch9/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;基本块和流图&lt;/li&gt;&#xA;&lt;li&gt;代码生成基本算法&lt;/li&gt;&#xA;&lt;li&gt;寄存器分配&lt;/li&gt;&#xA;&lt;li&gt;窥孔优化&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;设计问题&#34;&gt;设计问题&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;输入&#xA;&lt;ul&gt;&#xA;&lt;li&gt;中间表示形式&lt;/li&gt;&#xA;&lt;li&gt;符号表信息&lt;/li&gt;&#xA;&lt;li&gt;类型检查和转换已经完成&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;输出&#xA;&lt;ul&gt;&#xA;&lt;li&gt;汇编语言&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;内存管理&#xA;&lt;ul&gt;&#xA;&lt;li&gt;见 &lt;a href=&#34;https://liyixian06.github.io/2023/11/compiler-principles-ch7/&#34;&gt;Ch7&lt;/a&gt; 中讨论的内存分配策略&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;指令集选择&lt;/li&gt;&#xA;&lt;li&gt;寄存器分配&#xA;&lt;ul&gt;&#xA;&lt;li&gt;allocation, assignment&lt;/li&gt;&#xA;&lt;li&gt;regiser-pair&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;计算顺序&lt;/li&gt;&#xA;&lt;li&gt;代码生成方法&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;寻址方式开销：绝对 &lt;code&gt;M&lt;/code&gt; (1)/寄存器 &lt;code&gt;R&lt;/code&gt; (0)/索引 &lt;code&gt;c(R)&lt;/code&gt; (1)/间接寄存器 &lt;code&gt;*R&lt;/code&gt; (0)、间接索引 &lt;code&gt;*c(R)&lt;/code&gt; (1)&lt;br&gt;&#xA;指令开销：&lt;code&gt;MOV R0,R1&lt;/code&gt;（1）/ &lt;code&gt;MOV R5,M&lt;/code&gt; (2)/ &lt;code&gt;ADD #1,R3&lt;/code&gt; (2)/ &lt;code&gt;SUB 4(R0),*12(R1)&lt;/code&gt; (3)&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记08：中间代码生成</title>
-      <link>http://localhost:1313/2023/12/compiler-principles-ch8/</link>
+      <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch8/</link>
       <pubDate>Wed, 06 Dec 2023 20:31:01 +0800</pubDate>
-      <guid>http://localhost:1313/2023/12/compiler-principles-ch8/</guid>
+      <guid>https://Liyixian06.github.io/2023/12/compiler-principles-ch8/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;三地址码&lt;/li&gt;&#xA;&lt;li&gt;语句翻译：声明、赋值、布尔表达式、控制流&lt;/li&gt;&#xA;&lt;li&gt;BackPatching&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;三地址码&#34;&gt;三地址码&lt;/h3&gt;&#xA;&lt;p&gt;一般形式：&lt;code&gt;x:=y op z&lt;/code&gt;（注意赋值符号是 &lt;code&gt;:=&lt;/code&gt;）&lt;br&gt;&#xA;三地址码的实现：&lt;br&gt;&#xA;利用属性 &lt;code&gt;E.place&lt;/code&gt; 保存值，&lt;code&gt;E.code&lt;/code&gt; 计算 E 的三地址码&lt;br&gt;&#xA;newtemp 生成临时变量名，gen 输出一条三地址码指令&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记07：运行时环境</title>
-      <link>http://localhost:1313/2023/11/compiler-principles-ch7/</link>
+      <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch7/</link>
       <pubDate>Tue, 28 Nov 2023 14:51:44 +0800</pubDate>
-      <guid>http://localhost:1313/2023/11/compiler-principles-ch7/</guid>
+      <guid>https://Liyixian06.github.io/2023/11/compiler-principles-ch7/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;源语言相关问题&lt;/li&gt;&#xA;&lt;li&gt;存储组织&lt;/li&gt;&#xA;&lt;li&gt;内存分配策略&lt;/li&gt;&#xA;&lt;li&gt;访问非局部名字&lt;/li&gt;&#xA;&lt;li&gt;参数传递&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;源语言相关问题&#34;&gt;源语言相关问题&lt;/h3&gt;&#xA;&lt;p&gt;过程（函数）：procedure（静态）/activation（动态，一次执行）&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;过程定义、过程名、过程体&lt;/li&gt;&#xA;&lt;li&gt;函数、调用、形参、实参&lt;/li&gt;&#xA;&lt;li&gt;生存期&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;过程的生命期或者不重叠、或者嵌套；&lt;br&gt;&#xA;递归：过程 p 的某个活动尚未结束，可以开始它的一个新的活动&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记06：类型检查</title>
-      <link>http://localhost:1313/2023/11/compiler-principles-ch6/</link>
+      <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch6/</link>
       <pubDate>Tue, 21 Nov 2023 14:51:19 +0800</pubDate>
-      <guid>http://localhost:1313/2023/11/compiler-principles-ch6/</guid>
+      <guid>https://Liyixian06.github.io/2023/11/compiler-principles-ch6/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;类型系统&lt;/li&gt;&#xA;&lt;li&gt;类型表达式的等价&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;静态检查 static checking：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;类型检查（type check）&#xA;&lt;ul&gt;&#xA;&lt;li&gt;操作对象必须与操作符匹配，&lt;em&gt;i.e.&lt;/em&gt; 函数名不能相加&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;控制流检查（flow-of-control check）&#xA;&lt;ul&gt;&#xA;&lt;li&gt;break 必须退出 while、for、switch…&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;唯一性检查（uniqueness check）&#xA;&lt;ul&gt;&#xA;&lt;li&gt;对象（变量、标号…）定义必须唯一&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;名字关联检查（name-related check）&#xA;&lt;ul&gt;&#xA;&lt;li&gt;相同名字在不同位置&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;类型系统&#34;&gt;类型系统&lt;/h3&gt;&#xA;&lt;p&gt;将类型赋予语法结构的规则；每个表达式都有一个关联的类型&lt;br&gt;&#xA;基本类型（语言内部支持类型）、结构类型（组合基本类型构成新类型）&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记05：语法制导翻译</title>
-      <link>http://localhost:1313/2023/11/compiler-principles-ch5/</link>
+      <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch5/</link>
       <pubDate>Tue, 21 Nov 2023 14:12:33 +0800</pubDate>
-      <guid>http://localhost:1313/2023/11/compiler-principles-ch5/</guid>
+      <guid>https://Liyixian06.github.io/2023/11/compiler-principles-ch5/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;语法制导的定义&lt;/li&gt;&#xA;&lt;li&gt;构造语法树&lt;/li&gt;&#xA;&lt;li&gt;S-属性定义、L-属性定义&lt;/li&gt;&#xA;&lt;li&gt;自顶向下计算属性&lt;/li&gt;&#xA;&lt;li&gt;自底向上计算属性&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;语法制导定义&#34;&gt;语法制导定义&lt;/h3&gt;&#xA;&lt;p&gt;语法制导翻译是一种搭建在语法分析基础上的翻译技术。&lt;br&gt;&#xA;思路：&lt;strong&gt;给每个符号（特别是非终结符）设置一系列属性 attribute，在语法翻译的时候对属性进行求值。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记04：语法分析</title>
-      <link>http://localhost:1313/2023/10/compiler-principles-ch4/</link>
+      <link>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</link>
       <pubDate>Tue, 24 Oct 2023 16:26:29 +0800</pubDate>
-      <guid>http://localhost:1313/2023/10/compiler-principles-ch4/</guid>
+      <guid>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;上下文无关文法&lt;/li&gt;&#xA;&lt;li&gt;语法分析&#xA;&lt;ul&gt;&#xA;&lt;li&gt;自顶向下&lt;/li&gt;&#xA;&lt;li&gt;自底向上：LR (0) / SLR / LR (1) / LALR&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;语法错误处理&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;上下文无关文法&#34;&gt;上下文无关文法&lt;/h2&gt;&#xA;&lt;p&gt;正则表达式的能力不足 -&amp;gt; &lt;a href=&#34;https://liyixian06.github.io/2023/09/compiler-principles-ch2/&#34;&gt;ch2 CFG&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;凡是正则表达式能表示的语言，都能用 CFG 表示：可以机械地由 NFA 变换而得，NFA 字母表视为 terminal 集合&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记03：词法分析</title>
-      <link>http://localhost:1313/2023/09/compiler-principles-ch3/</link>
+      <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch3/</link>
       <pubDate>Tue, 26 Sep 2023 15:22:11 +0800</pubDate>
-      <guid>http://localhost:1313/2023/09/compiler-principles-ch3/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;token 及属性&lt;/li&gt;&#xA;&lt;li&gt;正则表达式与转换图&lt;/li&gt;&#xA;&lt;li&gt;Lex 程序&lt;/li&gt;&#xA;&lt;li&gt;有限自动机&#xA;&lt;ul&gt;&#xA;&lt;li&gt;正则表达式到 NFA&lt;/li&gt;&#xA;&lt;li&gt;NFA 到 DFA&lt;/li&gt;&#xA;&lt;li&gt;DFA 的化简&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;token-及属性&#34;&gt;token 及属性&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;词法记号/单词 token：字符串集的分类&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;&amp;lt;identifier&amp;gt;,&amp;lt;number&amp;gt;&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&amp;lt;记号名[, 属性值]&amp;gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;模式 pattern：描述字符串集如何分类为 token 的规则&#xA;&lt;ul&gt;&#xA;&lt;li&gt;正则表达式，&lt;em&gt;[A-Z]*&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;词法单元/词素 lexeme：程序中实际出现的字符串，匹配 pattern 分类为 token&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;i, count, name, 60&amp;hellip;&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;保存进符号表；返回给语法分析器&lt;/li&gt;&#xA;&lt;li&gt;词素的信息：token 影响语法分析、属性影响翻译（这个 token 里词素之间的区别）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;http://localhost:1313/img/token%e5%8f%8a%e5%b1%9e%e6%80%a7.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
+      <guid>https://Liyixian06.github.io/2023/09/compiler-principles-ch3/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;token 及属性&lt;/li&gt;&#xA;&lt;li&gt;正则表达式与转换图&lt;/li&gt;&#xA;&lt;li&gt;Lex 程序&lt;/li&gt;&#xA;&lt;li&gt;有限自动机&#xA;&lt;ul&gt;&#xA;&lt;li&gt;正则表达式到 NFA&lt;/li&gt;&#xA;&lt;li&gt;NFA 到 DFA&lt;/li&gt;&#xA;&lt;li&gt;DFA 的化简&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;token-及属性&#34;&gt;token 及属性&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;词法记号/单词 token：字符串集的分类&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;&amp;lt;identifier&amp;gt;,&amp;lt;number&amp;gt;&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&amp;lt;记号名[, 属性值]&amp;gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;模式 pattern：描述字符串集如何分类为 token 的规则&#xA;&lt;ul&gt;&#xA;&lt;li&gt;正则表达式，&lt;em&gt;[A-Z]*&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;词法单元/词素 lexeme：程序中实际出现的字符串，匹配 pattern 分类为 token&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;i, count, name, 60&amp;hellip;&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;保存进符号表；返回给语法分析器&lt;/li&gt;&#xA;&lt;li&gt;词素的信息：token 影响语法分析、属性影响翻译（这个 token 里词素之间的区别）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://Liyixian06.github.io/img/token%e5%8f%8a%e5%b1%9e%e6%80%a7.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记02：构造一个简单的编译器</title>
-      <link>http://localhost:1313/2023/09/compiler-principles-ch2/</link>
+      <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch2/</link>
       <pubDate>Sun, 17 Sep 2023 00:59:42 +0800</pubDate>
-      <guid>http://localhost:1313/2023/09/compiler-principles-ch2/</guid>
+      <guid>https://Liyixian06.github.io/2023/09/compiler-principles-ch2/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;上下文无关文法（CFG）&#xA;&lt;ul&gt;&#xA;&lt;li&gt;推导和语法树&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;语法制导翻译&#xA;&lt;ul&gt;&#xA;&lt;li&gt;翻译模式&lt;/li&gt;&#xA;&lt;li&gt;Yacc 编程&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;自顶向下预测分析&#xA;&lt;ul&gt;&#xA;&lt;li&gt;设计实现预测分析器&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;简单词法分析&lt;/li&gt;&#xA;&lt;li&gt;代码生成&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;语法定义&#34;&gt;语法定义&lt;/h3&gt;&#xA;&lt;p&gt;上下文无关文法（CFG）：描述源程序的语法结构&lt;br&gt;&#xA;CFG 的四个部分：&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记01：引论</title>
-      <link>http://localhost:1313/2023/09/compiler-principles-ch1/</link>
+      <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch1/</link>
       <pubDate>Thu, 07 Sep 2023 10:03:18 +0800</pubDate>
-      <guid>http://localhost:1313/2023/09/compiler-principles-ch1/</guid>
+      <guid>https://Liyixian06.github.io/2023/09/compiler-principles-ch1/</guid>
       <description>&lt;p&gt;语言处理系统：把用软件语言书写的各种程序翻译成可在计算机上执行的程序，或最终的计算结果，或其他中间形式。&lt;/p&gt;&#xA;&lt;p&gt;如何完成翻译？&lt;/p&gt;&#xA;&lt;h4 id=&#34;语言处理系统总则&#34;&gt;语言处理系统总则&lt;/h4&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;预处理：删除注释、宏扩展、文件包含（. i 文件）&lt;/li&gt;&#xA;&lt;li&gt;编译：将源程序翻译成汇编语言（.s 文件）&#xA;&lt;ol&gt;&#xA;&lt;li&gt;词法分析，创建符号表&#xA;&lt;ol&gt;&#xA;&lt;li&gt;把源代码中的字符串（关键字、标识符、操作符、界符等）转换成 token&lt;/li&gt;&#xA;&lt;li&gt;正则表达式、flex（词法文件 calc.l）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;语法分析&#xA;&lt;ol&gt;&#xA;&lt;li&gt;把 token 串转换成 AST 抽象语法树，生成清晰的代码结构&lt;/li&gt;&#xA;&lt;li&gt;按照语法结构的递归定义从上到下匹配&lt;/li&gt;&#xA;&lt;li&gt;Bison/Yacc（语法文件 calc.y）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;语义分析&#xA;&lt;ol&gt;&#xA;&lt;li&gt;理解语句要做什么（唯一的含义）&lt;/li&gt;&#xA;&lt;li&gt;收集信息：引用消解、上下文信息&lt;/li&gt;&#xA;&lt;li&gt;类型分析和检查&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;中间代码生成&#xA;&lt;ol&gt;&#xA;&lt;li&gt;LLVM IR (Intermediate Representation)&#xA;&lt;ol&gt;&#xA;&lt;li&gt;基本单位是 module&lt;/li&gt;&#xA;&lt;li&gt;module 中可以包含多个顶层实体（函数/全局变量）&lt;/li&gt;&#xA;&lt;li&gt;函数由一系列 basic block 组成，每个 block 里有若干 instruction&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;得到. bc 二进制中间语言和. ll 可读代码（两种格式等价）&lt;/li&gt;&#xA;&lt;li&gt;pipeline：不同高级语言对应的前端将其转换成 IR，统一优化、链接后再传给不同 target (x86/arm/risc-v/mips/&amp;hellip;) 的后端，转换成对应的二进制代码&lt;/li&gt;&#xA;&lt;li&gt;在这一步，高级语言的差异消失了&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;代码优化&#xA;&lt;ol&gt;&#xA;&lt;li&gt;LLVM 后端优化&lt;/li&gt;&#xA;&lt;li&gt;数据流分析、基于 basic block 生成的控制流图 CFG 优化&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;e.g. 代数优化、常数折叠、死代码删除&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;代码生成&#xA;&lt;ol&gt;&#xA;&lt;li&gt;确定变量的内存位置、指定寄存器&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;汇编：将汇编语言翻译成机器语言，并打包成可重定位目标程序（. o 文件）&#xA;&lt;ol&gt;&#xA;&lt;li&gt;指令选择&lt;/li&gt;&#xA;&lt;li&gt;寄存器分配&lt;/li&gt;&#xA;&lt;li&gt;指令重排&lt;/li&gt;&#xA;&lt;li&gt;指令编码&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;链接/加载：将可重定位机器代码和相应的目标文件、库文件链接在一起，形成能运行的程序&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
     </item>
   </channel>
