@@ -334,7 +334,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 3501 字</span>，阅读约 <span class="more-meta"> 7 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 7148 字</span>，阅读约 <span class="more-meta"> 15 分钟</span>
                             
                             
                             
@@ -363,7 +363,7 @@ $(function() {
                 <h2 id="大事小情">大事小情</h2>
 <h3 id="大事">大事</h3>
 <h4 id="slo22">SLO22</h4>
-<p>又去了slo（今年去漫展的次数已经超额了），感觉和 GA 规模差不多，但不知为何逛了俩小时就出来了。不过在展地旁边喝酒的地方看到冬兵、Crowley 和哈利波特（未成年不能进这种地方吧？？）站在一起喝酒真是神奇的一幕，另外哈利这 cosplay 成本是不是太低了，穿件格子法兰绒衬衫抓一下头发戴个眼镜往额头上画两笔就能出门……</p>
+<p>又去了slo（今年去漫展的次数已经超额了），感觉和 GA 规模差不多，但不知为何逛了俩小时就出来了。不过在展地旁边喝酒的地方看到冬兵、Crowley 和哈利波特（未成年不要进酒吧）站在一起喝酒真是神奇的一幕，另外哈利这 cosplay 成本是不是太低了，穿件格子法兰绒衬衫抓一下头发戴个眼镜往额头上画两笔就能出门……</p>
 <h4 id="义乌">义乌</h4>
 <p>去了趟义乌！本来其实都没很想出门，但朋友一说”你觉得义乌怎么样“突然又燃起了出门的兴趣。过两天单独记一篇，这里就先不写了。感想主要有二：义乌真是个国际化大都市（第三世界的 international，不是上海那种第一世界的）；这种要啥有啥的完整轻工业体系给消费主义符号来了个彻头彻尾的洗礼，去一趟就会觉得什么牌子不牌子的都是过眼烟云……</p>
 <h3 id="小情">小情</h3>
@@ -374,35 +374,3815 @@ $(function() {
 </ul>
 <h2 id="书影音演出">书影音演出</h2>
 <h3 id="书">书</h3>
-<p>悬案密码01：笼里的女人
-Dept Q 原作小说，看完深刻觉得 Scott Frank 简直是妙手回春……对主角们性格的修改都非常合理，增加了更多的重要女性角色，砍掉了实在没什么必要的另一条案件线，努力把莫名其妙的感情戏掰回来了一点（虽然我的建议是不如全删掉），加上了大量缓和气氛的刻薄话和喜剧桥段。影视化真是一门学问，应该琢磨一下，感觉会有用。</p>
-<p>饭桌追凶
-人物塑造过于可怕，也是挺久没看过每个人都这么不讨喜的故事了，美国人不许写这种 cctv8 八点档一般狗屁不通的婆媳矛盾了答应我好吗……案件倒是写得不错，短小精悍，每篇的切口都挺有意思的，尤其是笔友那篇相当有趣。</p>
-<p>悬案密码02：野鸡杀手
-剧情其实比第一部好，结尾的动作场面也挺紧张刺激，但角色塑造和性别观念已经下滑到了让人特别倒胃口的国产男作家水准，以至于我已经没心情再往下继续看这个系列了……读原作这个任务就交给导演和编剧完成吧（如果能续订）……</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+          
+
+          <div class="douban-card douban-card-book" id="douban-card-book"+26304007 douban-id=26304007>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+                <a href="https://book.douban.com/subject/26304007/" class="cute" target="_blank" rel="external nofollow">笼里的女人</a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">7.1</span>
+            </div>
+            <div class="douban-card--tags">[丹] 阿德勒-奥尔森 / 2015 / 江苏凤凰文艺出版社</div>
+            <div class="douban-card--summary">丹麦最神秘离奇、无人能破的悬案，唯有他，能解开通往关键线索的密码。卡尔·穆尔克，哥本哈根的资探警探，具有猎犬般的直觉、对线索紧咬不放的毅力。当最优秀的警探碰上最棘手的悬案，真相能否水落石出？从五年前国会议员梅瑞特被列为失踪人口的那一刻开始，她的人生就堕入万劫不复的地狱。因为她被绑架了！绑架者将她拘禁在囚笼中过着非人的生活，如果无法回答出他们在她生日那天问的问题，就必须忍受牢里保持整年的黑暗或明亮，以及不断升高的气压。梅瑞特曾想坚持意志活下去，但在经历了漫长的折磨后，死亡似乎成为她最甜美的解脱……当所有人对这起失踪案不再抱持希望，卡尔却认为梅瑞特还活着。他越是接近谜团的核心，笼里的女人就一步步迈向死亡──卡尔能否赶在悲剧发生前，抢先发现隐藏背后的阴谋与真相？</div>
+          </div>
+          <div class="douban-card--right">
+            <img src="https://img1.doubanio.com/view/subject/l/public/s28151148.jpg" referrerPolicy="never" />
+          </div>
+        </div>
+      
+      
+      
+      
+      
+      
+  
+  
+  
+<p>Dept Q 原作小说，看完深刻觉得 Scott Frank 简直是妙手回春……对主角们性格的修改都非常合理，增加了更多的重要女性角色，砍掉了实在没什么必要的另一条案件线，努力把莫名其妙的感情戏掰回来了一点（虽然我的建议是不如全删掉），加上了大量缓和气氛的刻薄话和喜剧桥段。影视化真是一门学问，应该琢磨一下，感觉会有用。</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+          
+
+          <div class="douban-card douban-card-book" id="douban-card-book"+37022270 douban-id=37022270>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+                <a href="https://book.douban.com/subject/37022270/" class="cute" target="_blank" rel="external nofollow">饭桌追凶</a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">6.8</span>
+            </div>
+            <div class="douban-card--tags">[美] 詹姆斯·亚飞 / 2024 / 浙江文艺出版社</div>
+            <div class="douban-card--summary">《饭桌追凶》是美国作家詹姆斯·亚飞的短篇推理小说集。该书的主要内容是：每周五与母亲一起吃晚餐时，警官戴维都会聊起自己在工作时碰上的一些疑难案件。他的“神探母亲”会提出一些“简单”的问题，然后以犀利的切入点来揭开案件的真相。</div>
+          </div>
+          <div class="douban-card--right">
+            <img src="https://img9.doubanio.com/view/subject/l/public/s34988665.jpg" referrerPolicy="never" />
+          </div>
+        </div>
+      
+      
+      
+      
+  
+  
+  
+<p>人物塑造过于可怕，也是挺久没看过每个人都这么不讨喜的故事了，美国人不许写这种 cctv8 八点档一般狗屁不通的婆媳矛盾了答应我好吗……案件倒是写得不错，短小精悍，每篇的切口都挺有意思的，尤其是笔友那篇相当有趣。</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+          
+
+          <div class="douban-card douban-card-book" id="douban-card-book"+26304008 douban-id=26304008>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+                <a href="https://book.douban.com/subject/26304008/" class="cute" target="_blank" rel="external nofollow">野鸡杀手</a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">6.9</span>
+            </div>
+            <div class="douban-card--tags">[丹] 阿德勒-奥尔森 / 2015 / 江苏凤凰文艺出版社</div>
+            <div class="douban-card--summary">1987年，一对兄妹在自家的度假小屋惨遭杀害，虽然凶手指向几位家境富裕的寄宿学生，却因证据不足，让案情伴随两张从现场不翼而飞的游戏卡片被人刻意隐匿。20年后，这群寄宿学生成为社会的上流人士，表面上，他们是事业有成的正派商人；私底下，却是从狩猎游戏中获得快慰的“野鸡杀手”。不论商场或猎场，杀手们呼风唤雨，但如鬼魅般纠缠的往事可不受控制，总会有人要他们为过去的错误付出代价！卡尔接下“小屋案”后噩运不断，一连串的事件就像威胁他罢手的警告，难道凶手真的是掌控半个丹麦的商业巨子？他的调查又会引来什么样的危机？这一次，卡尔除了抽丝剥茧、还原真相，还得想办法保护自己从猎人设下的陷阱中全身而退……</div>
+          </div>
+          <div class="douban-card--right">
+            <img src="https://img9.doubanio.com/view/subject/l/public/s28151164.jpg" referrerPolicy="never" />
+          </div>
+        </div>
+      
+      
+  
+  
+  
+<p>剧情其实比第一部好，结尾的动作场面也挺紧张刺激，但角色塑造和性别观念已经下滑到了让人特别倒胃口的国产男作家水准，以至于我已经没心情再往下继续看这个系列了……读原作这个任务就交给导演和编剧完成吧（如果能续订）……</p>
 <h3 id="影">影</h3>
-<p>在我们死前 Innan vi dör<br>
-优缺点都很鲜明的一部，戏剧冲突非常足，人物关系错综复杂，但剧情漏洞不少，尽管最后来了个大反转圆上了一部分也没全圆上。Davor 这个角色很有趣，特别是男友那部分本可以展开更多，Alexej 演得非常有张力（quote 豆友：完全抢了男主的风头）。另外 ep6 这黑帮老大被下药卧底小弟一大早赶来找人的剧情给我看呆了我都有点嗑你俩了……</p>
-<p>睡魔 第二季<br>
-拍了个啥这是，看得我昏昏欲睡。就算是神话题材也不能这么神神叨叨吧？</p>
-<p>扑克脸 第二季<br>
-维持住了第一季的水平。这一季比较像过渡季，前三集收尾上一季的剧情，中间七集都是纯粹的单元剧（ep8 约翰赵那集很有意思），最后两集主线才出来。还以为 Charlie 会有个新伙伴了，结果最终又回到了独自流亡的生活，哎……当然这是角色魅力的一部分，但我还是希望她能有个好结局。</p>
-<p>侏罗纪世界：重生<br>
-剧情跟过关游戏似的，这倒无所谓，但硬塞一条和主线毫无关系还烦人透顶的一家四口亲情线就太倒胃口了，生生把侏罗纪公园搞成了环球影城。斯嘉丽非常美，但是作为本应的大女主无论是剧情还是人物塑造都是实在对不起她的位置，乔纳森贝利长得也是个人样（他这个造型我终于能get一点了）。以上都不是重点，重点是作为大恐龙电影这部后半部分基因改造的恐龙是否也长得太丑了一点？？</p>
-<p>侏罗纪世界<br>
-非常标准的好看，节奏调度很流畅，恐龙镜头的分量给得也一点都不吝啬。同样是亲情线，第一部写得就不令人烦，女主 Claire 就算是穿着高跟鞋如履平地，角色塑造也都比后面好得多，Owen 骑着摩托车和迅猛龙在森林里一路狂飙什么时候看都心潮澎湃，这才叫大 ip 动作片的主角，相较而言我又想痛骂第四部的编剧了……</p>
-<p>超人<br>
-提前预定年度最难看电影，感觉下半年是很难有超越它的了。甚至不知从何开始吐槽，要剧情没剧情要画面没画面要角色没角色要审美没审美，这版超人当小记者的时候甚至比当超人时候更像超人……竟然有人认为这部很古典/黄金时代，恰恰相反，全片流露出的非常廉价的塑料感让人怀疑剧本给 AI 写也不会更流水线了。只想对滚导说：1. 超人到底哪儿得罪你了？2. 又要超露又卖超莱并不会让电影变得更好看一点，只会让超人显得像个 walking bisexual disaster（字面）。</p>
-<p>公园与游憩 第一季<br>
-听说这部低开高走第二季就会好看起来，反正第一季确实是不太好笑，到最后两集才好了一些。我没看过 The Office 不知道人设有多相似，Leslie 有点萌的，Ann 非常可爱，男性角色倒都不是很招人喜欢。</p>
-<p>杀戮人机<br>
-一集才20分钟看起来太没压力了，不小心一天就刷完了……我们需要更多社畜摸鱼吐槽役机器人主角🫶 Murderbot &amp; Gurathin 的角色关系非常有趣，其实 dynamic 是很 slash 的但又这么人机（字面）和非性化，David Dastmalchian 给这个角色增加了很特别的风味，喜欢！</p>
-<p>Sinners<br>
-拍得……还可以？只能说我不是很喜欢高概念的B级片……试图囊括的东西太多了，比喻又相当浅显，导致成片的观感有点杂乱，略感失望。当然最大的原因是我以为这是个 horror 片，再不济也是 thriller，结果端着碗进去端着仿佛 DC 拍的动作戏出来了（算了）。政治隐喻不是那么好拍的，很难拍出来不装腔作势或者装神弄鬼，这点而言我觉得本片虽然并不差，但也并没有达到如口碑那样的高明。</p>
-<p>昨日青春<br>
-日本人拍政治科幻片无论怎样都有种天真，尽管设置成高中背景多少让这种天真能够接受了一些，but still，特别是看到学校里装监控系统真有点绷不住了，日本人以为自己在拍科幻实则不然……另一个问题是类似题材往往也无法很好地想象对普通人在此种情境下如何反应，虽然导演已经将其努力消解在日常生活中，但在多少经历或目睹过这种经验的人看来仍然显得过于郑重。优点是画面和配乐都挺好看/好听，整体氛围塑造得不错，看的过程还是很舒缓的，两个男主也比较好地代表了两种不同选择的人（一个许知远，一个李诞，笑死，爱看高中AU的cp粉有福了）。</p>
-<p>Michael Che：Shame the Devil<br>
-太短了！前面的暖场荤段子还不咋好笑，后面 LGBT 和种族笑话渐入佳境，但是感觉刚进入兴奋状态没多久就结束了。总体我是非常喜欢 Che 的单口风格的，相当松弛，有些阴郁，而且已经不畏于说些私人的真诚的话。</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+
+          
+          
+          
+          
+          
+
+          
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+26981047 douban-id=26981047>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/26981047/" target="_blank"> 在我们死前 Innan vi dör </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">☆☆☆☆☆</span>
+              <span class="douban-card--rating">N/A</span>
+              </div>
+              <div class="douban-card--tags"> 2017 / 瑞典 / 剧情 惊悚 / 玛丽·理查德森 亚当·帕森 阿列克谢·曼韦洛夫 马格努斯·克雷佩</div>
+              <div class="douban-card--summary">A police officer conducting an undercover investigation of a motorcycle club disappears.</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BMzM2N2U4Y2MtODdhOS00ODRkLWFlNTMtYTAzMTQ3NmI1ZGQ4XkEyXkFqcGc@._V1_FMjpg_UX422_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+<p>优缺点都很鲜明的一部，戏剧冲突非常足，人物关系错综复杂，但剧情漏洞不少，尽管最后来了个大反转圆上了一部分也没全圆上。Davor 这个角色很有趣，特别是男友那部分本可以展开更多，Alexej 演得非常有张力（quote 豆友：完全抢了男主的风头）。另外 ep6 这黑帮老大被下药卧底小弟一大早赶来找人的剧情给我看呆了我都有点嗑你俩了……</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+36142770 douban-id=36142770>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/36142770/" target="_blank"> 睡魔 第二季 The Sandman Season 2 </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">6.9</span>
+              </div>
+              <div class="douban-card--tags"> 2025 / 美国 英国 / 剧情 奇幻 恐怖 / 杰米·奇尔兹 / 汤姆·斯图里奇 波伊德·霍布鲁克</div>
+              <div class="douban-card--summary">在一位凡人巫师将其囚禁数十年后逃脱，梦，即梦的化身，开始夺回他失去的装备。</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BNjk0M2ZhZTQtZjQ0NC00ODA2LWFkN2ItMTA0ZTc0MjJjODg0XkEyXkFqcGc@._V1_FMjpg_UY2222_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+<p>拍了个啥这是，看得我昏昏欲睡。就算是神话题材也不能这么神神叨叨吧？</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+36247410 douban-id=36247410>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/36247410/" target="_blank"> 扑克脸 第二季 Poker Face Season 2 </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★★☆</span>
+              <span class="douban-card--rating">8.2</span>
+              </div>
+              <div class="douban-card--tags"> 2025 / 美国 / 剧情 喜剧 悬疑 犯罪 / 莱恩·约翰逊 / 娜塔莎·雷昂</div>
+              <div class="douban-card--summary">“查理·凯尔再次踏上逃亡之路，在第二季中，我们将带领她一步步揭开一个又一个的谋杀谜团，”强森和里昂在一份联合声明中透露道。“从小联盟棒球到大型零售店，从殡仪馆到鳄鱼养殖场，甚至还有小学才艺表演，查理凭借着冷面智慧、人性同理心以及她标志性的超凡测谎能力，踏上了她破案之旅，这趟关乎生存的旅程。”</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BYWNjOTkyZDktMjcwYy00MjEwLThkZGUtYjY3ZDUyMjBkM2IyXkEyXkFqcGc@._V1_FMjpg_UX1080_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+<p>维持住了第一季的水平。这一季比较像过渡季，前三集收尾上一季的剧情，中间七集都是纯粹的单元剧（ep8 约翰赵那集很有意思），最后两集主线才出来。还以为 Charlie 会有个新伙伴了，结果最终又回到了独自流亡的生活，哎……当然这是角色魅力的一部分，但我还是希望她能有个好结局。</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+36743767 douban-id=36743767>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/36743767/" target="_blank"> 侏罗纪世界：重生 Jurassic World: Rebirth </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">6.1</span>
+              </div>
+              <div class="douban-card--tags"> 2025 / 美国 / 动作 科幻 冒险 / 加里斯·爱德华斯 / 斯嘉丽·约翰逊 马赫沙拉·阿里 乔纳森·贝利</div>
+              <div class="douban-card--summary">故事发生在《侏罗纪世界3》事件的五年后。危在旦夕的恐龙族群生存于孤岛之上，但是它们中却隐藏着能够带来人类医药奇迹的关键基因，为获取神秘基因，一支精英小队潜入恐龙禁地，然而等待他们的却是无法预知的危机和惊天阴谋……</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BZDU0MzQ3OTAtMDIwOC00ZmQwLTgwNmMtZjViYjc4ZjYwMWMzXkEyXkFqcGc@._V1_FMjpg_UY3000_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+<p>剧情跟过关游戏似的，这倒无所谓，但硬塞一条和主线毫无关系还烦人透顶的一家四口亲情线就太倒胃口了，生生把侏罗纪公园搞成了环球影城。斯嘉丽非常美，但是作为本应的大女主无论是剧情还是人物塑造都是实在对不起她的位置，乔纳森贝利长得也是个人样（他这个造型我终于能get一点了）。以上都不是重点，重点是作为大恐龙电影这部后半部分基因改造的恐龙是否也长得太丑了一点？？</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+10440138 douban-id=10440138>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/10440138/" target="_blank"> 侏罗纪世界 Jurassic World </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">7.8</span>
+              </div>
+              <div class="douban-card--tags"> 2015 / 美国 / 动作 科幻 冒险 / 科林·特莱沃若 / 克里斯·帕拉特 布莱丝·达拉斯·霍华德</div>
+              <div class="douban-card--summary">21世纪，曾经诞生过第一只恐龙的努布拉岛，在经历了一系列的惨剧之后迎来新的时代，如今这里经马斯拉尼之手建成了规模宏大的主题公园“侏罗纪世界”，数量繁多的远古生物每天都吸引数以万计的游客前来一饱眼福。为了吸引更多的游客，公司授意创意实验室采用不同动物的基因创造了集力量、速度和智慧于一体的暴虐霸王龙。作为负责人的克莱尔（布莱丝·达拉斯·霍华德 Bryce Dallas Howard 饰）原打算请专门负责迅猛龙的欧文·格雷迪（克里斯·普拉特 Chris Pratt 饰）评估暴虐霸王龙的防护设施，谁知这头可怕的怪物竟然骗过了精密仪器的监视和人类的眼睛，以迅雷不及掩耳的速度逃到了外面，随后对所见的一切生物展开了无差别的血腥屠杀。原本快乐祥和的公园乱作一团，克莱尔必须深入危险之地救出两个被困的外甥，而欧文则不可避免地带着他的迅猛龙猎人团队迎战史无前例的的可怕对手……</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BNzBhNzlkM2UtZTQyOC00NjUyLTkzMmMtNDQ1YTM5N2NmMGE5XkEyXkFqcGc@._V1_FMjpg_UY5000_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+<p>非常标准的好看，节奏调度很流畅，恐龙镜头的分量给得也一点都不吝啬。同样是亲情线，第一部写得就不令人烦，女主 Claire 就算是穿着高跟鞋如履平地，角色塑造也都比后面好得多，Owen 骑着摩托车和迅猛龙在森林里一路狂飙什么时候看都心潮澎湃，这才叫大 ip 动作片的主角，相较而言我又想痛骂第四部的编剧了……</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+36188176 douban-id=36188176>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/36188176/" target="_blank"> 超人 Superman </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">6.7</span>
+              </div>
+              <div class="douban-card--tags"> 2025 / 美国 / 动作 科幻 奇幻 / 詹姆斯·古恩 / 大卫·科伦斯韦 瑞秋·布罗斯纳安 尼古拉斯·霍尔特</div>
+              <div class="douban-card--summary">当超人（大卫·科伦斯韦 饰）被卷入国内外多重冲突时，他保护人类的行为遭到质疑。而他显露的弱点，也趁机被科技巨擘、阴谋大师莱克斯·卢瑟（尼古拉斯·霍尔特 饰）利用，准备一举铲除超人。《星球日报》勇敢无畏的记者露易丝·莱恩（瑞秋·布罗斯纳安 饰）能否联手大都会的其他超能力者，以及超人忠诚的伙伴超狗小氪，在卢瑟彻底毁灭超人前拯救他？影片讲述了超人在两个身份之间自我和解的成长之旅，他既是来自氪星的卡尔-艾尔，也是在堪萨斯小镇长大的克拉克·肯特，他选择怀抱无私信念，将自身的强大力量用于守护人类。在这个将“善良”视作过时的世界里，他以人性之善为指引，坚定践行“真理、正义与更美好的明天”的永恒信念。</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BOGMwZGJiM2EtMzEwZC00YTYzLWIxNzYtMmJmZWNlZjgxZTMwXkEyXkFqcGc@._V1_FMjpg_UY2048_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+<p>提前预定年度最难看电影，感觉下半年是很难有超越它的了。甚至不知从何开始吐槽，要剧情没剧情要画面没画面要角色没角色要审美没审美，这版超人当小记者的时候甚至比当超人时候更像超人……竟然有人认为这部很古典/黄金时代，恰恰相反，全片流露出的非常廉价的塑料感让人怀疑剧本给 AI 写也不会更流水线了。只想对滚导说：1. 超人到底哪儿得罪你了？2. 又要超露又卖超莱并不会让电影变得更好看一点，只会让超人显得像个 walking bisexual disaster（字面）。</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+3419246 douban-id=3419246>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/3419246/" target="_blank"> 公园与游憩 第一季 Parks and Recreation Season 1 </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★★☆</span>
+              <span class="douban-card--rating">8.3</span>
+              </div>
+              <div class="douban-card--tags"> 2009 / 美国 / 喜剧 / 格雷格·丹尼尔斯 / 艾米·波勒 拉什达·琼斯 保罗·施耐德</div>
+              <div class="douban-card--summary">女主人公Leslie Knope（Amy Poehler）是印第安纳州Pawnee地区「公园与公共娱乐部门」的中层官员。为了美化自己的家园，Leslie选择了一个看似简单的计划：帮助护士Ann Perkins（Rashida Jones）将一处废地（深坑）变为一个社区公园。Leslie的同事Tom Haverford（Aziz Ansari）是个为了私利而一心向上爬的家伙，他经常给Leslie「帮倒忙」。Leslie的上司Ron Swanson（Nick Offerman）虽然位居高官，却是个顽固的无政府主义者，他的言行观点给Leslie带来很大阻力。城市规划师Mark Brendanawicz（Paul Schneider）则坚定地站在Leslie这一边，但15年的公共服务生涯，也搞坏了他的脾气和对未来的看法。Leslie希望借助自己的成功来影响大学实习生April（Aubrey Plaza）及April这一代人。她有个一直没有对人提及的「终极目标」－－她决心成为美国历史上第一位女总统。</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BNDlhMzAwNTAtNTk2NS00MTdkLWE3ZWYtMDU0MTFiYmU2ZTc0XkEyXkFqcGc@._V1_FMjpg_UX680_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+<p>听说这部低开高走第二季就会好看起来，反正第一季确实是不太好笑，到最后两集才好了一些。我没看过 The Office 不知道人设有多相似，Leslie 有点萌的，Ann 非常可爱，男性角色倒都不是很招人喜欢。</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+36689654 douban-id=36689654>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/36689654/" target="_blank"> 杀戮人机 第一季 Murderbot Season 1 </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">7.9</span>
+              </div>
+              <div class="douban-card--tags"> 2025 / 美国 / 剧情 科幻 喜剧 / 克里斯·韦兹 / 亚历山大·斯卡斯加德 大卫·达斯马齐连</div>
+              <div class="douban-card--summary">根据玛莎·威尔斯（Martha Wells）畅销的雨果奖和星云奖获奖系列书籍改编，《谋杀机器人》（Murderbot）是一部科幻惊悚/喜剧作品，讲述了一个自我黑客化的安全构造体的故事。它对人类情感感到恐惧，却又被自己脆弱的客户所吸引。在完成一项危险任务的同时，谋杀机器人必须隐藏自己的自由意志，而它真正想做的只是独自一人观看未来主义肥皂剧，并思考自己在宇宙中的位置。</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BYmFjYTc1ZjUtMmFiMi00NjgzLWJiODgtMDc5ZDcwZmRjYzcwXkEyXkFqcGc@._V1_FMjpg_UY3000_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+<p>一集才20分钟看起来太没压力了，不小心一天就刷完了……我们需要更多社畜摸鱼吐槽役机器人主角🫶 Murderbot &amp; Gurathin 的角色关系非常有趣，其实 dynamic 是很 slash 的但又这么人机（字面）和非性化，David Dastmalchian 给这个角色增加了很特别的风味，喜欢！</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+1303278 douban-id=1303278>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/1303278/" target="_blank"> 大亨游戏 Glengarry Glen Ross </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">7.8</span>
+              </div>
+              <div class="douban-card--tags"> 1992 / 美国 / 剧情 / 詹姆斯·弗雷 / 阿尔·帕西诺 杰克·莱蒙 亚历克·鲍德温 凯文·史派西</div>
+              <div class="douban-card--summary">某房地产公司的销售业务每况愈下，除了员工里基（阿尔•帕西诺 Al Pacino 饰）业绩尚可，其他员工只剩下在酒吧里买醉。公司主管约翰（凯文•史派西 Kevin Spacey 饰）看到士气低落，于是请来了推销大师布莱克（亚历克•鲍德温 Alec Baldwin 饰）前来布道。这家伙盛气凌人，出言尖酸刻薄，把各位批得一无是处。为了生存，老推销员莱文（杰克•莱蒙 Jack Lemmon 饰）因为女儿生病住院，所以希望可以得到照顾，保住饭碗；乔治（艾伦•阿金 Alan Arkin 饰）则因为年事已高，听天由命；戴夫（艾德•哈里斯 Ed Harris 饰）偷窃里基买卖的主意，一切通过金钱交易，神不知鬼不觉。然而，这个如意算盘并不是一帆风顺……</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BM2Q5NDA1ODctNmM4Yy00Yjk4LTg2ZTUtZTJjYzYyMjA2MTdmXkEyXkFqcGc@._V1_FMjpg_UY2260_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+  
+<p>销售真不是人干的；资本市场把人变成鬼……所有人都演得很好，这个剧本确实更适合搬到舞台上而不是拍电影。</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+36742579 douban-id=36742579>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/36742579/" target="_blank"> 罪人 Sinners </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">7.7</span>
+              </div>
+              <div class="douban-card--tags"> 2025 / 美国 / 剧情 动作 恐怖 / 瑞恩·库格勒 / 迈克尔·B·乔丹 海莉·斯坦菲尔德 迈尔斯·凯顿</div>
+              <div class="douban-card--summary">双胞胎兄弟（迈克尔·B·乔丹 Michael B. Jordan 饰）试图摆脱不愉快的过往，回到家乡想重新开始，但却发现更为恐怖的邪恶势力正等待着他们的回归……</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BNjIwZWY4ZDEtMmIxZS00NDA4LTg4ZGMtMzUwZTYyNzgxMzk5XkEyXkFqcGc@._V1_FMjpg_UY4096_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+      
+      
+  
+<p>拍得……还可以？只能说我不是很喜欢高概念的B级片……试图囊括的东西太多了，比喻又相当浅显，导致成片的观感有点杂乱，略感失望。当然最大的原因是我以为这是个 horror 片，再不济也是 thriller，结果端着碗进去端着仿佛 DC 拍的动作戏出来了（算了）。政治隐喻不是那么好拍的，很难拍出来不装腔作势或者装神弄鬼，这点而言我觉得本片虽然并不差，但也并没有达到如口碑那样的高明。</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+36960439 douban-id=36960439>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/36960439/" target="_blank"> 昨日青春 Happyend </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★☆☆</span>
+              <span class="douban-card--rating">7.9</span>
+              </div>
+              <div class="douban-card--tags"> 2024 / 日本 / 剧情 / 空音央 / 栗原飒人 日高由起刀 林裕太 彭泽萱 祷云母</div>
+              <div class="douban-card--summary">近未来的东京，一场即将到来的灾难性地震让人们惶恐不安，生活阴云密布。一对好朋友优太（栗原飒人 饰）和洸（日高由起刀 饰）即将高中毕业。然而，某天晚上，两人合伙捉弄了校长，导致学校安装了监控系统。在这令人窒息的监视系统和日益严峻的国家政治局势中，洸对世界愈发感到失望，而优太却似乎完全没有意识到这一点。洸在一位充满激情的学生活动家（祷云母 饰）身上找到了共鸣，他的政治意识也随之觉醒。他认为优太永远无法理解自己这份新的热情所在，便开始疏远优太。两人自幼结下的深厚友谊，也首次因从未表达过的分歧而面临考验。</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BYmVjYTkzZDMtMjU3YS00YWUwLWFiYjktZTY2Nzc2M2I3YTc5XkEyXkFqcGc@._V1_FMjpg_UY2048_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+      
+      
+  
+<p>日本人拍政治科幻片无论怎样都有种天真，尽管设置成高中背景多少让这种天真能够接受了一些，but still，特别是看到学校里装监控系统真有点绷不住了，日本人以为自己在拍科幻实则不然……另一个问题是类似题材往往也无法很好地想象对普通人在此种情境下如何反应，虽然导演已经将其努力消解在日常生活中，但在多少经历或目睹过这种经验的人看来仍然显得过于郑重。优点是画面和配乐都挺好看/好听，整体氛围塑造得不错，看的过程还是很舒缓的，两个男主也比较好地代表了两种不同选择的人（一个许知远，一个李诞，笑死，爱看高中AU的cp粉有福了）。</p>
+<style>
+  .douban-card {
+    background: var(--body-block-background-color-dark) !important;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+  }
+  
+  .douban-card--rating {
+    color: var(--body-fore-color-dark);
+  }
+  
+  .douban-card {
+      max-height: 12.6em;
+      margin: 1em auto;
+      position: relative;
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+    }
+    
+    .douban-card a {
+      text-decoration: none;
+      border: none;
+    }
+    
+    .douban-card--middle {
+      width: auto;
+      padding: 1.5em;
+    }
+    
+    .douban-card--title {
+      font-size: 18px;
+      font-weight: bold;
+      max-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--tags {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      color: #999;
+      overflow: hidden;
+    }
+    
+    .douban-card--summary {
+      font-size: 14px;
+      line-height: 1.8em;
+      max-height: 5.4em;
+      overflow: hidden;
+       
+      overflow-y: auto;  
+      padding-right: 4px;  
+    }
+    
+    .douban-card--right {
+      min-width: 160px;
+      max-width: 160px;
+      float: right;
+    }
+    
+    .douban-card--right img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+    }
+    
+    @media (max-width:550px) {
+      .douban-card {
+        max-height: 11.2em;
+      }
+    
+      .douban-card--right {
+        min-width: 0;
+        min-width: 40%;
+        width: 40%;
+      }
+    
+      .douban-card--stars {
+        display: none !important;
+      }
+    
+      .douban-card--tags {
+        max-height: 5.4em;
+      }
+    
+      .douban-card--summary {
+        display: none;
+      }
+    }
+    
+    .douban-card--stars-rating {
+      font-size: 14px;
+      max-height: 1.8em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+    
+    .douban-card--stars-rating span {
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-dou {
+      color: #FFF;
+      width: 1.5em;
+      background-color: #42BE57;
+      border: 1px solid #42BE57;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: inline-block;
+    }
+    
+    .douban-card--logo-rating {
+      color: #42BE57;
+      width: 4.5em;
+      border: 1px solid #42BE57;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: inline-block;
+    }
+  
+    .douban-card--stars {
+      width: 75px;
+      height: 15px !important;
+      font-size: 1em;
+      margin-left: .6em;
+      color: #f5b400;  
+    }
+    
+    .douban-card--rating {
+      color: #777;
+      font-weight: bold;
+      margin-left: .6em;
+    }
+  </style>
+
+  
+  
+  
+
+
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+          
+          
+          
+            
+          
+
+          
+          
+          
+          
+          
+
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+            
+           
+
+          <div class="douban-card douban-card-movie" id="douban-card-movie"+35658678 douban-id=35658678>
+          <div class="douban-card--middle">
+            <div class="douban-card--title">
+              <a href="https://movie.douban.com/subject/35658678/" target="_blank"> 迈克尔·彻：恶魔也羞愧 Michael Che: Shame the Devil </a>
+            </div>
+            <div class="douban-card--stars-rating">
+              <span class="douban-card--logo-dou">豆</span><span class="douban-card--logo-rating">豆瓣评分</span>
+              <span class="douban-card--stars">★★★★☆</span>
+              <span class="douban-card--rating">8.1</span>
+              </div>
+              <div class="douban-card--tags"> 2021 / 美国 / 喜剧 脱口秀 / 迈克尔·彻</div>
+              <div class="douban-card--summary">迈克尔·彻在奥克兰重返舞台，探讨了美国的爱国主义、黑人领导、嫉妒心强的前任、出逃的熊和心理健康等众多话题。</div>
+            </div>
+            <div class="douban-card--right">
+              <img src="https://m.media-amazon.com/images/M/MV5BN2M4OWUyMjEtZGVjYy00NDc1LWEwNTctOGJhYTlkMDgzZjNjXkEyXkFqcGc@._V1_FMjpg_UX1240_.jpg" referrerPolicy="never" />
+            </div>
+        </div>
+      
+      
+  
+<p>太短了！前面的暖场荤段子还不咋好笑，后面 LGBT 和种族笑话渐入佳境，但是感觉刚进入兴奋状态没多久就结束了。总体我是非常喜欢 Che 的单口风格的，相当松弛，有些阴郁，而且已经不畏于说些私人的真诚的话。</p>
 <h2 id="最近在琢磨什么">最近在琢磨什么</h2>
 <ul>
 <li>好几年了，贯穿看书和观影活动的一个问题是，到底是要不要看那些应该看的作品？其实直到现在都不太能很有信心地回答，感觉这种莫名其妙的包袱永远也不会完全消失，但我最近确实决定要看更多自己想看的东西了。</li>
