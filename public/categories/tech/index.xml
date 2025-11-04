@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Tue, 19 Dec 2023 14:21:30 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 03 Nov 2025 19:14:17 -0500</lastBuildDate>
     <atom:link href="https://Liyixian06.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quality Assurance 03 Test Design</title>
+      <link>https://Liyixian06.github.io/2025/11/quality-assurance-03/</link>
+      <pubDate>Mon, 03 Nov 2025 19:14:17 -0500</pubDate>
+      <guid>https://Liyixian06.github.io/2025/11/quality-assurance-03/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Overview&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;How to select high-value test inputs&lt;/li&gt;&#xA;&lt;li&gt;The basic concepts of blackbox and whitebox testing&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Tradeoffs&lt;/li&gt;&#xA;&lt;li&gt;Effort&lt;/li&gt;&#xA;&lt;li&gt;Strengths and weaknesses&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Several popular methods for generating test inputs&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;blackbox-testing&#34;&gt;Blackbox Testing&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Tests are created according to the specification for software&#xA;&lt;ul&gt;&#xA;&lt;li&gt;documentation, requirements, APIs, &amp;hellip;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Checks whether software matches that specification&#xA;&lt;ul&gt;&#xA;&lt;li&gt;i.e., does the code do the right thing?&lt;/li&gt;&#xA;&lt;li&gt;can reveal incomplete, ambiguous, or erroneous specifications&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Code structure does not inform test case design&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Why is blackbox testing useful?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>编译原理笔记10：代码优化</title>
       <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch10/</link>

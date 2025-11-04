@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 22 Oct 2025 22:58:30 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 03 Nov 2025 19:14:17 -0500</lastBuildDate>
     <atom:link href="https://Liyixian06.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quality Assurance 03 Test Design</title>
+      <link>https://Liyixian06.github.io/2025/11/quality-assurance-03/</link>
+      <pubDate>Mon, 03 Nov 2025 19:14:17 -0500</pubDate>
+      <guid>https://Liyixian06.github.io/2025/11/quality-assurance-03/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Overview&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;How to select high-value test inputs&lt;/li&gt;&#xA;&lt;li&gt;The basic concepts of blackbox and whitebox testing&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Tradeoffs&lt;/li&gt;&#xA;&lt;li&gt;Effort&lt;/li&gt;&#xA;&lt;li&gt;Strengths and weaknesses&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Several popular methods for generating test inputs&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;blackbox-testing&#34;&gt;Blackbox Testing&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Tests are created according to the specification for software&#xA;&lt;ul&gt;&#xA;&lt;li&gt;documentation, requirements, APIs, &amp;hellip;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Checks whether software matches that specification&#xA;&lt;ul&gt;&#xA;&lt;li&gt;i.e., does the code do the right thing?&lt;/li&gt;&#xA;&lt;li&gt;can reveal incomplete, ambiguous, or erroneous specifications&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Code structure does not inform test case design&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Why is blackbox testing useful?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>乙巳霜降丨Winter Is Coming</title>
       <link>https://Liyixian06.github.io/2025/frosts-descent/</link>
@@ -273,7 +280,7 @@
       <link>https://Liyixian06.github.io/about/</link>
       <pubDate>Wed, 19 Jul 2023 00:00:00 +0000</pubDate>
       <guid>https://Liyixian06.github.io/about/</guid>
-      <description>&lt;h2 id=&#34;basic&#34;&gt;Basic&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;学生&lt;/li&gt;&#xA;&lt;li&gt;常居北京&lt;/li&gt;&#xA;&lt;li&gt;写代码&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;dos-and-not-dos&#34;&gt;Dos and Not Dos&lt;/h2&gt;&#xA;&lt;h3 id=&#34;dos&#34;&gt;Dos&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;有时读书，很少写作&lt;/li&gt;&#xA;&lt;li&gt;间歇性学语言&lt;/li&gt;&#xA;&lt;li&gt;装修&lt;/li&gt;&#xA;&lt;li&gt;吃好喝好，都在酒里&lt;/li&gt;&#xA;&lt;li&gt;溜街日行四万步&lt;/li&gt;&#xA;&lt;li&gt;两栖爬行动物爱好者&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;not-dos&#34;&gt;Not Dos&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;游泳以外的一切运动&lt;/li&gt;&#xA;&lt;li&gt;推荐信息流&lt;/li&gt;&#xA;&lt;li&gt;客服电话&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+      <description>&lt;h2 id=&#34;basic&#34;&gt;Basic&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;学生&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;del&gt;常居北京&lt;/del&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;2025 秋 匹兹堡&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;写代码&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;what-i-do-and-what-i-dont&#34;&gt;What I Do and What I Don&amp;rsquo;t&lt;/h2&gt;&#xA;&lt;h3 id=&#34;what-i-do&#34;&gt;What I Do&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;有时读书，很少写作&lt;/li&gt;&#xA;&lt;li&gt;间歇性学语言&lt;/li&gt;&#xA;&lt;li&gt;装修&lt;/li&gt;&#xA;&lt;li&gt;吃好喝好，都在酒里&lt;/li&gt;&#xA;&lt;li&gt;溜街日行四万步&lt;/li&gt;&#xA;&lt;li&gt;两栖爬行动物爱好者&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;what-i-dont&#34;&gt;What I Don&amp;rsquo;t&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;游泳以外的一切运动&lt;/li&gt;&#xA;&lt;li&gt;推荐信息流&lt;/li&gt;&#xA;&lt;li&gt;客服电话&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>A Test Post</title>
