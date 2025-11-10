@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Sat, 08 Nov 2025 22:30:30 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 10 Nov 2025 14:07:14 -0500</lastBuildDate>
     <atom:link href="https://Liyixian06.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quality Assurance 07 Test Oracles</title>
+      <link>https://Liyixian06.github.io/2025/11/quality-assurance-07/</link>
+      <pubDate>Mon, 10 Nov 2025 14:07:14 -0500</pubDate>
+      <guid>https://Liyixian06.github.io/2025/11/quality-assurance-07/</guid>
+      <description>&lt;p&gt;All tests we have written so far are example-based: pick specific inputs, hard-code expected outputs&lt;br&gt;&#xA;=&amp;gt; But real systems have huge input spaces and even good test suites miss bugs.&lt;/p&gt;&#xA;&lt;p&gt;What if we let the computer explore the input space for us?&lt;/p&gt;&#xA;&lt;h3 id=&#34;generating-inputs-via-fuzzing&#34;&gt;Generating Inputs via Fuzzing&lt;/h3&gt;&#xA;&lt;p&gt;Fuzz testing randomly generates inputs and checks for program crashes.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Mutation-based fuzzing (e.g., Radamsa)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;binary input, text input, GUI input, etc.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Coverage-guided fuzzing (e.g., AFL)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Fuzzers can generate millions of inputs. &lt;strong&gt;How do we check if the program is correct?&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>乙巳立冬丨冬令时就是冬天令我多睡一小时</title>
       <link>https://Liyixian06.github.io/2025/the-beginning-of-winters/</link>
