@@ -17,9 +17,9 @@
     
     
     
-    <meta name="title" content="计算机体系结构笔记07：Prefetching" />
-    <meta property="og:title" content="计算机体系结构笔记07：Prefetching" />
-    <meta property="twitter:title" content="计算机体系结构笔记07：Prefetching" />
+    <meta name="title" content="Quality Assurance 08 Applied Static Analysis" />
+    <meta property="og:title" content="Quality Assurance 08 Applied Static Analysis" />
+    <meta property="twitter:title" content="Quality Assurance 08 Applied Static Analysis" />
     
     
     
@@ -36,9 +36,9 @@
     <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
     <link rel="shortcut icon" href="/img/favicon.ico">
     
-    <title>计算机体系结构笔记07：Prefetching | 李一线的博客</title>
+    <title>Quality Assurance 08 Applied Static Analysis | 李一线的博客</title>
     
-    <link rel="canonical" href="/2023/10/computer-architecture-ch7/">
+    <link rel="canonical" href="/2025/11/quality-assurance-08/">
     
     
 
@@ -184,16 +184,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/cs" title="CS">
-                            CS
+                        <a class="tag" href="/tags/cs" title="cs">
+                            cs
                         </a>
                         
-                        <a class="tag" href="/tags/computer-architecture" title="computer architecture">
-                            computer architecture
+                        <a class="tag" href="/tags/quality-assurance" title="quality assurance">
+                            quality assurance
                         </a>
                         
                     </div>
-                    <h1>计算机体系结构笔记07：Prefetching</h1>
+                    <h1>Quality Assurance 08 Applied Static Analysis</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -202,10 +202,10 @@
                                 LiYixian
                              
                             on 
-                            Monday, October 16, 2023
+                            Wednesday, November 12, 2025
                             
                              <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
-                                <span id="/2023/10/computer-architecture-ch7/" class="leancloud_visitors meta_data_item" data-flag-title="">
+                                <span id="/2025/11/quality-assurance-08/" class="leancloud_visitors meta_data_item" data-flag-title="">
     <span class="post-meta-item-icon">
       <span class="octicon octicon-eye"></span> 
     </span>
@@ -338,7 +338,7 @@ $(function() {
 });
 </script>
 
-                                阅读 </span></span> | <span class="post-date">共 803 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
+                                阅读 </span></span> | <span class="post-date">共 420 字</span>，阅读约 <span class="more-meta"> 2 分钟</span>
                             
                             
                             
@@ -364,95 +364,110 @@ $(function() {
                 post-container">
     
                 
-                <p>以 cache block 为单位 fetch the data before needed by the program，需要预测地址</p>
+                <h3 id="program-analysis">Program Analysis</h3>
+<p>Static Analysis excels at finding certain defects:</p>
 <ul>
-<li>减少 compulsory cache misses</li>
-<li>减少内存 latency：L2 的 miss rate 减小，L1 的 latency 就会减小</li>
+<li>Security: Buffer overruns, improperly validated input &hellip;</li>
+<li>Memory safety: Null dereference, uninitialized data &hellip;</li>
+<li>Resource leaks: Memory, OS resources &hellip;</li>
 </ul>
-<p>如果取错了：占用空间和带宽，但不用刷新 pipeline，影响很小</p>
-<p>问题：取什么、什么时候取、在哪里放 prefetched data 和 prefetcher、怎么取</p>
-<p>取什么：</p>
-<ul>
-<li>根据过去的 access patterns 预测</li>
-<li>编译器/程序员的 knowledge</li>
-</ul>
-<p>何时取：</p>
-<ul>
-<li>太早或太晚都不行，影响 prefetcher 的 timeliness</li>
-<li>把 prefetch instructions 在代码里提前</li>
-</ul>
-<p>取到哪里：</p>
-<ul>
-<li>prefetch 哪层 cache：levels/between levels</li>
-<li>要放到 LRU 链表的哪个位置/是否就当作 demand-fetched block？</li>
-<li>prefetcher 放在哪里，取决于它观测的是哪层的 access patterns
-<ul>
-<li>要看到更完整的 pattern 就开销更大</li>
-</ul>
-</li>
-</ul>
-<p>怎么取：</p>
-<ul>
-<li>software：把 prefetch inst 插入代码中，适用于规律的 access patterns</li>
-<li>hardware：硬件监测内存 access，自动生成 prefetch 地址</li>
-<li>execution-based</li>
-</ul>
-<p>preformance 指标：</p>
-<ul>
-<li>accuracy (used prefetches/sent prefetches), coverage (prefetched misses/all misses), timeliness</li>
-<li>bandwidth consumption (memory bandwidth consumed with/without prefetcher)</li>
-<li>cache pollution：替换出去原有的 block 导致额外的 miss</li>
-</ul>
-<h3 id="software-prefetching">Software Prefetching</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>N; i<span style="color:#f92672">++</span>){
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">__prefetch</span>(a[i<span style="color:#f92672">+</span><span style="color:#ae81ff">8</span>]);
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">__prefetch</span>(b[i<span style="color:#f92672">+</span><span style="color:#ae81ff">8</span>]);
-</span></span><span style="display:flex;"><span>	sum <span style="color:#f92672">+=</span> a[i]<span style="color:#f92672">*</span>b[i];
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(p){
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">__prefetch</span>(p<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>next);
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">work</span>(p<span style="color:#f92672">-&gt;</span>data);
-</span></span><span style="display:flex;"><span>	p <span style="color:#f92672">=</span> p<span style="color:#f92672">-&gt;</span>next;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>很难决定要提前多少 prefetch/插入 prefetch 的 inst<br>
-profile the code，计算 loads that are likely to miss，以及不同 prefetch 和 miss 的距离</p>
-<h3 id="hardware-prefetching">Hardware Prefetching</h3>
-<p>特殊的硬件观察 load/store access patterns<br>
-可以基于系统实现，不依赖于上层应用/inst，更 flexible；但硬件比较复杂</p>
-<p>next-line prefetcher：取 demand access 之后的 N 行 cache line<br>
-prob：规律访问，但 access stride = 2 and N = 1<br>
--&gt; stride prefetcher 识别 stride（基于 inst/内存访问）</p>
-<ol>
-<li>Instruction-Based stride prefetching<br>
-把 load inst PC 存入表中，学习其间隔<br>
-timeliness prob</li>
-<li>memory-region-based stride prefetching<br>
-记录访问的 addr<br>
-stream prefetching is a special case</li>
-</ol>
-<p>更复杂的 access patterns：</p>
-<ul>
-<li>complex regular
-<ul>
-<li>multi-stride detection -&gt; path confidence based lookahead prefetching</li>
-<li>spatial memory streaming</li>
-<li>online RL</li>
-</ul>
-</li>
-<li>irregular</li>
-</ul>
-<h3 id="execution-based-prefetching">Execution-Based Prefetching</h3>
-<p>load 操作非常慢，cache miss 时 pipeline 要 stall<br>
-乱序执行：增加一个 buffer 按序放置正在 pipeline 中 stall 的 inst，先执行后面 independent 的（runahead），把结果放进 buffer，等前面的指令执行完了，按序提交<br>
--&gt; buffer 满了之后设置一个 checkpoint，继续往后执行，虽然结果可能不对，但是 prefetch 了这些 inst 需要的 cache，stall 结束后再 restore ckp, flush pipeline，重新正常执行</p>
+<table>
+  <thead>
+      <tr>
+          <th>Static Analysis</th>
+          <th>Dynamic Analysis</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Requires only source code</td>
+          <td>Requires successful build + test inputs</td>
+      </tr>
+      <tr>
+          <td>Conservatively reasons about all possible inputs and program paths</td>
+          <td>Observes individual executions</td>
+      </tr>
+      <tr>
+          <td>Reported warnings may contain false positives</td>
+          <td>Reported problems are real, as observed by a witness input</td>
+      </tr>
+      <tr>
+          <td>Can, in principle, report all warnings of a particular class of problems</td>
+          <td>Can only report problems that are seen. Highly dependent on test inputs. Subject to false negatives</td>
+      </tr>
+      <tr>
+          <td>Advanced techniques can prove certain complex properties, but rarely run in CI due to cost</td>
+          <td>Advanced techniques like symbolic execution can prove certain complex properties, but rarely run in CI due to cost</td>
+      </tr>
+  </tbody>
+</table>
+<p>Soundness and Completeness in Static Analysis</p>
 <p>
-  <img src="/img/runahead%e4%be%8b%e5%ad%90.png" alt="">
+  <img src="/img/soundness-and-completeness.png" alt="">
 
 </p>
+<p>What static analysis can and cannot do:</p>
 <ul>
-<li>very accurate prefetches</li>
-<li>有 branch 时受限于 branch prediction</li>
-<li>无法 prefetch dependent 的 cache</li>
+<li>Type-checking is well established</li>
+<li>Checking for problematic patterns in syntax is easy and fast</li>
+<li>Reasoning about termination is impossible in general (halting problem)</li>
+<li>Reasoning about exact values is hard, but conservative analysis via abstraction is possible</li>
+<li>Verifying advanced properties is possible but expensive</li>
+</ul>
+<h3 id="static-analysis">Static Analysis</h3>
+<h4 id="formatting-linters">Formatting Linters</h4>
+<p>Use shallow static analysis to enforce formatting rules</p>
+<h4 id="pattern-based-linters">Pattern-Based Linters</h4>
+<p>Pattern-Based Analysis evaluates program syntax against a set of rules.<br>
+Matches syntactic patterns (via abstract syntax tree) to identify likely mistakes and API misuses</p>
+<ul>
+<li>Good at finding use of disallowed and deprecated APIs, dangerous language features, and obvious mistakes</li>
+<li>Can only find issues for which there is a corresponding rule / pattern</li>
+</ul>
+<p>Challenges:</p>
+<ul>
+<li>The analysis must produce few or (better yet) zero false positives</li>
+<li>The analysis needs to be really fast</li>
+<li>You can’t just “turn on” a particular check</li>
+</ul>
+<h4 id="type-based-analysis">Type-Based Analysis</h4>
+<p>Memory-safe doesn’t imply type safety.</p>
+<ul>
+<li>Add Types to Existing Code via Annotations</li>
+<li>Enrich Type Systems via Annotations
+<ul>
+<li>layer additional semantics on top of the base type system</li>
+<li>e.g. <code>@Nullable, @NonNull</code></li>
+</ul>
+</li>
+<li>Refinement Types
+<ul>
+<li>restrict not only based on structure but also on values</li>
+<li><code>@Refinement(&quot;positive &gt; 0&quot;)</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="value-analysis">Value Analysis</h4>
+<h5 id="taint-analysis">Taint Analysis</h5>
+<p>Track values through a program and prevents untrusted data from reaching sensitive locations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">processRequest</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span>Tainted String input <span style="color:#f92672">=</span> getUserInput();
+</span></span><span style="display:flex;"><span>  input <span style="color:#f92672">=</span> validate(input);  executeQuery(input);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">executeQuery</span>(<span style="color:#960050;background-color:#1e0010">@</span>Untainted String input) {
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@</span>Untainted <span style="color:#66d9ef">public</span> String validate(String userInput) {
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="abstract-interpretation--value-analysis">Abstract Interpretation / Value Analysis</h5>
+<p>Computes a sound over-approximations of program behavior in terms of an abstract domain.</p>
+<h4 id="static-analysis-for-everything-else">Static Analysis for Everything Else</h4>
+<p>Static analysis isn’t just for source code; If it’s machine readable, we can statically analyze it!</p>
+<ul>
+<li>Dependencies &amp; Supply Chain</li>
+<li>Typosquatting</li>
+<li>Config, CI, and Infrastructure-as-Code</li>
 </ul>
 
     
@@ -465,15 +480,10 @@ stream prefetching is a special case</li>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/10/computer-architecture-ch6/" data-toggle="tooltip" data-placement="top" title="计算机体系结构笔记06：Caches">&larr;
+                        <a href="/2025/11/quality-assurance-07/" data-toggle="tooltip" data-placement="top" title="Quality Assurance 07 Test Oracles">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2023/10/computer-networking-ch3/" data-toggle="tooltip" data-placement="top" title="计算机网络笔记03：传输层">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 

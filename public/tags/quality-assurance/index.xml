@@ -2,25 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Quality Assurance on Liyixian Blog</title>
-    <link>https://Liyixian06.github.io/tags/quality-assurance/</link>
+    <link>http://localhost:1313/tags/quality-assurance/</link>
     <description>Recent content in Quality Assurance on Liyixian Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Mon, 10 Nov 2025 14:07:14 -0500</lastBuildDate>
-    <atom:link href="https://Liyixian06.github.io/tags/quality-assurance/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Nov 2025 14:03:16 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/quality-assurance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quality Assurance 08 Applied Static Analysis</title>
+      <link>http://localhost:1313/2025/11/quality-assurance-08/</link>
+      <pubDate>Wed, 12 Nov 2025 14:03:16 -0500</pubDate>
+      <guid>http://localhost:1313/2025/11/quality-assurance-08/</guid>
+      <description>&lt;h3 id=&#34;program-analysis&#34;&gt;Program Analysis&lt;/h3&gt;&#xA;&lt;p&gt;Static Analysis excels at finding certain defects:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Security: Buffer overruns, improperly validated input &amp;hellip;&lt;/li&gt;&#xA;&lt;li&gt;Memory safety: Null dereference, uninitialized data &amp;hellip;&lt;/li&gt;&#xA;&lt;li&gt;Resource leaks: Memory, OS resources &amp;hellip;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Static Analysis&lt;/th&gt;&#xA;          &lt;th&gt;Dynamic Analysis&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Requires only source code&lt;/td&gt;&#xA;          &lt;td&gt;Requires successful build + test inputs&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Conservatively reasons about all possible inputs and program paths&lt;/td&gt;&#xA;          &lt;td&gt;Observes individual executions&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Reported warnings may contain false positives&lt;/td&gt;&#xA;          &lt;td&gt;Reported problems are real, as observed by a witness input&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Can, in principle, report all warnings of a particular class of problems&lt;/td&gt;&#xA;          &lt;td&gt;Can only report problems that are seen. Highly dependent on test inputs. Subject to false negatives&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Advanced techniques can prove certain complex properties, but rarely run in CI due to cost&lt;/td&gt;&#xA;          &lt;td&gt;Advanced techniques like symbolic execution can prove certain complex properties, but rarely run in CI due to cost&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;Soundness and Completeness in Static Analysis&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Quality Assurance 07 Test Oracles</title>
-      <link>https://Liyixian06.github.io/2025/11/quality-assurance-07/</link>
+      <link>http://localhost:1313/2025/11/quality-assurance-07/</link>
       <pubDate>Mon, 10 Nov 2025 14:07:14 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/2025/11/quality-assurance-07/</guid>
+      <guid>http://localhost:1313/2025/11/quality-assurance-07/</guid>
       <description>&lt;p&gt;All tests we have written so far are example-based: pick specific inputs, hard-code expected outputs&lt;br&gt;&#xA;=&amp;gt; But real systems have huge input spaces and even good test suites miss bugs.&lt;/p&gt;&#xA;&lt;p&gt;What if we let the computer explore the input space for us?&lt;/p&gt;&#xA;&lt;h3 id=&#34;generating-inputs-via-fuzzing&#34;&gt;Generating Inputs via Fuzzing&lt;/h3&gt;&#xA;&lt;p&gt;Fuzz testing randomly generates inputs and checks for program crashes.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Mutation-based fuzzing (e.g., Radamsa)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;binary input, text input, GUI input, etc.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Coverage-guided fuzzing (e.g., AFL)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Fuzzers can generate millions of inputs. &lt;strong&gt;How do we check if the program is correct?&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Quality Assurance 03 Test Design</title>
-      <link>https://Liyixian06.github.io/2025/11/quality-assurance-03/</link>
+      <link>http://localhost:1313/2025/11/quality-assurance-03/</link>
       <pubDate>Mon, 03 Nov 2025 19:14:17 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/2025/11/quality-assurance-03/</guid>
+      <guid>http://localhost:1313/2025/11/quality-assurance-03/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Overview&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;How to select high-value test inputs&lt;/li&gt;&#xA;&lt;li&gt;The basic concepts of blackbox and whitebox testing&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Tradeoffs&lt;/li&gt;&#xA;&lt;li&gt;Effort&lt;/li&gt;&#xA;&lt;li&gt;Strengths and weaknesses&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Several popular methods for generating test inputs&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;blackbox-testing&#34;&gt;Blackbox Testing&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Tests are created according to the specification for software&#xA;&lt;ul&gt;&#xA;&lt;li&gt;documentation, requirements, APIs, &amp;hellip;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Checks whether software matches that specification&#xA;&lt;ul&gt;&#xA;&lt;li&gt;i.e., does the code do the right thing?&lt;/li&gt;&#xA;&lt;li&gt;can reveal incomplete, ambiguous, or erroneous specifications&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Code structure does not inform test case design&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Why is blackbox testing useful?&lt;/p&gt;</description>
     </item>
   </channel>
