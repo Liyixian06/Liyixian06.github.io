@@ -3,12 +3,12 @@ layout:		 single
 title:       "Quality Assurance 03 Test Design"
 subtitle:    ""
 description: " "
-date:        2025-11-03T19:14:17-05:00
+date:        2025-10-27T19:14:17-05:00
 author: LiYixian
 image:       ""
 tags:        ["cs", "quality assurance"]
 categories:  ["Tech" ]
-URL: "2025/11/quality-assurance-03/"
+URL: "2025/10/quality-assurance-03/"
 math: False
 ---
 

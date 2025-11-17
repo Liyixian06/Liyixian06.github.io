@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Liyixian Blog</title>
-    <link>http://localhost:1313/categories/</link>
+    <link>https://Liyixian06.github.io/categories/</link>
     <description>Recent content in Categories on Liyixian Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
     <lastBuildDate>Wed, 12 Nov 2025 14:03:16 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://Liyixian06.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tech</title>
-      <link>http://localhost:1313/categories/tech/</link>
+      <link>https://Liyixian06.github.io/categories/tech/</link>
       <pubDate>Wed, 12 Nov 2025 14:03:16 -0500</pubDate>
-      <guid>http://localhost:1313/categories/tech/</guid>
+      <guid>https://Liyixian06.github.io/categories/tech/</guid>
       <description></description>
     </item>
     <item>
       <title>Life</title>
-      <link>http://localhost:1313/categories/life/</link>
+      <link>https://Liyixian06.github.io/categories/life/</link>
       <pubDate>Sat, 08 Nov 2025 22:30:30 -0500</pubDate>
-      <guid>http://localhost:1313/categories/life/</guid>
+      <guid>https://Liyixian06.github.io/categories/life/</guid>
       <description></description>
     </item>
     <item>
       <title>Note</title>
-      <link>http://localhost:1313/categories/note/</link>
+      <link>https://Liyixian06.github.io/categories/note/</link>
       <pubDate>Sat, 07 Jun 2025 23:19:30 +0800</pubDate>
-      <guid>http://localhost:1313/categories/note/</guid>
+      <guid>https://Liyixian06.github.io/categories/note/</guid>
       <description></description>
     </item>
   </channel>
