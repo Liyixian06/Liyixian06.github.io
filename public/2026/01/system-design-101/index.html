@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Liyixian Blog">
+    <meta property="og:type" content="article">
+    
+    
+    
+    
+    <meta property="og:image" content="https://Liyixian06.github.io//img/bg_home.jpeg">
+    <meta property="twitter:image" content="https://Liyixian06.github.io//img/bg_home.jpeg" />
+    
+    
+    
+    <meta name="title" content="系统设计 101" />
+    <meta property="og:title" content="系统设计 101" />
+    <meta property="twitter:title" content="系统设计 101" />
+    
+    
+    
+    <meta name="description" content=" ">
+    <meta property="og:description" content=" " />
+    <meta property="twitter:description" content=" " />
+    
+    
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+    
+    <meta name="keyword"  content="李一线, Liyixian, liyixian, 李一线的博客, Liyixian Blog, 博客">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <title>系统设计 101 | 李一线的博客</title>
+    
+    <link rel="canonical" href="/2026/01/system-design-101/">
+    
+    
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+    
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+    
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+    
+    
+    
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+    
+    
+    <script src="/js/lazysizes.min.js"></script>
+    
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Liyixian Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/note/">note</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech/">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/about/">ABOUT</a></li>
+                    
+                        <li><a href="/archive/">ARCHIVE</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/bg_home.jpeg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/cs" title="cs">
+                            cs
+                        </a>
+                        
+                        <a class="tag" href="/tags/system-design" title="system design">
+                            system design
+                        </a>
+                        
+                    </div>
+                    <h1>系统设计 101</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                LiYixian
+                             
+                            on 
+                            Thursday, January 1, 2026
+                            
+                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                                <span id="/2026/01/system-design-101/" class="leancloud_visitors meta_data_item" data-flag-title="">
+    <span class="post-meta-item-icon">
+      <span class="octicon octicon-eye"></span> 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span class="old-visitors-count" style="display: none;"></span>
+    <span class="leancloud-visitors-count"></span>
+</span>
+
+
+
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+
+<script>
+	AV.initialize("", "");
+</script>
+
+<script type="text/javascript">
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function() {
+        entries.push($(this).attr("id").trim());
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+        .done(function(results) {
+            var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+            var OLD_COUNT_CONTAINER_REF = '.old-visitors-count';
+
+            
+            
+            
+            
+
+            for (var i = 0; i < results.length; i++) {
+                var item = results[i];
+                var url = item.get('url');
+                var time = item.get('time');
+                var element = document.getElementById(url);
+
+                $(element).find(COUNT_CONTAINER_REF).text(time);
+            }
+            for (var i = 0; i < entries.length; i++) {
+                var url = entries[i];
+                var element = document.getElementById(url);
+                var countSpan = $(element).find(COUNT_CONTAINER_REF);
+                if (countSpan.text() == '') {
+                    var oldCountSpan = $(element).find(OLD_COUNT_CONTAINER_REF).text();
+                    if(oldCountSpan!=''){
+                        countSpan.text(0+parseInt(oldCountSpan));
+                    }else{
+                        countSpan.text(0);          
+                    }
+                }
+            }
+        })
+        .fail(function(object, error) {
+            console.log("Error: " + error.code + " " + error.message);
+        });
+}
+
+function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        var $element = $(document.getElementById(url));
+                        $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                 
+                var acl = new AV.ACL();
+                acl.setPublicReadAccess(true);
+                acl.setPublicWriteAccess(true);
+                newcounter.setACL(acl);
+                 
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                var OLD_COUNT_CONTAINER_REF = '.old-visitors-count';
+                var $element = $(document.getElementById(url));
+                var oldCountSpan = $element.find(OLD_COUNT_CONTAINER_REF).text();
+                if(oldCountSpan!=''){
+                    newcounter.set("time", parseInt(oldCountSpan)+1);
+                }else{
+ 	                    newcounter.set("time",  1);
+                }
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        var $element = $(document.getElementById(url));
+                        $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+$(function() {
+    var Counter = AV.Object.extend("Counter");
+    
+    
+    if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else {
+        showTime(Counter);
+    }
+});
+</script>
+
+                                阅读 </span></span> | <span class="post-date">共 1701 字</span>，阅读约 <span class="more-meta"> 4 分钟</span>
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+    
+                
+                <h3 id="系统设计框架">系统设计框架</h3>
+<ol>
+<li>弄清具体要求
+<ol>
+<li>功能需求
+<ol>
+<li>考虑最重要的三个功能</li>
+</ol>
+</li>
+<li>非功能需求
+<ol>
+<li>一些基本的取舍（trade-offs）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>核心 entities
+<ol>
+<li>系统中的参与者有哪些？满足功能需求需要什么资源？</li>
+</ol>
+</li>
+<li>高层架构
+<ol>
+<li>用方框和箭头表示系统的不同组件及其交互方式</li>
+<li>组件：基本技术模块，例如服务器、数据库、缓存等</li>
+<li>数据如何在系统中流动，以及每次请求（从 API 请求到响应）都会改变哪些状态</li>
+</ol>
+</li>
+<li>API /接口
+<ol>
+<li>使用哪种协议（外部 API 用 REST，内部调用用 gRPC）</li>
+</ol>
+</li>
+<li>深挖，一些独立的问题
+<ol>
+<li>非功能需求</li>
+<li>极端情况和瓶颈</li>
+</ol>
+</li>
+</ol>
+<h3 id="非功能需求">非功能需求</h3>
+<ul>
+<li>一致性
+<ul>
+<li>强一致性 (Strong Consistency)：任何时候读到的都是最新写入的数据</li>
+<li>最终一致性 (Eventual Consistency)： 允许短时间内数据不一致，但最终会同步
+<ul>
+<li>分布式事务：一个操作跨越多个数据库/服务时，如何处理？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可用性
+<ul>
+<li>系统能否一直在线，挂了怎么办？</li>
+</ul>
+</li>
+<li>实时性
+<ul>
+<li>响应有多快，延迟是多少？</li>
+</ul>
+</li>
+<li>扩展性
+<ul>
+<li>用户从 1 万增长到 1 亿时，系统能不能通过增加机器来扛住压力？</li>
+<li>垂直扩展 (Vertical Scaling)：给原来的电脑换更强的 CPU、更大的内存（有上限）</li>
+<li>水平扩展 (Horizontal Scaling)：多几台普通的电脑一起工作（理论上没有上限，这是系统设计的核心）</li>
+</ul>
+</li>
+<li>持久
+<ul>
+<li>存进去的数据不会丢：多副本</li>
+</ul>
+</li>
+<li>可靠性
+<ul>
+<li>系统是否不出错</li>
+</ul>
+</li>
+<li>幂等性
+<ul>
+<li>在分布式环境下，由于重试机制（Retry），同一个请求可能会发送多次。如何保证“支付一次”的请求即便发了三次，用户也只被扣一次钱？</li>
+</ul>
+</li>
+<li>吞吐
+<ul>
+<li>QPS/TPS，并发数</li>
+</ul>
+</li>
+</ul>
+<h4 id="trade-offs-cap">Trade-offs: CAP</h4>
+<p><strong>可用性（Availability）和一致性（Consistency）不能同时满足</strong><br>
+前提：分区容错性（Partition Tolerance，即网络断开后系统还能继续运行）是必选项</p>
+<p>为什么？<br>
+假设一个简单系统，只有两台服务器 Node A 和 Node B，它们各自存有一份同样的数据库副本。现在：</p>
+<ul>
+<li>网络断开了，Node A 和 Node B 之间无法通信（发生了 Partition）。</li>
+<li>写操作：用户向 Node A 发送请求，把自己的余额从 100 改成了 50。</li>
+<li>由于网络断开，Node A 无法告诉 Node B 余额变了。</li>
+<li>读操作：此时另一个用户访问 Node B，问余额是多少。</li>
+</ul>
+<p>现在，系统只有两个选择：</p>
+<p>选择一：保证一致性 (CP)<br>
+如果想保证一致性 (C)，那么 Node B 不能返回那个旧的 100。</p>
+<ul>
+<li>Node B 发现自己没法和 Node A 同步，于是它决定直接报错，或者告诉用户“系统维护中”。</li>
+<li>结果：数据是对的（没有返回错误数据），但系统不可用 (A) 了。</li>
+</ul>
+<p>选择二：保证可用性 (AP)<br>
+如果想保证可用性 (A)，那么无论如何都要给用户一个响应。</p>
+<ul>
+<li>Node B 直接返回了它手里现有的数据 100。</li>
+<li>结果：系统一直在运行（可用），但数据是错的（Node A 是 50，Node B 是 100），不一致 (C) 了。</li>
+</ul>
+<p>除此之外，比较常见的 trade-offs 还有：</p>
+<ul>
+<li>延迟和吞吐</li>
+<li>延迟和一致性</li>
+<li>SQL 和 NoSQL</li>
+<li>ACID 和 BASE</li>
+<li>有状态和无状态</li>
+<li>读优化和写优化</li>
+<li>Push 和 Pull</li>
+<li>……</li>
+</ul>
+<p>要根据具体的场景来决定讨论哪些 trade-offs。</p>
+<h3 id="核心概念">核心概念</h3>
+<ul>
+<li>计算机网络
+<ul>
+<li>HTTP</li>
+<li>WebSocket</li>
+<li>负载均衡</li>
+<li>CDN</li>
+</ul>
+</li>
+<li>API 设计
+<ul>
+<li>REST</li>
+<li>gRPC</li>
+</ul>
+</li>
+<li>数据建模
+<ul>
+<li>关系型数据库</li>
+<li>NoSQL</li>
+</ul>
+</li>
+<li>数据库索引
+<ul>
+<li>B 树</li>
+</ul>
+</li>
+<li>缓存
+<ul>
+<li>Redis</li>
+<li>缓存失效</li>
+<li>缓存崩溃</li>
+</ul>
+</li>
+<li>分片
+<ul>
+<li>shard key</li>
+</ul>
+</li>
+<li>一致性哈希</li>
+<li>需要知道的一些数字，用于估算性能</li>
+</ul>
+<h3 id="常见技术">常见技术</h3>
+<p>系统设计就是把技术模块组合起来解决问题，因此需要知道有哪些常用的技术。对每种技术（e.g., 消息队列）应该都至少掌握一种具体的方案（e.g., Kafka）。</p>
+<ul>
+<li>负载均衡：Nginx
+<ul>
+<li>把流量平均分配给多台服务器</li>
+</ul>
+</li>
+<li>API 网关：Spring Cloud Gateway
+<ul>
+<li>鉴定权限、限流、路由</li>
+</ul>
+</li>
+<li>CDN：Cloudflare
+<ul>
+<li>把静态资源缓存在距离用户较近的服务器上</li>
+</ul>
+</li>
+<li>消息队列：Kafka, RabbitMQ
+<ul>
+<li>异步处理，应对突发流量、分配系统负载</li>
+</ul>
+</li>
+<li>分布式缓存：Redis
+<ul>
+<li>把高频访问的数据存入内存，降低读取延迟</li>
+</ul>
+</li>
+<li>数据库
+<ul>
+<li>关系型数据库：MySQL, Postgres</li>
+<li>NoSQL 数据库：DynamoDB, MongoDB</li>
+</ul>
+</li>
+<li>Blob 对象存储：AWS S3</li>
+<li>搜索优化数据库：Elasticsearch</li>
+</ul>
+<p>架构演进的逻辑：</p>
+<ol>
+<li>单机，all-in-one</li>
+<li>拆分数据库与应用服务器</li>
+<li>引入缓存，减轻 DB 压力</li>
+<li>引入负载均衡与水平扩展，解决高并发</li>
+<li>数据库读写分离/分库分表，解决数据量瓶颈</li>
+<li>引入消息队列（异步、削峰）</li>
+<li>微服务化，复杂业务解耦</li>
+</ol>
+<h3 id="模式">模式</h3>
+<ul>
+<li>写多读少，异步处理
+<ul>
+<li>打车（轨迹上报）</li>
+<li>Notification</li>
+</ul>
+</li>
+<li>读多写少，低延迟、弱一致性
+<ul>
+<li>Feed 流</li>
+<li>电商（浏览）</li>
+</ul>
+</li>
+<li>调度系统，强一致性
+<ul>
+<li>支付</li>
+<li>秒杀/票务</li>
+<li>打车（实时匹配）</li>
+</ul>
+</li>
+<li>实时交互，长连接状态保持
+<ul>
+<li>即时通讯</li>
+<li>多人协作文档</li>
+</ul>
+</li>
+<li>复杂数据模型与查询
+<ul>
+<li>搜索引擎</li>
+<li>推荐系统</li>
+</ul>
+</li>
+<li>有状态的中间件，infra 设计
+<ul>
+<li>分布式缓存</li>
+<li>消息队列</li>
+</ul>
+</li>
+</ul>
+
+    
+                
+                
+                
+    
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2025/annual-report/" data-toggle="tooltip" data-placement="top" title="2025 年终报告">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+    
+                
+<script src="https://giscus.app/client.js"
+        data-repo="Liyixian06/Liyixian06.github.io"
+        data-repo-id="R_kgDOJ9xL3g"
+        data-category="Q&amp;A"
+        data-category-id="DIC_kwDOJ9xL3s4Cr76F"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme=""
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+            </div>
+    
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+    
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+    
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/annual" title="annual">
+                            annual (1)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/compiler" title="compiler">
+                            compiler (10)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/computer-architecture" title="computer architecture">
+                            computer architecture (7)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/computer-networking" title="computer networking">
+                            computer networking (5)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/cs" title="cs">
+                            cs (35)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/economy" title="economy">
+                            economy (1)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/film-and-tv" title="film and tv">
+                            film and tv (2)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/journal" title="journal">
+                            journal (7)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/list" title="list">
+                            list (2)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/music" title="music">
+                            music (1)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/operating-system" title="operating system">
+                            operating system (5)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/politics" title="politics">
+                            politics (2)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/quality-assurance" title="quality assurance">
+                            quality assurance (5)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/social" title="social">
+                            social (1)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/system-design" title="system design">
+                            system design (1)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/translation" title="translation">
+                            translation (2)
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tricks" title="tricks">
+                            tricks (1)
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+    
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:liyixian06@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Liyixian06">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Liyixian Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Liyixian Blog 2026
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
