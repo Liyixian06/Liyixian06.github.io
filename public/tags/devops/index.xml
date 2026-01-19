@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devops on Liyixian Blog</title>
+    <link>http://localhost:1313/tags/devops/</link>
+    <description>Recent content in Devops on Liyixian Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>© LiYixian 2023</copyright>
+    <lastBuildDate>Sun, 18 Jan 2026 22:46:51 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DevOps 01&amp;02 Virtualization</title>
+      <link>http://localhost:1313/2026/01/DevOps-01-02/</link>
+      <pubDate>Sun, 18 Jan 2026 22:46:51 -0500</pubDate>
+      <guid>http://localhost:1313/2026/01/DevOps-01-02/</guid>
+      <description>&lt;h3 id=&#34;01-platform-and-devops-preliminaries&#34;&gt;01 Platform and DevOps Preliminaries&lt;/h3&gt;&#xA;&lt;p&gt;一段 Bits 可以先作为数据读入内存，然后被 CPU 作为指令执行：&lt;strong&gt;数据的这种灵活性是虚拟机镜像的基础&lt;/strong&gt;，计算机的 boot process 同理。&lt;br&gt;&#xA;-&amp;gt; 虚拟机镜像文件作为一个数据文件被传输，虚拟化软件读取这个文件。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

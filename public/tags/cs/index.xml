@@ -2,256 +2,263 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CS on Liyixian Blog</title>
-    <link>https://Liyixian06.github.io/tags/cs/</link>
+    <link>http://localhost:1313/tags/cs/</link>
     <description>Recent content in CS on Liyixian Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Thu, 01 Jan 2026 21:58:11 -0500</lastBuildDate>
-    <atom:link href="https://Liyixian06.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Jan 2026 22:46:51 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DevOps 01&amp;02 Virtualization</title>
+      <link>http://localhost:1313/2026/01/DevOps-01-02/</link>
+      <pubDate>Sun, 18 Jan 2026 22:46:51 -0500</pubDate>
+      <guid>http://localhost:1313/2026/01/DevOps-01-02/</guid>
+      <description>&lt;h3 id=&#34;01-platform-and-devops-preliminaries&#34;&gt;01 Platform and DevOps Preliminaries&lt;/h3&gt;&#xA;&lt;p&gt;一段 Bits 可以先作为数据读入内存，然后被 CPU 作为指令执行：&lt;strong&gt;数据的这种灵活性是虚拟机镜像的基础&lt;/strong&gt;，计算机的 boot process 同理。&lt;br&gt;&#xA;-&amp;gt; 虚拟机镜像文件作为一个数据文件被传输，虚拟化软件读取这个文件。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>系统设计 101</title>
-      <link>https://Liyixian06.github.io/2026/01/system-design-101/</link>
+      <link>http://localhost:1313/2026/01/system-design-101/</link>
       <pubDate>Thu, 01 Jan 2026 21:58:11 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/2026/01/system-design-101/</guid>
+      <guid>http://localhost:1313/2026/01/system-design-101/</guid>
       <description>&lt;h3 id=&#34;系统设计框架&#34;&gt;系统设计框架&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;弄清具体要求&#xA;&lt;ol&gt;&#xA;&lt;li&gt;功能需求&#xA;&lt;ol&gt;&#xA;&lt;li&gt;考虑最重要的三个功能&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;非功能需求&#xA;&lt;ol&gt;&#xA;&lt;li&gt;一些基本的取舍（trade-offs）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;核心 entities&#xA;&lt;ol&gt;&#xA;&lt;li&gt;系统中的参与者有哪些？满足功能需求需要什么资源？&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;高层架构&#xA;&lt;ol&gt;&#xA;&lt;li&gt;用方框和箭头表示系统的不同组件及其交互方式&lt;/li&gt;&#xA;&lt;li&gt;组件：基本技术模块，例如服务器、数据库、缓存等&lt;/li&gt;&#xA;&lt;li&gt;数据如何在系统中流动，以及每次请求（从 API 请求到响应）都会改变哪些状态&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;API /接口&#xA;&lt;ol&gt;&#xA;&lt;li&gt;使用哪种协议（外部 API 用 REST，内部调用用 gRPC）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;深挖，一些独立的问题&#xA;&lt;ol&gt;&#xA;&lt;li&gt;非功能需求&lt;/li&gt;&#xA;&lt;li&gt;极端情况和瓶颈&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;非功能需求&#34;&gt;非功能需求&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一致性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;强一致性 (Strong Consistency)：任何时候读到的都是最新写入的数据&lt;/li&gt;&#xA;&lt;li&gt;最终一致性 (Eventual Consistency)： 允许短时间内数据不一致，但最终会同步&#xA;&lt;ul&gt;&#xA;&lt;li&gt;分布式事务：一个操作跨越多个数据库/服务时，如何处理？&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;可用性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;系统能否一直在线，挂了怎么办？&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;实时性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;响应有多快，延迟是多少？&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;扩展性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;用户从 1 万增长到 1 亿时，系统能不能通过增加机器来扛住压力？&lt;/li&gt;&#xA;&lt;li&gt;垂直扩展 (Vertical Scaling)：给原来的电脑换更强的 CPU、更大的内存（有上限）&lt;/li&gt;&#xA;&lt;li&gt;水平扩展 (Horizontal Scaling)：多几台普通的电脑一起工作（理论上没有上限，这是系统设计的核心）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;持久&#xA;&lt;ul&gt;&#xA;&lt;li&gt;存进去的数据不会丢：多副本&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;可靠性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;系统是否不出错&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;幂等性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;在分布式环境下，由于重试机制（Retry），同一个请求可能会发送多次。如何保证“支付一次”的请求即便发了三次，用户也只被扣一次钱？&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;吞吐&#xA;&lt;ul&gt;&#xA;&lt;li&gt;QPS/TPS，并发数&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;trade-offs-cap&#34;&gt;Trade-offs: CAP&lt;/h4&gt;&#xA;&lt;p&gt;&lt;strong&gt;可用性（Availability）和一致性（Consistency）不能同时满足&lt;/strong&gt;&lt;br&gt;&#xA;前提：分区容错性（Partition Tolerance，即网络断开后系统还能继续运行）是必选项&lt;/p&gt;</description>
     </item>
     <item>
       <title>Quality Assurance 08 Applied Static Analysis</title>
-      <link>https://Liyixian06.github.io/2025/11/quality-assurance-08/</link>
+      <link>http://localhost:1313/2025/11/quality-assurance-08/</link>
       <pubDate>Wed, 12 Nov 2025 14:03:16 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/2025/11/quality-assurance-08/</guid>
+      <guid>http://localhost:1313/2025/11/quality-assurance-08/</guid>
       <description>&lt;h3 id=&#34;program-analysis&#34;&gt;Program Analysis&lt;/h3&gt;&#xA;&lt;p&gt;Static Analysis excels at finding certain defects:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Security: Buffer overruns, improperly validated input &amp;hellip;&lt;/li&gt;&#xA;&lt;li&gt;Memory safety: Null dereference, uninitialized data &amp;hellip;&lt;/li&gt;&#xA;&lt;li&gt;Resource leaks: Memory, OS resources &amp;hellip;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Static Analysis&lt;/th&gt;&#xA;          &lt;th&gt;Dynamic Analysis&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Requires only source code&lt;/td&gt;&#xA;          &lt;td&gt;Requires successful build + test inputs&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Conservatively reasons about all possible inputs and program paths&lt;/td&gt;&#xA;          &lt;td&gt;Observes individual executions&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Reported warnings may contain false positives&lt;/td&gt;&#xA;          &lt;td&gt;Reported problems are real, as observed by a witness input&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Can, in principle, report all warnings of a particular class of problems&lt;/td&gt;&#xA;          &lt;td&gt;Can only report problems that are seen. Highly dependent on test inputs. Subject to false negatives&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Advanced techniques can prove certain complex properties, but rarely run in CI due to cost&lt;/td&gt;&#xA;          &lt;td&gt;Advanced techniques like symbolic execution can prove certain complex properties, but rarely run in CI due to cost&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;Soundness and Completeness in Static Analysis&lt;/p&gt;</description>
     </item>
     <item>
       <title>Quality Assurance 07 Test Oracles</title>
-      <link>https://Liyixian06.github.io/2025/11/quality-assurance-07/</link>
+      <link>http://localhost:1313/2025/11/quality-assurance-07/</link>
       <pubDate>Mon, 10 Nov 2025 14:07:14 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/2025/11/quality-assurance-07/</guid>
+      <guid>http://localhost:1313/2025/11/quality-assurance-07/</guid>
       <description>&lt;p&gt;All tests we have written so far are example-based: pick specific inputs, hard-code expected outputs&lt;br&gt;&#xA;=&amp;gt; But real systems have huge input spaces and even good test suites miss bugs.&lt;/p&gt;&#xA;&lt;p&gt;What if we let the computer explore the input space for us?&lt;/p&gt;&#xA;&lt;h3 id=&#34;generating-inputs-via-fuzzing&#34;&gt;Generating Inputs via Fuzzing&lt;/h3&gt;&#xA;&lt;p&gt;Fuzz testing randomly generates inputs and checks for program crashes.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Mutation-based fuzzing (e.g., Radamsa)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;binary input, text input, GUI input, etc.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Coverage-guided fuzzing (e.g., AFL)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Fuzzers can generate millions of inputs. &lt;strong&gt;How do we check if the program is correct?&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Quality Assurance 05 Test Doubles</title>
-      <link>https://Liyixian06.github.io/2025/11/quality-assurance-05/</link>
+      <link>http://localhost:1313/2025/11/quality-assurance-05/</link>
       <pubDate>Mon, 03 Nov 2025 11:31:09 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/2025/11/quality-assurance-05/</guid>
+      <guid>http://localhost:1313/2025/11/quality-assurance-05/</guid>
       <description>&lt;h3 id=&#34;end-to-end-testing&#34;&gt;End-to-End Testing&lt;/h3&gt;&#xA;&lt;p&gt;A single test can provide lots of coverage, but:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Can be fragile&lt;/li&gt;&#xA;&lt;li&gt;Have poor isolation&#xA;&lt;ul&gt;&#xA;&lt;li&gt;redundancy (e.g., initialization, route forwarding, &amp;hellip;)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Difficult to automate&#xA;&lt;ul&gt;&#xA;&lt;li&gt;test environment&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Slow and expensive&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;-&amp;gt; Unit Testing!&lt;/p&gt;&#xA;&lt;h3 id=&#34;test-doubles&#34;&gt;Test Doubles&lt;/h3&gt;&#xA;&lt;p&gt;We substitute external collaborators with test doubles.&lt;/p&gt;&#xA;&lt;h4 id=&#34;dummy&#34;&gt;Dummy&lt;/h4&gt;&#xA;&lt;p&gt;Objects that are needed by the program (e.g., parameters) but are never actually used.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Logger&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;append&lt;/span&gt;(String &lt;span style=&#34;color:#a6e22e&#34;&gt;message&lt;/span&gt;);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;LoggerDummy&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;implements&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Logger&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;append&lt;/span&gt;(String &lt;span style=&#34;color:#a6e22e&#34;&gt;message&lt;/span&gt;) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// we do nothing!&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&#x9;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;stub&#34;&gt;Stub&lt;/h4&gt;&#xA;&lt;p&gt;Double for a real collaborator that gives predefined answers to calls during testing.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Quality Assurance 04 Testability</title>
-      <link>https://Liyixian06.github.io/2025/10/quality-assurance-04/</link>
+      <link>http://localhost:1313/2025/10/quality-assurance-04/</link>
       <pubDate>Wed, 29 Oct 2025 22:01:28 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/2025/10/quality-assurance-04/</guid>
+      <guid>http://localhost:1313/2025/10/quality-assurance-04/</guid>
       <description>&lt;h3 id=&#34;what-is-testability&#34;&gt;What is Testability?&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Testability is the extent to which a system’s behaviors can be exercised, observed, and reasoned about with fast, reliable tests.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Controllability&#xA;&lt;ul&gt;&#xA;&lt;li&gt;steer the system under test into any path or behavior&lt;/li&gt;&#xA;&lt;li&gt;How difficult is it to put the system into a particular state? How to write a test that covers that behavior?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Observability&#xA;&lt;ul&gt;&#xA;&lt;li&gt;directly observe behaviors and check outcomes&lt;/li&gt;&#xA;&lt;li&gt;How hard is it to determine if the system behaved as intended? Can we check that the system didn’t misbehave?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Isolation&#xA;&lt;ul&gt;&#xA;&lt;li&gt;exercise the component under test without exercising the rest of the system&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Stability&#xA;&lt;ul&gt;&#xA;&lt;li&gt;produce the same test result across runs&lt;/li&gt;&#xA;&lt;li&gt;Is the result independent of time, randomness, order, and load?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;writing-testable-code&#34;&gt;Writing Testable Code&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Testability Inhibitors&lt;/th&gt;&#xA;          &lt;th&gt;Phenomenon&lt;/th&gt;&#xA;          &lt;th&gt;Refactor&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Hidden Dependencies&lt;/td&gt;&#xA;          &lt;td&gt;- Environment Variables&lt;br&gt;- Platform path rules&lt;br&gt;- Current working directory&lt;br&gt;- Ports and permissions&lt;br&gt;- Time zone / locale (machine dependent date handling)&lt;br&gt;- Machine sizing (CPU count) affecting behavior&lt;br&gt;- Filesystem permissions and layout&lt;/td&gt;&#xA;          &lt;td&gt;Make dependencies explicit via configuration&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Poor Isolation&lt;/td&gt;&#xA;          &lt;td&gt;- Hardwired collaborators (direct instantations / static methods / singletons / service locators)&lt;br&gt;- Deep method chains&lt;/td&gt;&#xA;          &lt;td&gt;Dependency Injection&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Busy Constructors&lt;/td&gt;&#xA;          &lt;td&gt;- Side Effects (e.g., IO, timers, network, background jobs)&lt;br&gt;- Contain complex logic&lt;/td&gt;&#xA;          &lt;td&gt;Move logic out of the constructor&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Non-Determinism&lt;/td&gt;&#xA;          &lt;td&gt;- Hidden clock (date / time)&lt;br&gt;- Randomness&lt;br&gt;- External API calls&lt;br&gt;- Networking&lt;br&gt;- Parallelism&lt;br&gt;- Race condition (no await)&lt;/td&gt;&#xA;          &lt;td&gt;Add deterministic seams via dependency injection&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Poor Observability&lt;/td&gt;&#xA;          &lt;td&gt;- Void functions with difficult to observe side effects&lt;br&gt;- Ambiguous returns (e.g., true/false → what succeeded or failed?)&lt;br&gt;- Hidden state (e.g., private state without getters)&lt;/td&gt;&#xA;          &lt;td&gt;Provide read access to important internal state;&lt;br&gt;Consider using informative return types;&lt;br&gt;Add observability hooks to avoid test doubles&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Shared Mutable State&lt;/td&gt;&#xA;          &lt;td&gt;- Globals, statics, singletons&lt;br&gt;- Mutable configurations&lt;br&gt;- Process-wide settings&lt;br&gt;- Exposed internals&lt;/td&gt;&#xA;          &lt;td&gt;Try to avoid shared mutable state&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;External Libraries and Legacy Code&lt;/td&gt;&#xA;          &lt;td&gt;- Application talks directly to external libraries or external code&lt;/td&gt;&#xA;          &lt;td&gt;Wrap external libraries and legacy code in wrappers and test via dependency injection&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Too Much Responsibility&lt;/td&gt;&#xA;          &lt;td&gt;- One class/function does orchestration, domain logic and I/O&lt;/td&gt;&#xA;          &lt;td&gt;Split into functions with a single responsibility&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h3 id=&#34;writing-good-test-code&#34;&gt;Writing Good Test Code&lt;/h3&gt;&#xA;&lt;p&gt;Test code should be &amp;hellip;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Quality Assurance 03 Test Design</title>
-      <link>https://Liyixian06.github.io/2025/10/quality-assurance-03/</link>
+      <link>http://localhost:1313/2025/10/quality-assurance-03/</link>
       <pubDate>Mon, 27 Oct 2025 19:14:17 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/2025/10/quality-assurance-03/</guid>
+      <guid>http://localhost:1313/2025/10/quality-assurance-03/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Overview&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;How to select high-value test inputs&lt;/li&gt;&#xA;&lt;li&gt;The basic concepts of blackbox and whitebox testing&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Tradeoffs&lt;/li&gt;&#xA;&lt;li&gt;Effort&lt;/li&gt;&#xA;&lt;li&gt;Strengths and weaknesses&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Several popular methods for generating test inputs&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;blackbox-testing&#34;&gt;Blackbox Testing&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Tests are created according to the specification for software&#xA;&lt;ul&gt;&#xA;&lt;li&gt;documentation, requirements, APIs, &amp;hellip;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Checks whether software matches that specification&#xA;&lt;ul&gt;&#xA;&lt;li&gt;i.e., does the code do the right thing?&lt;/li&gt;&#xA;&lt;li&gt;can reveal incomplete, ambiguous, or erroneous specifications&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Code structure does not inform test case design&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Why is blackbox testing useful?&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用 FFmpeg 截取视频片段时的精度问题</title>
-      <link>https://Liyixian06.github.io/2025/06/ffmpeg-videocut/</link>
+      <link>http://localhost:1313/2025/06/ffmpeg-videocut/</link>
       <pubDate>Sun, 29 Jun 2025 02:15:32 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2025/06/ffmpeg-videocut/</guid>
+      <guid>http://localhost:1313/2025/06/ffmpeg-videocut/</guid>
       <description>&lt;p&gt;使用 FFmpeg 截取视频片段时，一般使用的命令如下：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ffmpeg -i video.mp4 -ss 00:01:23.4 -to 00:05:56.7 -c copy output.mp4 // 开始时间和结束时间&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ffmpeg -i video.mp4 -ss 00:01:23.4 -t 00:04:33.3 -c copy output.mp4 // 开始时间和持续时间&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但有时这样截取出的片段不够精准，会有几秒的误差（画面固定不动、或者提前结束），原因是 FFmpeg 截取时会从片段首尾附近的关键帧读取。对于精度要求不是很高的情况，可以先查看一下视频的关键帧：&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记10：代码优化</title>
-      <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch10/</link>
+      <link>http://localhost:1313/2023/12/compiler-principles-ch10/</link>
       <pubDate>Tue, 19 Dec 2023 14:21:30 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/12/compiler-principles-ch10/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;优化种类&lt;/li&gt;&#xA;&lt;li&gt;循环&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;优化编译器：控制流分析 -&amp;gt; 数据流分析 -&amp;gt; 代码变换&lt;br&gt;&#xA;与目的机器无关&lt;/p&gt;&#xA;&lt;h3 id=&#34;优化种类&#34;&gt;优化种类&lt;/h3&gt;&#xA;&lt;p&gt;局部优化（&lt;em&gt;i.e.&lt;/em&gt; 基本块内优化）、全局优化&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;消去公共子表达式&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;复制传播：对单次赋值 &lt;code&gt;f:=g&lt;/code&gt;，在随后语句中用 &lt;code&gt;g&lt;/code&gt; 替换 &lt;code&gt;f&lt;/code&gt;&lt;br&gt;&#xA;&#xA;  &lt;img src=&#34;https://Liyixian06.github.io/img/%e5%a4%8d%e5%88%b6%e4%bc%a0%e6%92%ad.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
+      <guid>http://localhost:1313/2023/12/compiler-principles-ch10/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;优化种类&lt;/li&gt;&#xA;&lt;li&gt;循环&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;优化编译器：控制流分析 -&amp;gt; 数据流分析 -&amp;gt; 代码变换&lt;br&gt;&#xA;与目的机器无关&lt;/p&gt;&#xA;&lt;h3 id=&#34;优化种类&#34;&gt;优化种类&lt;/h3&gt;&#xA;&lt;p&gt;局部优化（&lt;em&gt;i.e.&lt;/em&gt; 基本块内优化）、全局优化&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;消去公共子表达式&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;复制传播：对单次赋值 &lt;code&gt;f:=g&lt;/code&gt;，在随后语句中用 &lt;code&gt;g&lt;/code&gt; 替换 &lt;code&gt;f&lt;/code&gt;&lt;br&gt;&#xA;&#xA;  &lt;img src=&#34;http://localhost:1313/img/%e5%a4%8d%e5%88%b6%e4%bc%a0%e6%92%ad.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记09：代码生成</title>
-      <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch9/</link>
+      <link>http://localhost:1313/2023/12/compiler-principles-ch9/</link>
       <pubDate>Tue, 12 Dec 2023 14:20:19 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/12/compiler-principles-ch9/</guid>
+      <guid>http://localhost:1313/2023/12/compiler-principles-ch9/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;基本块和流图&lt;/li&gt;&#xA;&lt;li&gt;代码生成基本算法&lt;/li&gt;&#xA;&lt;li&gt;寄存器分配&lt;/li&gt;&#xA;&lt;li&gt;窥孔优化&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;设计问题&#34;&gt;设计问题&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;输入&#xA;&lt;ul&gt;&#xA;&lt;li&gt;中间表示形式&lt;/li&gt;&#xA;&lt;li&gt;符号表信息&lt;/li&gt;&#xA;&lt;li&gt;类型检查和转换已经完成&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;输出&#xA;&lt;ul&gt;&#xA;&lt;li&gt;汇编语言&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;内存管理&#xA;&lt;ul&gt;&#xA;&lt;li&gt;见 &lt;a href=&#34;https://liyixian06.github.io/2023/11/compiler-principles-ch7/&#34;&gt;Ch7&lt;/a&gt; 中讨论的内存分配策略&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;指令集选择&lt;/li&gt;&#xA;&lt;li&gt;寄存器分配&#xA;&lt;ul&gt;&#xA;&lt;li&gt;allocation, assignment&lt;/li&gt;&#xA;&lt;li&gt;regiser-pair&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;计算顺序&lt;/li&gt;&#xA;&lt;li&gt;代码生成方法&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;寻址方式开销：绝对 &lt;code&gt;M&lt;/code&gt; (1)/寄存器 &lt;code&gt;R&lt;/code&gt; (0)/索引 &lt;code&gt;c(R)&lt;/code&gt; (1)/间接寄存器 &lt;code&gt;*R&lt;/code&gt; (0)、间接索引 &lt;code&gt;*c(R)&lt;/code&gt; (1)&lt;br&gt;&#xA;指令开销：&lt;code&gt;MOV R0,R1&lt;/code&gt;（1）/ &lt;code&gt;MOV R5,M&lt;/code&gt; (2)/ &lt;code&gt;ADD #1,R3&lt;/code&gt; (2)/ &lt;code&gt;SUB 4(R0),*12(R1)&lt;/code&gt; (3)&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机网络笔记04B：网络层-控制平面</title>
-      <link>https://Liyixian06.github.io/2023/12/computer-networking-ch5/</link>
+      <link>http://localhost:1313/2023/12/computer-networking-ch5/</link>
       <pubDate>Wed, 06 Dec 2023 22:36:25 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/12/computer-networking-ch5/</guid>
+      <guid>http://localhost:1313/2023/12/computer-networking-ch5/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;路由选择算法&#xA;&lt;ul&gt;&#xA;&lt;li&gt;链路状态算法&lt;/li&gt;&#xA;&lt;li&gt;距离向量算法&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;互联网路由选择协议&#xA;&lt;ul&gt;&#xA;&lt;li&gt;RIP&lt;/li&gt;&#xA;&lt;li&gt;OSPF&lt;/li&gt;&#xA;&lt;li&gt;BGP&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;软件定义网络 SDN&lt;/li&gt;&#xA;&lt;li&gt;ICMP 互联网控制报文协议&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;路由选择算法&#34;&gt;路由选择算法&lt;/h3&gt;&#xA;&lt;p&gt;路由选择算法 routing algorithm：从发送方到接收方确定一条通过路由器网络的最好路径&lt;br&gt;&#xA;-&amp;gt; 最好：一般指开销最小 &lt;em&gt;（距离、时沿、费用、堵塞）&lt;/em&gt;&lt;br&gt;&#xA;分布式：每台路由器独立计算&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记08：中间代码生成</title>
-      <link>https://Liyixian06.github.io/2023/12/compiler-principles-ch8/</link>
+      <link>http://localhost:1313/2023/12/compiler-principles-ch8/</link>
       <pubDate>Wed, 06 Dec 2023 20:31:01 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/12/compiler-principles-ch8/</guid>
+      <guid>http://localhost:1313/2023/12/compiler-principles-ch8/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;三地址码&lt;/li&gt;&#xA;&lt;li&gt;语句翻译：声明、赋值、布尔表达式、控制流&lt;/li&gt;&#xA;&lt;li&gt;BackPatching&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;三地址码&#34;&gt;三地址码&lt;/h3&gt;&#xA;&lt;p&gt;一般形式：&lt;code&gt;x:=y op z&lt;/code&gt;（注意赋值符号是 &lt;code&gt;:=&lt;/code&gt;）&lt;br&gt;&#xA;三地址码的实现：&lt;br&gt;&#xA;利用属性 &lt;code&gt;E.place&lt;/code&gt; 保存值，&lt;code&gt;E.code&lt;/code&gt; 计算 E 的三地址码&lt;br&gt;&#xA;newtemp 生成临时变量名，gen 输出一条三地址码指令&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机体系结构11：Multicore</title>
-      <link>https://Liyixian06.github.io/2023/12/computer-architecture-ch11/</link>
+      <link>http://localhost:1313/2023/12/computer-architecture-ch11/</link>
       <pubDate>Wed, 06 Dec 2023 10:33:31 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/12/computer-architecture-ch11/</guid>
+      <guid>http://localhost:1313/2023/12/computer-architecture-ch11/</guid>
       <description>&lt;h3 id=&#34;shared-memory-model&#34;&gt;Shared memory model&lt;/h3&gt;&#xA;&lt;p&gt;线程：独立的 execution flow，通常共享内存&lt;br&gt;&#xA;-&amp;gt; process 有独立的内存，一个 process 里可以有若干个 thread，它们复用 CPU 资源，通常由 OS 管理、切换&lt;/p&gt;&#xA;&lt;p&gt;shared memory model：程序员显式地创建多线程&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记07：运行时环境</title>
-      <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch7/</link>
+      <link>http://localhost:1313/2023/11/compiler-principles-ch7/</link>
       <pubDate>Tue, 28 Nov 2023 14:51:44 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/11/compiler-principles-ch7/</guid>
+      <guid>http://localhost:1313/2023/11/compiler-principles-ch7/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;源语言相关问题&lt;/li&gt;&#xA;&lt;li&gt;存储组织&lt;/li&gt;&#xA;&lt;li&gt;内存分配策略&lt;/li&gt;&#xA;&lt;li&gt;访问非局部名字&lt;/li&gt;&#xA;&lt;li&gt;参数传递&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;源语言相关问题&#34;&gt;源语言相关问题&lt;/h3&gt;&#xA;&lt;p&gt;过程（函数）：procedure（静态）/activation（动态，一次执行）&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;过程定义、过程名、过程体&lt;/li&gt;&#xA;&lt;li&gt;函数、调用、形参、实参&lt;/li&gt;&#xA;&lt;li&gt;生存期&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;过程的生命期或者不重叠、或者嵌套；&lt;br&gt;&#xA;递归：过程 p 的某个活动尚未结束，可以开始它的一个新的活动&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记06：类型检查</title>
-      <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch6/</link>
+      <link>http://localhost:1313/2023/11/compiler-principles-ch6/</link>
       <pubDate>Tue, 21 Nov 2023 14:51:19 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/11/compiler-principles-ch6/</guid>
+      <guid>http://localhost:1313/2023/11/compiler-principles-ch6/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;类型系统&lt;/li&gt;&#xA;&lt;li&gt;类型表达式的等价&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;静态检查 static checking：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;类型检查（type check）&#xA;&lt;ul&gt;&#xA;&lt;li&gt;操作对象必须与操作符匹配，&lt;em&gt;i.e.&lt;/em&gt; 函数名不能相加&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;控制流检查（flow-of-control check）&#xA;&lt;ul&gt;&#xA;&lt;li&gt;break 必须退出 while、for、switch…&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;唯一性检查（uniqueness check）&#xA;&lt;ul&gt;&#xA;&lt;li&gt;对象（变量、标号…）定义必须唯一&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;名字关联检查（name-related check）&#xA;&lt;ul&gt;&#xA;&lt;li&gt;相同名字在不同位置&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;类型系统&#34;&gt;类型系统&lt;/h3&gt;&#xA;&lt;p&gt;将类型赋予语法结构的规则；每个表达式都有一个关联的类型&lt;br&gt;&#xA;基本类型（语言内部支持类型）、结构类型（组合基本类型构成新类型）&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记05：语法制导翻译</title>
-      <link>https://Liyixian06.github.io/2023/11/compiler-principles-ch5/</link>
+      <link>http://localhost:1313/2023/11/compiler-principles-ch5/</link>
       <pubDate>Tue, 21 Nov 2023 14:12:33 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/11/compiler-principles-ch5/</guid>
+      <guid>http://localhost:1313/2023/11/compiler-principles-ch5/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;语法制导的定义&lt;/li&gt;&#xA;&lt;li&gt;构造语法树&lt;/li&gt;&#xA;&lt;li&gt;S-属性定义、L-属性定义&lt;/li&gt;&#xA;&lt;li&gt;自顶向下计算属性&lt;/li&gt;&#xA;&lt;li&gt;自底向上计算属性&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;语法制导定义&#34;&gt;语法制导定义&lt;/h3&gt;&#xA;&lt;p&gt;语法制导翻译是一种搭建在语法分析基础上的翻译技术。&lt;br&gt;&#xA;思路：&lt;strong&gt;给每个符号（特别是非终结符）设置一系列属性 attribute，在语法翻译的时候对属性进行求值。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>操作系统笔记05：设备管理</title>
-      <link>https://Liyixian06.github.io/2023/11/operating-system-7.0/</link>
+      <link>http://localhost:1313/2023/11/operating-system-7.0/</link>
       <pubDate>Mon, 20 Nov 2023 01:13:10 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/11/operating-system-7.0/</guid>
+      <guid>http://localhost:1313/2023/11/operating-system-7.0/</guid>
       <description>&lt;p&gt;设备（&lt;em&gt;e.g.鼠标、键盘、显示器&lt;/em&gt;）的特点：速度慢、难以共享、工作逻辑 varies&lt;br&gt;&#xA;操作系统的设备管理使得应用程序不需要关心设备的细节，就可以统一响应&lt;/p&gt;&#xA;&lt;p&gt;外设借助一个 controller/adapter 和计算机连接在一起&lt;br&gt;&#xA;适配器采集设备上操作系统关心的数据，有三类接口：数据、命令、状态&lt;br&gt;&#xA;操作系统整理每个厂商提交的设备不同的数据、命令、状态格式，经过封装和抽象，抹去硬件的差异，交给上层应用程序&lt;br&gt;&#xA;设备驱动程序 device driver 负责识别 controller 的数据，完成翻译；现代操作系统已经预先继承了若干个通用的 driver&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机网络笔记04A：网络层-数据平面</title>
-      <link>https://Liyixian06.github.io/2023/11/computer-networking-ch4/</link>
+      <link>http://localhost:1313/2023/11/computer-networking-ch4/</link>
       <pubDate>Wed, 15 Nov 2023 21:20:51 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/11/computer-networking-ch4/</guid>
+      <guid>http://localhost:1313/2023/11/computer-networking-ch4/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;网络层概述&lt;/li&gt;&#xA;&lt;li&gt;路由器工作原理&lt;/li&gt;&#xA;&lt;li&gt;网际协议：IPv4、网络地址转换、IPv6&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;网络层概述&#34;&gt;网络层概述&lt;/h3&gt;&#xA;&lt;p&gt;网络层的作用是将 packet 从发送主机移动到接收主机。&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;转发 forwarding，数据平面实现&lt;/li&gt;&#xA;&lt;li&gt;路由选择 routing，控制平面实现，确定 packet 从源到目的地的路径&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;每台路由器中有一个转发表 forwarding table，路由器检查到达的 packet header 的字段值，将其在转发表中索引，确定输出链路接口。&lt;br&gt;&#xA;转发表是如何配置的？&lt;/p&gt;</description>
     </item>
     <item>
       <title>操作系统笔记04：文件管理</title>
-      <link>https://Liyixian06.github.io/2023/11/operating-system-6.0/</link>
+      <link>http://localhost:1313/2023/11/operating-system-6.0/</link>
       <pubDate>Mon, 13 Nov 2023 23:05:15 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/11/operating-system-6.0/</guid>
+      <guid>http://localhost:1313/2023/11/operating-system-6.0/</guid>
       <description>&lt;p&gt;硬盘的物理结构：若干个磁道和扇区&lt;br&gt;&#xA;文件系统：把一段长度可变的连续数据放到磁盘上，而且能通过文件夹/文件的名字实现内容检索&lt;/p&gt;&#xA;&lt;h3 id=&#34;文件系统&#34;&gt;文件系统&lt;/h3&gt;&#xA;&lt;p&gt;如何找到数据在磁盘中的位置？&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机体系结构09：Virtual Memory</title>
-      <link>https://Liyixian06.github.io/2023/11/computer-architecture-ch9/</link>
+      <link>http://localhost:1313/2023/11/computer-architecture-ch9/</link>
       <pubDate>Mon, 13 Nov 2023 22:38:33 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/11/computer-architecture-ch9/</guid>
-      <description>&lt;h3 id=&#34;computer-system&#34;&gt;Computer System&lt;/h3&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://Liyixian06.github.io/img/computer_system.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;CPUs and memories&#xA;&lt;ul&gt;&#xA;&lt;li&gt;connected by memory bus&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;I/O peripherals: storage, input, display, network&amp;hellip;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Connected by system bus (which is connected to memory bus)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Operating System&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;abstraction：给计算机硬件资源提供软件接口 (&lt;em&gt;e.g.&lt;/em&gt; threads, files, etc.)，简化 application 编程&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;isolation：虚拟化，给每个 process private CPU/memory/IO（用到的不是整个计算机，看到的是整个计算机）&lt;/p&gt;</description>
+      <guid>http://localhost:1313/2023/11/computer-architecture-ch9/</guid>
+      <description>&lt;h3 id=&#34;computer-system&#34;&gt;Computer System&lt;/h3&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;http://localhost:1313/img/computer_system.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;CPUs and memories&#xA;&lt;ul&gt;&#xA;&lt;li&gt;connected by memory bus&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;I/O peripherals: storage, input, display, network&amp;hellip;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Connected by system bus (which is connected to memory bus)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Operating System&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;abstraction：给计算机硬件资源提供软件接口 (&lt;em&gt;e.g.&lt;/em&gt; threads, files, etc.)，简化 application 编程&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;isolation：虚拟化，给每个 process private CPU/memory/IO（用到的不是整个计算机，看到的是整个计算机）&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机体系结构笔记08：Superscalar and VLIW</title>
-      <link>https://Liyixian06.github.io/2023/11/computer-architecture-ch8/</link>
+      <link>http://localhost:1313/2023/11/computer-architecture-ch8/</link>
       <pubDate>Mon, 06 Nov 2023 22:37:56 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/11/computer-architecture-ch8/</guid>
-      <description>&lt;h3 id=&#34;superscalar&#34;&gt;Superscalar&lt;/h3&gt;&#xA;&lt;p&gt;scalar pipeline 的性能极限是 CPI=IPC=1，但限于 hazards 也无法达到&lt;br&gt;&#xA;multiple issues -&amp;gt; superscalar&lt;/p&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://Liyixian06.github.io/img/superscalar_pipeline.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;要多套硬件同时执行多条指令（指令级并行 ILP），需要检查它们的依赖关系&lt;br&gt;&#xA;寄存器调度，并行度取决于 workload&lt;br&gt;&#xA;目前大部分是 4 inst/cycle&lt;/p&gt;</description>
+      <guid>http://localhost:1313/2023/11/computer-architecture-ch8/</guid>
+      <description>&lt;h3 id=&#34;superscalar&#34;&gt;Superscalar&lt;/h3&gt;&#xA;&lt;p&gt;scalar pipeline 的性能极限是 CPI=IPC=1，但限于 hazards 也无法达到&lt;br&gt;&#xA;multiple issues -&amp;gt; superscalar&lt;/p&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;http://localhost:1313/img/superscalar_pipeline.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;要多套硬件同时执行多条指令（指令级并行 ILP），需要检查它们的依赖关系&lt;br&gt;&#xA;寄存器调度，并行度取决于 workload&lt;br&gt;&#xA;目前大部分是 4 inst/cycle&lt;/p&gt;</description>
     </item>
     <item>
       <title>操作系统笔记03：进程间通信</title>
-      <link>https://Liyixian06.github.io/2023/10/operating-system-5.0/</link>
+      <link>http://localhost:1313/2023/10/operating-system-5.0/</link>
       <pubDate>Mon, 30 Oct 2023 23:04:16 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/10/operating-system-5.0/</guid>
+      <guid>http://localhost:1313/2023/10/operating-system-5.0/</guid>
       <description>&lt;p&gt;IPC (Inter Process Communication) 的同步问题 &lt;em&gt;e.g. 买面包&lt;/em&gt;&lt;br&gt;&#xA;（这里只考虑单处理器，不考虑多核）&lt;br&gt;&#xA;临界区 critical section：空闲则入、忙则等待、有限等待、让权等待（optional）&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记04：语法分析</title>
-      <link>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</link>
+      <link>http://localhost:1313/2023/10/compiler-principles-ch4/</link>
       <pubDate>Tue, 24 Oct 2023 16:26:29 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/10/compiler-principles-ch4/</guid>
+      <guid>http://localhost:1313/2023/10/compiler-principles-ch4/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;上下文无关文法&lt;/li&gt;&#xA;&lt;li&gt;语法分析&#xA;&lt;ul&gt;&#xA;&lt;li&gt;自顶向下&lt;/li&gt;&#xA;&lt;li&gt;自底向上：LR (0) / SLR / LR (1) / LALR&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;语法错误处理&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;上下文无关文法&#34;&gt;上下文无关文法&lt;/h2&gt;&#xA;&lt;p&gt;正则表达式的能力不足 -&amp;gt; &lt;a href=&#34;https://liyixian06.github.io/2023/09/compiler-principles-ch2/&#34;&gt;ch2 CFG&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;凡是正则表达式能表示的语言，都能用 CFG 表示：可以机械地由 NFA 变换而得，NFA 字母表视为 terminal 集合&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机网络笔记03：传输层</title>
-      <link>https://Liyixian06.github.io/2023/10/computer-networking-ch3/</link>
+      <link>http://localhost:1313/2023/10/computer-networking-ch3/</link>
       <pubDate>Wed, 18 Oct 2023 14:17:50 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/10/computer-networking-ch3/</guid>
+      <guid>http://localhost:1313/2023/10/computer-networking-ch3/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;多路复用和多路分解&lt;/li&gt;&#xA;&lt;li&gt;UDP：特点、检验和&lt;/li&gt;&#xA;&lt;li&gt;可靠数据传输：rdt、pipeline&lt;/li&gt;&#xA;&lt;li&gt;TCP：segment 结构、可靠数据传输、流量控制、连接管理&lt;/li&gt;&#xA;&lt;li&gt;网络拥塞&lt;/li&gt;&#xA;&lt;li&gt;TCP 拥塞控制&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;概述和传输层服务&#34;&gt;概述和传输层服务&lt;/h3&gt;&#xA;&lt;p&gt;传输层协议只工作在主机中，而非路由器&lt;br&gt;&#xA;传输层将从发送应用程序进程接收到的 message 转换为 segment with header，传递给网络层，后者封装成 packet 向目的地发送&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机体系结构笔记07：Prefetching</title>
-      <link>https://Liyixian06.github.io/2023/10/computer-architecture-ch7/</link>
+      <link>http://localhost:1313/2023/10/computer-architecture-ch7/</link>
       <pubDate>Mon, 16 Oct 2023 22:36:28 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/10/computer-architecture-ch7/</guid>
+      <guid>http://localhost:1313/2023/10/computer-architecture-ch7/</guid>
       <description>&lt;p&gt;以 cache block 为单位 fetch the data before needed by the program，需要预测地址&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;减少 compulsory cache misses&lt;/li&gt;&#xA;&lt;li&gt;减少内存 latency：L2 的 miss rate 减小，L1 的 latency 就会减小&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;如果取错了：占用空间和带宽，但不用刷新 pipeline，影响很小&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机体系结构笔记06：Caches</title>
-      <link>https://Liyixian06.github.io/2023/10/computer-architecture-ch6/</link>
+      <link>http://localhost:1313/2023/10/computer-architecture-ch6/</link>
       <pubDate>Mon, 09 Oct 2023 22:36:08 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/10/computer-architecture-ch6/</guid>
-      <description>&lt;h3 id=&#34;overview-of-memory-arrays&#34;&gt;Overview of Memory Arrays&lt;/h3&gt;&#xA;&lt;p&gt;计算机如何存储数据？&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;memory array 存储阵列&lt;/li&gt;&#xA;&lt;li&gt;2^N 行 M 列，每行对应一个 word-line，每列对应一个 bit-line&lt;/li&gt;&#xA;&lt;li&gt;每次读一行，activate 一个 word-line，输出一行的 storage&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://Liyixian06.github.io/img/memory_array_organization.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
+      <guid>http://localhost:1313/2023/10/computer-architecture-ch6/</guid>
+      <description>&lt;h3 id=&#34;overview-of-memory-arrays&#34;&gt;Overview of Memory Arrays&lt;/h3&gt;&#xA;&lt;p&gt;计算机如何存储数据？&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;memory array 存储阵列&lt;/li&gt;&#xA;&lt;li&gt;2^N 行 M 列，每行对应一个 word-line，每列对应一个 bit-line&lt;/li&gt;&#xA;&lt;li&gt;每次读一行，activate 一个 word-line，输出一行的 storage&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;http://localhost:1313/img/memory_array_organization.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
     </item>
     <item>
       <title>操作系统笔记02：内存管理</title>
-      <link>https://Liyixian06.github.io/2023/10/operating-system-4.0/</link>
+      <link>http://localhost:1313/2023/10/operating-system-4.0/</link>
       <pubDate>Mon, 09 Oct 2023 22:18:13 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/10/operating-system-4.0/</guid>
+      <guid>http://localhost:1313/2023/10/operating-system-4.0/</guid>
       <description>&lt;p&gt;为什么要做内存管理？&lt;br&gt;&#xA;内存太多，提高利用率 -&amp;gt; 内存不够，需要闪转腾挪&lt;/p&gt;&#xA;&lt;h3 id=&#34;内存布局和分区分配&#34;&gt;内存布局和分区分配&lt;/h3&gt;&#xA;&lt;p&gt;内存管理的第一个问题是如何在内存区中同时加载多个应用程序&lt;br&gt;&#xA;将内存分区，不同程序加载进不同分区&lt;br&gt;&#xA;-&amp;gt; 指令中的哪些数值是地址？&lt;br&gt;&#xA;编译器在链接时标记了哪些是地址，可以在加载时动态修改&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机网络笔记02：应用层</title>
-      <link>https://Liyixian06.github.io/2023/09/computer-networking-ch2/</link>
+      <link>http://localhost:1313/2023/09/computer-networking-ch2/</link>
       <pubDate>Wed, 27 Sep 2023 19:22:27 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/09/computer-networking-ch2/</guid>
+      <guid>http://localhost:1313/2023/09/computer-networking-ch2/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;应用层协议和进程通信模型&lt;/li&gt;&#xA;&lt;li&gt;运输服务&lt;/li&gt;&#xA;&lt;li&gt;Web 服务与 HTTP 协议&lt;/li&gt;&#xA;&lt;li&gt;电子邮件&lt;/li&gt;&#xA;&lt;li&gt;域名系统 DNS&lt;/li&gt;&#xA;&lt;li&gt;P2P 文件分发&lt;/li&gt;&#xA;&lt;li&gt;DASH&lt;/li&gt;&#xA;&lt;li&gt;内容分发网络 CDN&lt;/li&gt;&#xA;&lt;li&gt;Socket 编程&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;应用层协议原理&#34;&gt;应用层协议原理&lt;/h3&gt;&#xA;&lt;p&gt;应用：可以进行通信的分布式进程&lt;/p&gt;&#xA;&lt;h4 id=&#34;应用程序体系结构&#34;&gt;应用程序体系结构&lt;/h4&gt;&#xA;&lt;p&gt;应用程序体系结构由开发者设计&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记03：词法分析</title>
-      <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch3/</link>
+      <link>http://localhost:1313/2023/09/compiler-principles-ch3/</link>
       <pubDate>Tue, 26 Sep 2023 15:22:11 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/09/compiler-principles-ch3/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;token 及属性&lt;/li&gt;&#xA;&lt;li&gt;正则表达式与转换图&lt;/li&gt;&#xA;&lt;li&gt;Lex 程序&lt;/li&gt;&#xA;&lt;li&gt;有限自动机&#xA;&lt;ul&gt;&#xA;&lt;li&gt;正则表达式到 NFA&lt;/li&gt;&#xA;&lt;li&gt;NFA 到 DFA&lt;/li&gt;&#xA;&lt;li&gt;DFA 的化简&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;token-及属性&#34;&gt;token 及属性&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;词法记号/单词 token：字符串集的分类&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;&amp;lt;identifier&amp;gt;,&amp;lt;number&amp;gt;&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&amp;lt;记号名[, 属性值]&amp;gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;模式 pattern：描述字符串集如何分类为 token 的规则&#xA;&lt;ul&gt;&#xA;&lt;li&gt;正则表达式，&lt;em&gt;[A-Z]*&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;词法单元/词素 lexeme：程序中实际出现的字符串，匹配 pattern 分类为 token&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;i, count, name, 60&amp;hellip;&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;保存进符号表；返回给语法分析器&lt;/li&gt;&#xA;&lt;li&gt;词素的信息：token 影响语法分析、属性影响翻译（这个 token 里词素之间的区别）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://Liyixian06.github.io/img/token%e5%8f%8a%e5%b1%9e%e6%80%a7.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
+      <guid>http://localhost:1313/2023/09/compiler-principles-ch3/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;token 及属性&lt;/li&gt;&#xA;&lt;li&gt;正则表达式与转换图&lt;/li&gt;&#xA;&lt;li&gt;Lex 程序&lt;/li&gt;&#xA;&lt;li&gt;有限自动机&#xA;&lt;ul&gt;&#xA;&lt;li&gt;正则表达式到 NFA&lt;/li&gt;&#xA;&lt;li&gt;NFA 到 DFA&lt;/li&gt;&#xA;&lt;li&gt;DFA 的化简&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;token-及属性&#34;&gt;token 及属性&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;词法记号/单词 token：字符串集的分类&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;&amp;lt;identifier&amp;gt;,&amp;lt;number&amp;gt;&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&amp;lt;记号名[, 属性值]&amp;gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;模式 pattern：描述字符串集如何分类为 token 的规则&#xA;&lt;ul&gt;&#xA;&lt;li&gt;正则表达式，&lt;em&gt;[A-Z]*&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;词法单元/词素 lexeme：程序中实际出现的字符串，匹配 pattern 分类为 token&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;i, count, name, 60&amp;hellip;&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;保存进符号表；返回给语法分析器&lt;/li&gt;&#xA;&lt;li&gt;词素的信息：token 影响语法分析、属性影响翻译（这个 token 里词素之间的区别）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;http://localhost:1313/img/token%e5%8f%8a%e5%b1%9e%e6%80%a7.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机体系结构笔记05：Branch Prediction</title>
-      <link>https://Liyixian06.github.io/2023/09/computer-architecture-ch5/</link>
+      <link>http://localhost:1313/2023/09/computer-architecture-ch5/</link>
       <pubDate>Sun, 24 Sep 2023 22:35:28 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/09/computer-architecture-ch5/</guid>
+      <guid>http://localhost:1313/2023/09/computer-architecture-ch5/</guid>
       <description>&lt;h3 id=&#34;control-dependencies&#34;&gt;Control Dependencies&lt;/h3&gt;&#xA;&lt;p&gt;一些可行的 solution：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;阻塞流水线，直到知道下个 fetch address 是什么&lt;/li&gt;&#xA;&lt;li&gt;branch prediction&lt;/li&gt;&#xA;&lt;li&gt;延迟槽 branch delayed slot：在分支指令后面填上（通常是一条）无论是否跳转都会执行的指令，避免预测失败后的浪费&lt;/li&gt;&#xA;&lt;li&gt;fine-grained multithreading：干点别的&lt;/li&gt;&#xA;&lt;li&gt;判定式执行 predicated execution：消除 control-flow 指令&lt;/li&gt;&#xA;&lt;li&gt;两边都取指 multipath execution&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;阻塞意味着 control-flow 指令后的下一条 fetch address 在流水线里至少要经过 N 个周期才能确定；如果每个周期能取 W 条指令（即，流水线宽度为 W），那预测错误就会带来 N*W 个浪费的指令槽&lt;/p&gt;</description>
     </item>
     <item>
       <title>操作系统笔记01：进程管理</title>
-      <link>https://Liyixian06.github.io/2023/09/operating-system-3.0/</link>
+      <link>http://localhost:1313/2023/09/operating-system-3.0/</link>
       <pubDate>Mon, 18 Sep 2023 20:24:32 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/09/operating-system-3.0/</guid>
+      <guid>http://localhost:1313/2023/09/operating-system-3.0/</guid>
       <description>&lt;p&gt;计算资源的共享共用：提交给 OS 的任务交替运行&lt;br&gt;&#xA;Cocurrent 并发 &lt;em&gt;VS&lt;/em&gt; Parallel 并行&lt;/p&gt;&#xA;&lt;p&gt;两个问题：如何保存/恢复一个程序的执行过程？如何知道一个程序要触发“慢操作”？&lt;br&gt;&#xA;保存/恢复一个程序的执行过程：处理器的状态来自寄存器，程序的状态来自内存变量；后者不被破坏时，只要保存/恢复程序执行过程的全部寄存器（context）。&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记02：构造一个简单的编译器</title>
-      <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch2/</link>
+      <link>http://localhost:1313/2023/09/compiler-principles-ch2/</link>
       <pubDate>Sun, 17 Sep 2023 00:59:42 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/09/compiler-principles-ch2/</guid>
+      <guid>http://localhost:1313/2023/09/compiler-principles-ch2/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;上下文无关文法（CFG）&#xA;&lt;ul&gt;&#xA;&lt;li&gt;推导和语法树&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;语法制导翻译&#xA;&lt;ul&gt;&#xA;&lt;li&gt;翻译模式&lt;/li&gt;&#xA;&lt;li&gt;Yacc 编程&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;自顶向下预测分析&#xA;&lt;ul&gt;&#xA;&lt;li&gt;设计实现预测分析器&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;简单词法分析&lt;/li&gt;&#xA;&lt;li&gt;代码生成&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;语法定义&#34;&gt;语法定义&lt;/h3&gt;&#xA;&lt;p&gt;上下文无关文法（CFG）：描述源程序的语法结构&lt;br&gt;&#xA;CFG 的四个部分：&lt;/p&gt;</description>
     </item>
     <item>
       <title>编译原理笔记01：引论</title>
-      <link>https://Liyixian06.github.io/2023/09/compiler-principles-ch1/</link>
+      <link>http://localhost:1313/2023/09/compiler-principles-ch1/</link>
       <pubDate>Thu, 07 Sep 2023 10:03:18 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/09/compiler-principles-ch1/</guid>
+      <guid>http://localhost:1313/2023/09/compiler-principles-ch1/</guid>
       <description>&lt;p&gt;语言处理系统：把用软件语言书写的各种程序翻译成可在计算机上执行的程序，或最终的计算结果，或其他中间形式。&lt;/p&gt;&#xA;&lt;p&gt;如何完成翻译？&lt;/p&gt;&#xA;&lt;h4 id=&#34;语言处理系统总则&#34;&gt;语言处理系统总则&lt;/h4&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;预处理：删除注释、宏扩展、文件包含（. i 文件）&lt;/li&gt;&#xA;&lt;li&gt;编译：将源程序翻译成汇编语言（.s 文件）&#xA;&lt;ol&gt;&#xA;&lt;li&gt;词法分析，创建符号表&#xA;&lt;ol&gt;&#xA;&lt;li&gt;把源代码中的字符串（关键字、标识符、操作符、界符等）转换成 token&lt;/li&gt;&#xA;&lt;li&gt;正则表达式、flex（词法文件 calc.l）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;语法分析&#xA;&lt;ol&gt;&#xA;&lt;li&gt;把 token 串转换成 AST 抽象语法树，生成清晰的代码结构&lt;/li&gt;&#xA;&lt;li&gt;按照语法结构的递归定义从上到下匹配&lt;/li&gt;&#xA;&lt;li&gt;Bison/Yacc（语法文件 calc.y）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;语义分析&#xA;&lt;ol&gt;&#xA;&lt;li&gt;理解语句要做什么（唯一的含义）&lt;/li&gt;&#xA;&lt;li&gt;收集信息：引用消解、上下文信息&lt;/li&gt;&#xA;&lt;li&gt;类型分析和检查&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;中间代码生成&#xA;&lt;ol&gt;&#xA;&lt;li&gt;LLVM IR (Intermediate Representation)&#xA;&lt;ol&gt;&#xA;&lt;li&gt;基本单位是 module&lt;/li&gt;&#xA;&lt;li&gt;module 中可以包含多个顶层实体（函数/全局变量）&lt;/li&gt;&#xA;&lt;li&gt;函数由一系列 basic block 组成，每个 block 里有若干 instruction&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;得到. bc 二进制中间语言和. ll 可读代码（两种格式等价）&lt;/li&gt;&#xA;&lt;li&gt;pipeline：不同高级语言对应的前端将其转换成 IR，统一优化、链接后再传给不同 target (x86/arm/risc-v/mips/&amp;hellip;) 的后端，转换成对应的二进制代码&lt;/li&gt;&#xA;&lt;li&gt;在这一步，高级语言的差异消失了&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;代码优化&#xA;&lt;ol&gt;&#xA;&lt;li&gt;LLVM 后端优化&lt;/li&gt;&#xA;&lt;li&gt;数据流分析、基于 basic block 生成的控制流图 CFG 优化&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;e.g. 代数优化、常数折叠、死代码删除&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;代码生成&#xA;&lt;ol&gt;&#xA;&lt;li&gt;确定变量的内存位置、指定寄存器&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;汇编：将汇编语言翻译成机器语言，并打包成可重定位目标程序（. o 文件）&#xA;&lt;ol&gt;&#xA;&lt;li&gt;指令选择&lt;/li&gt;&#xA;&lt;li&gt;寄存器分配&lt;/li&gt;&#xA;&lt;li&gt;指令重排&lt;/li&gt;&#xA;&lt;li&gt;指令编码&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;链接/加载：将可重定位机器代码和相应的目标文件、库文件链接在一起，形成能运行的程序&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
     </item>
     <item>
       <title>计算机网络笔记01：计算机网络和因特网</title>
-      <link>https://Liyixian06.github.io/2023/09/computer-networking-ch1/</link>
+      <link>http://localhost:1313/2023/09/computer-networking-ch1/</link>
       <pubDate>Wed, 06 Sep 2023 18:52:07 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/09/computer-networking-ch1/</guid>
+      <guid>http://localhost:1313/2023/09/computer-networking-ch1/</guid>
       <description>&lt;p&gt;&lt;em&gt;本文是《计算机网络：自顶向下方法》（Computer Networking: A Top-Down Approach）的阅读笔记，不成文，仅记录。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Summary：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;构成网络的基本硬件和软件&lt;/li&gt;&#xA;&lt;li&gt;边缘：网络中运行的主机和网络应用&lt;/li&gt;&#xA;&lt;li&gt;核心：接入网、链路和交换机&lt;/li&gt;&#xA;&lt;li&gt;分组交换的时延、丢包、吞吐&lt;/li&gt;&#xA;&lt;li&gt;体系结构原则&lt;/li&gt;&#xA;&lt;li&gt;攻击和安全&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;什么是因特网&#34;&gt;什么是因特网？&lt;/h3&gt;&#xA;&lt;h4 id=&#34;因特网的硬件和软件组件&#34;&gt;因特网的硬件和软件组件&lt;/h4&gt;&#xA;&lt;p&gt;主机/端系统通过通信链路和分组交换机连接到一起；不同链路的传输速率不同&lt;br&gt;&#xA;发送数据时将数据分段并加上首部字节，形成信息包 packet&lt;br&gt;&#xA;分组交换机：路由器、链路层交换机 link-layer switch&lt;br&gt;&#xA;主机通过因特网服务提供商 ISP 接入因特网，每个 ISP 是多台分组交换机和多段通信链路组成的网络；ISP 互联，每个都独立管理&lt;br&gt;&#xA;主机、分组交换机和其他因特网部件运行协议 protocol，控制信息接收和发送：TCP 传输控制协议/IP 网际协议&lt;/p&gt;</description>
     </item>
     <item>
       <title>计算机体系结构笔记01：Performance</title>
-      <link>https://Liyixian06.github.io/2023/08/computer-architecture-ch1/</link>
+      <link>http://localhost:1313/2023/08/computer-architecture-ch1/</link>
       <pubDate>Mon, 28 Aug 2023 15:36:54 +0800</pubDate>
-      <guid>https://Liyixian06.github.io/2023/08/computer-architecture-ch1/</guid>
+      <guid>http://localhost:1313/2023/08/computer-architecture-ch1/</guid>
       <description>&lt;h3 id=&#34;metrics&#34;&gt;Metrics&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;latency (execution time)：执行一项固定任务的时间&lt;/li&gt;&#xA;&lt;li&gt;throughput (bandwidth)：单位时间执行的任务&#xA;&lt;ul&gt;&#xA;&lt;li&gt;利用并行增加 throughput, not latency&lt;/li&gt;&#xA;&lt;li&gt;二者通常是冲突的&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;cpu-performance&#34;&gt;CPU Performance&lt;/h3&gt;&#xA;&lt;p&gt;performance 计算公式：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;latency = seconds/program = 下列三者的乘积：&#xA;&lt;ul&gt;&#xA;&lt;li&gt;inst/program 指令数&lt;/li&gt;&#xA;&lt;li&gt;cycles/inst (CPI) 主要研究的是这个 (caches, parallelism)&lt;/li&gt;&#xA;&lt;li&gt;seconds/cycle (clock period)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;IPC = 1/CPI&lt;br&gt;&#xA;直观（越大越好），所以比较常用&lt;br&gt;&#xA;CPI 计算：\(CPI=\sum\limits_{inst} frequencies*costs\)&lt;br&gt;&#xA;CPI = (CPU time*clock frequency)/dynamic inst count&lt;br&gt;&#xA;CPI breakdown (CPU, mem, etc.) 比较有用，可以知道性能问题出现在哪里&lt;br&gt;&#xA;frequency 作为衡量性能的 metrics，1 Ghz = 1 cycle/nenosecond&lt;/p&gt;</description>
     </item>
     <item>
       <title>A Test Post</title>
-      <link>https://Liyixian06.github.io/test/</link>
+      <link>http://localhost:1313/test/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>https://Liyixian06.github.io/test/</guid>
+      <guid>http://localhost:1313/test/</guid>
       <description>&lt;p&gt;这是一个测试网站功能/记录后续准备添加功能的页面。&lt;/p&gt;&#xA;&lt;h1 id=&#34;update&#34;&gt;Update&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;字数统计&lt;/li&gt;&#xA;&lt;li&gt;Giscus 评论系统&lt;/li&gt;&#xA;&lt;li&gt;使用 KaTex 支持了 Latex&lt;/li&gt;&#xA;&lt;li&gt;本来想尝试一下图床，但确实找不到什么好用的，加之发布图片的需求并没有那么大，所以姑且还是保持原状。&lt;/li&gt;&#xA;&lt;li&gt;hugo 版本更新到了 0.147.3&lt;/li&gt;&#xA;&lt;li&gt;显示全部 tag 以及文章数&lt;/li&gt;&#xA;&lt;li&gt;内容折叠&lt;/li&gt;&#xA;&lt;li&gt;使用 Algolia 支持了站点内搜索&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;style&gt;&#xA;summary {&#xA;  cursor: pointer;&#xA;}&#xA;details[open] summary::before {&#xA;  content: &#34;▼ &#34;;&#xA;}&#xA;summary::before {&#xA;  content: &#34;▶ &#34;;&#xA;  display: inline-block;&#xA;  margin-right: 0.2em;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;details&gt;&#xA;&lt;summary&gt;&#xA;    You killed my father!&#xA;&lt;/summary&gt;&#xA;&lt;p&gt;I am your father.&#xA;NOOOOOOO!&lt;/p&gt;</description>
     </item>
   </channel>

@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Liyixian Blog</title>
-    <link>https://Liyixian06.github.io/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Liyixian Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Mon, 12 Jan 2026 22:45:59 -0500</lastBuildDate>
-    <atom:link href="https://Liyixian06.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Jan 2026 22:46:51 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tech</title>
+      <link>http://localhost:1313/categories/tech/</link>
+      <pubDate>Sun, 18 Jan 2026 22:46:51 -0500</pubDate>
+      <guid>http://localhost:1313/categories/tech/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Note</title>
-      <link>https://Liyixian06.github.io/categories/note/</link>
+      <link>http://localhost:1313/categories/note/</link>
       <pubDate>Mon, 12 Jan 2026 22:45:59 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/categories/note/</guid>
+      <guid>http://localhost:1313/categories/note/</guid>
       <description></description>
     </item>
     <item>
       <title>Life</title>
-      <link>https://Liyixian06.github.io/categories/life/</link>
+      <link>http://localhost:1313/categories/life/</link>
       <pubDate>Mon, 05 Jan 2026 21:17:00 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/categories/life/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tech</title>
-      <link>https://Liyixian06.github.io/categories/tech/</link>
-      <pubDate>Thu, 01 Jan 2026 21:58:11 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/categories/tech/</guid>
+      <guid>http://localhost:1313/categories/life/</guid>
       <description></description>
     </item>
   </channel>
