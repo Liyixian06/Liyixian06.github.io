@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>System Design on Liyixian Blog</title>
-    <link>http://localhost:1313/tags/system-design/</link>
+    <link>https://Liyixian06.github.io/tags/system-design/</link>
     <description>Recent content in System Design on Liyixian Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
     <lastBuildDate>Thu, 01 Jan 2026 21:58:11 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://Liyixian06.github.io/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>系统设计 101</title>
-      <link>http://localhost:1313/2026/01/system-design-101/</link>
+      <link>https://Liyixian06.github.io/2026/01/system-design-101/</link>
       <pubDate>Thu, 01 Jan 2026 21:58:11 -0500</pubDate>
-      <guid>http://localhost:1313/2026/01/system-design-101/</guid>
+      <guid>https://Liyixian06.github.io/2026/01/system-design-101/</guid>
       <description>&lt;h3 id=&#34;系统设计框架&#34;&gt;系统设计框架&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;弄清具体要求&#xA;&lt;ol&gt;&#xA;&lt;li&gt;功能需求&#xA;&lt;ol&gt;&#xA;&lt;li&gt;考虑最重要的三个功能&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;非功能需求&#xA;&lt;ol&gt;&#xA;&lt;li&gt;一些基本的取舍（trade-offs）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;核心 entities&#xA;&lt;ol&gt;&#xA;&lt;li&gt;系统中的参与者有哪些？满足功能需求需要什么资源？&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;高层架构&#xA;&lt;ol&gt;&#xA;&lt;li&gt;用方框和箭头表示系统的不同组件及其交互方式&lt;/li&gt;&#xA;&lt;li&gt;组件：基本技术模块，例如服务器、数据库、缓存等&lt;/li&gt;&#xA;&lt;li&gt;数据如何在系统中流动，以及每次请求（从 API 请求到响应）都会改变哪些状态&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;API /接口&#xA;&lt;ol&gt;&#xA;&lt;li&gt;使用哪种协议（外部 API 用 REST，内部调用用 gRPC）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;深挖，一些独立的问题&#xA;&lt;ol&gt;&#xA;&lt;li&gt;非功能需求&lt;/li&gt;&#xA;&lt;li&gt;极端情况和瓶颈&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;非功能需求&#34;&gt;非功能需求&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一致性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;强一致性 (Strong Consistency)：任何时候读到的都是最新写入的数据&lt;/li&gt;&#xA;&lt;li&gt;最终一致性 (Eventual Consistency)： 允许短时间内数据不一致，但最终会同步&#xA;&lt;ul&gt;&#xA;&lt;li&gt;分布式事务：一个操作跨越多个数据库/服务时，如何处理？&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;可用性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;系统能否一直在线，挂了怎么办？&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;实时性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;响应有多快，延迟是多少？&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;扩展性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;用户从 1 万增长到 1 亿时，系统能不能通过增加机器来扛住压力？&lt;/li&gt;&#xA;&lt;li&gt;垂直扩展 (Vertical Scaling)：给原来的电脑换更强的 CPU、更大的内存（有上限）&lt;/li&gt;&#xA;&lt;li&gt;水平扩展 (Horizontal Scaling)：多几台普通的电脑一起工作（理论上没有上限，这是系统设计的核心）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;持久&#xA;&lt;ul&gt;&#xA;&lt;li&gt;存进去的数据不会丢：多副本&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;可靠性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;系统是否不出错&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;幂等性&#xA;&lt;ul&gt;&#xA;&lt;li&gt;在分布式环境下，由于重试机制（Retry），同一个请求可能会发送多次。如何保证“支付一次”的请求即便发了三次，用户也只被扣一次钱？&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;吞吐&#xA;&lt;ul&gt;&#xA;&lt;li&gt;QPS/TPS，并发数&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;trade-offs-cap&#34;&gt;Trade-offs: CAP&lt;/h4&gt;&#xA;&lt;p&gt;&lt;strong&gt;可用性（Availability）和一致性（Consistency）不能同时满足&lt;/strong&gt;&lt;br&gt;&#xA;前提：分区容错性（Partition Tolerance，即网络断开后系统还能继续运行）是必选项&lt;/p&gt;</description>
     </item>
   </channel>
