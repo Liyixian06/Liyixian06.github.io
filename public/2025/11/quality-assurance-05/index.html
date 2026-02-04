@@ -61,7 +61,7 @@
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
     
     
-    
+    <link rel="stylesheet" href="https://Liyixian06.github.io/css/copy-to-clipboard.css">
     
     
     <script src="/js/jquery.min.js"></script>
@@ -76,6 +76,8 @@
     <script src="/js/lazysizes.min.js"></script>
     
     
+    
+    <script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
     
 
 </head>
@@ -385,73 +387,73 @@ $(function() {
 <p>We substitute external collaborators with test doubles.</p>
 <h4 id="dummy">Dummy</h4>
 <p>Objects that are needed by the program (e.g., parameters) but are never actually used.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Logger</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">append</span>(String <span style="color:#a6e22e">message</span>);
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">interface</span> Logger {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">void</span> append(<span style="color:#007020">String</span> message);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoggerDummy</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">Logger</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">append</span>(String <span style="color:#a6e22e">message</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// we do nothing!
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> LoggerDummy <span style="color:#007020;font-weight:bold">implements</span> Logger {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">void</span> append(<span style="color:#007020">String</span> message) {
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">// we do nothing!
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h4 id="stub">Stub</h4>
 <p>Double for a real collaborator that gives predefined answers to calls during testing.</p>
 <p>Use it if you just want collaborators to provide canned responses.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Pass in a stub that was created by a mocking framework.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">AccessManager</span> <span style="color:#a6e22e">accessManager</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AccessManager</span>(<span style="color:#a6e22e">stubAuthenticationService</span>);
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// Pass in a stub that was created by a mocking framework.
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>AccessManager accessManager <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> AccessManager(stubAuthenticationService);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// The user shouldn&#39;t have access when the authentication service returns false.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">when</span>(<span style="color:#a6e22e">stubAuthenticationService</span>.<span style="color:#a6e22e">isAuthenticated</span>(<span style="color:#a6e22e">USER_ID</span>).<span style="color:#a6e22e">thenReturn</span>(<span style="color:#66d9ef">false</span>);
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">assertFalse</span>(<span style="color:#a6e22e">accessManager</span>.<span style="color:#a6e22e">userHasAccess</span>(<span style="color:#a6e22e">USER_ID</span>));)
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// The user shouldn&#39;t have access when the authentication service returns false.
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>when(stubAuthenticationService.isAuthenticated(USER_ID).thenReturn(<span style="color:#007020;font-weight:bold">false</span>);
+</span></span><span style="display:flex;"><span>assertFalse(accessManager.userHasAccess(USER_ID));)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// The user should have access when the authentication service returns true.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">when</span>(<span style="color:#a6e22e">stubAuthenticationService</span>.<span style="color:#a6e22e">isAuthenticated</span>(<span style="color:#a6e22e">USER_ID</span>)).<span style="color:#a6e22e">thenReturn</span>(<span style="color:#66d9ef">true</span>);
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">assertTrue</span>(<span style="color:#a6e22e">accessManager</span>.<span style="color:#a6e22e">userHasAccess</span>(<span style="color:#a6e22e">USER_ID</span>));
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// The user should have access when the authentication service returns true.
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>when(stubAuthenticationService.isAuthenticated(USER_ID)).thenReturn(<span style="color:#007020;font-weight:bold">true</span>);
+</span></span><span style="display:flex;"><span>assertTrue(accessManager.userHasAccess(USER_ID));
 </span></span></code></pre></div><h4 id="fake">Fake</h4>
 <p>Provides an optimized, thinned-down version of a collaborator that replicates the same behavior of the original object without certain side effects or consequences.</p>
 <p>Use it if you test a complex scenario that relies on a service or
 component that’s unavailable or unusable for your test’s purposes, and stubbing does not do the job (e.g., database driver).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">/*
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Behaves like a real ProductDatabase that accesses a database, but is simpler, faster, and side-effect free.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FakeProductDatabase</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">ProductDatabase</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Collection</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Product</span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">products</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ArrayList</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Product</span><span style="color:#f92672">&gt;</span>();
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">Product</span> <span style="color:#a6e22e">product</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">findById</span>(<span style="color:#a6e22e">product</span>) <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>)
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">products</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">product</span>);
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">Behaves like a real ProductDatabase that accesses a database, but is simpler, faster, and side-effect free.
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> FakeProductDatabase <span style="color:#007020;font-weight:bold">implements</span> ProductDatabase {
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">private</span> Collection<span style="color:#666">&lt;</span>Product<span style="color:#666">&gt;</span> products <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> ArrayList<span style="color:#666">&lt;</span>Product<span style="color:#666">&gt;</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">void</span> save(Product product) {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">if</span> (findById(product) <span style="color:#666">==</span> <span style="color:#007020;font-weight:bold">null</span>)
+</span></span><span style="display:flex;"><span>      products.add(product);
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Product</span> <span style="color:#a6e22e">findById</span>(<span style="color:#66d9ef">long</span> <span style="color:#a6e22e">id</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#a6e22e">Product</span> <span style="color:#a6e22e">product</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">products</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">product</span>.<span style="color:#a6e22e">getId</span>() <span style="color:#f92672">==</span> <span style="color:#a6e22e">id</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">product</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">public</span> Product findById(<span style="color:#007020;font-weight:bold">long</span> id) {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">for</span> (Product product <span style="color:#666">:</span> products) {
+</span></span><span style="display:flex;"><span>      <span style="color:#007020;font-weight:bold">if</span> (product.getId() <span style="color:#666">==</span> id) <span style="color:#007020;font-weight:bold">return</span> product;
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">null</span>;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h4 id="spy">Spy</h4>
 <p>Observes calls and arguments to a collaborator without changing behavior.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Checkout</span> {
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">pay</span><span style="color:#f92672">:</span>{ <span style="color:#a6e22e">charge</span>(<span style="color:#a6e22e">n</span><span style="color:#f92672">:</span><span style="color:#a6e22e">number</span>)<span style="color:#f92672">:</span>Promise<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span> }){}
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">submit</span>(<span style="color:#a6e22e">total</span><span style="color:#f92672">:</span><span style="color:#a6e22e">number</span>){ <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pay</span>.<span style="color:#a6e22e">charge</span>(<span style="color:#a6e22e">total</span>); }
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">class</span> Checkout {
+</span></span><span style="display:flex;"><span>      constructor(<span style="color:#007020;font-weight:bold">private</span> pay<span style="color:#666">:</span>{ charge(n<span style="color:#666">:</span>number)<span style="color:#666">:</span><span style="color:#007020">Promise</span><span style="color:#666">&lt;</span><span style="color:#007020;font-weight:bold">void</span><span style="color:#666">&gt;</span> }){}
+</span></span><span style="display:flex;"><span>      submit(total<span style="color:#666">:</span>number){ <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.pay.charge(total); }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">stripeAdapter</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">charge</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">_</span><span style="color:#f92672">:</span><span style="color:#a6e22e">number</span>)=&gt;{} };
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">spy</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">vi</span>.<span style="color:#a6e22e">spyOn</span>(<span style="color:#a6e22e">stripeAdapter</span>,
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;charge&#39;</span>).<span style="color:#a6e22e">mockResolvedValue</span>(<span style="color:#66d9ef">undefined</span>);
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> stripeAdapter <span style="color:#666">=</span> { charge<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">async</span> (_<span style="color:#666">:</span>number)=&gt;{} };
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> spy <span style="color:#666">=</span> vi.spyOn(stripeAdapter,
+</span></span><span style="display:flex;"><span><span style="color:#4070a0">&#39;charge&#39;</span>).mockResolvedValue(<span style="color:#007020;font-weight:bold">undefined</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Checkout</span>(<span style="color:#a6e22e">stripeAdapter</span>).<span style="color:#a6e22e">submit</span>(<span style="color:#ae81ff">1299</span>);
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">await</span> <span style="color:#007020;font-weight:bold">new</span> Checkout(stripeAdapter).submit(<span style="color:#40a070">1299</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">spy</span>).<span style="color:#a6e22e">toHaveBeenCalledWith</span>(<span style="color:#ae81ff">1299</span>);
+</span></span><span style="display:flex;"><span>expect(spy).toHaveBeenCalledWith(<span style="color:#40a070">1299</span>);
 </span></span></code></pre></div><h4 id="mock">Mock</h4>
 <p>Used to test for expected interactions with a collaborator (i.e., method calls).
 Allows calls to be observed (spy-like) and behavior to be changed (stub-like).</p>
 <p>Use it if you want to test interactions between SUT and DOC.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Pass in a mock that was created by a mocking framework.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">AccessManager</span> <span style="color:#a6e22e">accessManager</span> <span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AccessManager</span>(<span style="color:#a6e22e">mockAuthenticationService</span>); <span style="color:#a6e22e">accessManager</span>.<span style="color:#a6e22e">userHasAccess</span>(<span style="color:#a6e22e">USER_ID</span>);
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// Pass in a mock that was created by a mocking framework.
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>AccessManager accessManager <span style="color:#666">=</span><span style="color:#007020;font-weight:bold">new</span> AccessManager(mockAuthenticationService); accessManager.userHasAccess(USER_ID);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// The test should fail if accessManager.userHasAccess(USER_ID) didn&#39;t call
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// authenticationService.isAuthenticated(USER_ID) or if it called it more than once.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">verify</span>(<span style="color:#a6e22e">mockAuthenticationService</span>).<span style="color:#a6e22e">isAuthenticated</span>(<span style="color:#a6e22e">USER_ID</span>);
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// The test should fail if accessManager.userHasAccess(USER_ID) didn&#39;t call
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// authenticationService.isAuthenticated(USER_ID) or if it called it more than once.
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>verify(mockAuthenticationService).isAuthenticated(USER_ID);
 </span></span></code></pre></div><h3 id="best-practices">Best Practices</h3>
 <ul>
 <li>Don’t share doubles between tests, except possibly fakes</li>
@@ -848,6 +850,10 @@ Allows calls to be observed (spy-like) and behavior to be changed (stub-like).</
 
 
 
+
+
+
+<script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
 
 </body>
 </html>

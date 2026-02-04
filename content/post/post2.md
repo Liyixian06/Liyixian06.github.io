@@ -23,12 +23,16 @@ math: true
 - hugo 版本更新到了 0.147.3
 - 显示全部 tag 以及文章数
 - 内容折叠
-- 使用 Algolia 支持了站点内搜索
+- 修改了代码块样式，增加了代码复制功能
 
 {{% spoiler "You killed my father!" %}}
 I am your father.
 NOOOOOOO!
 {{% /spoiler %}}
+
+```markdown
+This is the new code block. (You can copy it!)
+```
 
 # shortcode
 
@@ -84,10 +88,10 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$
 
 - 换更好的评论系统（需求有：开源、免费、无广告、墙内正常访问，以及不需要专门注册账号，因此 Discus 不纳入考虑），比如 [Waline](https://waline.js.org/)、[Twikoo](https://twikoo.js.org/) 
 - 零零散散的装修
-  - 代码复制
+  - ~~代码复制~~
   - 总字数统计
   - 站点运行时长
   - 访问量统计
-  - 代码块样式
+  - ~~代码块样式~~
   - Dark Mode
   - ……

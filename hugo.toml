@@ -19,6 +19,8 @@ hasCJKLanguage = true
 home = ["HTML", "RSS", "JSON", "Algolia"]
 
 [markup]
+  [markup.highlight]
+    style = 'friendly'
   [markup.goldmark]
     [markup.goldmark.renderer]
 	unsafe = true
@@ -49,6 +51,9 @@ about_me = true
 page_view_counter = true
 search = true
 showtoc = true
+
+custom_css = ["/css/copy-to-clipboard.css"]
+custom_js = ["/js/copy-to-clipboard.js"]
 
 # algolia site search
 algolia_search = true

@@ -76,7 +76,7 @@
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
     
     
-    
+    <link rel="stylesheet" href="https://Liyixian06.github.io/css/copy-to-clipboard.css">
     
     
     <script src="/js/jquery.min.js"></script>
@@ -91,6 +91,8 @@
     <script src="/js/lazysizes.min.js"></script>
     
     
+    
+    <script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
     
 
 </head>
@@ -511,85 +513,85 @@ $(function() {
 </ul>
 <p>具体到代码上，使用 <code>switch-case</code> 进行状态的区分，每个 <code>case</code> 表示一种状态，在每个状态读入一个 char，根据 char 是什么决定下一个状态；<br>
 如果无法匹配状态，就进入 <code>fail()</code> 函数，尝试其他的状态图，也就是再使用 <code>switch-case</code> 切换 <code>start</code> 的值。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> state <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,  start <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> lexical_value;    <span style="color:#75715e">/* “返回” 词法值 */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fail</span>()
-</span></span><span style="display:flex;"><span>{     forward <span style="color:#f92672">=</span> lexeme beginning;
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">switch</span> (start) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span>   start <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;  <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">:</span>   start <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>; <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">12</span><span style="color:#f92672">:</span>  start <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>; <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">20</span><span style="color:#f92672">:</span>  start <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>; <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">25</span><span style="color:#f92672">:</span>  <span style="color:#a6e22e">recover</span>();  <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>   <span style="color:#75715e">/* compiler error */</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#902000">int</span> state <span style="color:#666">=</span> <span style="color:#40a070">0</span>,  start <span style="color:#666">=</span> <span style="color:#40a070">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#902000">int</span> lexical_value;    <span style="color:#60a0b0;font-style:italic">/* “返回” 词法值 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#902000">int</span> <span style="color:#06287e">fail</span>()
+</span></span><span style="display:flex;"><span>{     forward <span style="color:#666">=</span> lexeme beginning;
+</span></span><span style="display:flex;"><span>     <span style="color:#007020;font-weight:bold">switch</span> (start) {
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">case</span> <span style="color:#40a070">0</span><span style="color:#666">:</span>   start <span style="color:#666">=</span> <span style="color:#40a070">9</span>;  <span style="color:#007020;font-weight:bold">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">case</span> <span style="color:#40a070">9</span><span style="color:#666">:</span>   start <span style="color:#666">=</span> <span style="color:#40a070">12</span>; <span style="color:#007020;font-weight:bold">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">case</span> <span style="color:#40a070">12</span><span style="color:#666">:</span>  start <span style="color:#666">=</span> <span style="color:#40a070">20</span>; <span style="color:#007020;font-weight:bold">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">case</span> <span style="color:#40a070">20</span><span style="color:#666">:</span>  start <span style="color:#666">=</span> <span style="color:#40a070">25</span>; <span style="color:#007020;font-weight:bold">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">case</span> <span style="color:#40a070">25</span><span style="color:#666">:</span>  <span style="color:#06287e">recover</span>();  <span style="color:#007020;font-weight:bold">break</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">default</span><span style="color:#666">:</span>   <span style="color:#60a0b0;font-style:italic">/* compiler error */</span>
 </span></span><span style="display:flex;"><span>     }
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">return</span> start;
+</span></span><span style="display:flex;"><span>     <span style="color:#007020;font-weight:bold">return</span> start;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="lex-程序">Lex 程序</h3>
 <p>lex 程序 (. l) 的结构和<a href="https://liyixian06.github.io/2023/09/compiler-principles-ch2/">上一章</a>中提到的 Yacc 程序类似，也分成定义段、规则段和用户子程序段三个部分。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/*P1: 定义段*/</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">%</span>{
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/*P1: 定义段*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">%</span>{
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// include头文件、函数、类型等声明，这些声明会原样拷到生成的.c文件中。
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">%3Cmain.h%3E</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span><span style="color:#75715e">//为了能够在C++程序里面调用C函数，必须把每一个需要使用的C函数，其声明都包括在extern &#34;C&#34;{}块里面，这样C++链接时才能成功链接它们。extern &#34;C&#34;用来在C++环境下设置C链接类型。  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{   <span style="color:#75715e">//yacc.y中也有类似的这段extern &#34;C&#34;，可以把它们合并成一段，放到共同的头文件main.h中  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">yywrap</span>(<span style="color:#66d9ef">void</span>);  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">yylex</span>(<span style="color:#66d9ef">void</span>);<span style="color:#75715e">//lex生成的词法分析函数，yacc的yyparse()里会调用它，如果这里不声明，生成的yacc.tab.c在编译时会找不到该函数  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}  
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// include头文件、函数、类型等声明，这些声明会原样拷到生成的.c文件中。
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">#include</span> <span style="color:#007020">%3Cmain.h%3E</span><span style="color:#007020">
+</span></span></span><span style="display:flex;"><span><span style="color:#007020"></span>
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">extern</span> <span style="color:#4070a0">&#34;C&#34;</span><span style="color:#60a0b0;font-style:italic">//为了能够在C++程序里面调用C函数，必须把每一个需要使用的C函数，其声明都包括在extern &#34;C&#34;{}块里面，这样C++链接时才能成功链接它们。extern &#34;C&#34;用来在C++环境下设置C链接类型。  
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>{   <span style="color:#60a0b0;font-style:italic">//yacc.y中也有类似的这段extern &#34;C&#34;，可以把它们合并成一段，放到共同的头文件main.h中  
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#902000">int</span> <span style="color:#06287e">yywrap</span>(<span style="color:#902000">void</span>);  
+</span></span><span style="display:flex;"><span>    <span style="color:#902000">int</span> <span style="color:#06287e">yylex</span>(<span style="color:#902000">void</span>);<span style="color:#60a0b0;font-style:italic">//lex生成的词法分析函数，yacc的yyparse()里会调用它，如果这里不声明，生成的yacc.tab.c在编译时会找不到该函数  
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>}  
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> num_lines <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, num_chars <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">//统计行数和字符数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">%</span>}
+</span></span><span style="display:flex;"><span><span style="color:#902000">int</span> num_lines <span style="color:#666">=</span> <span style="color:#40a070">0</span>, num_chars <span style="color:#666">=</span> <span style="color:#40a070">0</span>; <span style="color:#60a0b0;font-style:italic">//统计行数和字符数
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#666">%</span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//正规定义
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">/*非数字由大小写字母、下划线组成*/</span>  
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">nondigit</span>    ([_A<span style="color:#f92672">-</span>Za<span style="color:#f92672">-</span>z])  
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/*一位数字，可以是0到9*/</span>  
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">digit</span>       ([<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>])  
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/*整数由1至多位数字组成*/</span>  
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">integer</span>     ({digit}<span style="color:#f92672">+</span>)  
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/*标识符，以非数字开头，后跟0至多个数字或非数字*/</span>  
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">identifier</span>  ({nondigit}({nondigit}<span style="color:#f92672">|</span>{digit})<span style="color:#f92672">*</span>)  
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/*一个或一段连续的空白符*/</span>  
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">blank_chars</span> ([ <span style="color:#960050;background-color:#1e0010">\</span>f<span style="color:#960050;background-color:#1e0010">\</span>r<span style="color:#960050;background-color:#1e0010">\</span>t<span style="color:#960050;background-color:#1e0010">\</span>v]<span style="color:#f92672">+</span>)  
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//正规定义
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">/*非数字由大小写字母、下划线组成*/</span>  
+</span></span><span style="display:flex;"><span><span style="color:#06287e">nondigit</span>    ([_A<span style="color:#666">-</span>Za<span style="color:#666">-</span>z])  
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/*一位数字，可以是0到9*/</span>  
+</span></span><span style="display:flex;"><span><span style="color:#06287e">digit</span>       ([<span style="color:#40a070">0</span><span style="color:#666">-</span><span style="color:#40a070">9</span>])  
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/*整数由1至多位数字组成*/</span>  
+</span></span><span style="display:flex;"><span><span style="color:#06287e">integer</span>     ({digit}<span style="color:#666">+</span>)  
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/*标识符，以非数字开头，后跟0至多个数字或非数字*/</span>  
+</span></span><span style="display:flex;"><span><span style="color:#06287e">identifier</span>  ({nondigit}({nondigit}<span style="color:#666">|</span>{digit})<span style="color:#666">*</span>)  
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/*一个或一段连续的空白符*/</span>  
+</span></span><span style="display:flex;"><span><span style="color:#06287e">blank_chars</span> ([ <span style="">\</span>f<span style="">\</span>r<span style="">\</span>t<span style="">\</span>v]<span style="color:#666">+</span>)  
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">%%</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">%%</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/*P2: 规则段 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/*P2: 规则段 */</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>p1 {action1}
 </span></span><span style="display:flex;"><span>p2 {action2}
 </span></span><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span>pn {actionn}
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//p：正则表达式；action：动作，当字符流前缀和p匹配时（识别出对应单词的词素）该做什么动作
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">这个阶段的一些定义：
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">yylval 定义在 lex.yy.c中，它保存所返回token的属性值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">yytext 指向当前识别出的词素的开始字符
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">yyleng 词素的长度
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//p：正则表达式；action：动作，当字符流前缀和p匹配时（识别出对应单词的词素）该做什么动作
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">这个阶段的一些定义：
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">yylval 定义在 lex.yy.c中，它保存所返回token的属性值
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">yytext 指向当前识别出的词素的开始字符
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">yyleng 词素的长度
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">*/</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//会从前往后逐个匹配，所以更一般的如.放在最后
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{blank_chars} {}   <span style="color:#75715e">//遇空白符，忽略  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">\</span>n  {<span style="color:#f92672">++</span>num_lines; <span style="color:#f92672">++</span>num_chars;} <span style="color:#75715e">//遇回车，相应增加行数和字符数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>.   {<span style="color:#f92672">++</span>num_chars;} <span style="color:#75715e">//匹配除回车外任意字符，增加字符数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">%%</span>
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//会从前往后逐个匹配，所以更一般的如.放在最后
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>{blank_chars} {}   <span style="color:#60a0b0;font-style:italic">//遇空白符，忽略  
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="">\</span>n  {<span style="color:#666">++</span>num_lines; <span style="color:#666">++</span>num_chars;} <span style="color:#60a0b0;font-style:italic">//遇回车，相应增加行数和字符数
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>.   {<span style="color:#666">++</span>num_chars;} <span style="color:#60a0b0;font-style:italic">//匹配除回车外任意字符，增加字符数
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#666">%%</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/*P3: 用户子程序段*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/*P3: 用户子程序段*/</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span><span style="color:#06287e">main</span>(<span style="color:#902000">int</span> argc, <span style="color:#902000">char</span> <span style="color:#666">*</span>argv[])
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//参数保存在文件里，命令行输入
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#f92672">++</span>argv, <span style="color:#f92672">--</span>argc; <span style="color:#75715e">//跳过程序名
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(argc<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>		yyin <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(argv[<span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#34;r&#34;</span>); <span style="color:#75715e">//默认输入对象打开指定文件
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">else</span> yyin <span style="color:#f92672">=</span> stdin; <span style="color:#75715e">//如果没有指定文件，则将标准输入作为输入
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">yylex</span>(); <span style="color:#75715e">//识别
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;# of lines = %d, # of chars = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, num_lines, num_chars);
+</span></span><span style="display:flex;"><span>	<span style="color:#60a0b0;font-style:italic">//参数保存在文件里，命令行输入
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#666">++</span>argv, <span style="color:#666">--</span>argc; <span style="color:#60a0b0;font-style:italic">//跳过程序名
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">if</span>(argc<span style="color:#666">&gt;</span><span style="color:#40a070">0</span>)
+</span></span><span style="display:flex;"><span>		yyin <span style="color:#666">=</span> <span style="color:#06287e">fopen</span>(argv[<span style="color:#40a070">0</span>], <span style="color:#4070a0">&#34;r&#34;</span>); <span style="color:#60a0b0;font-style:italic">//默认输入对象打开指定文件
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">else</span> yyin <span style="color:#666">=</span> stdin; <span style="color:#60a0b0;font-style:italic">//如果没有指定文件，则将标准输入作为输入
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#06287e">yylex</span>(); <span style="color:#60a0b0;font-style:italic">//识别
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#06287e">printf</span>(<span style="color:#4070a0">&#34;# of lines = %d, # of chars = %d</span><span style="color:#4070a0;font-weight:bold">\n</span><span style="color:#4070a0">&#34;</span>, num_lines, num_chars);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="有限自动机">有限自动机</h3>
 <p>非确定有限自动机 NFA/确定有限自动机 DFA 的区别：前者允许 e 边、允许一个状态多条边相同符号；后者不允许，状态转换确定唯一的结果<br>
@@ -1091,6 +1093,10 @@ move({A,B,C,D},b) = {C,D,E} //转换后状态落入不同子集
 
 
 
+
+
+
+<script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
 
 </body>
 </html>

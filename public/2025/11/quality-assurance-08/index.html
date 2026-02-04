@@ -61,7 +61,7 @@
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
     
     
-    
+    <link rel="stylesheet" href="https://Liyixian06.github.io/css/copy-to-clipboard.css">
     
     
     <script src="/js/jquery.min.js"></script>
@@ -76,6 +76,8 @@
     <script src="/js/lazysizes.min.js"></script>
     
     
+    
+    <script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
     
 
 </head>
@@ -450,15 +452,15 @@ Matches syntactic patterns (via abstract syntax tree) to identify likely mistake
 <h4 id="value-analysis">Value Analysis</h4>
 <h5 id="taint-analysis">Taint Analysis</h5>
 <p>Track values through a program and prevents untrusted data from reaching sensitive locations.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">processRequest</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span>Tainted String input <span style="color:#f92672">=</span> getUserInput();
-</span></span><span style="display:flex;"><span>  input <span style="color:#f92672">=</span> validate(input);  executeQuery(input);
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#902000">void</span> <span style="color:#06287e">processRequest</span>() {
+</span></span><span style="display:flex;"><span>  <span style="">@</span>Tainted String input <span style="color:#666">=</span> getUserInput();
+</span></span><span style="display:flex;"><span>  input <span style="color:#666">=</span> validate(input);  executeQuery(input);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">executeQuery</span>(<span style="color:#960050;background-color:#1e0010">@</span>Untainted String input) {
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">executeQuery</span>(<span style="">@</span>Untainted String input) {
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@</span>Untainted <span style="color:#66d9ef">public</span> String validate(String userInput) {
+</span></span><span style="display:flex;"><span><span style="">@</span>Untainted <span style="color:#007020;font-weight:bold">public</span> String validate(String userInput) {
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h5 id="abstract-interpretation--value-analysis">Abstract Interpretation / Value Analysis</h5>
 <p>Computes a sound over-approximations of program behavior in terms of an abstract domain.</p>
@@ -849,6 +851,10 @@ Matches syntactic patterns (via abstract syntax tree) to identify likely mistake
 
 
 
+
+
+
+<script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
 
 </body>
 </html>

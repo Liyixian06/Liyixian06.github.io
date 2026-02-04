@@ -61,7 +61,7 @@
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
     
     
-    
+    <link rel="stylesheet" href="https://Liyixian06.github.io/css/copy-to-clipboard.css">
     
     
     <script src="/js/jquery.min.js"></script>
@@ -76,6 +76,8 @@
     <script src="/js/lazysizes.min.js"></script>
     
     
+    
+    <script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
     
 
 </head>
@@ -365,10 +367,10 @@ $(function() {
     
                 
                 <p>使用 FFmpeg 截取视频片段时，一般使用的命令如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffmpeg -i video.mp4 -ss 00:01:23.4 -to 00:05:56.7 -c copy output.mp4 // 开始时间和结束时间
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffmpeg -i video.mp4 -ss 00:01:23.4 -to 00:05:56.7 -c copy output.mp4 // 开始时间和结束时间
 </span></span><span style="display:flex;"><span>ffmpeg -i video.mp4 -ss 00:01:23.4 -t 00:04:33.3 -c copy output.mp4 // 开始时间和持续时间
 </span></span></code></pre></div><p>但有时这样截取出的片段不够精准，会有几秒的误差（画面固定不动、或者提前结束），原因是 FFmpeg 截取时会从片段首尾附近的关键帧读取。对于精度要求不是很高的情况，可以先查看一下视频的关键帧：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffprobe -v error -select_streams v:0 -show_entries frame<span style="color:#f92672">=</span>key_frame,pkt_pts_time -of csv -skip_frame nokey video.mp4
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffprobe -v error -select_streams v:0 -show_entries <span style="color:#bb60d5">frame</span><span style="color:#666">=</span>key_frame,pkt_pts_time -of csv -skip_frame nokey video.mp4
 </span></span></code></pre></div><p>其中各项参数的含义是：</p>
 <ul>
 <li><code>-v error</code>
@@ -409,7 +411,7 @@ frame,1,7.500000
 ...
 </code></pre><p>但某些版本或编码方式下，视频关键帧的时间戳字段可能会缺失或者没有被正确读取，此时可以尝试换一个字段取代 pkt_pts_time：</p>
 <p>（best_effort_time 是 FFmpeg 估算的时间戳，在视频包的 PTS（Presentation Timestamp）不可用时可以备用，精度会略差一点。）</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffprobe -v error -select_streams v:0 -show_entries frame<span style="color:#f92672">=</span>key_frame,best_effort_timestamp_time -of csv -skip_frame nokey video.mp4
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffprobe -v error -select_streams v:0 -show_entries <span style="color:#bb60d5">frame</span><span style="color:#666">=</span>key_frame,best_effort_timestamp_time -of csv -skip_frame nokey video.mp4
 </span></span></code></pre></div><p>之后，在想要截取的时间点附近选一个关键帧裁剪，就能规避精度问题。</p>
 
     
@@ -791,6 +793,10 @@ frame,1,7.500000
 
 
 
+
+
+
+<script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
 
 </body>
 </html>

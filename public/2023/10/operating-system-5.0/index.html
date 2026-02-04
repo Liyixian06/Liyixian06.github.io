@@ -61,7 +61,7 @@
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
     
     
-    
+    <link rel="stylesheet" href="https://Liyixian06.github.io/css/copy-to-clipboard.css">
     
     
     <script src="/js/jquery.min.js"></script>
@@ -76,6 +76,8 @@
     <script src="/js/lazysizes.min.js"></script>
     
     
+    
+    <script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
     
 
 </head>
@@ -382,22 +384,22 @@ Test and Set Lock (TSL) solution - spinlock，如果锁被释放，TS 指令读�
 <p>final solution: semaphore by Dijkstra<br>
 信号量由一个整形 sem 变量和两个原子操作 P/V 组成<br>
 sem 的值为正时，表示有多少个可用资源；为负时，表示有多少个线程在等待</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>classSemaphore {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> sem;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>classSemaphore {
+</span></span><span style="display:flex;"><span>	<span style="color:#902000">int</span> sem;
 </span></span><span style="display:flex;"><span>	WaitQueue q;
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>Semaphore<span style="color:#f92672">::</span><span style="color:#a6e22e">P</span>() {
-</span></span><span style="display:flex;"><span>	sem<span style="color:#f92672">--</span>;
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (sem <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span>        Add this <span style="color:#66d9ef">thread</span> t to q;
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">block</span>(p);
+</span></span><span style="display:flex;"><span>Semaphore<span style="color:#666">::</span><span style="color:#06287e">P</span>() {
+</span></span><span style="display:flex;"><span>	sem<span style="color:#666">--</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">if</span> (sem <span style="color:#666">&lt;</span> <span style="color:#40a070">0</span>) {
+</span></span><span style="display:flex;"><span>        Add this <span style="color:#007020;font-weight:bold">thread</span> t to q;
+</span></span><span style="display:flex;"><span>        <span style="color:#06287e">block</span>(p);
 </span></span><span style="display:flex;"><span>     }
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>Semaphore<span style="color:#f92672">::</span><span style="color:#a6e22e">V</span>() {
-</span></span><span style="display:flex;"><span>    sem<span style="color:#f92672">++</span>; 
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (sem <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span>        Remove a <span style="color:#66d9ef">thread</span> t from q;
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">wakeup</span>(t);        
+</span></span><span style="display:flex;"><span>Semaphore<span style="color:#666">::</span><span style="color:#06287e">V</span>() {
+</span></span><span style="display:flex;"><span>    sem<span style="color:#666">++</span>; 
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">if</span> (sem <span style="color:#666">&lt;=</span> <span style="color:#40a070">0</span>) {
+</span></span><span style="display:flex;"><span>        Remove a <span style="color:#007020;font-weight:bold">thread</span> t from q;
+</span></span><span style="display:flex;"><span>        <span style="color:#06287e">wakeup</span>(t);        
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>与 TSL 的设计思路类似，信号量把状态检测、改变进程状态封装到了原子操作中，在这个过程中不会发生中断或调度<br>
@@ -416,24 +418,24 @@ V 操作可以选择要把哪个线程唤醒（通常假定这种调度是公平
 <li>1 个竞争：任何时刻只能有一个线程操作缓冲区</li>
 <li>2 个同步：缓冲区空时，消费者必须等待生产者；缓冲区满时，生产者必须等待消费者</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>Class BoundedBuffer {
-</span></span><span style="display:flex;"><span>    mutex <span style="color:#f92672">=</span> new <span style="color:#a6e22e">Semaphore</span>(<span style="color:#ae81ff">1</span>);
-</span></span><span style="display:flex;"><span>    fullBuffers <span style="color:#f92672">=</span> new <span style="color:#a6e22e">Semaphore</span>(<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>    emptyBuffers <span style="color:#f92672">=</span> new <span style="color:#a6e22e">Semaphore</span>(n);
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>Class BoundedBuffer {
+</span></span><span style="display:flex;"><span>    mutex <span style="color:#666">=</span> new <span style="color:#06287e">Semaphore</span>(<span style="color:#40a070">1</span>);
+</span></span><span style="display:flex;"><span>    fullBuffers <span style="color:#666">=</span> new <span style="color:#06287e">Semaphore</span>(<span style="color:#40a070">0</span>);
+</span></span><span style="display:flex;"><span>    emptyBuffers <span style="color:#666">=</span> new <span style="color:#06287e">Semaphore</span>(n);
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>BoundedBuffer<span style="color:#f92672">::</span><span style="color:#a6e22e">Deposit</span>(c) {
-</span></span><span style="display:flex;"><span>    emptyBuffers<span style="color:#f92672">-%</span><span style="color:#ae81ff">3</span>EP(); 
-</span></span><span style="display:flex;"><span>    mutex<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">P</span>(); 
+</span></span><span style="display:flex;"><span>BoundedBuffer<span style="color:#666">::</span><span style="color:#06287e">Deposit</span>(c) {
+</span></span><span style="display:flex;"><span>    emptyBuffers<span style="color:#666">-%</span><span style="color:#40a070">3</span>EP(); 
+</span></span><span style="display:flex;"><span>    mutex<span style="color:#666">-&gt;</span><span style="color:#06287e">P</span>(); 
 </span></span><span style="display:flex;"><span>    Add c to the buffer;
-</span></span><span style="display:flex;"><span>    mutex<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">V</span>();
-</span></span><span style="display:flex;"><span>    fullBuffers<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">V</span>();
+</span></span><span style="display:flex;"><span>    mutex<span style="color:#666">-&gt;</span><span style="color:#06287e">V</span>();
+</span></span><span style="display:flex;"><span>    fullBuffers<span style="color:#666">-&gt;</span><span style="color:#06287e">V</span>();
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>BoundedBuffer<span style="color:#f92672">::</span><span style="color:#a6e22e">Remove</span>(c) {
-</span></span><span style="display:flex;"><span>    fullBuffers<span style="color:#f92672">-%</span><span style="color:#ae81ff">3</span>EP();
-</span></span><span style="display:flex;"><span>    mutex<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">P</span>();
+</span></span><span style="display:flex;"><span>BoundedBuffer<span style="color:#666">::</span><span style="color:#06287e">Remove</span>(c) {
+</span></span><span style="display:flex;"><span>    fullBuffers<span style="color:#666">-%</span><span style="color:#40a070">3</span>EP();
+</span></span><span style="display:flex;"><span>    mutex<span style="color:#666">-&gt;</span><span style="color:#06287e">P</span>();
 </span></span><span style="display:flex;"><span>    Remove c from buffer;
-</span></span><span style="display:flex;"><span>    mutex<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">V</span>();
-</span></span><span style="display:flex;"><span>    emptyBuffers<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">V</span>();
+</span></span><span style="display:flex;"><span>    mutex<span style="color:#666">-&gt;</span><span style="color:#06287e">V</span>();
+</span></span><span style="display:flex;"><span>    emptyBuffers<span style="color:#666">-&gt;</span><span style="color:#06287e">V</span>();
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>信号量在实际编程时非常容易因为顺序问题引发错误<br>
 -&gt; solution: monitor 管程<br>
@@ -837,6 +839,10 @@ signal 从条件变量的等待队列里唤醒一个线程</p>
 
 
 
+
+
+
+<script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
 
 </body>
 </html>

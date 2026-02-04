@@ -61,7 +61,7 @@
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
     
     
-    
+    <link rel="stylesheet" href="https://Liyixian06.github.io/css/copy-to-clipboard.css">
     
     
     <script src="/js/jquery.min.js"></script>
@@ -76,6 +76,8 @@
     <script src="/js/lazysizes.min.js"></script>
     
     
+    
+    <script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
     
 
 </head>
@@ -436,17 +438,17 @@ $(function() {
 <li>The test runner tries to find a counterexample and shrinks it to a minimal failing case</li>
 </ol>
 <p>example: testing a sorting algorithm</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>function <span style="color:#a6e22e">isNonDecreasing</span>(values: number<span style="color:#f92672">[]</span>): <span style="color:#66d9ef">boolean</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (let i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;</span> values.<span style="color:#a6e22e">length</span>; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (values<span style="color:#f92672">[</span>i <span style="color:#f92672">-</span> 1<span style="color:#f92672">]</span> <span style="color:#f92672">&gt;</span> values<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>fc.<span style="color:#a6e22e">assert</span>(fc.<span style="color:#a6e22e">property</span>(fc.<span style="color:#a6e22e">array</span>(fc.<span style="color:#a6e22e">integer</span>()), xs <span style="color:#f92672">=&gt;</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> ys <span style="color:#f92672">=</span> doubleBogosort(xs);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> nonDecreasing(ys);
-</span></span><span style="display:flex;"><span>}));
-</span></span></code></pre></div><p>Real-world cases:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>function<span style="color:#bbb"> </span><span style="color:#06287e">isNonDecreasing</span>(values:<span style="color:#bbb"> </span>number<span style="color:#666">[]</span>):<span style="color:#bbb"> </span><span style="color:#902000">boolean</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">for</span><span style="color:#bbb"> </span>(let<span style="color:#bbb"> </span>i<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>1;<span style="color:#bbb"> </span>i<span style="color:#bbb"> </span><span style="color:#666">&lt;</span><span style="color:#bbb"> </span>values.<span style="color:#4070a0">length</span>;<span style="color:#bbb"> </span>i<span style="color:#666">++</span>)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">		</span><span style="color:#007020;font-weight:bold">if</span><span style="color:#bbb"> </span>(values<span style="color:#666">[</span>i<span style="color:#bbb"> </span><span style="color:#666">-</span><span style="color:#bbb"> </span>1<span style="color:#666">]</span><span style="color:#bbb"> </span><span style="color:#666">&gt;</span><span style="color:#bbb"> </span>values<span style="color:#666">[</span>i<span style="color:#666">]</span>)<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">false</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>fc.<span style="color:#4070a0">assert</span>(fc.<span style="color:#4070a0">property</span>(fc.<span style="color:#4070a0">array</span>(fc.<span style="color:#4070a0">integer</span>()),<span style="color:#bbb"> </span>xs<span style="color:#bbb"> </span><span style="color:#666">=&gt;</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>ys<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>doubleBogosort(xs);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">return</span><span style="color:#bbb"> </span>nonDecreasing(ys);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}));<span style="color:#bbb">
+</span></span></span></code></pre></div><p>Real-world cases:</p>
 <ul>
 <li>Compilers and Optimizers</li>
 <li>APIs and Services</li>
@@ -461,41 +463,41 @@ $(function() {
 <ul>
 <li>Preservation: something stays the same or within allowed bounds</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fc.<span style="color:#a6e22e">assert</span>(fc.<span style="color:#a6e22e">property</span>(fc.<span style="color:#a6e22e">array</span>(Item), fc.<span style="color:#a6e22e">tuple</span>(Tier,Tier), (items,<span style="color:#f92672">[</span>tLow,tHigh<span style="color:#f92672">]</span>) <span style="color:#f92672">=&gt;</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> order <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;guest&#34;</span>,<span style="color:#e6db74">&#34;bronze&#34;</span>,<span style="color:#e6db74">&#34;silver&#34;</span>,<span style="color:#e6db74">&#34;gold&#34;</span><span style="color:#f92672">]</span>;
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> low <span style="color:#f92672">=</span> computeTotal(items, tLow);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> high <span style="color:#f92672">=</span> computeTotal(items, tHigh);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> order.<span style="color:#a6e22e">indexOf</span>(tHigh) <span style="color:#f92672">&gt;=</span> order.<span style="color:#a6e22e">indexOf</span>(tLow) <span style="color:#f92672">?</span> high <span style="color:#f92672">&lt;=</span> low : <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>}));
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fc.<span style="color:#4070a0">assert</span>(fc.<span style="color:#4070a0">property</span>(fc.<span style="color:#4070a0">array</span>(Item),<span style="color:#bbb"> </span>fc.<span style="color:#4070a0">tuple</span>(Tier,Tier),<span style="color:#bbb"> </span>(items,<span style="color:#666">[</span>tLow,tHigh<span style="color:#666">]</span>)<span style="color:#bbb"> </span><span style="color:#666">=&gt;</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>order<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span><span style="color:#666">[</span><span style="color:#4070a0">&#34;guest&#34;</span>,<span style="color:#4070a0">&#34;bronze&#34;</span>,<span style="color:#4070a0">&#34;silver&#34;</span>,<span style="color:#4070a0">&#34;gold&#34;</span><span style="color:#666">]</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>low<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>computeTotal(items,<span style="color:#bbb"> </span>tLow);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>high<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>computeTotal(items,<span style="color:#bbb"> </span>tHigh);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">return</span><span style="color:#bbb"> </span>order.<span style="color:#4070a0">indexOf</span>(tHigh)<span style="color:#bbb"> </span><span style="color:#666">&gt;=</span><span style="color:#bbb"> </span>order.<span style="color:#4070a0">indexOf</span>(tLow)<span style="color:#bbb"> </span><span style="color:#666">?</span><span style="color:#bbb"> </span>high<span style="color:#bbb"> </span><span style="color:#666">&lt;=</span><span style="color:#bbb"> </span>low<span style="color:#bbb"> </span>:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}));<span style="color:#bbb">
+</span></span></span></code></pre></div><ul>
 <li>Metamorphic: property holds under input transformations</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fc.<span style="color:#a6e22e">assert</span>(fc.<span style="color:#a6e22e">property</span>(fc.<span style="color:#a6e22e">array</span>(fc.<span style="color:#a6e22e">integer</span>()), xs <span style="color:#f92672">=&gt;</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> a <span style="color:#f92672">=</span> doubleBogosort(xs);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> b <span style="color:#f92672">=</span> doubleBogosort(xs.<span style="color:#a6e22e">reverse</span>());
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> a.<span style="color:#a6e22e">length</span> <span style="color:#f92672">===</span> b.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&amp;&amp;</span> a.<span style="color:#a6e22e">every</span>((v,i)<span style="color:#f92672">=&gt;</span> v <span style="color:#f92672">===</span> b<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>);
-</span></span><span style="display:flex;"><span>}));
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fc.<span style="color:#4070a0">assert</span>(fc.<span style="color:#4070a0">property</span>(fc.<span style="color:#4070a0">array</span>(fc.<span style="color:#4070a0">integer</span>()),<span style="color:#bbb"> </span>xs<span style="color:#bbb"> </span><span style="color:#666">=&gt;</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>a<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>doubleBogosort(xs);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>b<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>doubleBogosort(xs.<span style="color:#4070a0">reverse</span>());<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">return</span><span style="color:#bbb"> </span>a.<span style="color:#4070a0">length</span><span style="color:#bbb"> </span><span style="color:#666">===</span><span style="color:#bbb"> </span>b.<span style="color:#4070a0">length</span><span style="color:#bbb"> </span><span style="color:#666">&amp;&amp;</span><span style="color:#bbb"> </span>a.<span style="color:#4070a0">every</span>((v,i)<span style="color:#666">=&gt;</span><span style="color:#bbb"> </span>v<span style="color:#bbb"> </span><span style="color:#666">===</span><span style="color:#bbb"> </span>b<span style="color:#666">[</span>i<span style="color:#666">]</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}));<span style="color:#bbb">
+</span></span></span></code></pre></div><ul>
 <li>Differential: two implementations (or versions) agree on outputs and errors</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fc.<span style="color:#a6e22e">assert</span>(fc.<span style="color:#a6e22e">property</span>(fc.<span style="color:#a6e22e">array</span>(fc.<span style="color:#a6e22e">integer</span>()), xs <span style="color:#f92672">=&gt;</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> a <span style="color:#f92672">=</span> doubleBogosort(xs);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> b <span style="color:#f92672">=</span> radixSort(xs);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> a.<span style="color:#a6e22e">length</span> <span style="color:#f92672">===</span> b.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&amp;&amp;</span> a.<span style="color:#a6e22e">every</span>((v,i)<span style="color:#f92672">=&gt;</span> v <span style="color:#f92672">===</span> b<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>);
-</span></span><span style="display:flex;"><span>}));
-</span></span></code></pre></div><h4 id="generating-inputs-via-arbitraries">Generating Inputs via Arbitraries</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fc.<span style="color:#4070a0">assert</span>(fc.<span style="color:#4070a0">property</span>(fc.<span style="color:#4070a0">array</span>(fc.<span style="color:#4070a0">integer</span>()),<span style="color:#bbb"> </span>xs<span style="color:#bbb"> </span><span style="color:#666">=&gt;</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>a<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>doubleBogosort(xs);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>b<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>radixSort(xs);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#007020;font-weight:bold">return</span><span style="color:#bbb"> </span>a.<span style="color:#4070a0">length</span><span style="color:#bbb"> </span><span style="color:#666">===</span><span style="color:#bbb"> </span>b.<span style="color:#4070a0">length</span><span style="color:#bbb"> </span><span style="color:#666">&amp;&amp;</span><span style="color:#bbb"> </span>a.<span style="color:#4070a0">every</span>((v,i)<span style="color:#666">=&gt;</span><span style="color:#bbb"> </span>v<span style="color:#bbb"> </span><span style="color:#666">===</span><span style="color:#bbb"> </span>b<span style="color:#666">[</span>i<span style="color:#666">]</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}));<span style="color:#bbb">
+</span></span></span></code></pre></div><h4 id="generating-inputs-via-arbitraries">Generating Inputs via Arbitraries</h4>
 <p>Arbitraries are used to describe input spaces</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> Price <span style="color:#f92672">=</span> fc.<span style="color:#a6e22e">double</span>({ min: 0, noNaN: <span style="color:#66d9ef">true</span> }); 
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> Qty <span style="color:#f92672">=</span> fc.<span style="color:#a6e22e">integer</span>({ min: 1, max: 10 }); 
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> Item <span style="color:#f92672">=</span> fc.<span style="color:#a6e22e">record</span>({
-</span></span><span style="display:flex;"><span>	sku: fc.<span style="color:#a6e22e">string</span>({ minLength: 1, maxLength: 12 }),
-</span></span><span style="display:flex;"><span>	unitPrice: Price,
-</span></span><span style="display:flex;"><span>	qty: Qty,
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> Cart <span style="color:#f92672">=</span> fc.<span style="color:#a6e22e">record</span>({
-</span></span><span style="display:flex;"><span>	items: fc.<span style="color:#a6e22e">array</span>(Item, { maxLength: 15 }), 
-</span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>Price<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>fc.<span style="color:#4070a0">double</span>({<span style="color:#bbb"> </span>min:<span style="color:#bbb"> </span>0,<span style="color:#bbb"> </span>noNaN:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb"> </span>});<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>Qty<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>fc.<span style="color:#4070a0">integer</span>({<span style="color:#bbb"> </span>min:<span style="color:#bbb"> </span>1,<span style="color:#bbb"> </span>max:<span style="color:#bbb"> </span>10<span style="color:#bbb"> </span>});<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>Item<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>fc.<span style="color:#4070a0">record</span>({<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>sku:<span style="color:#bbb"> </span>fc.<span style="color:#4070a0">string</span>({<span style="color:#bbb"> </span>minLength:<span style="color:#bbb"> </span>1,<span style="color:#bbb"> </span>maxLength:<span style="color:#bbb"> </span>12<span style="color:#bbb"> </span>}),<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>unitPrice:<span style="color:#bbb"> </span>Price,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>qty:<span style="color:#bbb"> </span>Qty,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>});<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#007020;font-weight:bold">const</span><span style="color:#bbb"> </span>Cart<span style="color:#bbb"> </span><span style="color:#666">=</span><span style="color:#bbb"> </span>fc.<span style="color:#4070a0">record</span>({<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>items:<span style="color:#bbb"> </span>fc.<span style="color:#4070a0">array</span>(Item,<span style="color:#bbb"> </span>{<span style="color:#bbb"> </span>maxLength:<span style="color:#bbb"> </span>15<span style="color:#bbb"> </span>}),<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>});<span style="color:#bbb">
+</span></span></span></code></pre></div>
     
                 
                 
@@ -875,6 +877,10 @@ $(function() {
 
 
 
+
+
+
+<script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
 
 </body>
 </html>

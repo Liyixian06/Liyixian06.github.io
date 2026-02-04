@@ -61,7 +61,7 @@
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
     
     
-    
+    <link rel="stylesheet" href="https://Liyixian06.github.io/css/copy-to-clipboard.css">
     
     
     <script src="/js/jquery.min.js"></script>
@@ -76,6 +76,8 @@
     <script src="/js/lazysizes.min.js"></script>
     
     
+    
+    <script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
     
 
 </head>
@@ -418,32 +420,32 @@ $(function() {
 <h3 id="状态管理">状态管理</h3>
 <p>状态指的是在服务内部，会影响响应结果，并且依赖历史请求的信息。</p>
 <p>一旦服务可以并发处理请求（多线程或多实例），状态管理就变得非常重要。关键在于状态的存储位置，有三种选择：存储在服务实例里、存储在客户端里、存储在外部数据库。例如，考虑一个统计自身被调用了多少次的服务：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// Variant 1. 服务实例存储
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> i; <span style="color:#75715e">// i is our state variable, initialized to 0 when the service instance starts
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">countv1</span>() {
-</span></span><span style="display:flex;"><span>	i <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">//add 1 to the last value of i
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> i;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// Variant 1. 服务实例存储
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#902000">int</span> i; <span style="color:#60a0b0;font-style:italic">// i is our state variable, initialized to 0 when the service instance starts
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#902000">int</span> <span style="color:#06287e">countv1</span>() {
+</span></span><span style="display:flex;"><span>	i <span style="color:#666">=</span> i <span style="color:#666">+</span> <span style="color:#40a070">1</span>; <span style="color:#60a0b0;font-style:italic">//add 1 to the last value of i
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">return</span> i;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Variant 2. 服务实例不存储，客户端提供
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">countv2</span>(<span style="color:#66d9ef">int</span> i) {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> a;
-</span></span><span style="display:flex;"><span>	a <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">//add 1 to the last value of i
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> a;
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// Variant 2. 服务实例不存储，客户端提供
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#902000">int</span> <span style="color:#06287e">countv2</span>(<span style="color:#902000">int</span> i) {
+</span></span><span style="display:flex;"><span>	<span style="color:#902000">int</span> a;
+</span></span><span style="display:flex;"><span>	a <span style="color:#666">=</span> i <span style="color:#666">+</span> <span style="color:#40a070">1</span>; <span style="color:#60a0b0;font-style:italic">//add 1 to the last value of i
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">return</span> a;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Variant 3. 存在客户端和服务实例之外的数据库（注意，必须要锁定数据库，以确保同一时间只有一个服务实例可以读写）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">countv3</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> a;
-</span></span><span style="display:flex;"><span>	a <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbase_get</span>(<span style="color:#e6db74">&#34;count&#34;</span>); <span style="color:#75715e">//retrieve current value from an 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>							<span style="color:#75715e">// external db
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	a <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">//add 1 to the last value of a
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">dbase_write</span>(<span style="color:#e6db74">&#34;count&#34;</span>, a); <span style="color:#75715e">// //save current value back to the db
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> a;
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// Variant 3. 存在客户端和服务实例之外的数据库（注意，必须要锁定数据库，以确保同一时间只有一个服务实例可以读写）
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#902000">int</span> <span style="color:#06287e">countv3</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#902000">int</span> a;
+</span></span><span style="display:flex;"><span>	a <span style="color:#666">=</span> <span style="color:#06287e">dbase_get</span>(<span style="color:#4070a0">&#34;count&#34;</span>); <span style="color:#60a0b0;font-style:italic">//retrieve current value from an 
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>							<span style="color:#60a0b0;font-style:italic">// external db
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	a <span style="color:#666">=</span> a <span style="color:#666">+</span> <span style="color:#40a070">1</span>; <span style="color:#60a0b0;font-style:italic">//add 1 to the last value of a
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#06287e">dbase_write</span>(<span style="color:#4070a0">&#34;count&#34;</span>, a); <span style="color:#60a0b0;font-style:italic">// //save current value back to the db
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">return</span> a;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>关键在于行为差异，要考虑多实例的情况。</p>
 <ul>
@@ -853,6 +855,10 @@ $(function() {
 
 
 
+
+
+
+<script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
 
 </body>
 </html>

@@ -441,3 +441,8 @@
 })();
 </script>
 {{ end }}
+
+<!-- Custom JS -->
+{{ range .Site.Params.custom_js }}
+<script src="{{ . | absURL }}"></script>
+{{ end }}

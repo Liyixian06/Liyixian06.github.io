@@ -61,7 +61,7 @@
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
     
     
-    
+    <link rel="stylesheet" href="https://Liyixian06.github.io/css/copy-to-clipboard.css">
     
     
     <script src="/js/jquery.min.js"></script>
@@ -76,6 +76,8 @@
     <script src="/js/lazysizes.min.js"></script>
     
     
+    
+    <script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
     
 
 </head>
@@ -439,11 +441,11 @@ TCP 是其支撑运输协议<br>
 <ol>
 <li>HTTP 请求报文</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">GET</span> /somedir/page.html <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
-</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">www.someschool.edu</span>
-</span></span><span style="display:flex;"><span>Connection<span style="color:#f92672">:</span> <span style="color:#ae81ff">close</span>
-</span></span><span style="display:flex;"><span>User-agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">Mozilla/5.0</span>
-</span></span><span style="display:flex;"><span>Accept-language<span style="color:#f92672">:</span> <span style="color:#ae81ff">fr</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#06287e">GET</span> <span style="color:#0e84b5;font-weight:bold">/somedir/page.html</span> <span style="color:#007020;font-weight:bold">HTTP</span><span style="color:#666">/</span><span style="color:#40a070">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#666">:</span> www.someschool.edu
+</span></span><span style="display:flex;"><span>Connection<span style="color:#666">:</span> close
+</span></span><span style="display:flex;"><span>User-agent<span style="color:#666">:</span> Mozilla/5.0
+</span></span><span style="display:flex;"><span>Accept-language<span style="color:#666">:</span> fr
 </span></span></code></pre></div><p>第一行：请求行 request line，后继行：首部行 header line<br>
 request line 有三个字段：method, URL, HTTP version</p>
 <ul>
@@ -464,14 +466,14 @@ PUT 允许用户上传对象到指定 server 的指定路径</p>
 <ol start="2">
 <li>HTTP 响应报文</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTTP" data-lang="HTTP"><span style="display:flex;"><span><span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span> <span style="color:#ae81ff">200</span> <span style="color:#a6e22e">OK</span>
-</span></span><span style="display:flex;"><span>Connection<span style="color:#f92672">:</span> <span style="color:#ae81ff">close</span>
-</span></span><span style="display:flex;"><span>Date<span style="color:#f92672">:</span> <span style="color:#ae81ff">Tue, 19 Aug 2015 15:11:03 GMT</span>
-</span></span><span style="display:flex;"><span>Server<span style="color:#f92672">:</span> <span style="color:#ae81ff">Apache/2.2.3 (CentOS)</span>
-</span></span><span style="display:flex;"><span>Last-Modified<span style="color:#f92672">:</span> <span style="color:#ae81ff">Tue, 18 Aug 2015 15:11:03 GMT</span>
-</span></span><span style="display:flex;"><span>Content-Length<span style="color:#f92672">:</span> <span style="color:#ae81ff">6821</span>
-</span></span><span style="display:flex;"><span>Content-Type<span style="color:#f92672">:</span> <span style="color:#ae81ff">text/html</span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">(data</span> <span style="color:#ae81ff">data data data...)</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTTP" data-lang="HTTP"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">HTTP</span><span style="color:#666">/</span><span style="color:#40a070">1.1</span> <span style="color:#40a070">200</span> <span style="color:#007020">OK</span>
+</span></span><span style="display:flex;"><span>Connection<span style="color:#666">:</span> close
+</span></span><span style="display:flex;"><span>Date<span style="color:#666">:</span> Tue, 19 Aug 2015 15:11:03 GMT
+</span></span><span style="display:flex;"><span>Server<span style="color:#666">:</span> Apache/2.2.3 (CentOS)
+</span></span><span style="display:flex;"><span>Last-Modified<span style="color:#666">:</span> Tue, 18 Aug 2015 15:11:03 GMT
+</span></span><span style="display:flex;"><span>Content-Length<span style="color:#666">:</span> 6821
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#666">:</span> text/html
+</span></span><span style="display:flex;"><span><span style="">(data</span> data data data...)
 </span></span></code></pre></div><p>三个部分：初始状态行 status line，header line，entity body<br>
 entity body 包含请求对象本身（data data data data&hellip;）<br>
 状态行有三个字段：协议版本、状态码、状态信息</p>
@@ -597,30 +599,30 @@ TCP or UDP?</p>
 </p>
 <p>操作系统会自动将源地址（IP + port）附在 packet 上</p>
 <p>client 的代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># UDPclient.py</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> socket <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 提供 IP 地址或主机名，如果是后者则自动执行 DNS lookup 解析</span>
-</span></span><span style="display:flex;"><span>serverName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;hostname&#39;</span>
-</span></span><span style="display:flex;"><span>serverPort <span style="color:#f92672">=</span> <span style="color:#ae81ff">12000</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># AF_INET 指示底层网络使用 IPv4，SOCK_DGRAM 指示 UDP</span>
-</span></span><span style="display:flex;"><span>clientSocket <span style="color:#f92672">=</span> socket(AF_INET, SOCK_DGRAM)
-</span></span><span style="display:flex;"><span>message <span style="color:#f92672">=</span> raw_input(<span style="color:#e6db74">&#39;Input lowercase sentence:&#39;</span>)
-</span></span><span style="display:flex;"><span>clientSocket<span style="color:#f92672">.</span>sendto(message<span style="color:#f92672">.</span>encode(), (serverName, serverPort))
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 接收数据和源地址，取缓存长度 2048 作为输入</span>
-</span></span><span style="display:flex;"><span>modifiedMessage, serverAddress <span style="color:#f92672">=</span> clientSocket<span style="color:#f92672">.</span>recvfrom(<span style="color:#ae81ff">2048</span>)
-</span></span><span style="display:flex;"><span>print(modifiedMessage<span style="color:#f92672">.</span>decode())
-</span></span><span style="display:flex;"><span>clientSocket<span style="color:#f92672">.</span>close()
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"># UDPclient.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">socket</span> <span style="color:#007020;font-weight:bold">import</span> <span style="color:#666">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"># 提供 IP 地址或主机名，如果是后者则自动执行 DNS lookup 解析</span>
+</span></span><span style="display:flex;"><span>serverName <span style="color:#666">=</span> <span style="color:#4070a0">&#39;hostname&#39;</span>
+</span></span><span style="display:flex;"><span>serverPort <span style="color:#666">=</span> <span style="color:#40a070">12000</span>
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"># AF_INET 指示底层网络使用 IPv4，SOCK_DGRAM 指示 UDP</span>
+</span></span><span style="display:flex;"><span>clientSocket <span style="color:#666">=</span> socket(AF_INET, SOCK_DGRAM)
+</span></span><span style="display:flex;"><span>message <span style="color:#666">=</span> raw_input(<span style="color:#4070a0">&#39;Input lowercase sentence:&#39;</span>)
+</span></span><span style="display:flex;"><span>clientSocket<span style="color:#666">.</span>sendto(message<span style="color:#666">.</span>encode(), (serverName, serverPort))
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"># 接收数据和源地址，取缓存长度 2048 作为输入</span>
+</span></span><span style="display:flex;"><span>modifiedMessage, serverAddress <span style="color:#666">=</span> clientSocket<span style="color:#666">.</span>recvfrom(<span style="color:#40a070">2048</span>)
+</span></span><span style="display:flex;"><span><span style="color:#007020">print</span>(modifiedMessage<span style="color:#666">.</span>decode())
+</span></span><span style="display:flex;"><span>clientSocket<span style="color:#666">.</span>close()
 </span></span></code></pre></div><p>server 的代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> socket <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
-</span></span><span style="display:flex;"><span>serverPost <span style="color:#f92672">=</span> <span style="color:#ae81ff">12000</span>
-</span></span><span style="display:flex;"><span>serverSocket <span style="color:#f92672">=</span> socket(AF_INET, SOCK_DGRAM)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将端口号12000和server的socket绑定在一起</span>
-</span></span><span style="display:flex;"><span>serverSocket<span style="color:#f92672">.</span>bind((<span style="color:#e6db74">&#39;&#39;</span>, serverPort))
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;The server is ready to receive.&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
-</span></span><span style="display:flex;"><span>	message, clientAddress <span style="color:#f92672">=</span> serverSocket<span style="color:#f92672">.</span>recvfrom(<span style="color:#ae81ff">2048</span>)
-</span></span><span style="display:flex;"><span>	modifiedMessage <span style="color:#f92672">=</span> message<span style="color:#f92672">.</span>decode()<span style="color:#f92672">.</span>upper()
-</span></span><span style="display:flex;"><span>	serverSocket<span style="color:#f92672">.</span>sendto(modifiedMessage<span style="color:#f92672">.</span>encode(), clientAddress)
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">socket</span> <span style="color:#007020;font-weight:bold">import</span> <span style="color:#666">*</span>
+</span></span><span style="display:flex;"><span>serverPost <span style="color:#666">=</span> <span style="color:#40a070">12000</span>
+</span></span><span style="display:flex;"><span>serverSocket <span style="color:#666">=</span> socket(AF_INET, SOCK_DGRAM)
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"># 将端口号12000和server的socket绑定在一起</span>
+</span></span><span style="display:flex;"><span>serverSocket<span style="color:#666">.</span>bind((<span style="color:#4070a0">&#39;&#39;</span>, serverPort))
+</span></span><span style="display:flex;"><span><span style="color:#007020">print</span>(<span style="color:#4070a0">&#34;The server is ready to receive.&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">while</span> <span style="color:#007020;font-weight:bold">True</span>:
+</span></span><span style="display:flex;"><span>	message, clientAddress <span style="color:#666">=</span> serverSocket<span style="color:#666">.</span>recvfrom(<span style="color:#40a070">2048</span>)
+</span></span><span style="display:flex;"><span>	modifiedMessage <span style="color:#666">=</span> message<span style="color:#666">.</span>decode()<span style="color:#666">.</span>upper()
+</span></span><span style="display:flex;"><span>	serverSocket<span style="color:#666">.</span>sendto(modifiedMessage<span style="color:#666">.</span>encode(), clientAddress)
 </span></span></code></pre></div><h4 id="tcp">TCP</h4>
 <p>TCP 是面向连接的协议，因此 client 和 server 在开始传送数据之前要先握手、创建一个 TCP 连接，两端分别与 client 和 server 的 socket address 相联系；此后，只需要经过 socket 将数据扔进 TCP 连接，不需要再附上地址</p>
 <p>流程：</p>
@@ -639,34 +641,34 @@ TCP or UDP?</p>
 
 </p>
 <p>client 的代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> socket <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
-</span></span><span style="display:flex;"><span>serverName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;servername&#39;</span>
-</span></span><span style="display:flex;"><span>serverPort <span style="color:#f92672">=</span> <span style="color:#ae81ff">12000</span>
-</span></span><span style="display:flex;"><span>clientSocket <span style="color:#f92672">=</span> socket(AF_INET, SOCK_STREAM)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 发起 TCP 连接</span>
-</span></span><span style="display:flex;"><span>clientSocket<span style="color:#f92672">.</span>connect((serverName, serverPort))
-</span></span><span style="display:flex;"><span>sentence <span style="color:#f92672">=</span> raw_input(<span style="color:#e6db74">&#39;Input lowercase sentence:&#39;</span>)
-</span></span><span style="display:flex;"><span>clientSocket<span style="color:#f92672">.</span>send(sentence<span style="color:#f92672">.</span>encode())
-</span></span><span style="display:flex;"><span>modifiedSentence <span style="color:#f92672">=</span> clientSocket<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">1024</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;From Server: &#39;</span>, modifiedSentence<span style="color:#f92672">.</span>encode())
-</span></span><span style="display:flex;"><span>clientSocket<span style="color:#f92672">.</span>close()
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">socket</span> <span style="color:#007020;font-weight:bold">import</span> <span style="color:#666">*</span>
+</span></span><span style="display:flex;"><span>serverName <span style="color:#666">=</span> <span style="color:#4070a0">&#39;servername&#39;</span>
+</span></span><span style="display:flex;"><span>serverPort <span style="color:#666">=</span> <span style="color:#40a070">12000</span>
+</span></span><span style="display:flex;"><span>clientSocket <span style="color:#666">=</span> socket(AF_INET, SOCK_STREAM)
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"># 发起 TCP 连接</span>
+</span></span><span style="display:flex;"><span>clientSocket<span style="color:#666">.</span>connect((serverName, serverPort))
+</span></span><span style="display:flex;"><span>sentence <span style="color:#666">=</span> raw_input(<span style="color:#4070a0">&#39;Input lowercase sentence:&#39;</span>)
+</span></span><span style="display:flex;"><span>clientSocket<span style="color:#666">.</span>send(sentence<span style="color:#666">.</span>encode())
+</span></span><span style="display:flex;"><span>modifiedSentence <span style="color:#666">=</span> clientSocket<span style="color:#666">.</span>recv(<span style="color:#40a070">1024</span>)
+</span></span><span style="display:flex;"><span><span style="color:#007020">print</span>(<span style="color:#4070a0">&#39;From Server: &#39;</span>, modifiedSentence<span style="color:#666">.</span>encode())
+</span></span><span style="display:flex;"><span>clientSocket<span style="color:#666">.</span>close()
 </span></span></code></pre></div><p>server 的代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> socket <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
-</span></span><span style="display:flex;"><span>serverPort <span style="color:#f92672">=</span> <span style="color:#ae81ff">12000</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># SOCK_STREAM 指定 TCP</span>
-</span></span><span style="display:flex;"><span>serverSocket <span style="color:#f92672">=</span> socket(AF_INET, SOCK_STREAM)
-</span></span><span style="display:flex;"><span>serverSocket<span style="color:#f92672">.</span>bind((<span style="color:#e6db74">&#39;&#39;</span>, serverPort))
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 等待某个 client 敲门，参数是请求连接的最大数量</span>
-</span></span><span style="display:flex;"><span>serverSocket<span style="color:#f92672">.</span>listen(<span style="color:#ae81ff">1</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;The server is ready to receive.&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 创建 client 专用的新 socket</span>
-</span></span><span style="display:flex;"><span>	connectionSocket, addr <span style="color:#f92672">=</span> serverSocket<span style="color:#f92672">.</span>accept()
-</span></span><span style="display:flex;"><span>	sentence <span style="color:#f92672">=</span> connectionSocket<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">1024</span>)<span style="color:#f92672">.</span>decode()
-</span></span><span style="display:flex;"><span>	capitalizedSentence <span style="color:#f92672">=</span> sentence<span style="color:#f92672">.</span>upper()
-</span></span><span style="display:flex;"><span>	conenctionSocket<span style="color:#f92672">.</span>send(capitalizedSentence<span style="color:#f92672">.</span>encode())
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 关闭连接，但 serverSocket 还保持打开，另一个 client 此时可以敲门</span>
-</span></span><span style="display:flex;"><span>	connectionSocket<span style="color:#f92672">.</span>close()
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">socket</span> <span style="color:#007020;font-weight:bold">import</span> <span style="color:#666">*</span>
+</span></span><span style="display:flex;"><span>serverPort <span style="color:#666">=</span> <span style="color:#40a070">12000</span>
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"># SOCK_STREAM 指定 TCP</span>
+</span></span><span style="display:flex;"><span>serverSocket <span style="color:#666">=</span> socket(AF_INET, SOCK_STREAM)
+</span></span><span style="display:flex;"><span>serverSocket<span style="color:#666">.</span>bind((<span style="color:#4070a0">&#39;&#39;</span>, serverPort))
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"># 等待某个 client 敲门，参数是请求连接的最大数量</span>
+</span></span><span style="display:flex;"><span>serverSocket<span style="color:#666">.</span>listen(<span style="color:#40a070">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#007020">print</span>(<span style="color:#4070a0">&#39;The server is ready to receive.&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">while</span> <span style="color:#007020;font-weight:bold">True</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#60a0b0;font-style:italic"># 创建 client 专用的新 socket</span>
+</span></span><span style="display:flex;"><span>	connectionSocket, addr <span style="color:#666">=</span> serverSocket<span style="color:#666">.</span>accept()
+</span></span><span style="display:flex;"><span>	sentence <span style="color:#666">=</span> connectionSocket<span style="color:#666">.</span>recv(<span style="color:#40a070">1024</span>)<span style="color:#666">.</span>decode()
+</span></span><span style="display:flex;"><span>	capitalizedSentence <span style="color:#666">=</span> sentence<span style="color:#666">.</span>upper()
+</span></span><span style="display:flex;"><span>	conenctionSocket<span style="color:#666">.</span>send(capitalizedSentence<span style="color:#666">.</span>encode())
+</span></span><span style="display:flex;"><span>	<span style="color:#60a0b0;font-style:italic"># 关闭连接，但 serverSocket 还保持打开，另一个 client 此时可以敲门</span>
+</span></span><span style="display:flex;"><span>	connectionSocket<span style="color:#666">.</span>close()
 </span></span></code></pre></div><h4 id="c-中常用的-socket-函数">C 中常用的 Socket 函数</h4>
 <ul>
 <li><code>WSAStartup</code>：初始化 Socket DLL，协商使用的 Socket 版本</li>
@@ -1060,6 +1062,10 @@ TCP or UDP?</p>
 
 
 
+
+
+
+<script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
 
 </body>
 </html>

@@ -76,7 +76,7 @@
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
     
     
-    
+    <link rel="stylesheet" href="https://Liyixian06.github.io/css/copy-to-clipboard.css">
     
     
     <script src="/js/jquery.min.js"></script>
@@ -91,6 +91,8 @@
     <script src="/js/lazysizes.min.js"></script>
     
     
+    
+    <script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
     
 
 </head>
@@ -531,28 +533,28 @@ GBN 的问题：单个 packet 的差错会重传很多没必要的 packet</li>
 </ul>
 <h4 id="tcp-可靠数据传输">TCP 可靠数据传输</h4>
 <p>TCP 可靠数据传输：超时和冗余确认</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>){
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">switch</span>(<span style="color:#66d9ef">case</span>)
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">从</span> application <span style="color:#960050;background-color:#1e0010">接收到数据</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">生成</span> TCP segment<span style="color:#960050;background-color:#1e0010">，序号</span> NextSeqNum
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#960050;background-color:#1e0010">定时器没有运行</span>)
-</span></span><span style="display:flex;"><span>				<span style="color:#960050;background-color:#1e0010">启动定时器</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">向</span> IP <span style="color:#960050;background-color:#1e0010">传递</span> segment
-</span></span><span style="display:flex;"><span>			NextSeqNum <span style="color:#f92672">+=</span> <span style="color:#a6e22e">length</span>(data)
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">while</span>(<span style="color:#40a070">1</span>){
+</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">switch</span>(<span style="color:#007020;font-weight:bold">case</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#007020;font-weight:bold">case</span> <span style="color:#40a070">1</span><span style="color:#666">:</span> <span style="">从</span> application <span style="">接收到数据</span>
+</span></span><span style="display:flex;"><span>			<span style="">生成</span> TCP segment<span style="">，序号</span> NextSeqNum
+</span></span><span style="display:flex;"><span>			<span style="color:#007020;font-weight:bold">if</span> (<span style="">定时器没有运行</span>)
+</span></span><span style="display:flex;"><span>				<span style="">启动定时器</span>
+</span></span><span style="display:flex;"><span>			<span style="">向</span> IP <span style="">传递</span> segment
+</span></span><span style="display:flex;"><span>			NextSeqNum <span style="color:#666">+=</span> <span style="color:#06287e">length</span>(data)
+</span></span><span style="display:flex;"><span>			<span style="color:#007020;font-weight:bold">break</span>;
 </span></span><span style="display:flex;"><span>			
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">定时器超时</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">重传未应答的</span> segment <span style="color:#960050;background-color:#1e0010">中序号最小的</span>  
-</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">启动定时器</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#007020;font-weight:bold">case</span> <span style="color:#40a070">2</span><span style="color:#666">:</span> <span style="">定时器超时</span>
+</span></span><span style="display:flex;"><span>			<span style="">重传未应答的</span> segment <span style="">中序号最小的</span>  
+</span></span><span style="display:flex;"><span>			<span style="">启动定时器</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#007020;font-weight:bold">break</span>;
 </span></span><span style="display:flex;"><span>			
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">收到</span> ACK<span style="color:#960050;background-color:#1e0010">，具有</span> ACK <span style="color:#960050;background-color:#1e0010">字段值</span> y
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (y <span style="color:#f92672">&gt;</span> SendBase){
-</span></span><span style="display:flex;"><span>				SendBase <span style="color:#f92672">=</span> y
-</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (<span style="color:#960050;background-color:#1e0010">当前仍无任何应答</span> segment)
-</span></span><span style="display:flex;"><span>					<span style="color:#960050;background-color:#1e0010">启动定时器</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#007020;font-weight:bold">case</span> <span style="color:#40a070">3</span><span style="color:#666">:</span> <span style="">收到</span> ACK<span style="">，具有</span> ACK <span style="">字段值</span> y
+</span></span><span style="display:flex;"><span>			<span style="color:#007020;font-weight:bold">if</span> (y <span style="color:#666">&gt;</span> SendBase){
+</span></span><span style="display:flex;"><span>				SendBase <span style="color:#666">=</span> y
+</span></span><span style="display:flex;"><span>				<span style="color:#007020;font-weight:bold">if</span> (<span style="">当前仍无任何应答</span> segment)
+</span></span><span style="display:flex;"><span>					<span style="">启动定时器</span>
 </span></span><span style="display:flex;"><span>			}
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#007020;font-weight:bold">break</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>如果在超时之前收到了确认号更大的确认 segment，那么就不会重传<br>
 i.e. ACK=100 的确认 segment 丢失，但 ACK=120 的传到了，就不会重传前一个</p>
@@ -562,18 +564,18 @@ i.e. ACK=100 的确认 segment 丢失，但 ACK=120 的传到了，就不会重�
 $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha ·SampleRTT,\quad \alpha=1/8$$$$DevRTT = (1-\beta)DevRTT+\beta·\mid SampleRTT-EstimatedRTT\mid,\quad\beta=1/4$$$$RTO = EstimatedRTT+4·DevRTT$$<p>每次重传时，将下一次的 timeout 设为当前的两倍</p>
 <p>快速重传 fast retransmit：冗余 duplicate ACK<br>
 接收方接收到相同数据的 3 个 duplicate ACK，表明跟在这个 segment 之后的 segment 已经丢失，执行快速重传（在该 segment 的定时器过期之前就重传）</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">收到</span> ACK<span style="color:#960050;background-color:#1e0010">，具有</span> ACK <span style="color:#960050;background-color:#1e0010">字段值</span> y
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (y <span style="color:#f92672">&gt;</span> SendBase){
-</span></span><span style="display:flex;"><span>		SendBase <span style="color:#f92672">=</span> y
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#960050;background-color:#1e0010">当前仍无任何应答</span> segment)
-</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">启动定时器</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">case</span> <span style="color:#40a070">3</span><span style="color:#666">:</span> <span style="">收到</span> ACK<span style="">，具有</span> ACK <span style="">字段值</span> y
+</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">if</span> (y <span style="color:#666">&gt;</span> SendBase){
+</span></span><span style="display:flex;"><span>		SendBase <span style="color:#666">=</span> y
+</span></span><span style="display:flex;"><span>		<span style="color:#007020;font-weight:bold">if</span> (<span style="">当前仍无任何应答</span> segment)
+</span></span><span style="display:flex;"><span>			<span style="">启动定时器</span>
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>		y <span style="color:#960050;background-color:#1e0010">收到的</span> duplicate ACK<span style="color:#f92672">++</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (duplicate ACK <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>)
-</span></span><span style="display:flex;"><span>			<span style="color:#960050;background-color:#1e0010">重传序号</span> y <span style="color:#960050;background-color:#1e0010">的</span> segment
+</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>		y <span style="">收到的</span> duplicate ACK<span style="color:#666">++</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#007020;font-weight:bold">if</span> (duplicate ACK <span style="color:#666">==</span> <span style="color:#40a070">3</span>)
+</span></span><span style="display:flex;"><span>			<span style="">重传序号</span> y <span style="">的</span> segment
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">break</span>;
 </span></span></code></pre></div><p>选择确认 SACK：接收方有选择地确认失序 segment，而非累积确认最后一个正确接收的 segment<br>
 和重传机制结合后类似 SR 协议（跳过重传那些被选择性确认的 segment）</p>
 <h4 id="流量控制">流量控制</h4>
@@ -1095,6 +1097,10 @@ timeout 时 ssthresh = cwnd/2，重新开始 slow-start；3 duplicate ACK 时（
 
 
 
+
+
+
+<script src="https://Liyixian06.github.io/js/copy-to-clipboard.js"></script>
 
 </body>
 </html>
