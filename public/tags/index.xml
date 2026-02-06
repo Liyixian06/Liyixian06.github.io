@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© LiYixian 2023</copyright>
-    <lastBuildDate>Wed, 04 Feb 2026 10:09:52 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 05 Feb 2026 21:40:44 -0500</lastBuildDate>
     <atom:link href="https://Liyixian06.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Journal</title>
+      <link>https://Liyixian06.github.io/tags/journal/</link>
+      <pubDate>Thu, 05 Feb 2026 21:40:44 -0500</pubDate>
+      <guid>https://Liyixian06.github.io/tags/journal/</guid>
+      <description></description>
+    </item>
     <item>
       <title>CS</title>
       <link>https://Liyixian06.github.io/tags/cs/</link>
@@ -21,13 +28,6 @@
       <link>https://Liyixian06.github.io/tags/devops/</link>
       <pubDate>Wed, 04 Feb 2026 10:09:52 -0500</pubDate>
       <guid>https://Liyixian06.github.io/tags/devops/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Journal</title>
-      <link>https://Liyixian06.github.io/tags/journal/</link>
-      <pubDate>Thu, 22 Jan 2026 11:54:06 -0500</pubDate>
-      <guid>https://Liyixian06.github.io/tags/journal/</guid>
       <description></description>
     </item>
     <item>
