@@ -1,6 +1,6 @@
 ---
 layout:		 single
-title:       "Caching Strategies"
+title:       "系统设计专题01：缓存策略"
 subtitle:    ""
 description: " "
 date:        2026-02-09T21:11:07-05:00
@@ -12,31 +12,29 @@ URL: "/2026/02/caching-strategies/"
 math: True
 ---
 
-What is cache?
+什么是缓存？
 
-- Patterns for deciding what to store, when to store it, and when to invalidate it.
-- Stores copies of data in a location that can be accessed more quickly than the original source.
-- Readily availability of frequently accessed information makes systems respond to user requests faster.
-- Improves overall performance and user experience.
-- Also contributes to scalability, and availability.
-
-## Caching Strategies
+- 把数据存在比 original source 访问更快的地方
+- 存什么，什么时候存，什么时候失效
+- 热点 key 的高可用能让系统更快地响应用户
+- 提高整体的性能和用户体验
+- 也提升了可扩展性和可用性
 
 ### Cache-aside (Lazy Loading)
 
-Use cases: 大部分 CRUD 场景 high read, low write
+Use cases: 大部分 CRUD 场景，读多写少
 
-1. Component read cache
-2. Component read DB upon cache miss
-3. Component update cache
-4. 写的时候先更新 DB 再**删除**缓存（注意不是更新，否则并发很容易错）
+- 读缓存
+- Cache miss 时读 DB
+- 更新缓存
+- 写的时候先更新 DB 再**删除**缓存（注意不是更新，否则并发很容易错）
 
 ![](https://tonybai.com/wp-content/uploads/2025/five-cache-strategies-2.png)
 
 Pros: 
 
 - 实现简单、侵入性小，和现有数据库模型耦合低，失败时最多回退到查 DB，不会把系统搞炸
-- Cache only stores what’s needed
+- 缓存存储的都是所需要的数据
 
 Cons:
 - First/misses request is slow
@@ -48,104 +46,104 @@ Cons:
 
 Use cases: Stable data and high read
 
-1. Component read cache
-2. **Cache** read DB upon miss
+- 读缓存
+- Cache miss 时，缓存**自己**读 DB
 
 ![](https://tonybai.com/wp-content/uploads/2025/five-cache-strategies-3.png)
 
 Pros:
 
-- Component logic is simple; easy to scale reads
+- 应用的逻辑很简单，易于 scale 读操作
 - 缓存和存储的一致性由缓存层保证，对业务代码友好
 
 Cons:
 
-- Cache needs additional processing（通常意味着中间件或自研层）
+- 缓存需要额外的操作（通常意味着中间件或自研层）
 - 缓存和 DB 强耦合，缓存一旦出问题，影响很大
 
 ### Write-Through
 
-Use cases: Strong read consistency (e.g., shopping cart)
+Use cases: 读一致性要求高 (e.g., shopping cart)
 
-1. Component write cache
-2. **Cache** write DB
+- 写缓存
+- **缓存**写 DB
 
 ![](https://tonybai.com/wp-content/uploads/2025/five-cache-strategies-4.png)
 
-Pros
+Pros:
 
-- Cache is always fresh
+- 缓存的数据总是最新的
 - No stale reads
-- Reads have low latency
+- 读延迟很低
 
 Cons:
 
-- Writes have high latency 缓存没有加速写
-- Cache becomes a write bottleneck（因为和数据库强耦合）
-- Infrequent data is also stored in the cache
+- 写延迟高，缓存没有加速写
+- 缓存会成为写瓶颈（因为和数据库强耦合）
+- 不常访问的数据也会存在缓存里
 
 ### Write-Back (Behind)
 
-Use cases: High throughput systems
+Use cases: 高吞吐
 
-1. Component keep write cache constantly
-2. Cache write DB at intervals 异步写回
+- 应用持续写缓存
+- 缓存异步写 DB
 
 ![](https://tonybai.com/wp-content/uploads/2025/five-cache-strategies-5.png)
 
 Pros:
 
-- 写性能极高，可以合并写、削峰填谷，对 DB 极其友好
+- 写性能极高，可以合并写、削峰填谷，对 DB 很友好
 
 Cons:
 
-- Cache and DB are eventually consistent
-- Data lost if cache goes down
-- Infrequent data is also stored in the cache
+- 缓存和 DB 达到的是最终一致性
+- 如果缓存宕机了，数据就可能丢失
+- 不频繁访问的数据也存在缓存里
 - 实现复杂，需要 WAL、重试、顺序保证等机制
 
 ### Time-to-live (Expiration)
 
-Use cases: Cashing data that changes periodically (e.g., session data)
+Use cases: 定期修改的缓存数据 (e.g., session data)
 
-Basically the same with cache-aside, except that expired cache entries are removed
+和 cache aside 差不多，除了过期的缓存数据会被移除之外
 
 Pros:
 
-- Automatic clean-up of stale data; reduces the risk of serving outdated data.
+- 自动清理，减少了 outdated 数据
 
 Cons:
 
-- Expiration storms if many keys expire at the same time
-- Cached data may expire before it’s no longer needed, resulting in cache misses.
+- 如果大量 key 同时过期，会缓存雪崩
+- 缓存数据可能会在过期之后又被访问，造成 cache miss
 
 #### Refresh Ahead
 
-Use cases: Obvious hot key and stable visiting pattern （首页配置、榜单、热点内容）
+Use cases: 稳定的 hot key 和访问模式 （首页配置、榜单、热点内容）
 
-设置 TTL，但在即将过期前，后台线程或异步任务提前刷新 cache（或者每次访问时都刷新），而不是等用户请求触发 miss
+设置 TTL，但在即将过期前，后台线程或异步任务提前刷新缓存（或者每次访问时都刷新），而不是等用户请求触发 miss，这样 hot key 实际上永不过期（逻辑过期）。
 
 Pros:
 
 - 显著降低缓存击穿概率
 - 用户请求几乎永远命中 cache
-- Latency is stable
+- 延迟稳定
 
 Cons:
 
-- May refresh some no-longer-accessed keys
-- 一致性是最终一致
+- 可能会刷新一些不再需要的 key
+- 一致性是最终一致，用户可能会读到旧数据
 - 实现复杂，需要后台任务、调度
 
-### Local Cache + Distributed Cache
+### 本地缓存 + 分布式缓存
 
-Use cases: High QPS, latency-sensitive (e.g., recommendation, ads)
+Use cases: 高 QPS，需要低延迟 (e.g., recommendation, ads)
 
 进程内缓存（如 Caffeine / Guava） → Redis → DB
 
 Pros:
 
-- Read latency is low
+- 读延迟很低
 - 大幅降低 Redis 压力
 
 Cons:
@@ -154,16 +152,16 @@ Cons:
 	- 异步失效通知、版本号 / 短 TTL
 - 本地缓存失效、容量、垃圾回收都要处理
 
-## Cache Problems
+### Cache Problems
 
-### Cache Avalanche 缓存雪崩
+#### Cache Avalanche 缓存雪崩
 
 大量 key 在同一时间失效。
 
 原因：
 
 - 同一批 key 设置了相同 TTL  
-- Redis down
+- Redis 宕机
 - cache service 抖动 / unavailable
 
 Solution:
@@ -173,17 +171,18 @@ Solution:
 - 熔断、限流、降级
 - 通过主从节点构建 Redis 高可靠 cluster
 
-### Hotspot Invalid 缓存击穿
+#### Hotspot Invalid 缓存击穿
 
 Cache 中某个 hot key 过期时，大量请求访问该数据，全部 cache miss 后访问 DB，DB 容易被高并发请求冲垮。
 
 Solution:
 
-- 互斥锁 singleflight，cache miss 时只有一个业务线程去查 DB ，然后更新缓存；其他线程等待锁释放后再读 cache
-- 前面提到的 fresh ahead：不给 hot key 设置过期时间，后台异步更新 cache，或者在快要过期时提前通知后台线程更新 cache 以及重新设置 TTL
-	- 一致性是最终一致
+- 互斥锁 singleflight，cache miss 时只有一个业务线程去查 DB ，然后更新缓存；其他线程等待锁释放后再读缓存
+	- 一般要给锁加上 TTL，防止出现故障没有线程释放锁
+- 前面提到的 fresh ahead 逻辑过期：不给 hot key 设置过期时间，后台异步更新缓存，或者在快要过期时提前通知后台线程更新缓存，重新设置 TTL
+	- 一致性是最终一致，更新还没完成这期间的查询都会返回旧数据
 
-### Cache Penetration 缓存穿透
+#### Cache Penetration 缓存穿透
 
 **高频**请求的数据在 cache 和 DB 里都不存在。（请求 `userId = -1`，请求不存在的订单号，恶意扫描 ID 空间）
 
@@ -193,8 +192,8 @@ Solution:
 - 缓存空值，在 DB 查到不存在的值时也缓存 `value = null`
 	- 如果攻击者不断换 key（比如扫 ID），缓存会被塞满大量空值，所以一般要配合容量限制、TTL 很短
 - Bloom Filter：快速判断这个 key 是否有可能存在
-	- Potential false positives，but NO false negatives
-	- 有维护成本，不适合频繁变更的数据，实现复杂度比缓存空值高；一般在 ID 空间大、攻击风险高时使用
+	- 可能有 false positives，但 NO false negatives
+	- 有维护成本，不适合频繁变更的数据，实现复杂度比缓存空值高；一般在 ID 空间大、攻击风险高时使用 
 
 #### Bloom Filter
 
