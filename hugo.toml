@@ -1,5 +1,5 @@
 baseURL = 'https://Liyixian06.github.io/'
-language.Locale = 'en-us'
+languageCode = 'en-us'
 title = 'Liyixian Blog'
 theme = 'hugo-theme-cleanwhite'
 Copyright = "© LiYixian 2023"
