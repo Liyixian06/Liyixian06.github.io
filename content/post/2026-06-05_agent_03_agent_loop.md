@@ -23,7 +23,7 @@ math: False
 - Skill
 - MCP
 
-> 代码主要来自于 [CheetahClaws(v3.01)](https://github.com/SafeRL-Lab/cheetahclaws/tree/main)，同时也结合了一部分 [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) 和 Claude Code 本身；由于 Claude Code 是 TypeScript 写的，下面的代码中可能会混用 Python 和 TypeScript，意会即可。
+> 代码主要来自于 [CheetahClaws(v3.01)](https://github.com/SafeRL-Lab/cheetahclaws/tree/main)，同时也结合了一部分 [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) 和 Claude Code 本身，以及 [Claude Harness](https://claude-harness.dev/zh) 的文章；由于 Claude Code 是 TypeScript 写的，下面的代码中可能会混用 Python 和 TypeScript，意会即可。
 ### One Loop Is All You Need
 
 在 [ReAct](https://liyixian06.github.io/2026/05/agent-02/#react) 一节中已经讲过，LLM 将思考和行动交替进行，循环 Thought -> Action -> Observation……。具体而言，在用户输入初始消息后，agent 系统就会进入这个循环，其中 action 即调用工具，observation 即将工具调用的结果追加到上下文中，直到 LLM 不再调用工具，循环停止。

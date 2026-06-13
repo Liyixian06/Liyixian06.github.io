@@ -1,6 +1,6 @@
 ---
 layout:		 single
-title:       "Agent 04 一个简单实现（2）Tool System"
+title:       "Agent 04：一个简单实现（2）Tool System"
 subtitle:    ""
 description: " "
 date:        2026-06-12T17:45:18+08:00
