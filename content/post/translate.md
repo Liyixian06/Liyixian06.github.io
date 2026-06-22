@@ -28,30 +28,25 @@ math: False
 
 - [Aegisub](https://aegisub.org/zh-cn/)
 - FFmpeg
-  - `ffmpeg -i input.mp4 -vf “ass=subtitle.ass” crf=18 output.mp4`
+  - `ffmpeg -i input.mp4 -vf “ass=subtitle.ass” output.mp4`
 - [HandBrake](https://handbrake.fr/)
+- Claude Code
+  - 提供几分钟的译文样本
+  
 - 翻译格式
   - 思源黑体
   - 不使用标点符号，使用空格
   - 一行字幕中两个人对话，每个人前面使用 - 号区分
-  - 不翻译人名
 
 ## 正在烤和待上桌
 
 **Clique x David Fincher, réalisateur culte de Fight Club et Seven - CANAL+**  
 {{<youtube 2ykcUuZg9hI>}}
 
-**Saturday Night Live, March 10, 2001 – Conan O’Brien / Don Henley (S26 E14)**  
-{{<bilibili BV1at411A7CD>}}
-
-**Babylon (2014)**
-
-{{<douban-card "https://movie.douban.com/subject/26258809/">}}
-
-**Secret River (2015)**
+**Secret River (2015)**  
 
 {{<douban-card "https://movie.douban.com/subject/25940526/">}}
 
-**情理法的春天 第六季 (1997)**
+**情理法的春天 第六季 (1997)**  
 
 {{<douban-card "https://movie.douban.com/subject/26320798/">}}
