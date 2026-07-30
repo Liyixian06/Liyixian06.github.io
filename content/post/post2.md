@@ -87,6 +87,7 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$
 # To Do
 
 - 换更好的评论系统（需求有：开源、免费、无广告、墙内正常访问，以及不需要专门注册账号，因此 Discus 不纳入考虑），比如 [Waline](https://waline.js.org/)、[Twikoo](https://twikoo.js.org/) 
+- 把书影音展示的代码改了，用一下 NeoDB
 - 零零散散的装修
   - ~~代码复制~~
   - 总字数统计
