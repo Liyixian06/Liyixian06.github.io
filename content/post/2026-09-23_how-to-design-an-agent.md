@@ -236,7 +236,7 @@ Tool(
 ```
 assert order.user_id == current_user.id
 assert item.return_status == "eligible"
-assert refund_amount %3 C= payment.amount
+assert refund_amount <= payment.amount
 ```
 
 这一层在 agent 系统里特别重要，它决定了 agent 可以犯认知错误，但不能突破业务边界。比如模型误以为一个商品能退，没关系，它调用 `initiate_return` 后，后端会返回 `RETURN_WINDOW_EXPIRED`，然后 agent 再解释给用户，这就是一个健康的 agent architecture。
