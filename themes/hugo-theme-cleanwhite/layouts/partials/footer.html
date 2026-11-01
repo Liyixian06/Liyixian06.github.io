@@ -207,6 +207,7 @@
                    </li>
             {{ end }}
              </ul>
+		<p class="site-stats text-muted">{{ partial "site-stats.html" . }}</p>
 		<p class="copyright text-muted">
                     Copyright &copy; {{ .Site.Title }} {{ now.Year }} {{- if .Site.Params.icp }} | {{ with .Site.Params.icp }}{{ . | markdownify }}{{ end }}{{- end}}
                     <br>
