@@ -25,6 +25,7 @@ math: true
 - 内容折叠
 - 修改了代码块样式，增加了代码复制功能
 - 把书影音展示的方式改了，增加了自动根据url从豆瓣提取信息的爬虫脚本，另外由于豆瓣防盗链的问题，图片外链改成了 NeoDB
+- 在页脚增加全站总字数和建站时长统计
 
 {{% spoiler "You killed my father!" %}}
 I am your father.
@@ -172,8 +173,8 @@ $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$
 - 换更好的评论系统（需求有：开源、免费、无广告、墙内正常访问，以及不需要专门注册账号，因此 Discus 不纳入考虑），比如 [Waline](https://waline.js.org/)、[Twikoo](https://twikoo.js.org/) 
 - 零零散散的装修
   - ~~代码复制~~
-  - 总字数统计
-  - 站点运行时长
+  - ~~总字数统计~~
+  - ~~站点运行时长~~
   - 访问量统计
   - ~~代码块样式~~
   - Dark Mode
