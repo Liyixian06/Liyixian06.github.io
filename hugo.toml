@@ -51,6 +51,7 @@ about_me = true
 page_view_counter = true
 search = true
 showtoc = true
+site_start_date = "2023-07-20"
 
 custom_css = ["/css/copy-to-clipboard.css", "/css/content-layout.css"]
 custom_js = ["/js/copy-to-clipboard.js"]

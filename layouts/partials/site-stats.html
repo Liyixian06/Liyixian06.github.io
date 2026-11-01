@@ -1,0 +1,18 @@
+{{- $totalWords := 0 -}}
+{{- range .Site.RegularPages -}}
+  {{- $totalWords = add $totalWords .WordCount -}}
+{{- end -}}
+{{- $startDate := time.AsTime .Site.Params.site_start_date -}}
+{{- $runningDays := div (sub now.Unix $startDate.Unix) 86400 -}}
+共写了 {{ lang.FormatNumber 0 $totalWords }} 字 · 本站已运行 <span id="site-running-days" data-start-date="{{ .Site.Params.site_start_date }}">{{ $runningDays }}</span> 天
+<script>
+  (() => {
+    const element = document.getElementById("site-running-days");
+    if (!element) return;
+    const [year, month, day] = element.dataset.startDate.split("-").map(Number);
+    const today = new Date();
+    const startTime = Date.UTC(year, month - 1, day);
+    const todayTime = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+    element.textContent = Math.max(0, Math.floor((todayTime - startTime) / 86400000));
+  })();
+</script>
