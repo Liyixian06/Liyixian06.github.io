@@ -1,7 +1,20 @@
 DOUBAN_VENV := .venv-douban
 DOUBAN_PYTHON := $(DOUBAN_VENV)/bin/python
+PAGEFIND_VERSION := 1.6.0
+PAGEFIND := npx --yes pagefind@$(PAGEFIND_VERSION)
 
-.PHONY: douban-install douban-check douban-sync douban-migrate-book-images douban-test images-check images-optimize
+.PHONY: build search-index search-preview douban-install douban-check douban-sync douban-migrate-book-images douban-test images-check images-optimize
+
+build:
+	hugo
+	$(MAKE) search-index
+
+search-index:
+	$(PAGEFIND) --site public --output-subdir _pagefind
+
+search-preview:
+	hugo
+	$(PAGEFIND) --site public --output-subdir _pagefind --serve
 
 douban-install:
 	python3 -m venv $(DOUBAN_VENV)

@@ -1,5 +1,5 @@
 baseURL = 'https://Liyixian06.github.io/'
-locale = 'en-US'
+locale = 'zh-CN'
 title = 'Liyixian Blog'
 theme = 'hugo-theme-cleanwhite'
 Copyright = "© LiYixian 2023"
@@ -16,7 +16,7 @@ hasCJKLanguage = true
   pagerSize = 10 # frontpage pagination
 
 [outputs]
-home = ["HTML", "RSS", "JSON", "Algolia"]
+home = ["HTML", "RSS", "JSON"]
 
 [markup]
   [markup.highlight]
@@ -56,11 +56,8 @@ site_start_date = "2023-07-20"
 custom_css = ["/css/copy-to-clipboard.css", "/css/content-layout.css"]
 custom_js = ["/js/copy-to-clipboard.js"]
 
-# algolia site search
-algolia_search = true
-algolia_appId = "NJV6LRURL5"
-algolia_indexName = "hugo_posts"
-algolia_apiKey = "0271a1d27ec8e2957008dd6a00dd6f04"
+# Use the theme's local Pagefind search instead of a hosted Algolia index.
+algolia_search = false
 
 [params.social]
 rss = true
@@ -90,13 +87,3 @@ href =  "/archive"
   data-theme="preferred_color_scheme"
   data_lang="zh-CN"
   crossorigin="anonymous"
-
-[outputFormats.Algolia]
-baseName = "algolia"
-isPlainText = true
-mediaType = "application/json"
-notAlternative = true
-
-[params.algolia]
-vars = ["title", "summary", "date", "publishdate", "expirydate", "permalink"]
-params = ["categories", "tags"]
