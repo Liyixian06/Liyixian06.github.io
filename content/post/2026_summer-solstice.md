@@ -35,24 +35,24 @@ math: False
 - 鲽鱼鳍边：口感有点奇怪，有种又水又油的感觉，倒也不算难吃
 - 香草冰激凌咖啡冻：都没发现还有这个，我知道咖啡冻还是因为看齐木楠雄来着，确实蛮不错的，撒点抹茶粉更有一番风味
 
-![](/img/journal/2026/summer-solstice/hamasushi.jpg)
+![](/img/journal/2026/summer-solstice/hamasushi.webp)
 
 ### 我就喝一杯不喝多
 
 **Milo's Garage**  
 在天津的喝酒老家 1 号，特别好的是开门非常早，下午三点就喝上了。特调的风味总是很有趣，喝了今年的新酒“霓虹”，葡萄干/焙茶/蔓越莓/焦糖，好喝无需多言；还尝了一口朋友的“擅自的辛巴达”，很浓厚的韩式甜辣酱和番茄味儿。我对预制特调是没太大意见的，因为很方便蹭 shot（嗯对
 
-![](/img/journal/2026/summer-solstice/milo's.jpg)
+![](/img/journal/2026/summer-solstice/milo's.webp)
 
 **Sip Bar Gin&Classic**  
 在天津的喝酒老家 2 号，晚上 7 点之前经典酒 68 两杯，简直是令人感动落泪的价格……不过 68 价位的几乎都是金酒 base，几个威士忌 base 譬如古典曼哈顿威士忌酸（有人坚持要叫老登酒）又都太常喝了，最后喝了杯 Rosita，看配方应该是把金酒换成了龙舌兰的尼格罗尼变体，蛮好喝的；这家和 Berry Beans 开在一起，于是又叫 bartender 做了个 espresso martini，也很好。
 
-![](/img/journal/2026/summer-solstice/sip.jpg)
+![](/img/journal/2026/summer-solstice/sip.webp)
 
 **Shifter**  
 很不幸地在去的路上天降暴雨，即使有伞也被浇了个透心凉……喝了一杯新品“绿豆”，绿豆糖水味儿，非常清甜，喜欢。店里还有特别萌的小柴！
 
-![](/img/journal/2026/summer-solstice/shifter.jpg)
+![](/img/journal/2026/summer-solstice/shifter.webp)
 
 ## 书影音演出
 
@@ -95,7 +95,7 @@ math: False
 **孤独的利里 “强制曝光” 北京站**  
 看过第三次还是第四次了，没什么好说的，现场一直非常好，非常痛快，很少有的结束了立刻就想再看一次的队，可以说录音室不及现场的十分之一（）鼓真好贝斯真好吉他也好……唯一想问的就是怎么这么短，一个半小时竟然结束了，下次能不能演满两个小时，说话😠
 
-![](/img/journal/2026/summer-solstice/lonelyleary.jpg)
+![](/img/journal/2026/summer-solstice/lonelyleary.webp)
 
 ## 最近在琢磨什么
 

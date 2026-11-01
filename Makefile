@@ -1,7 +1,7 @@
 DOUBAN_VENV := .venv-douban
 DOUBAN_PYTHON := $(DOUBAN_VENV)/bin/python
 
-.PHONY: douban-install douban-check douban-sync douban-migrate-book-images douban-test
+.PHONY: douban-install douban-check douban-sync douban-migrate-book-images douban-test images-check images-optimize
 
 douban-install:
 	python3 -m venv $(DOUBAN_VENV)
@@ -18,3 +18,9 @@ douban-migrate-book-images:
 
 douban-test:
 	$(DOUBAN_PYTHON) -m unittest discover -s tests -v
+
+images-check:
+	python3 scripts/optimize_journal_images.py
+
+images-optimize:
+	python3 scripts/optimize_journal_images.py --apply

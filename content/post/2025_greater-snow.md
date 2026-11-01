@@ -30,7 +30,7 @@ math: False
 - 其实迈阿密的菜系已经算不错了，很多古巴菜、西亚菜、南欧菜、地中海菜，都算是比较好接受的菜系，但吃了一周还是有点痛苦面具——如果去多伦多的话固然会冻死但应该能天天吃中国菜吧……
 - 迈阿密 downtown 的街景很像国内，楼新而且高，马路很宽敞，朋友说燃起了思乡（深圳）之情。
 
-![](/img/journal/2025/greater-snow/crocodile.jpg)
+![](/img/journal/2025/greater-snow/crocodile.webp)
 
 ### New York
 
@@ -41,11 +41,11 @@ math: False
 - 在西村和东村十分随意地逛了逛，也不是特别随意，因为刮大风差点没把我冻死，怎么一刮风比匹兹堡还冷……确实很好逛，去了一些精品小店，买了一点东西，但还是必须要说，从义乌回来之后大部分精品小店对我都已经失去了其意义（呃）
 - 去了推理小说书店 The Mysterious Bookshop！看网图以为很大，其实挺小的，书架顶天立地一直到天花板全是书，可惜我对欧美推理除了阿加莎之类的经典作者和最近比较红的 Richard Osman 几个人以外几乎是一无所知，看了一圈遗憾离去（
 
-![](/img/journal/2025/greater-snow/themysteriousbookshop.jpg)
+![](/img/journal/2025/greater-snow/themysteriousbookshop.webp)
 
 - 圣地巡礼了 Elementary 里 Sherlock 和 Joan 的 Brownstone。地址是 Harlem 的 11 W 121st St，去之前不知道，都走出来好长一段了才看到小红书上说 Harlem 那带治安不是很好（？）。街上确实没什么人，非常安静，Brownstone 外面真的很漂亮，当时看剧的时候就觉得住在这种房子里一定很幸福……
 
-![](/img/journal/2025/greater-snow/brownstone.jpg)
+![](/img/journal/2025/greater-snow/brownstone.webp)
 
 ### 吃什么 不知道
 
@@ -55,43 +55,43 @@ math: False
 
 离住的地方比较近的一家古巴菜，点了炖牛尾、猪肩肉和木薯，牛尾非常软烂入味，木薯吃起来有点像煎烤的香蕉（？）
 
-![](/img/journal/2025/greater-snow/puertosagua.jpg)
+![](/img/journal/2025/greater-snow/puertosagua.webp)
 
 #### Sanguich
 
 迈阿密有名的古巴三明治店，开门不久就去了，正好有位置。点了一份经典古巴三明治 cubano，确实相当好，外皮是焦脆的，里面夹的是火腿奶酪酸黄瓜芥末酱，我平常对火腿不怎么感冒都觉得非常好吃……分量挺大的，一份两个完全吃不完，饭量不大的两个人吃一份就够了。
 
-![](/img/journal/2025/greater-snow/sanguich.jpg)
+![](/img/journal/2025/greater-snow/sanguich.webp)
 
 #### Tapelia Restaurant
 
 Lincoln Road 上的西班牙海鲜餐馆，吃了一份炸鱿鱼圈和一大盘海鲜饭，无功无过。
 
-![](/img/journal/2025/greater-snow/tapelia.jpg)
+![](/img/journal/2025/greater-snow/tapelia.webp)
 
 #### Cafe Bastille
 
 也是住的地方附近的一家 Brunch，路过看到坐得人满为患，查了一下 Google 评分还挺高，好奇之下就吃了。随便点了一个蛋卷，还不错，配的炸小土豆也挺酥脆，感觉是在迈阿密吃的比较有性价比的一餐了（也不便宜，完全是此地整体外食物价太贵……）。
 
-![](/img/journal/2025/greater-snow/cafebastille.jpg)
+![](/img/journal/2025/greater-snow/cafebastille.webp)
 
 #### CVI. CHE 105
 
 也是有名的一家古巴菜。炒饭和烤牛心都很好吃，炒饭甚至很有锅气。比较无助的是菜单一大串西班牙语，不得不拍给 GPT 紧急翻译……其实还想尝试著名的烤章鱼，但实在吃不动了，遗憾离去。
 
-![](/img/journal/2025/greater-snow/cviche105.jpg)
+![](/img/journal/2025/greater-snow/cviche105.webp)
 
 #### Kin Ramen
 
 从 Penn station 出来之后在曼哈顿 Midtown 觅食，本来想去吃另一家 Tonchin 拉面，但是走到门口一看队伍长度就掉头离去了，然后又在小红书上看到这家，不是很远就走了过去。本来门口也有好几个人排队，但服务员知道我只有一个人之后就立刻把我带到了吧台（一人食也有一人食的好处啊！）。点了招牌的 Kin Ramen 和烤五花肉小串，拉面还不错，但烤五花肉小串太好吃了！简直是有生以来吃过最好吃的烤五花，外皮特别脆，吃得满嘴流油，哎要不是时间太早了怎么也得叫点清酒……
 
-![](/img/journal/2025/greater-snow/kinramen.jpg)
+![](/img/journal/2025/greater-snow/kinramen.webp)
 
 #### Xi'an Famous Foods 西安名吃
 
 之前看 Kate McKinnon 说她超级喜欢这家，加上我真的需要摄入一点北方食物，于是就去吃了。其实不是特别地道（起码面里不该加白菜吧！！），但扯面的技术还是在的，好不容易吃上一口称得上筋道的宽面已经非常感动了……而且价格也惊人地正常，还要什么自行车（
 
-![](/img/journal/2025/greater-snow/xianfamousfoods.jpg)
+![](/img/journal/2025/greater-snow/xianfamousfoods.webp)
 
 #### Thep Thai
 
@@ -107,19 +107,19 @@ Lincoln Road 上的西班牙海鲜餐馆，吃了一份炸鱿鱼圈和一大盘�
 
 在小红书上看到有个帖主信誓旦旦地说这是匹兹堡最好喝的 bar 之一，而且和 Tina's 在同一条街上，就转场去了。去得很是时候，正好坐到最后一桌。很好！有一些挺有创意的酒（which is very rare in Pittsburgh），点了杯 MAÑANA SERÁ BONITO 单纯是因为看到里面居然有四川辣椒油，基底是糯米伏特加，还有青柠、黄瓜和菠萝，端上来一喝感觉像吃了一道菜（）和一起来的朋友交换尝了尝，有杯爆米花口味的波本也非常好喝，不出意外应该还会再来。
 
-![](/img/journal/2025/greater-snow/barbotanico.jpg)
+![](/img/journal/2025/greater-snow/barbotanico.webp)
 
 #### Mace
 
 本来想喝另一家 Sip & Guzzle，结果取了号之后和我说预计排队时间五个小时（服务员安慰我说不可能真的那么长，实际上两个小时后通知说排到了，但显然也没喝成……），于是在周围又找了这家。前几年也进过世界前 50，不知道是不是因为这两年没在榜单上了，去的时候人甚至很少。店里居然已经在过圣诞了，装饰从天花板到地面全是圣诞主题，酒单也换成了圣诞 special。喝了杯朗姆 coconut hot chocolate，热饮小甜酒，但其实度数并不低，热巧压住了很大一部分酒精味儿；又喝了一个带 hazelnut 的……叫什么来着？总之都很适合这个季节喝，喜欢。
 
-![](/img/journal/2025/greater-snow/mace.jpg)
+![](/img/journal/2025/greater-snow/mace.webp)
 
 #### Fraunces Tavern (Independence Bar)
 
 还是本来想喝另一家 The Dead Rabbit，客太满了遂出门拐进了旁边这个（大工作日的你们纽约人都不睡觉吗）……这家竟然 since 1762，查了一下说华盛顿本人来喝过，大为震撼（后来才知道这还是 Hamilton 里的真实地点）。叫了一个 oyster special，有三个 oyster 和一品脱世涛，世涛挺顺口，生蚝也蛮好吃的，当然还感受了一下历史气息算是意外之喜了。
 
-![](/img/journal/2025/greater-snow/frauncestavern.jpg)
+![](/img/journal/2025/greater-snow/frauncestavern.webp)
 
 ## 书影音演出
 
@@ -155,7 +155,7 @@ The Ziegfeld Files
 - 要说有什么抱怨的就是太短了啊太短了！虽然这个题材，这个表演形式（每个月独自坐在桌前给 therapist 发对方要求录的 reflection recording）的确就是个小品，但 70 分钟就演完了还是短了点……
 - SD 签名了合影了还说了两句话，已无憾（。）最后独自过了马路就消失在纽约来往的人群里，啊，纽约人……
 
-![](/img/journal/2025/greater-snow/theZiegfeldfiles.jpg)
+![](/img/journal/2025/greater-snow/theZiegfeldfiles.webp)
 
 ## What Comes Next?
 

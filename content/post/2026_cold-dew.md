@@ -30,11 +30,11 @@ math: False
 - 收到了一个网安平台（？）发的邮件说你在某某地方的个人数据泄漏，一看卧槽什么时候不小心把一个邮箱授权码发 github 上了（吓死），光速改 private + 撤销 + 改密码一套连招（）连夜装了个 Bitwarden，真得重置一下所有平台的密码了。
 - 中秋节去了 Chinese 同学们的聚会，在公寓天台 BBQ，天气非常好，还吃了四分之一个美心月饼；有人带了音响于是大家纷纷点起歌来，怎么台湾人也听河南说唱之神我不中了……
 
-![](/img/journal/2026/cold-dew/midautumn.jpg)
+![](/img/journal/2026/cold-dew/midautumn.webp)
 
 - 和同学去了 downtown 的德国市集 Oktoberfest，话虽这么说但真是（十分意料之内地）没有任何好吃的东西，竟然没有肘子，只有香肠还可以，颇有哈尔滨红肠之姿（是不是有点倒反天罡了
 
-![](/img/journal/2026/cold-dew/Oktoberfest.jpg)
+![](/img/journal/2026/cold-dew/Oktoberfest.webp)
 
 #### 吃什么不知道
 
@@ -43,12 +43,12 @@ math: False
 **Chaykhana**  
 乌兹别克斯坦餐厅，烤包子和抓饭都非常好，Beshbarmak 羊腿面也不错，分量十分慷慨，而且也不贵，唯一的缺点是需要开车半小时到 downtown 河对岸才能吃上。
 
-![](/img/journal/2026/cold-dew/chaykhana.jpg)
+![](/img/journal/2026/cold-dew/chaykhana.webp)
 
 **Texas Roadhouse**  
 烤肉也是为数不多还可以的美国 local 菜（还可以指吃了不会觉得命苦），从外形到味道都完全是想象中的样子；吃到八点半店里顾客竟然就走了一大半，真是完全没有夜生活啊……
 
-![](/img/journal/2026/cold-dew/texas-roadhouse.jpg)
+![](/img/journal/2026/cold-dew/texas-roadhouse.webp)
 
 **Yuzu Kitchen**  
 忘了在哪儿（大概是小红书）收藏的 downtown 拉面店，当时不怎么饿只点了碗馄饨，端上来一看 11 刀只有 4 个，何意味……同学说拉面也相当一般，不过顺便试了试清酒特调倒是还可以，虽然没带 ID 导致不得不让旁边的同学代点单然后一直偷感很重地趁服务员转身的时候喝（。
@@ -60,7 +60,7 @@ math: False
 - 群星观测（《寄生之子》的作者）开新文了！！[《世界备忘录》](https://www.jjwxc.net/onebook.php?novelid=10597223)，狂喜，严肃追更（这一本是女主，喜上加喜）
 - 想读一下传说中的 Wodehouse scholar 写的 Jeeves and Wooster 同人论文集 Wooster Proposes, Jeeves Disposes，结果此书不光绝版多年二手最便宜的也得一百多刀还根本找不到电子版，绝望之下在学校图书馆系统里搜了搜竟然有一本？？立刻借来，严肃阅读同好大作文🫡 思考要不要扫一个 pdf 出来
 
-![](/img/journal/2026/cold-dew/Wooster-proposes-Jeeves-disposes.jpg)
+![](/img/journal/2026/cold-dew/Wooster-proposes-Jeeves-disposes.webp)
 
 **男主他老是那样绝情 / 漠小兰 晋江文学城**  
 关注的推文博主推荐的，就，还行？风格是有点古早的轻松，感情戏其实还挺套路的，不过较为流畅，其实很意外博主评价这么高，我感觉也就是打发时间可以读读，不长，一天就看完了。

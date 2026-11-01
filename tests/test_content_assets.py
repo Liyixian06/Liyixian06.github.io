@@ -9,6 +9,8 @@ CONTENT_ROOT = PROJECT_ROOT / "content"
 STATIC_ROOT = PROJECT_ROOT / "static"
 MARKDOWN_IMAGE = re.compile(r"!\[[^]]*\]\((?P<target>/img/.+)\)\s*$")
 IMAGE_EXTENSIONS = {".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp"}
+JOURNAL_ROOT = STATIC_ROOT / "img" / "journal"
+MAX_JOURNAL_IMAGE_BYTES = 1_500_000
 
 
 def exact_path_problem(path: Path) -> str | None:
@@ -63,3 +65,17 @@ class ContentAssetTests(unittest.TestCase):
             uppercase_extensions,
             "Image extensions must be lowercase:\n" + "\n".join(map(str, uppercase_extensions)),
         )
+
+    def test_journal_images_are_web_friendly(self):
+        problems = []
+        for path in sorted(JOURNAL_ROOT.rglob("*")):
+            if not path.is_file() or path.name == ".DS_Store":
+                continue
+            relative_path = path.relative_to(PROJECT_ROOT)
+            if path.suffix.lower() not in {".png", ".webp"}:
+                problems.append(f"{relative_path}: journal photos must be WebP")
+            if path.stat().st_size > MAX_JOURNAL_IMAGE_BYTES:
+                size_mib = path.stat().st_size / 1024 / 1024
+                problems.append(f"{relative_path}: {size_mib:.1f} MiB exceeds the 1.5 MB limit")
+
+        self.assertFalse(problems, "Journal image optimization problems:\n" + "\n".join(problems))

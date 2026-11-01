@@ -44,3 +44,18 @@ make douban-migrate-book-images
 ```bash
 make douban-test
 ```
+
+#### 图片优化
+
+日记照片统一使用长边不超过 2000 px、质量 82 的 WebP。首次使用时安装编码工具：
+
+```bash
+brew install webp
+```
+
+先查看待处理图片，再执行转换；脚本会同步更新 Markdown 中的图片路径：
+
+```bash
+make images-check
+make images-optimize
+```

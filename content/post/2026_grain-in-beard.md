@@ -54,7 +54,7 @@ math: False
 **Vertigo Jungle**  
 铁树斜街胡同里，店里气氛非常好（bartender 似乎都是女的），酒单分为三轮，逐渐从保守到激进，花和茶之类的春日元素很多。其中有一杯五指毛桃朗姆，喝了之后再次确认我和五指毛桃这个东西真是八字不合，又勾起了之前五指毛桃薏米水的惨痛回忆……调酒的水平不能说特别高但至少很有诚意，关键是 vibe 确实很对，可以再去。
 
-![](/img/journal/2026/grain-in-beard/vertigo_jungle.jpg)
+![](/img/journal/2026/grain-in-beard/vertigo_jungle.webp)
 
 **Mmc**  
 之前来过两次，都匆匆喝了一杯红豆沙威士忌就走了，这次总算坐下来好好……吃了一顿。应该说是没有太多惊喜但也都不错的水平，虽然说西餐厅要给我惊喜往往靠的不是食物有多好而是价格有多感人，比如安妮（）酒还是很好喝的！
@@ -102,7 +102,7 @@ math: False
 **想想 XiangXiang x 气象限定 Quadrant｜街声大登陆北京站** @ 黄昏黎明 DDC  
 很不错，气象限定演了新歌，蛮好听的，可以期待一下新专了。想想的主唱的台风非常好啊非常有魅力！其实之前我都不知道史悲长什么样儿，见到了发现和网上形象给人的感觉一模一样……
 
-![](/img/journal/2026/grain-in-beard/xiangxiang.jpg)
+![](/img/journal/2026/grain-in-beard/xiangxiang.webp)
 
 ## 最近在琢磨什么
 
