@@ -8,6 +8,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CONTENT_ROOT = PROJECT_ROOT / "content"
 STATIC_ROOT = PROJECT_ROOT / "static"
 MARKDOWN_IMAGE = re.compile(r"!\[[^]]*\]\((?P<target>/img/.+)\)\s*$")
+SHORTCODE_IMAGE = re.compile(
+    r'{{<\s+(?:photo|image-text)\s+[^>]*\bsrc="(?P<target>/img/[^"]+)"[^>]*>}}'
+)
 IMAGE_EXTENSIONS = {".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp"}
 JOURNAL_ROOT = STATIC_ROOT / "img" / "journal"
 MAX_JOURNAL_IMAGE_BYTES = 1_500_000
@@ -38,17 +41,15 @@ class ContentAssetTests(unittest.TestCase):
 
         for markdown_file in sorted(CONTENT_ROOT.rglob("*.md")):
             for line_number, line in enumerate(markdown_file.read_text(encoding="utf-8").splitlines(), 1):
-                match = MARKDOWN_IMAGE.search(line)
-                if not match:
-                    continue
-
-                target = match.group("target").split(maxsplit=1)[0]
-                url_path = unquote(urlsplit(target).path)
-                asset_path = STATIC_ROOT / url_path.removeprefix("/")
-                problem = exact_path_problem(asset_path)
-                if problem:
-                    source = markdown_file.relative_to(PROJECT_ROOT)
-                    problems.append(f"{source}:{line_number}: {target}: {problem}")
+                matches = [*MARKDOWN_IMAGE.finditer(line), *SHORTCODE_IMAGE.finditer(line)]
+                for match in matches:
+                    target = match.group("target").split(maxsplit=1)[0]
+                    url_path = unquote(urlsplit(target).path)
+                    asset_path = STATIC_ROOT / url_path.removeprefix("/")
+                    problem = exact_path_problem(asset_path)
+                    if problem:
+                        source = markdown_file.relative_to(PROJECT_ROOT)
+                        problems.append(f"{source}:{line_number}: {target}: {problem}")
 
         self.assertFalse(problems, "Local image reference problems:\n" + "\n".join(problems))
 

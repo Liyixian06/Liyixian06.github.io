@@ -1,0 +1,17 @@
+{{- $src := .Get "src" -}}
+{{- if not $src -}}
+  {{- errorf "The photo shortcode requires src: %s" .Position -}}
+{{- end -}}
+{{- $align := .Get "align" | default "center" -}}
+{{- if not (in (slice "left" "center" "right") $align) -}}
+  {{- errorf "Invalid photo alignment %q at %s" $align .Position -}}
+{{- end -}}
+{{- $width := .Get "width" | default "100%" -}}
+{{- $caption := .Get "caption" -}}
+{{- $alt := .Get "alt" | default $caption -}}
+<figure class="content-photo content-photo--{{ $align }}" style="--photo-width: {{ $width | safeCSS }};">
+  {{- with .Get "link" }}<a href="{{ . | relURL }}">{{ end -}}
+  <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+  {{- with .Get "link" }}</a>{{ end -}}
+  {{- with $caption }}<figcaption>{{ . | $.Page.RenderString }}</figcaption>{{ end -}}
+</figure>

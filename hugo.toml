@@ -52,7 +52,7 @@ page_view_counter = true
 search = true
 showtoc = true
 
-custom_css = ["/css/copy-to-clipboard.css"]
+custom_css = ["/css/copy-to-clipboard.css", "/css/content-layout.css"]
 custom_js = ["/js/copy-to-clipboard.js"]
 
 # algolia site search

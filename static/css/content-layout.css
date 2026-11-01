@@ -1,0 +1,121 @@
+.content-photo {
+  width: min(100%, var(--photo-width, 100%));
+  margin-top: 1.75em;
+  margin-bottom: 1.75em;
+}
+
+.content-photo--left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.content-photo--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-photo--right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.post-container .content-photo img,
+.post-container .image-text img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  margin: 0;
+  border-radius: 4px;
+}
+
+.content-photo figcaption,
+.image-text figcaption {
+  margin-top: 0.6em;
+  color: #777;
+  font-size: 0.82em;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.photo-grid {
+  display: grid;
+  gap: 14px;
+  margin: 1.75em 0;
+  align-items: start;
+}
+
+.photo-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.photo-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.photo-grid > .content-photo {
+  width: 100%;
+  margin: 0;
+}
+
+.photo-grid > .content-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.image-text {
+  display: grid;
+  grid-template-columns: minmax(0, var(--image-text-width, 42%)) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 38px);
+  margin: 2em 0;
+  align-items: center;
+}
+
+.image-text--right {
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--image-text-width, 42%));
+}
+
+.image-text--right .image-text__media {
+  order: 2;
+}
+
+.image-text--right .image-text__content {
+  order: 1;
+}
+
+.image-text__media {
+  margin: 0;
+}
+
+.image-text__content > :first-child {
+  margin-top: 0;
+}
+
+.image-text__content > :last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 640px) {
+  .photo-grid,
+  .photo-grid--2,
+  .photo-grid--3,
+  .image-text,
+  .image-text--right {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-grid {
+    gap: 18px;
+  }
+
+  .photo-grid > .content-photo img {
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  .image-text--right .image-text__media,
+  .image-text--right .image-text__content {
+    order: initial;
+  }
+}

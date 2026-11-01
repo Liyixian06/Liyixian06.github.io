@@ -1,0 +1,7 @@
+{{- $columns := .Get "columns" | default "2" -}}
+{{- if not (in (slice "2" "3") $columns) -}}
+  {{- errorf "photo-grid columns must be 2 or 3 at %s" .Position -}}
+{{- end -}}
+<div class="photo-grid photo-grid--{{ $columns }}">
+  {{- .Inner -}}
+</div>

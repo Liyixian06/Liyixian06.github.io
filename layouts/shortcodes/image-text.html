@@ -1,0 +1,20 @@
+{{- $src := .Get "src" -}}
+{{- if not $src -}}
+  {{- errorf "The image-text shortcode requires src: %s" .Position -}}
+{{- end -}}
+{{- $side := .Get "side" | default "left" -}}
+{{- if not (in (slice "left" "right") $side) -}}
+  {{- errorf "image-text side must be left or right at %s" .Position -}}
+{{- end -}}
+{{- $width := .Get "width" | default "42%" -}}
+{{- $caption := .Get "caption" -}}
+{{- $alt := .Get "alt" | default $caption -}}
+<section class="image-text image-text--{{ $side }}" style="--image-text-width: {{ $width | safeCSS }};">
+  <figure class="image-text__media">
+    <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+    {{- with $caption }}<figcaption>{{ . | $.Page.RenderString }}</figcaption>{{ end -}}
+  </figure>
+  <div class="image-text__content">
+    {{- .Page.RenderString (dict "display" "block") .Inner -}}
+  </div>
+</section>

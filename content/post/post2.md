@@ -63,9 +63,91 @@ This is the new code block. (You can copy it!)
 
 读取本地文件夹下的CSV文件进行展示。
 
+### 新增和同步数据
+
+首次使用时创建专用 Python 虚拟环境并安装同步脚本依赖：
+
+```bash
+make douban-install
+```
+
+新增卡片时，在 `assets/douban/book.csv` 或 `assets/douban/movie.csv` 中增加一行，只填写 `url`：
+
+```csv
+,,,,https://book.douban.com/subject/25697546/,
+```
+
+先检查待同步条目，再抓取豆瓣元数据并写回 CSV：
+
+```bash
+make douban-check
+make douban-sync
+```
+
+同步脚本只处理文字元数据完全为空的新增行，不覆盖已有完整条目或人工填写的封面。标题、评分、标签和简介来自豆瓣；封面优先使用 NeoDB 托管的远程地址，不下载到仓库。若豆瓣返回安全验证，失败行会保持原样，可以稍后重试。
+
+将图书 CSV 中现存的豆瓣图片外链迁移为 NeoDB 封面：
+
+```bash
+make douban-migrate-book-images
+```
+
+该命令只替换主机为 `*.doubanio.com` 的 `image` 字段，不修改其他元数据或已经使用其他图源的条目。使用 `make douban-test` 可以运行离线测试。
+
+### 在文章中使用
+
+将豆瓣图书或电影条目 URL 传给 `douban-card`：
+
+```markdown
+{{</* douban-card "https://book.douban.com/subject/25697546/" */>}}
+{{</* douban-card "https://movie.douban.com/subject/1300868/" */>}}
+```
+
 {{< douban-card "https://book.douban.com/subject/25697546/" >}}
 
 {{< douban-card "https://movie.douban.com/subject/1300868/" >}}
+
+## 图片排版
+
+### 限制单张图片宽度
+
+`width` 可以使用 `px` 或百分比，`align` 支持 `left`、`center` 和 `right`，`caption` 用于添加图片说明：
+
+```markdown
+{{</* photo src="/img/journal/2026/cold-dew/Wooster-proposes-Jeeves-disposes.webp" width="420px" align="center" caption="图片说明" */>}}
+```
+
+{{< photo src="/img/journal/2026/cold-dew/Wooster-proposes-Jeeves-disposes.webp" width="420px" align="center" caption="限制宽度并居中显示" >}}
+
+### 双栏或三栏图片
+
+`columns` 支持 `2` 或 `3`；窄屏会自动切换为单栏：
+
+```markdown
+{{</* photo-grid columns="2" */>}}
+{{</* photo src="/img/a.webp" caption="第一张" */>}}
+{{</* photo src="/img/b.webp" caption="第二张" */>}}
+{{</* /photo-grid */>}}
+```
+
+{{< photo-grid columns="2" >}}
+{{< photo src="/img/journal/2026/cold-dew/midautumn.webp" caption="第一张" >}}
+{{< photo src="/img/journal/2026/cold-dew/Oktoberfest.webp" caption="第二张" >}}
+{{< /photo-grid >}}
+
+### 图片与文字并排
+
+`side` 用来指定图片位于左侧或右侧，`width` 控制图片所占宽度；窄屏会自动改为上下排列：
+
+```markdown
+{{</* image-text src="/img/example.webp" side="left" width="42%" */>}}
+这里可以正常使用 **Markdown**。
+{{</* /image-text */>}}
+```
+
+{{< image-text src="/img/journal/2026/cold-dew/chaykhana.webp" side="left" width="42%" >}}
+这里可以正常使用 **Markdown**，也可以加入链接、列表或其他段落内容。
+{{< /image-text >}}
 
 # latex
 
