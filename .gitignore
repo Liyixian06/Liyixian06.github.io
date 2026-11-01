@@ -1,0 +1,22 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.history/
+.hugo_build.lock
+.venv*/
+__pycache__/
+*.py[cod]
+*~
+
+# Local Node tooling used to update the Algolia index.
+package.json
+package-lock.json
+node_modules/
+
+# Generated Hugo output and caches.
+public/
+resources/_gen/
+
+# Local implementation notes.
+docs/
