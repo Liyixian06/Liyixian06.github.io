@@ -1,8 +1,15 @@
-<link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
-<script src="/_pagefind/pagefind-ui.js" type="text/javascript"></script>
+<link href="{{ "_pagefind/pagefind-ui.css" | relURL }}" rel="stylesheet">
+<script src="{{ "_pagefind/pagefind-ui.js" | relURL }}" type="text/javascript"></script>
 <div id="search"></div>
 <script>
-    window.addEventListener('DOMContentLoaded', (event) => {
-        new PagefindUI({ element: "#search" });
+    window.addEventListener("DOMContentLoaded", () => {
+        new PagefindUI({
+            element: "#search",
+            showSubResults: true,
+            translations: {
+                placeholder: "搜索文章",
+                zero_results: "没有找到 [SEARCH_TERM] 的相关内容"
+            }
+        });
     });
 </script>

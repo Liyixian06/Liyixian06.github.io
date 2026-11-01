@@ -9,7 +9,7 @@ __pycache__/
 *.py[cod]
 *~
 
-# Local Node tooling used to update the Algolia index.
+# Local Node tooling artifacts.
 package.json
 package-lock.json
 node_modules/
