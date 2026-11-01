@@ -47,9 +47,10 @@ make douban-test
 
 #### 图片优化
 
-日记照片统一使用长边不超过 2000 px、质量 82 的 WebP。首次使用时安装编码工具：
+日记照片统一使用长边不超过 2000 px、质量 82 的 WebP。压缩前会自动应用照片的 EXIF 方向信息，避免手机照片发生旋转。首次使用时安装 Python 依赖和编码工具：
 
 ```bash
+make douban-install
 brew install webp
 ```
 

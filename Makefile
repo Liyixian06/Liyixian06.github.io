@@ -20,7 +20,7 @@ douban-test:
 	$(DOUBAN_PYTHON) -m unittest discover -s tests -v
 
 images-check:
-	python3 scripts/optimize_journal_images.py
+	$(DOUBAN_PYTHON) scripts/optimize_journal_images.py
 
 images-optimize:
-	python3 scripts/optimize_journal_images.py --apply
+	$(DOUBAN_PYTHON) scripts/optimize_journal_images.py --apply

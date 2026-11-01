@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
 import argparse
-import re
 import shutil
 import subprocess
+import tempfile
 from pathlib import Path
+
+from PIL import Image, ImageOps
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -13,18 +15,17 @@ CONTENT_ROOT = PROJECT_ROOT / "content"
 JPEG_EXTENSIONS = {".jpeg", ".jpg"}
 
 
-def image_dimensions(path: Path) -> tuple[int, int]:
-    result = subprocess.run(
-        ["sips", "-g", "pixelWidth", "-g", "pixelHeight", str(path)],
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    width_match = re.search(r"pixelWidth: (\d+)", result.stdout)
-    height_match = re.search(r"pixelHeight: (\d+)", result.stdout)
-    if not width_match or not height_match:
-        raise RuntimeError(f"Could not read dimensions for {path}")
-    return int(width_match.group(1)), int(height_match.group(1))
+def normalize_image_for_encoding(source: Path, temporary_directory: Path) -> tuple[Path, int, int]:
+    with Image.open(source) as image:
+        orientation = image.getexif().get(274, 1)
+        normalized = ImageOps.exif_transpose(image)
+        width, height = normalized.size
+        if orientation == 1:
+            return source, width, height
+
+        normalized_path = temporary_directory / f"{source.stem}-normalized.png"
+        normalized.save(normalized_path, format="PNG")
+        return normalized_path, width, height
 
 
 def target_url(path: Path) -> str:
@@ -32,32 +33,35 @@ def target_url(path: Path) -> str:
 
 
 def convert_image(source: Path, destination: Path, max_dimension: int, quality: int) -> None:
-    width, height = image_dimensions(source)
-    resize_arguments: list[str] = []
-    if max(width, height) > max_dimension:
-        if width >= height:
-            resize_arguments = ["-resize", str(max_dimension), "0"]
-        else:
-            resize_arguments = ["-resize", "0", str(max_dimension)]
+    with tempfile.TemporaryDirectory() as temporary_directory_name:
+        encoding_source, width, height = normalize_image_for_encoding(
+            source, Path(temporary_directory_name)
+        )
+        resize_arguments: list[str] = []
+        if max(width, height) > max_dimension:
+            if width >= height:
+                resize_arguments = ["-resize", str(max_dimension), "0"]
+            else:
+                resize_arguments = ["-resize", "0", str(max_dimension)]
 
-    temporary = destination.with_name(destination.name + ".tmp")
-    command = [
-        "cwebp",
-        "-quiet",
-        "-q",
-        str(quality),
-        "-m",
-        "6",
-        "-mt",
-        "-sharp_yuv",
-        "-metadata",
-        "none",
-        *resize_arguments,
-        str(source),
-        "-o",
-        str(temporary),
-    ]
-    subprocess.run(command, check=True)
+        temporary = destination.with_name(destination.name + ".tmp")
+        command = [
+            "cwebp",
+            "-quiet",
+            "-q",
+            str(quality),
+            "-m",
+            "6",
+            "-mt",
+            "-sharp_yuv",
+            "-metadata",
+            "none",
+            *resize_arguments,
+            str(encoding_source),
+            "-o",
+            str(temporary),
+        ]
+        subprocess.run(command, check=True)
 
     if temporary.stat().st_size >= source.stat().st_size:
         temporary.unlink()
@@ -87,9 +91,6 @@ def main() -> None:
 
     if shutil.which("cwebp") is None:
         raise SystemExit("cwebp is required. On macOS, install it with: brew install webp")
-    if shutil.which("sips") is None:
-        raise SystemExit("sips is required; this optimizer currently supports macOS.")
-
     sources = sorted(
         path for path in JOURNAL_ROOT.rglob("*") if path.is_file() and path.suffix.lower() in JPEG_EXTENSIONS
     )
